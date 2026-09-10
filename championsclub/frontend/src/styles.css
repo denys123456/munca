@@ -1,9 +1,6 @@
 @import './styles/base.css';
-@import './styles/layout.css';
-@import './styles/dashboard.css';
+@import './styles/shell.css';
+@import './styles/surfaces.css';
 @import './styles/charts.css';
-@import './styles/data-display.css';
-@import './styles/tables.css';
-@import './styles/admin.css';
+@import './styles/pages.css';
 @import './styles/responsive.css';
-@import './styles/layout-fixes.css';

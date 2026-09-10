@@ -1,35 +1,16 @@
-export function LineChart({ values }) {
-  const maximumValue = Math.max(...values, 1)
-  const chartPoints = values.map((value, index) => {
-    const x = values.length === 1 ? 50 : (index / (values.length - 1)) * 100
-    const y = 100 - (value / maximumValue) * 86
-    return { x, y: Math.max(8, y) }
-  })
-  const polylinePoints = chartPoints.map((point) => `${point.x},${point.y}`).join(' ')
-  const forecastPoints = chartPoints.slice(-2).map((point) => `${point.x},${point.y}`).join(' ')
-  const confidencePolygon = [
-    ...chartPoints.map((point) => `${point.x},${Math.max(5, point.y - 8)}`),
-    ...chartPoints.slice().reverse().map((point) => `${point.x},${Math.min(96, point.y + 10)}`),
-  ].join(' ')
+import { useId } from 'react'
+import { area, curveMonotoneX, line } from 'd3-shape'
 
-  return (
-    <svg className="line-chart" viewBox="0 0 100 100" preserveAspectRatio="none" aria-label="Line chart">
-      <defs>
-        <linearGradient id="chartLineGradient" x1="0" x2="1" y1="0" y2="0">
-          <stop offset="0%" stopColor="#4d8dff" />
-          <stop offset="58%" stopColor="#45d2ff" />
-          <stop offset="100%" stopColor="#f1d39a" />
-        </linearGradient>
-        <linearGradient id="chartConfidenceGradient" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0%" stopColor="#4d8dff" stopOpacity="0.24" />
-          <stop offset="100%" stopColor="#4d8dff" stopOpacity="0" />
-        </linearGradient>
-      </defs>
-      <polygon className="confidence-band" points={confidencePolygon} />
-      <line className="target-line" x1="0" x2="100" y1="22" y2="22" />
-      <polyline className="actual-line" points={polylinePoints} />
-      {chartPoints.length > 2 && <polyline className="forecast-line" points={forecastPoints} />}
-      {chartPoints.map((point) => <circle cx={point.x} cy={point.y} r="1.8" key={`${point.x}-${point.y}`} />)}
-    </svg>
-  )
+export function LineChart({ values }) {
+  const id = useId()
+  const maximum = Math.max(...values, 1) * 1.12
+  const points = values.map((value, index) => ({ x: 40 + index * 600 / Math.max(1, values.length - 1), y: 215 - value / maximum * 185 }))
+  const path = line().x((point) => point.x).y((point) => point.y).curve(curveMonotoneX)
+  const fill = area().x((point) => point.x).y0(215).y1((point) => point.y).curve(curveMonotoneX)
+  return <svg className="line-chart" viewBox="0 0 680 250" role="img" aria-label={`Monthly sales trend: ${values.join(', ')} euros`}>
+    <defs><linearGradient id={id} x1="0" x2="0" y1="0" y2="1"><stop stopColor="#a5dbc0" stopOpacity=".2" /><stop offset="1" stopColor="#a5dbc0" stopOpacity="0" /></linearGradient></defs>
+    {[0, 1, 2, 3].map((index) => <line className="chart-gridline" key={index} x1="40" x2="640" y1={215 - index * 60} y2={215 - index * 60} />)}
+    <path d={fill(points)} fill={`url(#${id})`} /><path className="chart-actual" d={path(points)} />
+    {points.map((point, index) => <g key={index}><circle className="chart-dot" cx={point.x} cy={point.y} r="3" /><text className="chart-axis" x={point.x} y="240" textAnchor="middle">{['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'][index]}</text></g>)}
+  </svg>
 }

@@ -1,7 +1,8 @@
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8080'
 
-export async function getJson(path, credentials) {
+export async function getJson(path, credentials, signal) {
   const response = await fetch(`${API_BASE_URL}${path}`, {
+    signal,
     headers: {
       Authorization: `Basic ${btoa(`${credentials.email}:${credentials.password}`)}`,
       Accept: 'application/json',
@@ -19,6 +20,7 @@ export async function getJson(path, credentials) {
 export async function postJson(path, body, credentials) {
   const response = await fetch(`${API_BASE_URL}${path}`, {
     method: 'POST',
+    signal: AbortSignal.timeout(10000),
     headers: {
       Authorization: `Basic ${btoa(`${credentials.email}:${credentials.password}`)}`,
       Accept: 'application/json',

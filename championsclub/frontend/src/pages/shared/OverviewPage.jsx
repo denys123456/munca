@@ -1,122 +1,42 @@
-import { AlertTriangle, BadgeEuro, BrainCircuit, Target, TrendingUp, Trophy, Users } from 'lucide-react'
+import { ArrowUpRight, BadgeEuro, Target, TrendingUp, Users, Trophy } from 'lucide-react'
 import { KpiCard } from '../../components/ui/KpiCard.jsx'
+import { ForecastChart } from '../../components/charts/ForecastChart.jsx'
+import { IntelligenceBrief } from '../../components/ui/IntelligenceBrief.jsx'
 import { ProgressBar } from '../../components/ui/ProgressBar.jsx'
-import { SectionHeader } from '../../components/ui/SectionHeader.jsx'
 import { StatusPill } from '../../components/ui/StatusPill.jsx'
-import { LineChart } from '../../components/charts/LineChart.jsx'
-import dashboardVisual from '../../assets/automotive-dashboard.png'
 import { formatCurrency } from '../../product/formatters.js'
+import automotiveImage from '../../assets/automotive-dashboard.png'
 
 export function OverviewPage({ data, role, setActivePage }) {
-  const advisor = data.advisors[0]
+  const advisor = data.advisors.find((item) => item.id === data.currentUser.advisorId) ?? data.advisors[0]
   const isAdvisor = role === 'SALES_ADVISOR'
   const sales = isAdvisor ? advisor.sales : data.dealership.monthlySales
   const target = isAdvisor ? advisor.target : data.dealership.monthlyTarget
-  const progress = Math.round((sales * 100) / target)
-  const topPerformers = [...data.advisors].sort((a, b) => b.sales - a.sales).slice(0, 3)
-  const riskAdvisors = data.advisors.filter((item) => item.risk !== 'Low').slice(0, 3)
+  const factor = isAdvisor ? advisor.sales / data.dealership.monthlySales : 1
+  const predicted = Math.round(data.forecast.predictedSales * factor)
+  const progress = Math.round(sales * 100 / target)
+  const topPerformers = [...data.advisors].sort((first, second) => second.sales - first.sales).slice(0, 3)
 
-  return (
-    <div className="page-stack overview-composition">
-      <section className="executive-hero">
-        <div className="hero-content">
-          <span>{isAdvisor ? 'Advisor performance cockpit' : 'Executive performance cockpit'}</span>
-          <h2>{data.dealership.name}</h2>
-          <p>{data.aiInsights.summary}</p>
-          <button type="button" onClick={() => setActivePage('ai-insights')}>Open Champions Intelligence</button>
-        </div>
-        <img src={dashboardVisual} alt="Premium dealership analytics environment" />
-      </section>
-
-      <section className="kpi-grid">
-        <KpiCard icon={BadgeEuro} label="Monthly sales" value={formatCurrency(sales)} detail="Current reporting period" />
-        <KpiCard icon={Target} label="Target status" value={`${progress}%`} detail={`${formatCurrency(target)} target`} tone="success" />
-        <KpiCard icon={TrendingUp} label="Forecast outcome" value={formatCurrency(data.forecast.predictedSales)} detail={`${Math.round(data.forecast.confidence * 100)}% confidence`} />
-        <KpiCard icon={isAdvisor ? Trophy : Users} label={isAdvisor ? 'Current level' : 'Advisor risk'} value={isAdvisor ? advisor.level : data.dealership.advisorsAtRisk} detail={isAdvisor ? `${advisor.points} points available` : 'Requires manager attention'} tone="warning" />
-      </section>
-
-      <section className="content-grid">
-        <article className="panel large-panel analytic-panel">
-          <SectionHeader eyebrow="Primary performance" title="Sales trajectory and forecast" />
-          <LineChart values={[...data.charts.monthlySales, data.forecast.predictedSales]} />
-          <div className="metric-strip">
-            <Metric label="Actual" value={formatCurrency(data.dealership.monthlySales)} />
-            <Metric label="Target" value={formatCurrency(data.dealership.monthlyTarget)} />
-            <Metric label="Expected EOM" value={formatCurrency(data.forecast.predictedSales)} />
-          </div>
-        </article>
-
-        <article className="panel intelligence-panel">
-          <SectionHeader eyebrow="Champions Intelligence" title="What matters now" />
-          <InsightBlock label="What changed" value={data.aiInsights.whatChanged[0]} />
-          <InsightBlock label="Risk" value={data.aiInsights.needsAttention[0]} />
-          <InsightBlock label="Next action" value={data.aiInsights.nextActions[0]} />
-          <button className="secondary-action" type="button" onClick={() => setActivePage('ai-insights')}>
-            <BrainCircuit aria-hidden="true" />
-            Review intelligence
-          </button>
-        </article>
-
-        <article className="panel">
-          <SectionHeader eyebrow="Team" title="Top performers" />
-          <div className="compact-list vertical">
-            {topPerformers.map((item) => (
-              <div key={item.id}>
-                <Trophy aria-hidden="true" />
-                <span>{item.name}</span>
-                <strong>{formatCurrency(item.sales)}</strong>
-              </div>
-            ))}
-          </div>
-        </article>
-
-        <article className="panel">
-          <SectionHeader eyebrow="Target" title="Achievement quality" />
-          <ProgressBar label="Cycle progress" value={progress} />
-          <div className="compact-list vertical">
-            {riskAdvisors.map((item) => (
-              <div key={item.id}>
-                <AlertTriangle aria-hidden="true" />
-                <span>{item.name}</span>
-                <StatusPill value={item.risk} />
-              </div>
-            ))}
-          </div>
-        </article>
-
-        <article className="panel">
-          <SectionHeader eyebrow="Alerts" title="Meaningful alerts" />
-          <div className="alert-list">
-            {data.alerts.slice(0, 3).map((alert) => (
-              <div className="alert-row" key={alert.title}>
-                <AlertTriangle aria-hidden="true" />
-                <div>
-                  <strong>{alert.title}</strong>
-                  <span>{alert.message}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </article>
-      </section>
-    </div>
-  )
-}
-
-function Metric({ label, value }) {
-  return (
-    <div>
-      <span>{label}</span>
-      <strong>{value}</strong>
-    </div>
-  )
-}
-
-function InsightBlock({ label, value }) {
-  return (
-    <div className="insight-block">
-      <span>{label}</span>
-      <p>{value}</p>
-    </div>
-  )
+  return <div className="page-stack overview-page">
+    <section className="kpi-grid" aria-label="Performance summary">
+      <KpiCard icon={BadgeEuro} label="Booked volume" value={formatCurrency(sales)} detail="+9.9% versus previous cycle" tone="success" />
+      <KpiCard icon={Target} label="Target achievement" value={`${progress}%`} detail={`${formatCurrency(target - sales)} to your target`} />
+      <KpiCard icon={TrendingUp} label="Projected close" value={formatCurrency(predicted)} detail={`${Math.round(data.forecast.confidence * 100)}% model confidence`} tone="success" />
+      <KpiCard icon={isAdvisor ? Trophy : Users} label={isAdvisor ? 'Your points balance' : 'Advisors to support'} value={isAdvisor ? (advisor.availablePoints ?? advisor.points).toLocaleString('en') : '02'} detail={isAdvisor ? `${advisor.level} member` : 'A little attention. A measurable difference.'} tone="warning" />
+    </section>
+    <section className="overview-main">
+      <div className="performance-canvas"><header className="canvas-header"><div><span className="eyebrow">THE BIG PICTURE</span><h2>Your trajectory. In perspective.</h2></div><span className="canvas-cycle">SEPTEMBER <i /></span></header>
+        <div className="canvas-value"><strong>{formatCurrency(sales)}</strong><span><TrendingUp /> +9.9% <small>vs. last cycle</small></span></div>
+        <ForecastChart actual={sales} predicted={predicted} target={target} history={data.charts.monthlySales.map((value) => value * factor)} compact />
+        <div className="canvas-bottom"><div><span className="signal-dot" /><span>Projected to finish <strong>{Math.round((predicted / target - 1) * 100)}% above target</strong></span></div><button className="text-action" type="button" onClick={() => setActivePage(isAdvisor ? 'my-performance' : 'forecasts')}>Explore performance <ArrowUpRight /></button></div>
+      </div>
+      <IntelligenceBrief data={data} onOpen={() => setActivePage('ai-insights')} />
+    </section>
+    <section className="overview-bottom">
+      <div className="ranking-preview"><header className="section-header"><div><span className="eyebrow">PEOPLE BEHIND THE PROGRESS</span><h2>{isAdvisor ? 'Your next milestone' : 'Leading the way'}</h2></div><button className="text-action" type="button" onClick={() => setActivePage(isAdvisor ? 'rewards' : 'leaderboard')}>{isAdvisor ? 'Rewards' : 'Full rankings'}<ArrowUpRight /></button></header>
+        {isAdvisor ? <div className="milestone-preview"><Trophy /><h3>Gold is closer with every sale.</h3><ProgressBar label={`${advisor.points.toLocaleString('en')} / ${data.settings.gold.toLocaleString('en')} lifetime points`} value={advisor.points / data.settings.gold * 100} /></div> : topPerformers.map((item, index) => <button type="button" className="ranking-preview-row" key={item.id} onClick={() => setActivePage('advisor-detail', item.id)}><span className="rank-number">0{index + 1}</span><span className="avatar">{item.name.split(' ').map((part) => part[0]).join('')}</span><span className="ranking-person"><strong>{item.name}</strong><small>{item.title}</small></span><StatusPill value={item.level} /><strong>{formatCurrency(item.sales)}</strong><ArrowUpRight /></button>)}
+      </div>
+      <div className="club-feature"><img src={automotiveImage} alt="Volkswagen vehicles in a contemporary dealership showroom" /><div className="club-feature-copy"><span className="eyebrow">THE CHAMPIONSCLUB COLLECTION</span><h2>Performance deserves<br />something exceptional.</h2><button type="button" onClick={() => setActivePage('rewards')}>Discover your rewards <ArrowUpRight /></button></div></div>
+    </section>
+  </div>
 }

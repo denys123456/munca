@@ -1,6 +1,7 @@
 export const demoAccounts = [
   {
     id: 'jane-advisor',
+    advisorId: 1,
     name: 'Jane Doe',
     email: 'jane.doe@championsclub.example',
     role: 'SALES_ADVISOR',
@@ -63,10 +64,10 @@ export const demoProductData = {
   },
   advisors: [
     advisor(1, 'Jane Doe', 'Sales Advisor', 118500, 140000, 1330, 'SILVER', 'On Track', 'Medium', 72),
-    advisor(2, 'John Doe', 'Sales Advisor', 68500, 125000, 615, 'BRONZE', 'Needs Coaching', 'High', 39),
-    advisor(3, 'Alex Smith', 'Senior Sales Advisor', 151200, 145000, 2370, 'SILVER', 'Accelerating', 'Low', 86),
-    advisor(5, 'Morgan Lee', 'Service Advisor', 74200, 110000, 880, 'BRONZE', 'On Track', 'Medium', 58),
-    advisor(8, 'Riley Carter', 'Sales Advisor', 98200, 120000, 1210, 'SILVER', 'On Track', 'Low', 66),
+    advisor(2, 'John Doe', 'Sales Advisor', 33500, 65000, 615, 'BRONZE', 'Needs Coaching', 'High', 39),
+    advisor(3, 'Alex Smith', 'Senior Sales Advisor', 92200, 100000, 2370, 'SILVER', 'Accelerating', 'Low', 86),
+    advisor(5, 'Morgan Lee', 'Service Advisor', 28400, 55000, 880, 'BRONZE', 'On Track', 'Medium', 58),
+    advisor(8, 'Riley Carter', 'Sales Advisor', 39800, 60000, 1210, 'SILVER', 'On Track', 'Low', 66),
   ],
   targets: [
     target('Dealership monthly target', 'Dealership', 420000, 312400, 'ACTIVE', '30 Sep 2026'),
@@ -139,9 +140,10 @@ export const demoProductData = {
       { name: 'Apex Financial Hub West', city: 'Timisoara', region: 'West', status: 'Active' },
     ],
     pointRules: [
-      { product: 'Classic Financing', points: 12, reason: 'Baseline finance product' },
-      { product: 'Leasing Plus', points: 16, reason: 'Strategic growth product' },
-      { product: 'Service Protection', points: 9, reason: 'Retention attachment product' },
+      { id: 1, product: 'Classic Financing', points: 12, reason: 'Baseline finance product', status: 'Active' },
+      { id: 2, product: 'Leasing Plus', points: 16, reason: 'Strategic growth product', status: 'Active' },
+      { id: 3, product: 'Service Protection', points: 9, reason: 'Retention attachment product', status: 'Active' },
+      { id: 4, product: 'Fleet Advantage', points: 20, reason: 'Fleet growth incentive', status: 'Active' },
     ],
     systemHealth: [
       { service: 'Spring Boot API', status: 'Ready', detail: 'Core business workflows available' },

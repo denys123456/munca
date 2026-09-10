@@ -1,0 +1,10 @@
+{
+  "promotedElements": 21,
+  "backdropFilters": 1,
+  "frameMedian": 4.199999999999818,
+  "frameP95": 4.300000000000182,
+  "longTasks": [],
+  "contentMutationsDuringPointerMovement": 2,
+  "horizontalOverflow": false,
+  "errors": []
+}

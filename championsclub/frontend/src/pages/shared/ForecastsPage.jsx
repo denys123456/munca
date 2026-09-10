@@ -1,63 +1,19 @@
-import { BrainCircuit, Gauge, Target, TrendingUp } from 'lucide-react'
-import { LineChart } from '../../components/charts/LineChart.jsx'
-import { KpiCard } from '../../components/ui/KpiCard.jsx'
-import { ProgressBar } from '../../components/ui/ProgressBar.jsx'
-import { SectionHeader } from '../../components/ui/SectionHeader.jsx'
-import { StatusPill } from '../../components/ui/StatusPill.jsx'
+import { ArrowUpRight, Check, SlidersHorizontal } from 'lucide-react'
+import { useState } from 'react'
+import { ForecastChart } from '../../components/charts/ForecastChart.jsx'
 import { formatCurrency } from '../../product/formatters.js'
 
-export function ForecastsPage({ data }) {
-  return (
-    <div className="page-stack">
-      <section className="forecast-board">
-        <article className="panel forecast-primary">
-          <SectionHeader eyebrow="Forecasting" title="Actual trajectory, forecast and target" />
-          <LineChart values={[...data.charts.monthlySales, data.forecast.predictedSales]} />
-          <div className="metric-strip">
-            <div>
-              <span>Current actual</span>
-              <strong>{formatCurrency(data.dealership.monthlySales)}</strong>
-            </div>
-            <div>
-              <span>Monthly target</span>
-              <strong>{formatCurrency(data.dealership.monthlyTarget)}</strong>
-            </div>
-            <div>
-              <span>Expected outcome</span>
-              <strong>{formatCurrency(data.forecast.predictedSales)}</strong>
-            </div>
-          </div>
-        </article>
-        <aside className="panel forecast-side">
-          <SectionHeader eyebrow="Model signal" title="Target probability" />
-          <strong className="probability-value">{Math.round(data.forecast.targetAchievementProbability * 100)}%</strong>
-          <ProgressBar label="Confidence" value={data.forecast.confidence * 100} />
-          <StatusPill value={data.connectionState === 'live' ? 'Live' : 'Forecast temporarily unavailable'} />
-          <p className="soft-copy">Core dashboard data remains available while live forecasting reconnects.</p>
-        </aside>
-      </section>
-
-      <section className="kpi-grid">
-        <KpiCard icon={TrendingUp} label="Trend" value={data.forecast.trend} detail="Latest prediction movement" />
-        <KpiCard icon={Gauge} label="Confidence" value={`${Math.round(data.forecast.confidence * 100)}%`} detail={data.forecast.modelQuality} tone="success" />
-        <KpiCard icon={Target} label="Target gap" value={formatCurrency(data.dealership.monthlyTarget - data.dealership.monthlySales)} detail="Remaining booked volume" />
-        <KpiCard icon={BrainCircuit} label="Anomalies" value={data.forecast.anomalyHints.length} detail="Signals under observation" tone="warning" />
-      </section>
-
-      <section className="content-grid">
-        <article className="panel">
-          <SectionHeader eyebrow="Assumptions" title="Model basis" />
-          <div className="assumption-list">
-            {data.forecast.assumptions.map((assumption) => <span key={assumption}>{assumption}</span>)}
-          </div>
-        </article>
-        <article className="panel">
-          <SectionHeader eyebrow="Signals" title="Anomaly hints" />
-          <div className="compact-list vertical">
-            {data.forecast.anomalyHints.map((hint) => <span key={hint}>{hint}</span>)}
-          </div>
-        </article>
-      </section>
-    </div>
-  )
+export function ForecastsPage({ data, setActivePage }) {
+  const [scenario, setScenario] = useState('Expected')
+  const multiplier = scenario === 'Conservative' ? .9 : scenario === 'Stretch' ? 1.08 : 1
+  const predicted = Math.round(data.forecast.predictedSales * multiplier)
+  const probability = scenario === 'Expected' ? Math.round(data.forecast.targetAchievementProbability * 100) : scenario === 'Conservative' ? 44 : 89
+  return <div className="page-stack forecast-page">
+    <section className="forecast-heading"><div><span className="eyebrow">THE ROAD AHEAD</span><h2>See the finish.<br /><span>Shape the outcome.</span></h2></div><div className="segmented-control" aria-label="Forecast scenario">{['Conservative', 'Expected', 'Stretch'].map((item) => <button type="button" key={item} aria-pressed={scenario === item} onClick={() => setScenario(item)}>{item}</button>)}</div></section>
+    <section className="forecast-board"><div className="forecast-primary"><div className="forecast-numbers"><div><span>PROJECTED SEPTEMBER CLOSE</span><strong>{formatCurrency(predicted)}</strong><small className={predicted >= data.dealership.monthlyTarget ? 'positive' : 'negative'}>{formatCurrency(Math.abs(predicted - data.dealership.monthlyTarget))} {predicted >= data.dealership.monthlyTarget ? 'above' : 'below'} target</small></div><div><span>CURRENT ACTUAL</span><strong>{formatCurrency(data.dealership.monthlySales)}</strong><small>As of 10 September</small></div></div><ForecastChart actual={data.dealership.monthlySales} target={data.dealership.monthlyTarget} predicted={predicted} history={data.charts.monthlySales} /></div>
+      <aside className="forecast-confidence"><span className="eyebrow">TARGET ACHIEVEMENT</span><div className="probability-dial" style={{ '--probability': `${probability}%` }}><div><strong>{probability}<small>%</small></strong><span>probability</span></div></div><h3>{probability >= 70 ? 'A strong position.' : 'Room to intervene.'}</h3><p>Consistency in your renewal pipeline will determine the final stretch.</p><div className="confidence-meta"><span>ML confidence</span><strong>{Math.round(data.forecast.confidence * 100)}%</strong></div><div className="confidence-meta"><span>Signal quality</span><strong>{data.forecast.modelQuality}</strong></div><button className="text-action" type="button" onClick={() => setActivePage('ai-insights')}>Explore the drivers<ArrowUpRight /></button></aside>
+    </section>
+    <p className="forecast-disclosure"><SlidersHorizontal />{data.connectionState === 'live' ? 'Scenario analysis' : 'Illustrative demo model'}: scenarios and the confidence region are indicative estimates, not guaranteed outcomes.</p>
+    <section className="forecast-context"><div><span className="eyebrow">BUILT ON THESE ASSUMPTIONS</span>{data.forecast.assumptions.map((item) => <p key={item}><Check />{item}</p>)}</div><div><span className="eyebrow">A SIGNAL TO WATCH</span><h3>Service Protection is below its expected range.</h3><p className="soft-copy">Review attachment opportunities in open finance conversations.</p><button className="text-action" type="button" onClick={() => setActivePage('alerts')}>Review active signals<ArrowUpRight /></button></div></section>
+  </div>
 }
