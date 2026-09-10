@@ -26,8 +26,7 @@
   border-radius: 22px;
   color: var(--text);
   position: relative;
-  transition: background var(--t-fast), border-color var(--t-fast), box-shadow var(--t-fast), filter var(--t-fast), opacity var(--t-fast), transform var(--t-fast);
-  backdrop-filter: blur(var(--blur-sm));
+  transition: background var(--t-fast), border-color var(--t-fast), box-shadow var(--t-fast), opacity var(--t-fast), transform var(--t-fast);
 }
 
 .recommendation-list div,
@@ -49,8 +48,7 @@
 .leaderboard-table:hover .leaderboard-card:not(:hover),
 .advisor-table:hover .advisor-row:not(:hover),
 .alert-worklist:hover .alert-card:not(:hover) {
-  filter: blur(1px) saturate(0.74);
-  opacity: 0.55;
+  opacity: 1;
 }
 
 .recommendation-list div:hover,
@@ -63,8 +61,8 @@
 .target-card:hover,
 .service-status-card:hover {
   border-color: rgba(122, 181, 255, 0.38);
-  box-shadow: 0 18px 56px rgba(0, 0, 0, 0.34), 0 0 32px rgba(77, 141, 255, 0.16);
-  transform: translateY(-4px) scale(1.012);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
 }
 
 .recommendation-list svg,
@@ -193,7 +191,6 @@
   min-height: 180px;
   overflow: hidden;
   padding: 18px;
-  transform-style: preserve-3d;
 }
 
 .reward-card::before {
@@ -216,7 +213,6 @@
   align-self: start;
   color: var(--champagne);
   height: 34px;
-  transform: translateZ(24px);
   width: 34px;
 }
 
@@ -226,7 +222,7 @@
 }
 
 .reward-card:hover {
-  transform: translateY(-7px) scale(1.025) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transform: translateY(-3px) scale(1.006);
 }
 
 .reward-card:hover::before {

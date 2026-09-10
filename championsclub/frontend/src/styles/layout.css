@@ -2,7 +2,6 @@
   display: grid;
   grid-template-columns: 104px minmax(0, 1fr);
   min-height: 100vh;
-  perspective: 1400px;
 }
 
 .product-shell::before {
@@ -11,7 +10,6 @@
     linear-gradient(90deg, rgba(255, 255, 255, 0.05), transparent 22% 78%, rgba(255, 255, 255, 0.04));
   border-radius: 999px;
   content: '';
-  filter: blur(34px);
   height: 68vh;
   left: 64px;
   opacity: 0.55;
@@ -24,7 +22,6 @@
 
 .intro-active .product-workspace,
 .intro-active .sidebar {
-  filter: blur(14px) saturate(0.72);
   opacity: 0.42;
   transform: scale(0.985);
 }
@@ -43,9 +40,9 @@
   padding: 28px;
   position: fixed;
   text-align: center;
-  transition: opacity 700ms var(--ease-premium), transform 700ms var(--ease-premium), visibility 700ms;
+  transition: opacity 360ms var(--ease-premium), transform 360ms var(--ease-premium), visibility 360ms;
   z-index: 50;
-  backdrop-filter: blur(var(--blur-lg));
+  backdrop-filter: blur(8px);
 }
 
 .intro-complete .intro-sequence {
@@ -147,7 +144,7 @@
   padding: 16px;
   position: sticky;
   top: 22px;
-  transition: filter var(--t-page) var(--ease-premium), opacity var(--t-page) var(--ease-premium), transform var(--t-page) var(--ease-premium);
+  transition: opacity var(--t-ui) var(--ease-premium), transform var(--t-ui) var(--ease-premium);
   width: 76px;
   z-index: 20;
 }
@@ -167,11 +164,10 @@
   transition: transform var(--t-ui) var(--ease-premium), background var(--t-ui) var(--ease-premium);
   width: 262px;
   z-index: -1;
-  backdrop-filter: blur(var(--blur-md));
 }
 
 .sidebar:hover::before,
-.sidebar:focus-within::before {
+.sidebar:has(:focus-visible)::before {
   background:
     radial-gradient(circle at 20% 12%, rgba(77, 141, 255, 0.22), transparent 28%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05)),
@@ -201,11 +197,11 @@
 }
 
 .sidebar:hover .brand-copy,
-.sidebar:focus-within .brand-copy,
+.sidebar:has(:focus-visible) .brand-copy,
 .sidebar:hover .main-navigation span,
-.sidebar:focus-within .main-navigation span,
+.sidebar:has(:focus-visible) .main-navigation span,
 .sidebar:hover .rail-profile div:not(.avatar),
-.sidebar:focus-within .rail-profile div:not(.avatar) {
+.sidebar:has(:focus-visible) .rail-profile div:not(.avatar) {
   opacity: 1;
   transform: translateX(0);
 }
@@ -282,16 +278,16 @@
 }
 
 .main-navigation button:hover::before,
-.main-navigation button.is-active::before {
+.main-navigation button.is-route-active::before {
   opacity: 1;
 }
 
-.main-navigation button.is-active {
+.main-navigation button.is-route-active {
   background: rgba(77, 141, 255, 0.16);
   color: white;
 }
 
-.main-navigation button.is-active::after {
+.main-navigation button.is-route-active::after {
   opacity: 1;
   transform: scaleY(1);
 }
@@ -343,7 +339,7 @@
 .product-workspace {
   min-width: 0;
   padding: 24px clamp(18px, 4vw, 58px) 58px 18px;
-  transition: filter var(--t-page) var(--ease-premium), opacity var(--t-page) var(--ease-premium), transform var(--t-page) var(--ease-premium);
+  transition: opacity var(--t-ui) var(--ease-premium), transform var(--t-ui) var(--ease-premium);
 }
 
 .topbar {
@@ -371,7 +367,6 @@
   font-size: 13px;
   gap: 8px;
   padding: 9px 13px;
-  backdrop-filter: blur(var(--blur-sm));
 }
 
 .breadcrumb strong {
@@ -396,7 +391,6 @@
   min-width: min(340px, 30vw);
   padding: 10px 15px;
   transition: border-color var(--t-fast), background var(--t-fast), box-shadow var(--t-fast), transform var(--t-fast);
-  backdrop-filter: blur(var(--blur-sm));
 }
 
 .global-search:hover {
@@ -426,7 +420,6 @@
   color: var(--text);
   justify-content: center;
   width: 42px;
-  backdrop-filter: blur(var(--blur-sm));
 }
 
 .secondary-action,
@@ -435,7 +428,6 @@
   border: 1px solid rgba(255, 255, 255, 0.14);
   color: var(--text);
   padding: 0 14px;
-  backdrop-filter: blur(var(--blur-sm));
 }
 
 .primary-action {
@@ -478,7 +470,6 @@
   gap: 8px;
   min-height: 40px;
   padding: 4px 10px 4px 13px;
-  backdrop-filter: blur(var(--blur-sm));
 }
 
 .demo-account-switcher > span {
@@ -529,7 +520,6 @@
   gap: 10px;
   padding: 7px 14px 7px 7px;
   box-shadow: var(--shadow-glass);
-  backdrop-filter: blur(var(--blur-sm));
 }
 
 .identity-chip strong,

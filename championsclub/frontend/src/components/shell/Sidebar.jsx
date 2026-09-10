@@ -16,7 +16,7 @@ export function Sidebar({ account, activePage, navigation, onNavigate }) {
           return (
             <button
               aria-current={activePage === item.page ? 'page' : undefined}
-              className={activePage === item.page ? 'is-active' : ''}
+              className={activePage === item.page ? 'is-route-active' : ''}
               key={item.page}
               onClick={() => onNavigate(item.page)}
               title={item.label}

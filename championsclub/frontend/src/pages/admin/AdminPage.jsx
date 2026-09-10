@@ -168,7 +168,7 @@ function AdminForm({ title, collection, data, initialRow, onClose }) {
         data.actions.updateAdminRow('dealerships', initialRow.name, { name: form.name, city: form.city, region: form.region, status: form.status })
       }
       setStatus({ type: 'success', message: initialRow ? 'Updated successfully.' : 'Created successfully.' })
-      window.setTimeout(onClose, 520)
+      onClose()
     } catch (error) {
       setStatus({ type: 'error', message: error.message })
     }

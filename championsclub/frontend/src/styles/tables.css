@@ -8,7 +8,6 @@
   gap: 9px;
   padding: 10px 13px;
   transition: border-color var(--t-fast), box-shadow var(--t-fast), transform var(--t-fast);
-  backdrop-filter: blur(var(--blur-sm));
 }
 
 .filter-box:hover,
@@ -52,9 +51,8 @@
   padding: 16px;
   position: relative;
   text-align: left;
-  transition: border-color var(--t-ui), box-shadow var(--t-ui), filter var(--t-ui), opacity var(--t-ui), transform var(--t-ui);
+  transition: border-color var(--t-fast), box-shadow var(--t-fast), opacity var(--t-fast), transform var(--t-fast);
   width: 100%;
-  backdrop-filter: blur(var(--blur-sm));
 }
 
 .advisor-row::after {
@@ -75,8 +73,8 @@
 
 .advisor-row:hover {
   border-color: rgba(122, 181, 255, 0.42);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.44), 0 0 36px rgba(77, 141, 255, 0.18);
-  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
 }
 
 .advisor-row:hover::after {
@@ -117,8 +115,8 @@
 
 .premium-table-row:hover {
   border-color: rgba(122, 181, 255, 0.36);
-  box-shadow: 0 16px 46px rgba(0, 0, 0, 0.32);
-  transform: translateX(5px) scale(1.006);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+  transform: translateY(-2px);
 }
 
 .alert-card {

@@ -28,9 +28,7 @@
   min-height: 430px;
   overflow: hidden;
   position: relative;
-  transform-style: preserve-3d;
-  transition: box-shadow var(--t-ui) var(--ease-premium), filter var(--t-ui) var(--ease-premium), transform var(--t-ui) var(--ease-premium);
-  backdrop-filter: blur(var(--blur-sm));
+  transition: box-shadow var(--t-fast) var(--ease-premium), transform var(--t-fast) var(--ease-premium), border-color var(--t-fast) var(--ease-premium);
 }
 
 .executive-hero::before {
@@ -45,9 +43,8 @@
 }
 
 .executive-hero:hover {
-  box-shadow: 0 38px 110px rgba(0, 0, 0, 0.62), 0 0 76px rgba(77, 141, 255, 0.34);
-  filter: saturate(1.08);
-  transform: translateY(-5px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.38);
+  transform: translateY(-3px);
 }
 
 .executive-hero img {
@@ -128,8 +125,7 @@
 }
 
 .hero-content button:hover::after {
-  animation: shimmer 780ms var(--ease-premium);
-  opacity: 1;
+  opacity: 0;
 }
 
 .kpi-grid {
@@ -153,9 +149,7 @@
   overflow: hidden;
   padding: 20px;
   position: relative;
-  transform-style: preserve-3d;
-  transition: border-color var(--t-ui), box-shadow var(--t-ui), filter var(--t-ui), opacity var(--t-ui), transform var(--t-ui);
-  backdrop-filter: blur(var(--blur-md));
+  transition: border-color var(--t-fast), box-shadow var(--t-fast), opacity var(--t-fast), transform var(--t-fast);
 }
 
 .kpi-card::before {
@@ -170,21 +164,18 @@
 }
 
 .kpi-grid:hover .kpi-card:not(:hover) {
-  filter: blur(1.6px) saturate(0.72);
-  opacity: 0.56;
-  transform: scale(0.985);
+  opacity: 1;
+  transform: none;
 }
 
 .kpi-card:hover {
   border-color: rgba(122, 181, 255, 0.54);
-  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.5), 0 0 46px rgba(77, 141, 255, 0.26);
-  filter: saturate(1.14);
-  transform: translateY(-6px) scale(1.025) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.34);
+  transform: translateY(-3px) scale(1.006);
 }
 
 .kpi-card:hover::before {
-  animation: shimmer 760ms var(--ease-premium);
-  opacity: 1;
+  opacity: 0;
 }
 
 .kpi-card.success {
@@ -213,13 +204,12 @@
 .kpi-topline svg {
   color: var(--blue-hot);
   height: 20px;
-  transform: translateZ(24px);
   transition: transform var(--t-fast);
   width: 20px;
 }
 
 .kpi-card:hover .kpi-topline svg {
-  transform: translateZ(32px) translateX(4px) scale(1.1);
+  transform: translateX(3px);
 }
 
 .kpi-card strong {
@@ -268,20 +258,18 @@
   overflow: hidden;
   padding: 22px;
   position: relative;
-  transition: border-color var(--t-ui), box-shadow var(--t-ui), filter var(--t-ui), opacity var(--t-ui), transform var(--t-ui);
-  backdrop-filter: blur(var(--blur-md));
+  transition: border-color var(--t-fast), box-shadow var(--t-fast), opacity var(--t-fast), transform var(--t-fast);
 }
 
 .content-grid:hover .panel:not(:hover),
 .three-column-grid:hover .panel:not(:hover) {
-  filter: blur(1.2px) saturate(0.8);
-  opacity: 0.62;
+  opacity: 1;
 }
 
 .panel:hover {
   border-color: rgba(255, 255, 255, 0.24);
-  box-shadow: var(--shadow-float);
-  transform: translateY(-5px) scale(1.012) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.34);
+  transform: translateY(-3px);
 }
 
 .analytic-panel,
@@ -329,7 +317,6 @@
   overflow: hidden;
   padding: 28px;
   position: relative;
-  backdrop-filter: blur(var(--blur-md));
 }
 
 .profile-hero::after,
@@ -451,18 +438,16 @@
   min-height: 360px;
   padding: 22px;
   position: relative;
-  transition: filter var(--t-ui), opacity var(--t-ui), transform var(--t-ui), box-shadow var(--t-ui);
-  backdrop-filter: blur(var(--blur-md));
+  transition: opacity var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
 }
 
 .intelligence-story:hover .insight-section:not(:hover) {
-  filter: blur(1.2px) saturate(0.8);
-  opacity: 0.58;
+  opacity: 1;
 }
 
 .insight-section:hover {
-  box-shadow: 0 0 70px rgba(69, 210, 255, 0.2), var(--shadow-float);
-  transform: translateY(-6px) scale(1.018);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.34);
+  transform: translateY(-3px);
 }
 
 .insight-section.is-action {

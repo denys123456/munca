@@ -147,31 +147,25 @@ svg {
 
 @keyframes revealUp {
   from {
-    filter: blur(10px);
     opacity: 0;
-    transform: translateY(22px) scale(0.985);
+    transform: translateY(12px);
   }
 
   to {
-    filter: blur(0);
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 
 @keyframes pageDrift {
   from {
-    clip-path: inset(0 0 8% 0 round 24px);
-    filter: blur(14px);
     opacity: 0;
-    transform: translateY(18px) scale(0.985);
+    transform: translateY(10px);
   }
 
   to {
-    clip-path: inset(0 0 0 0 round 0);
-    filter: blur(0);
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 

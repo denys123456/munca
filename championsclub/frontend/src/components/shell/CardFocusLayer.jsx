@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 
 const focusSelector = [
   '.kpi-card',
-  '.panel',
   '.reward-card',
   '.advisor-row',
   '.alert-card',
@@ -15,6 +14,7 @@ const focusSelector = [
 
 export function CardFocusLayer() {
   const timerRef = useRef(null)
+  const activeTargetRef = useRef(null)
   const [focusedCard, setFocusedCard] = useState(null)
 
   useEffect(() => {
@@ -25,6 +25,7 @@ export function CardFocusLayer() {
     function clearFocus() {
       window.clearTimeout(timerRef.current)
       timerRef.current = null
+      activeTargetRef.current = null
       setFocusedCard(null)
     }
 
@@ -33,23 +34,31 @@ export function CardFocusLayer() {
       if (!target || target.closest('.intro-sequence, .search-panel, .modal-backdrop, .toast-stack')) {
         return
       }
+      if (activeTargetRef.current === target) {
+        return
+      }
 
       window.clearTimeout(timerRef.current)
+      activeTargetRef.current = target
       timerRef.current = window.setTimeout(() => {
+        if (activeTargetRef.current !== target || !target.matches(':hover')) {
+          return
+        }
         const rect = target.getBoundingClientRect()
-        const maxScale = Math.min(1.75, (window.innerWidth - 48) / rect.width, (window.innerHeight - 48) / rect.height)
-        const width = rect.width * maxScale
-        const height = rect.height * maxScale
-        const left = Math.min(Math.max(24, rect.left + rect.width / 2 - width / 2), window.innerWidth - width - 24)
-        const top = Math.min(Math.max(24, rect.top + rect.height / 2 - height / 2), window.innerHeight - height - 24)
+        const scale = Math.min(1.75, (window.innerWidth - 48) / rect.width, (window.innerHeight - 48) / rect.height)
+        const scaledWidth = rect.width * scale
+        const scaledHeight = rect.height * scale
+        const left = Math.min(Math.max(24, rect.left + rect.width / 2 - scaledWidth / 2), window.innerWidth - scaledWidth - 24)
+        const top = Math.min(Math.max(24, rect.top + rect.height / 2 - scaledHeight / 2), window.innerHeight - scaledHeight - 24)
         setFocusedCard({
           html: target.innerHTML,
           className: target.className,
           style: {
             left,
             top,
-            width,
-            minHeight: height,
+            width: rect.width,
+            height: rect.height,
+            '--focus-scale': scale,
           },
         })
       }, 1000)
@@ -82,10 +91,10 @@ export function CardFocusLayer() {
 
   return (
     <>
-      <div className="focus-scrim" />
+      <div className="focus-overlay" />
       <div
         aria-hidden="true"
-        className={`focus-card ${focusedCard.className}`}
+        className={`focus-card is-visible ${focusedCard.className}`}
         dangerouslySetInnerHTML={{ __html: focusedCard.html }}
         style={focusedCard.style}
       />

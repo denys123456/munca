@@ -18,13 +18,12 @@ export default function App() {
   const [activePage, setActivePage] = useState(getDefaultPageForRole(account.role))
   const [selectedAdvisorId, setSelectedAdvisorId] = useState(1)
   const [notificationsOpen, setNotificationsOpen] = useState(false)
-  const [introState, setIntroState] = useState(() => {
+  const [introComplete, setIntroComplete] = useState(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return 'complete'
+      return true
     }
-    return window.sessionStorage.getItem('championsclub-intro-seen') === 'true' ? 'complete' : 'typing'
+    return window.sessionStorage.getItem('championsclub-intro-seen') === 'true'
   })
-  const [typedText, setTypedText] = useState(introState === 'complete' ? introMessage : '')
   const productData = useProductData(account)
   const role = productData.currentUser.role
   const navigation = navigationByRole[role]
@@ -46,38 +45,11 @@ export default function App() {
     }
   }, [activePage, navigation, role])
 
-  useEffect(() => {
-    if (introState !== 'typing') {
-      return undefined
-    }
-
-    if (typedText.length >= introMessage.length) {
-      const completeTimer = window.setTimeout(() => {
-        window.sessionStorage.setItem('championsclub-intro-seen', 'true')
-        setIntroState('complete')
-      }, 520)
-      return () => window.clearTimeout(completeTimer)
-    }
-
-    const currentCharacter = introMessage[typedText.length]
-    const delay = currentCharacter === ' ' ? 42 : 34 + ((typedText.length * 13) % 34)
-    const typeTimer = window.setTimeout(() => {
-      setTypedText(introMessage.slice(0, typedText.length + 1))
-    }, delay)
-    return () => window.clearTimeout(typeTimer)
-  }, [introState, typedText])
-
   return (
     <main
-      className={`product-shell ${introState === 'complete' ? 'intro-complete' : 'intro-active'}`}
+      className={`product-shell ${introComplete ? 'intro-complete' : 'intro-active'}`}
     >
-      <div className="intro-sequence" aria-hidden={introState === 'complete'}>
-        <BrandMark />
-        <p>
-          {typedText}
-          <span className={typedText.length === introMessage.length ? 'cursor is-done' : 'cursor'} />
-        </p>
-      </div>
+      {!introComplete && <IntroOverlay onComplete={() => setIntroComplete(true)} />}
       <Sidebar
         account={productData.currentUser}
         activePage={activePage}
@@ -167,6 +139,37 @@ export default function App() {
       </section>
       <CardFocusLayer />
     </main>
+  )
+}
+
+function IntroOverlay({ onComplete }) {
+  const [typedText, setTypedText] = useState('')
+
+  useEffect(() => {
+    if (typedText.length >= introMessage.length) {
+      const completeTimer = window.setTimeout(() => {
+        window.sessionStorage.setItem('championsclub-intro-seen', 'true')
+        onComplete()
+      }, 360)
+      return () => window.clearTimeout(completeTimer)
+    }
+
+    const currentCharacter = introMessage[typedText.length]
+    const delay = currentCharacter === ' ' ? 36 : 30
+    const typeTimer = window.setTimeout(() => {
+      setTypedText(introMessage.slice(0, typedText.length + 1))
+    }, delay)
+    return () => window.clearTimeout(typeTimer)
+  }, [onComplete, typedText])
+
+  return (
+    <div className="intro-sequence" aria-hidden="true">
+      <BrandMark />
+      <p>
+        {typedText}
+        <span className={typedText.length === introMessage.length ? 'cursor is-done' : 'cursor'} />
+      </p>
+    </div>
   )
 }
 

@@ -108,7 +108,7 @@ function SaleForm({ data, onClose }) {
     try {
       await data.actions.createSale(form)
       setStatus({ type: 'success', message: 'Sale recorded.' })
-      window.setTimeout(onClose, 420)
+      onClose()
     } catch (error) {
       setStatus({ type: 'error', message: error.message })
     }
