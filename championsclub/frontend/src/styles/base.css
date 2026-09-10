@@ -1,0 +1,219 @@
+@font-face {
+  font-family: 'Aptos';
+  src: local('Aptos');
+}
+
+:root {
+  color-scheme: dark;
+  --bg-void: #030508;
+  --bg-graphite: #080d14;
+  --bg-panel: rgba(13, 20, 31, 0.72);
+  --bg-panel-strong: rgba(18, 28, 42, 0.86);
+  --bg-glass: rgba(255, 255, 255, 0.07);
+  --bg-mist: rgba(219, 229, 244, 0.12);
+  --text: #f7f4eb;
+  --text-soft: #c2cada;
+  --text-muted: #7f8b9e;
+  --text-faint: #586474;
+  --line: rgba(255, 255, 255, 0.12);
+  --line-bright: rgba(255, 255, 255, 0.24);
+  --blue: #4d8dff;
+  --blue-hot: #7ab5ff;
+  --cobalt: #2557d6;
+  --cyan: #45d2ff;
+  --champagne: #f1d39a;
+  --gold: #d5ae62;
+  --silver: #b9c4d3;
+  --bronze: #a86d45;
+  --emerald: #32c783;
+  --amber: #e0a43a;
+  --coral: #ff6b68;
+  --blur-sm: 10px;
+  --blur-md: 18px;
+  --blur-lg: 34px;
+  --radius-sm: 14px;
+  --radius-md: 22px;
+  --radius-lg: 34px;
+  --space-1: 6px;
+  --space-2: 10px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 36px;
+  --shadow-glass: 0 18px 60px rgba(0, 0, 0, 0.36);
+  --shadow-float: 0 28px 90px rgba(0, 0, 0, 0.48);
+  --shadow-blue: 0 0 48px rgba(77, 141, 255, 0.28);
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-snap: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --t-fast: 170ms;
+  --t-ui: 260ms;
+  --t-page: 520ms;
+  font-family: Aptos, Inter, Avenir Next, Segoe UI, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg-void);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at 14% 16%, rgba(77, 141, 255, 0.24), transparent 28%),
+    radial-gradient(circle at 82% 0%, rgba(241, 211, 154, 0.16), transparent 24%),
+    radial-gradient(circle at 74% 78%, rgba(69, 210, 255, 0.12), transparent 32%),
+    linear-gradient(145deg, #020408 0%, #09111c 48%, #030508 100%);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+body::before,
+body::after {
+  content: '';
+  pointer-events: none;
+  position: fixed;
+  z-index: -2;
+}
+
+body::before {
+  background:
+    linear-gradient(115deg, transparent 0 41%, rgba(255, 255, 255, 0.04) 41.2% 41.6%, transparent 41.8%),
+    linear-gradient(115deg, transparent 0 61%, rgba(77, 141, 255, 0.07) 61.2% 61.5%, transparent 61.8%);
+  inset: 0;
+}
+
+body::after {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.28) 0.6px, transparent 0.6px);
+  background-size: 3px 3px;
+  inset: 0;
+  opacity: 0.06;
+  z-index: -1;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:active {
+  transform: translateY(1px) scale(0.985);
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid rgba(122, 181, 255, 0.74);
+  outline-offset: 4px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(34px, 5vw, 78px);
+  font-weight: 640;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+}
+
+h2 {
+  font-size: clamp(24px, 2.4vw, 42px);
+  font-weight: 620;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 720;
+  letter-spacing: -0.01em;
+}
+
+svg {
+  stroke-width: 1.75;
+}
+
+@keyframes revealUp {
+  from {
+    filter: blur(10px);
+    opacity: 0;
+    transform: translateY(22px) scale(0.985);
+  }
+
+  to {
+    filter: blur(0);
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pageDrift {
+  from {
+    clip-path: inset(0 0 8% 0 round 24px);
+    filter: blur(14px);
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+
+  to {
+    clip-path: inset(0 0 0 0 round 0);
+    filter: blur(0);
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes cursorBlink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes lineDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes barFill {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-120%) skewX(-14deg);
+  }
+
+  to {
+    transform: translateX(240%) skewX(-14deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+}

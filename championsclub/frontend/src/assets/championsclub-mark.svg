@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ChampionsClub mark">
+  <rect width="64" height="64" rx="14" fill="#0b1016"/>
+  <path d="M43 17H27.5C18.9 17 12 23.9 12 32.5S18.9 48 27.5 48H43" fill="none" stroke="#f0d8a2" stroke-width="6" stroke-linecap="round"/>
+  <path d="M29 32h21M42 24l8 8-8 8" fill="none" stroke="#2d6df6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M20 42l6-9 7 5 12-17" fill="none" stroke="#29a77a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

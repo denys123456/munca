@@ -1,0 +1,147 @@
+package com.championsclub.sales.domain;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+public class Sale {
+
+    private final Long id;
+    private final Long advisorId;
+    private final Long dealershipId;
+    private final Long productId;
+    private final BigDecimal financedAmount;
+    private final LocalDate saleDate;
+    private final int awardedPoints;
+    private final SaleStatus status;
+
+    private Sale(Builder builder) {
+        this.id = builder.id;
+        this.advisorId = requireId(builder.advisorId);
+        this.dealershipId = requireId(builder.dealershipId);
+        this.productId = requireId(builder.productId);
+        this.financedAmount = requirePositiveAmount(builder.financedAmount);
+        this.saleDate = builder.saleDate == null ? LocalDate.now() : builder.saleDate;
+        this.awardedPoints = requireNonNegative(builder.awardedPoints);
+        this.status = builder.status == null ? SaleStatus.RECORDED : builder.status;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public boolean contributesToPerformance() {
+        return status == SaleStatus.RECORDED;
+    }
+
+    public Long id() {
+        return id;
+    }
+
+    public Long advisorId() {
+        return advisorId;
+    }
+
+    public Long dealershipId() {
+        return dealershipId;
+    }
+
+    public Long productId() {
+        return productId;
+    }
+
+    public BigDecimal financedAmount() {
+        return financedAmount;
+    }
+
+    public LocalDate saleDate() {
+        return saleDate;
+    }
+
+    public int awardedPoints() {
+        return awardedPoints;
+    }
+
+    public SaleStatus status() {
+        return status;
+    }
+
+    private static Long requireId(Long value) {
+        if (value == null || value <= 0) {
+            throw new IllegalArgumentException("Sale identifiers must be positive.");
+        }
+        return value;
+    }
+
+    private static BigDecimal requirePositiveAmount(BigDecimal value) {
+        if (value == null || value.signum() <= 0) {
+            throw new IllegalArgumentException("Sale amount must be positive.");
+        }
+        return value;
+    }
+
+    private static int requireNonNegative(int value) {
+        if (value < 0) {
+            throw new IllegalArgumentException("Awarded points cannot be negative.");
+        }
+        return value;
+    }
+
+    public static final class Builder {
+        private Long id;
+        private Long advisorId;
+        private Long dealershipId;
+        private Long productId;
+        private BigDecimal financedAmount;
+        private LocalDate saleDate;
+        private int awardedPoints;
+        private SaleStatus status;
+
+        private Builder() {
+        }
+
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder advisorId(Long advisorId) {
+            this.advisorId = advisorId;
+            return this;
+        }
+
+        public Builder dealershipId(Long dealershipId) {
+            this.dealershipId = dealershipId;
+            return this;
+        }
+
+        public Builder productId(Long productId) {
+            this.productId = productId;
+            return this;
+        }
+
+        public Builder financedAmount(BigDecimal financedAmount) {
+            this.financedAmount = financedAmount;
+            return this;
+        }
+
+        public Builder saleDate(LocalDate saleDate) {
+            this.saleDate = saleDate;
+            return this;
+        }
+
+        public Builder awardedPoints(int awardedPoints) {
+            this.awardedPoints = awardedPoints;
+            return this;
+        }
+
+        public Builder status(SaleStatus status) {
+            this.status = status;
+            return this;
+        }
+
+        public Sale build() {
+            return new Sale(this);
+        }
+    }
+}
+

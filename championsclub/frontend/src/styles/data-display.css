@@ -1,0 +1,241 @@
+.recommendation-list,
+.alert-list,
+.compact-list,
+.alert-worklist,
+.reward-catalog,
+.leaderboard-table,
+.advisor-table,
+.premium-table {
+  display: grid;
+  gap: 12px;
+}
+
+.recommendation-list div,
+.alert-row,
+.target-card,
+.reward-card,
+.alert-card,
+.leaderboard-card,
+.table-row,
+.compact-list div,
+.service-status-card {
+  background:
+    radial-gradient(circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%), rgba(255, 255, 255, 0.12), transparent 34%),
+    rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 22px;
+  color: var(--text);
+  position: relative;
+  transition: background var(--t-fast), border-color var(--t-fast), box-shadow var(--t-fast), filter var(--t-fast), opacity var(--t-fast), transform var(--t-fast);
+  backdrop-filter: blur(var(--blur-sm));
+}
+
+.recommendation-list div,
+.alert-row,
+.reward-card,
+.alert-card,
+.leaderboard-card,
+.table-row,
+.compact-list div {
+  align-items: center;
+  display: flex;
+  gap: 13px;
+  padding: 14px;
+}
+
+.recommendation-list:hover div:not(:hover),
+.alert-list:hover .alert-row:not(:hover),
+.reward-catalog:hover .reward-card:not(:hover),
+.leaderboard-table:hover .leaderboard-card:not(:hover),
+.advisor-table:hover .advisor-row:not(:hover),
+.alert-worklist:hover .alert-card:not(:hover) {
+  filter: blur(1px) saturate(0.74);
+  opacity: 0.55;
+}
+
+.recommendation-list div:hover,
+.alert-row:hover,
+.reward-card:hover,
+.alert-card:hover,
+.leaderboard-card:hover,
+.table-row:hover,
+.compact-list div:hover,
+.target-card:hover,
+.service-status-card:hover {
+  border-color: rgba(122, 181, 255, 0.38);
+  box-shadow: 0 18px 56px rgba(0, 0, 0, 0.34), 0 0 32px rgba(77, 141, 255, 0.16);
+  transform: translateY(-4px) scale(1.012);
+}
+
+.recommendation-list svg,
+.alert-row svg,
+.compact-list svg {
+  color: var(--blue-hot);
+  flex: 0 0 auto;
+  height: 18px;
+  transition: transform var(--t-fast);
+  width: 18px;
+}
+
+.recommendation-list div:hover svg,
+.alert-row:hover svg,
+.compact-list div:hover svg {
+  transform: translateX(3px) scale(1.1);
+}
+
+.progress-label span,
+.soft-copy,
+.compact-list span,
+.alert-row span,
+.target-card span,
+.reward-card span,
+.service-status-card p,
+.leaderboard-card span,
+.premium-table-row span,
+.advisor-row span {
+  color: var(--text-muted);
+}
+
+.status-pill {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  color: var(--text-soft);
+  display: inline-flex;
+  font-size: 11px;
+  font-weight: 900;
+  justify-content: center;
+  letter-spacing: 0.06em;
+  padding: 6px 10px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.status-pill.success {
+  background: rgba(50, 199, 131, 0.12);
+  border-color: rgba(50, 199, 131, 0.34);
+  color: #8ff0bc;
+}
+
+.status-pill.warning {
+  background: rgba(224, 164, 58, 0.13);
+  border-color: rgba(224, 164, 58, 0.38);
+  color: #ffd487;
+}
+
+.status-pill.critical {
+  background: rgba(255, 107, 104, 0.13);
+  border-color: rgba(255, 107, 104, 0.38);
+  color: #ffaaa7;
+}
+
+.status-pill.bronze,
+.status-pill.silver,
+.status-pill.gold {
+  color: white;
+  overflow: hidden;
+  position: relative;
+}
+
+.status-pill.bronze {
+  background: linear-gradient(135deg, #4b2a1b, var(--bronze), #d2986f);
+  border-color: rgba(210, 152, 111, 0.45);
+}
+
+.status-pill.silver {
+  background: linear-gradient(135deg, #596271, var(--silver), #f3f7fb);
+  border-color: rgba(225, 233, 244, 0.48);
+  color: #07101b;
+}
+
+.status-pill.gold {
+  background: linear-gradient(135deg, #5a3f14, var(--gold), #fff0b8);
+  border-color: rgba(241, 211, 154, 0.55);
+  box-shadow: 0 0 28px rgba(241, 211, 154, 0.18);
+  color: #140d03;
+}
+
+.target-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.target-card {
+  display: grid;
+  gap: 15px;
+  min-height: 220px;
+  padding: 18px;
+}
+
+.target-card-header,
+.target-footer,
+.timeline-note {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.timeline-note {
+  justify-content: flex-start;
+}
+
+.reward-catalog {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.reward-card {
+  align-items: stretch;
+  display: grid;
+  grid-template-columns: auto minmax(120px, 1fr);
+  min-height: 180px;
+  overflow: hidden;
+  padding: 18px;
+  transform-style: preserve-3d;
+}
+
+.reward-card::before {
+  background:
+    radial-gradient(circle at 30% 20%, rgba(241, 211, 154, 0.34), transparent 28%),
+    linear-gradient(135deg, rgba(77, 141, 255, 0.14), transparent 58%);
+  content: '';
+  inset: 0;
+  opacity: 0.56;
+  position: absolute;
+  transition: opacity var(--t-ui), transform var(--t-ui);
+}
+
+.reward-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.reward-card > svg {
+  align-self: start;
+  color: var(--champagne);
+  height: 34px;
+  transform: translateZ(24px);
+  width: 34px;
+}
+
+.reward-card .progress-block,
+.reward-card .status-pill {
+  grid-column: 1 / -1;
+}
+
+.reward-card:hover {
+  transform: translateY(-7px) scale(1.025) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+}
+
+.reward-card:hover::before {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+.service-status-card {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+}

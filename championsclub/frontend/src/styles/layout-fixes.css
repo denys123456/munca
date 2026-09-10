@@ -1,0 +1,12 @@
+.compact-list.vertical div,
+.assumption-list span {
+  align-items: flex-start;
+}
+
+.compact-list.vertical div {
+  justify-content: space-between;
+}
+
+.compact-list strong {
+  margin-left: auto;
+}

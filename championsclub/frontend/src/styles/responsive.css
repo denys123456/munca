@@ -1,0 +1,134 @@
+@media (max-width: 1240px) {
+  .kpi-grid,
+  .content-grid,
+  .three-column-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .executive-hero,
+  .large-panel {
+    grid-column: span 2;
+  }
+
+  .intelligence-story {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 940px) {
+  .product-shell {
+    display: block;
+  }
+
+  .sidebar,
+  .sidebar:hover,
+  .sidebar:focus-within {
+    height: auto;
+    margin: 14px;
+    position: relative;
+    top: 0;
+    width: auto;
+  }
+
+  .sidebar::before,
+  .sidebar:hover::before,
+  .sidebar:focus-within::before {
+    transform: scaleX(1);
+    width: 100%;
+  }
+
+  .brand-copy,
+  .main-navigation span,
+  .rail-profile div:not(.avatar) {
+    opacity: 1;
+    transform: none;
+  }
+
+  .main-navigation {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .main-navigation button,
+  .rail-profile,
+  .brand-lockup {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .product-workspace {
+    padding: 18px;
+  }
+
+  .topbar,
+  .page-title,
+  .topbar-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .global-search,
+  .demo-account-switcher {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .executive-hero,
+  .kpi-grid,
+  .content-grid,
+  .three-column-grid,
+  .forecast-board,
+  .intelligence-story,
+  .metric-strip,
+  .target-grid,
+  .form-grid,
+  .reward-catalog {
+    grid-template-columns: 1fr;
+  }
+
+  .executive-hero,
+  .large-panel {
+    grid-column: span 1;
+  }
+
+  .executive-hero img {
+    min-height: 230px;
+    mask-image: linear-gradient(180deg, transparent 0%, black 22%);
+  }
+
+  .advisor-row,
+  .premium-table-row,
+  .leaderboard-card,
+  .alert-card,
+  .admin-row {
+    grid-template-columns: 1fr;
+  }
+
+  .premium-table-head {
+    display: none;
+  }
+}
+
+@media (pointer: coarse) {
+  .kpi-grid:hover .kpi-card:not(:hover),
+  .content-grid:hover .panel:not(:hover),
+  .three-column-grid:hover .panel:not(:hover),
+  .recommendation-list:hover div:not(:hover),
+  .alert-list:hover .alert-row:not(:hover),
+  .reward-catalog:hover .reward-card:not(:hover),
+  .leaderboard-table:hover .leaderboard-card:not(:hover),
+  .advisor-table:hover .advisor-row:not(:hover),
+  .alert-worklist:hover .alert-card:not(:hover),
+  .intelligence-story:hover .insight-section:not(:hover) {
+    filter: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .kpi-card:hover,
+  .panel:hover,
+  .reward-card:hover,
+  .executive-hero:hover,
+  .insight-section:hover {
+    transform: translateY(-2px);
+  }
+}

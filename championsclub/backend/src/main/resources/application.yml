@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: championsclub
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/championsclub}
+    username: ${SPRING_DATASOURCE_USERNAME:championsclub}
+    password: ${SPRING_DATASOURCE_PASSWORD:championsclub_dev}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+
+championsclub:
+  ml:
+    base-url: ${CHAMPIONSCLUB_ML_BASE_URL:http://localhost:8000}
+  ai:
+    provider: ${CHAMPIONSCLUB_AI_PROVIDER:MOCK}
+    api-key: ${CHAMPIONSCLUB_AI_API_KEY:}
+  security:
+    demo-password: ${CHAMPIONSCLUB_DEMO_PASSWORD:change-this-before-production}
+  cors:
+    allowed-origin: ${CHAMPIONSCLUB_CORS_ALLOWED_ORIGIN:http://localhost:5173}
+
+server:
+  error:
+    include-message: never
+    include-stacktrace: never

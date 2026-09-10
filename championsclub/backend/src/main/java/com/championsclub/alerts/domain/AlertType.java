@@ -1,0 +1,12 @@
+package com.championsclub.alerts.domain;
+
+public enum AlertType {
+    TARGET_RISK,
+    SALES_DECLINE,
+    SIGNIFICANT_IMPROVEMENT,
+    CLOSE_TO_GOLD,
+    DEALERSHIP_FORECAST_RISK,
+    ADVISOR_INACTIVITY,
+    EXCEPTIONAL_PERFORMANCE
+}
+

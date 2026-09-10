@@ -1,0 +1,50 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: championsclub
+      POSTGRES_USER: championsclub
+      POSTGRES_PASSWORD: championsclub_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U championsclub -d championsclub"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  ml-service:
+    build: ./ml-service
+    ports:
+      - "8000:8000"
+
+  backend:
+    build: ./backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/championsclub
+      SPRING_DATASOURCE_USERNAME: championsclub
+      SPRING_DATASOURCE_PASSWORD: championsclub_dev
+      CHAMPIONSCLUB_ML_BASE_URL: http://ml-service:8000
+      CHAMPIONSCLUB_AI_PROVIDER: MOCK
+      CHAMPIONSCLUB_DEMO_PASSWORD: change-this-before-production
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      ml-service:
+        condition: service_started
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      backend:
+        condition: service_started
+
+volumes:
+  postgres_data:
+
