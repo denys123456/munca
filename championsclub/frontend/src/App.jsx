@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Bell, ChevronRight, Search } from 'lucide-react'
+import { Bell, ChevronRight, X } from 'lucide-react'
 import { navigationByRole } from './product/navigation.js'
 import { getDefaultPageForRole } from './product/pageRegistry.js'
 import { demoAccounts } from './product/demoData.js'
 import { useProductData } from './product/useProductData.js'
 import { DemoAccountSwitcher } from './components/shell/RoleSwitcher.jsx'
 import { Sidebar } from './components/shell/Sidebar.jsx'
+import { CardFocusLayer } from './components/shell/CardFocusLayer.jsx'
+import { GlobalSearch } from './components/shell/GlobalSearch.jsx'
 import { PageRouter } from './pages/PageRouter.jsx'
 
 const introMessage = 'Turn performance into progress.'
@@ -15,6 +17,7 @@ export default function App() {
   const account = demoAccounts.find((demoAccount) => demoAccount.id === accountId) ?? demoAccounts[1]
   const [activePage, setActivePage] = useState(getDefaultPageForRole(account.role))
   const [selectedAdvisorId, setSelectedAdvisorId] = useState(1)
+  const [notificationsOpen, setNotificationsOpen] = useState(false)
   const [introState, setIntroState] = useState(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return 'complete'
@@ -34,25 +37,6 @@ export default function App() {
     const nextAccount = demoAccounts.find((demoAccount) => demoAccount.id === nextAccountId) ?? demoAccounts[1]
     setAccountId(nextAccount.id)
     setActivePage(getDefaultPageForRole(nextAccount.role))
-  }
-
-  function handlePointerMove(event) {
-    if (!window.matchMedia('(pointer: fine)').matches) {
-      return
-    }
-    const spotlightTarget = event.target.closest(
-      '.kpi-card, .panel, .reward-card, .advisor-row, .alert-card, .leaderboard-card, .executive-hero, .forecast-primary, .insight-section, .primary-action, .secondary-action',
-    )
-    if (!spotlightTarget) {
-      return
-    }
-    const rect = spotlightTarget.getBoundingClientRect()
-    const x = ((event.clientX - rect.left) / rect.width) * 100
-    const y = ((event.clientY - rect.top) / rect.height) * 100
-    spotlightTarget.style.setProperty('--spotlight-x', `${x}%`)
-    spotlightTarget.style.setProperty('--spotlight-y', `${y}%`)
-    spotlightTarget.style.setProperty('--tilt-x', `${((y - 50) / 50) * -3}deg`)
-    spotlightTarget.style.setProperty('--tilt-y', `${((x - 50) / 50) * 3}deg`)
   }
 
   useEffect(() => {
@@ -86,7 +70,6 @@ export default function App() {
   return (
     <main
       className={`product-shell ${introState === 'complete' ? 'intro-complete' : 'intro-active'}`}
-      onPointerMove={handlePointerMove}
     >
       <div className="intro-sequence" aria-hidden={introState === 'complete'}>
         <BrandMark />
@@ -109,13 +92,48 @@ export default function App() {
             <strong>{activeNavigationItem.label}</strong>
           </div>
           <div className="topbar-actions">
-            <div className="global-search">
-              <Search aria-hidden="true" />
-              <span>Search performance intelligence</span>
-            </div>
-            <button className="icon-button" type="button" aria-label="Open notifications">
+            <GlobalSearch
+              data={productData}
+              navigation={navigation}
+              onNavigate={setActivePage}
+              onSelectAdvisor={setSelectedAdvisorId}
+            />
+            <button
+              className="icon-button notification-trigger"
+              type="button"
+              aria-expanded={notificationsOpen}
+              aria-label="Open notifications"
+              onClick={() => setNotificationsOpen((isOpen) => !isOpen)}
+            >
               <Bell aria-hidden="true" />
+              {productData.alerts.some((alert) => alert.isUnread) && <span />}
             </button>
+            {notificationsOpen && (
+              <div className="notification-panel">
+                <div>
+                  <strong>Notifications</strong>
+                  <button className="icon-button" type="button" aria-label="Close notifications" onClick={() => setNotificationsOpen(false)}>
+                    <X aria-hidden="true" />
+                  </button>
+                </div>
+                {productData.alerts.slice(0, 4).map((alert) => (
+                  <button
+                    className={alert.isUnread ? 'is-unread' : ''}
+                    key={alert.title}
+                    type="button"
+                    onClick={() => {
+                      productData.actions.markAlertReviewed(alert.title)
+                      setActivePage('alerts')
+                      setNotificationsOpen(false)
+                    }}
+                  >
+                    <span>{alert.group}</span>
+                    <strong>{alert.title}</strong>
+                    <small>{alert.message}</small>
+                  </button>
+                ))}
+              </div>
+            )}
             <DemoAccountSwitcher
               accounts={demoAccounts}
               currentAccountId={account.id}
@@ -147,6 +165,7 @@ export default function App() {
           />
         </div>
       </section>
+      <CardFocusLayer />
     </main>
   )
 }
