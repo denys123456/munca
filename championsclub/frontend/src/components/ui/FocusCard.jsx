@@ -23,13 +23,12 @@ export const FocusCard = memo(function FocusCard({ children, className = '', lab
     setClosing(true)
     if (overlay.current) overlay.current.style.willChange = 'transform'
     animation.current?.reverse()
-    const finished = animation.current?.finished ?? Promise.resolve()
-    finished.then(() => {
+    window.setTimeout(() => {
       if (phase.current !== 'closing') return
       setBounds(null)
       setClosing(false)
       phase.current = 'idle'
-    }).catch(() => {})
+    }, 220)
   }
 
   function schedule(event) {
