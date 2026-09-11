@@ -1,0 +1,296 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\Jitu\\OneDrive\\Desktop\\proiect munca\\championsclub\\frontend\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/motion.spec.js"
+    ],
+    "configFile": "C:\\Users\\Jitu\\OneDrive\\Desktop\\proiect munca\\championsclub\\frontend\\playwright.config.js",
+    "rootDir": "C:/Users/Jitu/OneDrive/Desktop/proiect munca/championsclub/frontend/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/Jitu/OneDrive/Desktop/proiect munca/championsclub/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/Jitu/OneDrive/Desktop/proiect munca/championsclub/frontend/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "*.spec.js"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "artifacts/browser-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "motion.spec.js",
+      "file": "motion.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "intro types individual characters once per session and reveals the workspace",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4246,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T08:21:07.769Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-fd11581975ae91c19659",
+          "file": "motion.spec.js",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "focus dwell cancels early and quick movement never opens the wrong card",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6650,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T08:21:12.197Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-308d504116b8cff91c48",
+          "file": "motion.spec.js",
+          "line": 33,
+          "column": 1
+        },
+        {
+          "title": "focus cleans up on Escape, scroll, resize and route change",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 9737,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.focused-card')\nExpected: visible\nTimeout: 6000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" locator('.focused-card') with timeout 6000ms\u001b[22m\n\u001b[2m  - waiting for locator('.focused-card')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.focused-card')\nExpected: visible\nTimeout: 6000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" locator('.focused-card') with timeout 6000ms\u001b[22m\n\u001b[2m  - waiting for locator('.focused-card')\u001b[22m\n\n    at C:\\Users\\Jitu\\OneDrive\\Desktop\\proiect munca\\championsclub\\frontend\\tests\\motion.spec.js:72:49",
+                    "location": {
+                      "file": "C:\\Users\\Jitu\\OneDrive\\Desktop\\proiect munca\\championsclub\\frontend\\tests\\motion.spec.js",
+                      "column": 49,
+                      "line": 72
+                    },
+                    "snippet": "  70 |     await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))))\n  71 |     await card.hover()\n> 72 |     await expect(page.locator('.focused-card')).toBeVisible()\n     |                                                 ^\n  73 |     if (dismissal === 'Escape') await page.keyboard.press('Escape')\n  74 |     if (dismissal === 'scroll') {\n  75 |       await page.evaluate(() => {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\Jitu\\OneDrive\\Desktop\\proiect munca\\championsclub\\frontend\\tests\\motion.spec.js",
+                        "column": 49,
+                        "line": 72
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.focused-card')\nExpected: visible\nTimeout: 6000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" locator('.focused-card') with timeout 6000ms\u001b[22m\n\u001b[2m  - waiting for locator('.focused-card')\u001b[22m\n\n\n  70 |     await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))))\n  71 |     await card.hover()\n> 72 |     await expect(page.locator('.focused-card')).toBeVisible()\n     |                                                 ^\n  73 |     if (dismissal === 'Escape') await page.keyboard.press('Escape')\n  74 |     if (dismissal === 'scroll') {\n  75 |       await page.evaluate(() => {\n    at C:\\Users\\Jitu\\OneDrive\\Desktop\\proiect munca\\championsclub\\frontend\\tests\\motion.spec.js:72:49"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T08:21:18.855Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\Jitu\\OneDrive\\Desktop\\proiect munca\\championsclub\\frontend\\test-results\\motion-focus-cleans-up-on--9caa2-oll-resize-and-route-change\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\Jitu\\OneDrive\\Desktop\\proiect munca\\championsclub\\frontend\\test-results\\motion-focus-cleans-up-on--9caa2-oll-resize-and-route-change\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\Jitu\\OneDrive\\Desktop\\proiect munca\\championsclub\\frontend\\test-results\\motion-focus-cleans-up-on--9caa2-oll-resize-and-route-change\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\Jitu\\OneDrive\\Desktop\\proiect munca\\championsclub\\frontend\\tests\\motion.spec.js",
+                    "column": 49,
+                    "line": 72
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-3299d809fda2fbaa8aa1",
+          "file": "motion.spec.js",
+          "line": 62,
+          "column": 1
+        },
+        {
+          "title": "touch and reduced motion disable delayed focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3048,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T08:21:29.358Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-5c83080764ebc17ad286",
+          "file": "motion.spec.js",
+          "line": 89,
+          "column": 1
+        },
+        {
+          "title": "pointer movement produces no React commits or persistent animation loops",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1831,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T08:21:32.572Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-b52781deb34ab0da3df7",
+          "file": "motion.spec.js",
+          "line": 101,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-11T08:21:07.382Z",
+    "duration": 27224.986999999997,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

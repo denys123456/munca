@@ -14,7 +14,7 @@ export function AlertsPage({ data }) {
         <SectionHeader eyebrow="Attention" title="Grouped alerts and recommended actions" action={<AlertFilters severity={severity} severities={severities} onChange={setSeverity} />} />
         <div className="alert-worklist">
           {alerts.map((alert) => (
-            <article className="alert-card" key={alert.title}>
+            <article className={`alert-card ${alert.isUnread ? '' : 'is-reviewed'}`} key={alert.title}>
               <AlertTriangle aria-hidden="true" />
               <div>
                 <span>{alert.group}</span>
@@ -22,7 +22,7 @@ export function AlertsPage({ data }) {
                 <p>{alert.message}</p>
               </div>
               <StatusPill value={alert.severity} />
-              <button className="icon-button" type="button" aria-label="Mark alert as reviewed" onClick={() => data.actions.markAlertReviewed(alert.title)}>
+              <button className="icon-button" type="button" disabled={!alert.isUnread} aria-label={alert.isUnread ? `Mark ${alert.title} as reviewed` : `${alert.title} reviewed`} onClick={() => data.actions.markAlertReviewed(alert.title)}>
                 <CheckCircle2 aria-hidden="true" />
               </button>
             </article>

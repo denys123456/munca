@@ -1,92 +1,109 @@
-import { memo, useEffect, useRef, useState } from 'react'
+﻿import { memo, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { focusGeometry } from './focusGeometry.js'
 
 export const FocusCard = memo(function FocusCard({ children, className = '', label }) {
   const source = useRef(null)
   const overlay = useRef(null)
-  const timer = useRef(null)
-  const closeTimer = useRef(null)
-  const active = useRef(false)
+  const pending = useRef(null)
   const animation = useRef(null)
+  const phase = useRef('idle')
   const [bounds, setBounds] = useState(null)
   const [closing, setClosing] = useState(false)
 
   function cancelPending() {
-    window.clearTimeout(timer.current)
-    timer.current = null
+    clearTimeout(pending.current)
+    pending.current = null
   }
 
   function close() {
     cancelPending()
-    if (!active.current || closing) return
-    active.current = false
+    if (phase.current !== 'open') return
+    phase.current = 'closing'
     setClosing(true)
+    if (overlay.current) overlay.current.style.willChange = 'transform'
     animation.current?.reverse()
-    closeTimer.current = window.setTimeout(() => {
+    const finished = animation.current?.finished ?? Promise.resolve()
+    finished.then(() => {
+      if (phase.current !== 'closing') return
       setBounds(null)
       setClosing(false)
-    }, 220)
+      phase.current = 'idle'
+    }).catch(() => {})
   }
 
   function schedule(event) {
-    if (event.pointerType !== 'mouse' || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return
-    if (active.current || closing || document.querySelector('[data-focus-layer], dialog[open], .intro-sequence')) return
+    if (event.pointerType !== 'mouse' || !matchMedia('(hover: hover) and (pointer: fine)').matches) return
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches || phase.current !== 'idle') return
+    if (document.querySelector('[data-focus-layer], dialog[open], .intro-sequence')) return
     cancelPending()
-    timer.current = window.setTimeout(() => {
-      if (!source.current?.matches(':hover')) return
-      const rect = source.current.getBoundingClientRect()
-      const scale = Math.min(1.65, (innerWidth - 48) / rect.width, (innerHeight - 48) / rect.height)
-      if (scale < 1.1) return
-      const left = Math.max(24, Math.min(rect.left - rect.width * (scale - 1) / 2, innerWidth - rect.width * scale - 24))
-      const top = Math.max(24, Math.min(rect.top - rect.height * (scale - 1) / 2, innerHeight - rect.height * scale - 24))
+    pending.current = setTimeout(() => {
+      if (!source.current?.matches(':hover') || document.querySelector('dialog[open], [data-focus-layer]')) return
+      const geometry = focusGeometry(source.current.getBoundingClientRect(), innerWidth, innerHeight)
+      if (!geometry) return
       document.dispatchEvent(new Event('champions-focus'))
-      active.current = true
-      setBounds({ left, top, width: rect.width, height: rect.height, originX: rect.left - left, originY: rect.top - top, scale })
+      phase.current = 'open'
+      setBounds(geometry)
     }, 1000)
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!bounds || !overlay.current) return
-    animation.current = overlay.current.animate([
+    const motion = overlay.current.animate([
       { transform: `translate(${bounds.originX}px, ${bounds.originY}px) scale(1)` },
       { transform: `translate(0, 0) scale(${bounds.scale})` }
-    ], { duration: 220, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'both' })
-    return () => animation.current?.cancel()
+    ], { duration: 260, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'both' })
+    animation.current = motion
+    motion.finished.then(() => {
+      if (phase.current === 'open' && overlay.current) overlay.current.style.willChange = 'auto'
+    }).catch(() => {})
+    return () => motion.cancel()
   }, [bounds])
 
   useEffect(() => {
+    phase.current = 'idle'
     const cancel = () => cancelPending()
     document.addEventListener('champions-focus', cancel)
+    window.addEventListener('blur', cancel)
+    document.addEventListener('scroll', cancel, true)
     return () => {
+      phase.current = 'unmounted'
       cancelPending()
-      window.clearTimeout(closeTimer.current)
       document.removeEventListener('champions-focus', cancel)
+      window.removeEventListener('blur', cancel)
+      document.removeEventListener('scroll', cancel, true)
     }
   }, [])
 
   useEffect(() => {
     if (!bounds) return
     const dismiss = () => close()
-    const keyboard = (event) => { if (event.key === 'Escape') close() }
+    const keyboard = (event) => { if (event.key === 'Escape' || event.key === 'Tab') close() }
+    const pointer = (event) => {
+      if (event.clientX < bounds.left || event.clientX > bounds.left + bounds.width * bounds.scale || event.clientY < bounds.top || event.clientY > bounds.top + bounds.height * bounds.scale) close()
+    }
     window.addEventListener('resize', dismiss)
     window.addEventListener('blur', dismiss)
     document.addEventListener('scroll', dismiss, true)
     document.addEventListener('keydown', keyboard)
+    document.addEventListener('pointermove', pointer, { passive: true })
     return () => {
       window.removeEventListener('resize', dismiss)
       window.removeEventListener('blur', dismiss)
       document.removeEventListener('scroll', dismiss, true)
       document.removeEventListener('keydown', keyboard)
+      document.removeEventListener('pointermove', pointer)
     }
-  }, [bounds, closing])
+  }, [bounds])
 
   return <>
-    <article ref={source} className={`focus-source ${className}`} data-focusable="true" data-focused={Boolean(bounds)}
+    <article ref={source} aria-hidden={Boolean(bounds)} className={`focus-source ${className}`} data-focusable="true" data-focused={Boolean(bounds)}
       onPointerEnter={schedule} onPointerLeave={cancelPending} onPointerDown={cancelPending}>{children}</article>
     {bounds && createPortal(<div data-focus-layer="true" className={`focus-layer ${closing ? 'is-closing' : ''}`}>
-      <div className="focus-backdrop" onPointerEnter={close} onPointerDown={close} />
-      <article ref={overlay} aria-label={label} className={`focused-card ${className}`} onPointerLeave={close}
+      <div className="focus-backdrop" onPointerDown={close} />
+      <article ref={overlay} aria-label={label} className={`focused-card ${className}`}
         style={{ left: bounds.left, top: bounds.top, width: bounds.width, height: bounds.height }}>{children}</article>
+      <span className="focus-hint">FOCUS VIEW <span>Move away or press Esc to return</span></span>
     </div>, document.body)}
   </>
 })

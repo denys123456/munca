@@ -4,6 +4,7 @@ export function StatusPill({ value }) {
 
 function statusClass(value) {
   const normalizedValue = String(value).toLowerCase()
+  if (normalizedValue === 'inactive' || normalizedValue === 'paused' || normalizedValue === 'unverified') return 'neutral'
   if (normalizedValue.includes('gold')) {
     return 'gold'
   }

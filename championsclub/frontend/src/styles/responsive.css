@@ -1,4 +1,4 @@
-@media (min-width: 1600px) {
+﻿@media (min-width: 1600px) {
   .product-workspace { padding-inline: 56px; }
   .overview-main { grid-template-columns: minmax(0, 1fr) 390px; gap: 40px; }
   .intelligence-brief { padding: 32px; }
@@ -56,7 +56,7 @@
   .admin-row > div { min-width: 105px; }
 }
 @media (max-width: 700px) {
-  body { min-width: 360px; }
+  body { min-width: 320px; }
   .product-workspace { margin-left: 0; padding: 0 20px 95px; }
   .sidebar { width: 100%; height: 66px; top: auto; bottom: 0; padding: 0 8px; border-right: 0; border-top: 1px solid var(--line-bright); overflow: visible; }
   .sidebar:hover, .sidebar:has(:focus-visible) { width: 100%; box-shadow: none; }
@@ -164,4 +164,98 @@
   .toast { right: 20px; bottom: 80px; font-size: 12px; }
   .intro-identity .brand-copy strong { font-size: 29px; }
   .intro-identity p { font-size: 16px; }
+}
+@media (max-width: 1200px) {
+  .reward-hero { grid-template-columns: 1fr 355px; gap: 30px; }
+  .reward-content { padding: 19px; }
+  .reward-content .primary-action, .reward-content .secondary-action { font-size: 10px; }
+  .leaderboard-row { gap: 16px; }
+  .leaderboard-row .progress-block { width: 140px; margin-inline: 10px; }
+}
+@media (max-width: 980px) {
+  .editorial-heading > p { max-width: 230px; }
+  .reward-hero { grid-template-columns: 1fr 320px; gap: 25px; }
+  .membership-card { padding: 22px; }
+  .reward-catalog { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .leaderboard-row .progress-block { width: 105px; margin: 0; }
+  .leaderboard-row .status-pill { display: none; }
+  .podium { gap: 14px; }
+  .podium-place { padding-inline: 14px; }
+  .podium-place h3 { font-size: 20px; }
+  .podium-place > strong { font-size: 27px; }
+  .member-stamp { display: none; }
+}
+@media (max-width: 700px) {
+  .editorial-heading { flex-direction: column; align-items: flex-start; gap: 20px; padding: 0 0 10px; }
+  .editorial-heading h2, .reward-hero h2 { font-size: 43px; letter-spacing: -1.5px; }
+  .editorial-heading > p { font-size: 12px; max-width: 310px; }
+  .reward-hero { grid-template-columns: 1fr; padding: 5px 0 30px; gap: 30px; }
+  .reward-hero-copy > p { font-size: 13px; margin-top: 20px; }
+  .membership-card { max-width: 450px; width: 100%; }
+  .reward-catalog { gap: 16px; }
+  .reward-content { padding: 17px; gap: 18px; }
+  .reward-content h3 { font-size: 15px; min-height: 44px; }
+  .reward-content .progress-label { flex-direction: column; gap: 4px; }
+  .reward-content .secondary-action, .reward-content .primary-action { font-size: 10px; padding-inline: 8px; gap: 5px; }
+  .reward-content .secondary-action > svg, .reward-content .primary-action > svg { display: none; }
+  .reward-art { height: 145px; }
+  .reward-art > svg { width: 36px; height: 36px; }
+  .reward-art::before { width: 85px; height: 85px; }
+  .reward-art::after { width: 112px; height: 112px; }
+  .reward-edition, .reward-category { font-size: 7px; }
+  .reward-filters { flex-wrap: nowrap; overflow-x: auto; max-width: 100%; }
+  .reward-filters button { padding-inline: 9px; font-size: 10px; white-space: nowrap; }
+  .redemption-list > div { flex-wrap: wrap; gap: 13px; }
+  .redemption-list > div > div { min-width: 180px; }
+  .redemption-list > div > span:nth-last-child(2) { margin-left: 53px; }
+  .podium { grid-template-columns: 1fr; gap: 14px; }
+  .podium-place, .podium-place.place-1 { order: initial; display: grid; grid-template-columns: 56px 1fr; text-align: left; padding: 25px; column-gap: 20px; row-gap: 9px; }
+  .podium-number { right: 16px; left: auto; top: 13px; font-size: 22px; }
+  .podium-emblem, .place-1 .podium-emblem { width: 56px; height: 56px; grid-column: 1; grid-row: 1 / 5; }
+  .podium-emblem > svg { width: 23px; height: 23px; }
+  .podium-place .eyebrow, .podium-place h3, .podium-title, .podium-place > strong { grid-column: 2; }
+  .podium-place .eyebrow { font-size: 7px; }
+  .podium-link { grid-column: 1 / -1; margin-top: 10px; justify-content: space-between; }
+  .leaderboard-row { flex-wrap: wrap; gap: 12px; padding: 22px 0; }
+  .leaderboard-row .ranking-person { min-width: 140px; }
+  .leaderboard-row > strong { font-size: 13px; }
+  .leaderboard-row .progress-block { width: calc(100% - 55px); margin-left: 32px; }
+  .leaderboard-row .avatar { display: none; }
+  .leaderboard-page .section-header > span { font-size: 11px; }
+  .level-collection { gap: 10px; }
+  .level-display { padding: 27px 9px; }
+  .level-display > svg { width: 30px; height: 30px; margin-bottom: 18px; }
+  .level-display .eyebrow { font-size: 6px; letter-spacing: .5px; }
+  .level-display h3 { font-size: 25px; }
+  .level-display p { font-size: 9px; }
+  .admin-destinations { grid-template-columns: 1fr; }
+  .admin-destinations h3 { font-size: 23px; }
+  .audit-timeline article { flex-wrap: wrap; gap: 14px; }
+  .audit-timeline time { width: 100%; margin-left: 44px; }
+  .service-list > article { flex-wrap: wrap; gap: 16px; }
+  .service-list > article > .status-pill { margin-left: 39px; }
+  .profile-monogram { width: 64px; height: 64px; flex-basis: 64px; font-size: 22px; }
+  .profile-hero > div { min-width: 200px; }
+  .profile-hero h2 { font-size: 28px; }
+  .profile-hero p { font-size: 12px; }
+  .service-banner { flex-wrap: wrap; font-size: 11px; }
+  .service-banner > span { flex-basis: 100%; }
+  .skip-link { left: 20px; }
+  .intro-identity .brand-copy strong { font-size: 29px; }
+  .sidebar:hover { width: 100%; }
+  .topbar .brand-copy strong { font-size: 21px; }
+  .global-search { width: calc(100% - 164px); }
+  .global-search input { min-width: 0; }
+  .global-search > svg { width: 14px; }
+  .demo-account-switcher { max-width: 151px; }
+  .demo-account-switcher select { max-width: 132px; }
+  .compact-list.vertical > div { overflow-wrap: anywhere; }
+}
+@media (max-width: 380px) {
+  .product-workspace { padding-inline: 16px; }
+  .reward-catalog { grid-template-columns: 1fr; }
+  .reward-content h3 { min-height: 0; }
+  .reward-content .progress-label { flex-direction: row; }
+  .reward-content .primary-action, .reward-content .secondary-action { font-size: 12px; }
+  .intelligence-masthead { margin-inline: -16px; padding-inline: 16px; }
 }

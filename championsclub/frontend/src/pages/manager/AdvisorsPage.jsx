@@ -10,8 +10,7 @@ export function AdvisorsPage({ data, setActivePage, setSelectedAdvisorId }) {
   const advisors = data.advisors.filter((advisor) => advisor.name.toLowerCase().includes(searchText.toLowerCase()))
 
   function openAdvisor(advisorId) {
-    setSelectedAdvisorId(advisorId)
-    setActivePage('advisor-detail')
+    setActivePage('advisor-detail', advisorId)
   }
 
   return (
@@ -36,6 +35,7 @@ export function AdvisorsPage({ data, setActivePage, setSelectedAdvisorId }) {
             </button>
           ))}
         </div>
+        {advisors.length === 0 && <div className="empty-state"><Search /><strong>No advisors found</strong><p>Try another name.</p><button className="secondary-action" onClick={() => setSearchText('')}>Clear search</button></div>}
       </section>
     </div>
   )
@@ -45,9 +45,8 @@ function FilterBox({ searchText, setSearchText }) {
   return (
     <div className="filter-box">
       <Search aria-hidden="true" />
-      <input value={searchText} onChange={(event) => setSearchText(event.target.value)} placeholder="Search advisors" />
+      <input aria-label="Search advisors" value={searchText} onChange={(event) => setSearchText(event.target.value)} placeholder="Search advisors" />
       <SlidersHorizontal aria-hidden="true" />
     </div>
   )
 }
-

@@ -27,6 +27,7 @@ export function useNavigation(role) {
   const navigate = useCallback((page, advisorId) => {
     const permitted = canVisitPage(role, page) ? page : getDefaultPageForRole(role)
     const selectedId = advisorId ?? selectedAdvisorId
+    if (permitted === 'advisor-detail') setSelectedAdvisorId(selectedId)
     location.hash = permitted === 'advisor-detail' ? `${permitted}/${selectedId}` : permitted
     setRoute({ page: permitted, advisorId: selectedId })
     window.scrollTo({ top: 0, behavior: 'instant' })

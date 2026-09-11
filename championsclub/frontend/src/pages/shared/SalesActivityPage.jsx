@@ -1,3 +1,4 @@
+﻿import { SaleForm } from './SaleForm.jsx'
 import { Plus, Search, SlidersHorizontal } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { SectionHeader } from '../../components/ui/SectionHeader.jsx'
@@ -11,6 +12,7 @@ export function SalesActivityPage({ data }) {
   const [isCreating, setIsCreating] = useState(false)
   const products = useMemo(() => ['All', ...new Set(data.salesHistory.map((sale) => sale.product))], [data.salesHistory])
   const sales = data.salesHistory.filter((sale) => {
+    if (data.currentUser.role === 'SALES_ADVISOR' && sale.advisorId !== data.currentUser.advisorId && sale.advisor !== data.currentUser.name) return false
     const matchesQuery = `${sale.advisor} ${sale.product} ${sale.status} ${sale.date}`.toLowerCase().includes(query.toLowerCase())
     return matchesQuery && (product === 'All' || sale.product === product)
   })
@@ -35,7 +37,7 @@ export function SalesActivityPage({ data }) {
             <span>Date</span>
           </div>
           {visibleSales.map((sale) => (
-            <div className="premium-table-row" key={sale.advisor + sale.product + sale.date}>
+            <div className="premium-table-row" key={sale.id}>
               <strong>{sale.advisor}</strong>
               <span>{sale.product}</span>
               <span>{formatCurrency(sale.amount)}</span>
@@ -46,9 +48,9 @@ export function SalesActivityPage({ data }) {
         </div>
         {sales.length === 0 && <p className="soft-copy">No sales match your filters.</p>}
         <div className="pagination">
-          <button className="secondary-action" type="button" onClick={() => setPage((value) => Math.max(1, value - 1))}>Previous</button>
+          <button className="secondary-action" type="button" disabled={page === 1} onClick={() => setPage((value) => Math.max(1, value - 1))}>Previous</button>
           <span>Page {page} of {totalPages}</span>
-          <button className="secondary-action" type="button" onClick={() => setPage((value) => Math.min(totalPages, value + 1))}>Next</button>
+          <button className="secondary-action" type="button" disabled={page === totalPages} onClick={() => setPage((value) => Math.min(totalPages, value + 1))}>Next</button>
         </div>
       </section>
       {isCreating && <SaleForm data={data} onClose={() => setIsCreating(false)} />}
@@ -84,55 +86,4 @@ function ActivityFilters({ product, products, query, setPage, setProduct, setQue
   )
 }
 
-function SaleForm({ data, onClose }) {
-  const [form, setForm] = useState({
-    advisorId: data.advisors[0]?.id ?? 1,
-    product: data.admin.pointRules[0]?.product ?? 'Classic Financing',
-    productId: 1,
-    amount: '',
-    date: new Date().toISOString().slice(0, 10),
-  })
-  const [status, setStatus] = useState({ type: 'idle', message: '' })
 
-  function updateField(field, value) {
-    setForm((current) => ({ ...current, [field]: value }))
-  }
-
-  async function submitSale(event) {
-    event.preventDefault()
-    if (Number(form.amount) <= 0) {
-      setStatus({ type: 'error', message: 'Sale amount must be greater than zero.' })
-      return
-    }
-    setStatus({ type: 'loading', message: 'Recording sale...' })
-    try {
-      await data.actions.createSale(form)
-      setStatus({ type: 'success', message: 'Sale recorded.' })
-      onClose()
-    } catch (error) {
-      setStatus({ type: 'error', message: error.message })
-    }
-  }
-
-  return (
-    <div className="modal-backdrop" role="presentation">
-      <form className="modal-panel" onSubmit={submitSale}>
-        <SectionHeader eyebrow="Sale" title="Record sale" />
-        <div className="form-grid">
-          <label><span>Advisor</span><select value={form.advisorId} onChange={(event) => updateField('advisorId', event.target.value)}>{data.advisors.map((advisor) => <option key={advisor.id} value={advisor.id}>{advisor.name}</option>)}</select></label>
-          <label><span>Product</span><select value={form.product} onChange={(event) => {
-            const selectedIndex = data.admin.pointRules.findIndex((rule) => rule.product === event.target.value)
-            setForm((current) => ({ ...current, product: event.target.value, productId: selectedIndex + 1 }))
-          }}>{data.admin.pointRules.map((rule, index) => <option key={rule.product} value={rule.product}>{index + 1}. {rule.product}</option>)}</select></label>
-          <label><span>Amount</span><input type="number" min="1" value={form.amount} onChange={(event) => updateField('amount', event.target.value)} placeholder="Financed amount" /></label>
-          <label><span>Date</span><input type="date" value={form.date} onChange={(event) => updateField('date', event.target.value)} /></label>
-        </div>
-        {status.message && <p className={`form-message ${status.type}`}>{status.message}</p>}
-        <div className="modal-actions">
-          <button className="secondary-action" type="button" onClick={onClose}>Cancel</button>
-          <button className="primary-action" type="submit">Record sale</button>
-        </div>
-      </form>
-    </div>
-  )
-}

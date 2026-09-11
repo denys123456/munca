@@ -21,7 +21,7 @@ export function catalogActions({ getState, commit, requireAdmin, requireDemo, po
       if (!form.category?.trim()) throw new Error('Category is required.')
       if (getState().rewards.some((item) => item.name.toLowerCase() === form.name.trim().toLowerCase())) throw new Error('A reward with that name already exists.')
       const response = await post('/api/admin/catalog/rewards', { name: form.name.trim(), category: form.category.trim(), requiredPoints: Number(form.points) })
-      const reward = { id: response?.id ?? crypto.randomUUID(), name: form.name.trim(), category: form.category.trim(), points: Number(form.points), status: 'Active' }
+      const reward = { id: response?.id ?? crypto.randomUUID(), name: form.name.trim(), category: form.category.trim(), points: Number(form.points), status: form.status ?? 'Active' }
       commit((state) => ({ ...state, rewards: [reward, ...state.rewards] }), 'Reward added to the collection.')
     },
     updateReward(id, form) {
@@ -29,6 +29,8 @@ export function catalogActions({ getState, commit, requireAdmin, requireDemo, po
       requireDemo()
       validateName(form.name)
       validatePoints(form.points)
+      if (!form.category?.trim()) throw new Error('Category is required.')
+      if (getState().rewards.some((item) => item.id !== id && item.name.toLowerCase() === form.name.trim().toLowerCase())) throw new Error('A reward with that name already exists.')
       commit((state) => ({ ...state, rewards: state.rewards.map((item) => item.id === id ? { ...item, ...form, name: form.name.trim(), points: Number(form.points) } : item) }), 'Reward updated.')
     },
     deleteReward(id) {
@@ -48,6 +50,7 @@ export function catalogActions({ getState, commit, requireAdmin, requireDemo, po
     updateFinancialProduct(key, form) {
       validateName(form.name)
       validatePoints(form.points)
+      if (getState().admin.pointRules.some((item) => item.product !== key && item.product.toLowerCase() === form.name.trim().toLowerCase())) throw new Error('A product with that name already exists.')
       updateCollection('pointRules', (rows) => rows.map((item) => item.product === key ? { ...item, product: form.name.trim(), points: Number(form.points), reason: form.reason || item.reason, status: form.status } : item), 'Financial product updated.')
     },
     createAdminRow(collection, row) {
@@ -57,6 +60,7 @@ export function catalogActions({ getState, commit, requireAdmin, requireDemo, po
     },
     updateAdminRow(collection, key, row) {
       validateName(row.name)
+      if (getState().admin[collection].some((item) => getRowKey(item) !== key && getRowKey(item).toLowerCase() === getRowKey(row).toLowerCase())) throw new Error('An entry with these details already exists.')
       updateCollection(collection, (rows) => rows.map((item) => getRowKey(item) === key ? row : item), 'Entry updated.')
     },
     deleteAdminRow(collection, key) {
