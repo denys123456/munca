@@ -86,12 +86,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1693,
+                  "duration": 2748,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-11T12:49:56.607Z",
+                  "startTime": "2026-09-12T11:28:00.441Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -120,12 +120,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1653,
+                  "duration": 2783,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-11T12:49:58.497Z",
+                  "startTime": "2026-09-12T11:28:03.565Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -154,12 +154,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1678,
+                  "duration": 2807,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-11T12:50:00.162Z",
+                  "startTime": "2026-09-12T11:28:06.357Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -188,12 +188,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1523,
+                  "duration": 2731,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-11T12:50:01.851Z",
+                  "startTime": "2026-09-12T11:28:09.173Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -222,12 +222,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1515,
+                  "duration": 2679,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-11T12:50:03.382Z",
+                  "startTime": "2026-09-12T11:28:11.913Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -256,12 +256,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1460,
+                  "duration": 5833,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-11T12:50:04.906Z",
+                  "startTime": "2026-09-12T11:28:14.606Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -271,7 +271,117 @@
           ],
           "id": "73482573f1568b679d78-9dd34dbac1fc29a1f9fb",
           "file": "admin.spec.js",
-          "line": 38,
+          "line": 39,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "book.spec.js",
+      "file": "book.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "phone utilities, chapter navigation and closing remain usable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3217,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-12T11:28:20.466Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a23a6e98a7c77929248d-485eddf574c0f846f457",
+          "file": "book.spec.js",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "chart focus is a sharp portal with contextual data and one blurred backdrop",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2561,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-12T11:28:23.692Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a23a6e98a7c77929248d-4fb27967eaafb0e4aa3a",
+          "file": "book.spec.js",
+          "line": 30,
+          "column": 1
+        },
+        {
+          "title": "rapid direct navigation cannot commit a stale route",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3678,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-12T11:28:26.263Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a23a6e98a7c77929248d-30da04c2ebf710dd3766",
+          "file": "book.spec.js",
+          "line": 52,
           "column": 1
         }
       ]
@@ -283,7 +393,7 @@
       "line": 0,
       "specs": [
         {
-          "title": "intro types individual characters once per session and reveals the workspace",
+          "title": "fountain pen draws paths once per session then holds and reveals",
           "ok": true,
           "tags": [],
           "tests": [
@@ -298,12 +408,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 4889,
+                  "duration": 13565,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-11T12:50:06.388Z",
+                  "startTime": "2026-09-12T11:28:29.962Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -311,13 +421,13 @@
               "status": "expected"
             }
           ],
-          "id": "ff7637d3e5d3b9e2ba70-fd11581975ae91c19659",
+          "id": "ff7637d3e5d3b9e2ba70-7a897157faafe6bb0707",
           "file": "motion.spec.js",
           "line": 3,
           "column": 1
         },
         {
-          "title": "focus dwell cancels early and quick movement never opens the wrong card",
+          "title": "mouse movement and scroll frames do not rerender the React tree",
           "ok": true,
           "tags": [],
           "tests": [
@@ -332,12 +442,16 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 6860,
+                  "duration": 3316,
                   "errors": [],
-                  "stdout": [],
+                  "stdout": [
+                    {
+                      "text": "Frame intervals: median 4.2ms, p93 4.2ms\n"
+                    }
+                  ],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-11T12:50:11.286Z",
+                  "startTime": "2026-09-12T11:28:43.535Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -345,13 +459,13 @@
               "status": "expected"
             }
           ],
-          "id": "ff7637d3e5d3b9e2ba70-308d504116b8cff91c48",
+          "id": "ff7637d3e5d3b9e2ba70-84dc5e034bab3e6dc63a",
           "file": "motion.spec.js",
-          "line": 33,
+          "line": 24,
           "column": 1
         },
         {
-          "title": "focus cleans up on Escape, scroll, resize and route change",
+          "title": "large wheel bursts stay in one chapter and direction reversal follows the same sheet",
           "ok": true,
           "tags": [],
           "tests": [
@@ -366,12 +480,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 8845,
+                  "duration": 2334,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-11T12:50:18.155Z",
+                  "startTime": "2026-09-12T11:28:46.860Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -379,13 +493,13 @@
               "status": "expected"
             }
           ],
-          "id": "ff7637d3e5d3b9e2ba70-3299d809fda2fbaa8aa1",
+          "id": "ff7637d3e5d3b9e2ba70-679d0bf5661c48bec728",
           "file": "motion.spec.js",
-          "line": 62,
+          "line": 56,
           "column": 1
         },
         {
-          "title": "touch and reduced motion disable delayed focus",
+          "title": "reduced motion opens immediately and touch advances the spatial camera",
           "ok": true,
           "tags": [],
           "tests": [
@@ -400,12 +514,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3124,
+                  "duration": 1258,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-11T12:50:27.009Z",
+                  "startTime": "2026-09-12T11:28:49.201Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -413,13 +527,55 @@
               "status": "expected"
             }
           ],
-          "id": "ff7637d3e5d3b9e2ba70-5c83080764ebc17ad286",
+          "id": "ff7637d3e5d3b9e2ba70-973d7f400a4b3ad01d4e",
           "file": "motion.spec.js",
-          "line": 89,
+          "line": 70,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "reader-boundaries.spec.js",
+      "file": "reader-boundaries.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Escape releases a held corner and wheel over the corner still turns the sheet",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4323,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-12T11:28:50.483Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fc1ccd622b2e3782fd30-589cc683532be1ac2c8e",
+          "file": "reader-boundaries.spec.js",
+          "line": 3,
           "column": 1
         },
         {
-          "title": "pointer movement produces no React commits or persistent animation loops",
+          "title": "browser Back unfolds the previous sheet even when its chapter number is higher",
           "ok": true,
           "tags": [],
           "tests": [
@@ -434,12 +590,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1959,
+                  "duration": 3483,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-11T12:50:30.148Z",
+                  "startTime": "2026-09-12T11:28:54.814Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -447,9 +603,111 @@
               "status": "expected"
             }
           ],
-          "id": "ff7637d3e5d3b9e2ba70-b52781deb34ab0da3df7",
-          "file": "motion.spec.js",
-          "line": 101,
+          "id": "fc1ccd622b2e3782fd30-2ef44fd7edc6158ba6a4",
+          "file": "reader-boundaries.spec.js",
+          "line": 28,
+          "column": 1
+        },
+        {
+          "title": "touch scroll stays inside the working page while the camera remains still",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1490,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-12T11:28:58.305Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fc1ccd622b2e3782fd30-0c85eeaed3279a22f83a",
+          "file": "reader-boundaries.spec.js",
+          "line": 40,
+          "column": 1
+        },
+        {
+          "title": "the closing sheet can turn back and advisor detail continues to the next chapter",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3017,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-12T11:28:59.806Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fc1ccd622b2e3782fd30-4c42ed239a093422e5f3",
+          "file": "reader-boundaries.spec.js",
+          "line": 59,
+          "column": 1
+        },
+        {
+          "title": "utility panels dismiss on Escape and release their focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1294,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-12T11:29:02.851Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fc1ccd622b2e3782fd30-8b91a4b1e6a41c399c8c",
+          "file": "reader-boundaries.spec.js",
+          "line": 75,
           "column": 1
         }
       ]
@@ -461,12 +719,12 @@
       "line": 0,
       "specs": [
         {
-          "title": "manager routes render at desktop, tablet and phone widths",
+          "title": "manager chapters render at desktop, tablet and phone widths",
           "ok": true,
           "tags": [],
           "tests": [
             {
-              "timeout": 30000,
+              "timeout": 120000,
               "annotations": [],
               "expectedStatus": "passed",
               "projectId": "",
@@ -476,12 +734,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 5764,
+                  "duration": 24407,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-11T12:50:32.153Z",
+                  "startTime": "2026-09-12T11:29:04.178Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -489,18 +747,18 @@
               "status": "expected"
             }
           ],
-          "id": "b57c54f1355337d53dbf-bf02910cbec6b3603125",
+          "id": "b57c54f1355337d53dbf-1e32044747c6e3bc2278",
           "file": "routes.spec.js",
           "line": 11,
           "column": 3
         },
         {
-          "title": "advisor routes render at desktop, tablet and phone widths",
+          "title": "advisor chapters render at desktop, tablet and phone widths",
           "ok": true,
           "tags": [],
           "tests": [
             {
-              "timeout": 30000,
+              "timeout": 120000,
               "annotations": [],
               "expectedStatus": "passed",
               "projectId": "",
@@ -510,12 +768,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3718,
+                  "duration": 15286,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-11T12:50:37.926Z",
+                  "startTime": "2026-09-12T11:29:28.593Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -523,18 +781,18 @@
               "status": "expected"
             }
           ],
-          "id": "b57c54f1355337d53dbf-f545800e87abd427cdfc",
+          "id": "b57c54f1355337d53dbf-215a15c16b0d1d7f7e2e",
           "file": "routes.spec.js",
           "line": 11,
           "column": 3
         },
         {
-          "title": "admin routes render at desktop, tablet and phone widths",
+          "title": "admin chapters render at desktop, tablet and phone widths",
           "ok": true,
           "tags": [],
           "tests": [
             {
-              "timeout": 30000,
+              "timeout": 120000,
               "annotations": [],
               "expectedStatus": "passed",
               "projectId": "",
@@ -544,12 +802,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3448,
+                  "duration": 20932,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-11T12:50:41.651Z",
+                  "startTime": "2026-09-12T11:29:43.886Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -557,13 +815,13 @@
               "status": "expected"
             }
           ],
-          "id": "b57c54f1355337d53dbf-9e5bbac9775fbc4935ac",
+          "id": "b57c54f1355337d53dbf-621525343577378b6686",
           "file": "routes.spec.js",
           "line": 11,
           "column": 3
         },
         {
-          "title": "rail expansion leaves the content fixed and separates active, hover and focus",
+          "title": "bookmarks skim with one destination underneath and browser Back restores the sheet",
           "ok": true,
           "tags": [],
           "tests": [
@@ -578,12 +836,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1717,
+                  "duration": 4461,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-11T12:50:45.106Z",
+                  "startTime": "2026-09-12T11:30:04.827Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -591,13 +849,13 @@
               "status": "expected"
             }
           ],
-          "id": "b57c54f1355337d53dbf-0045db38cdff87cd1a51",
+          "id": "b57c54f1355337d53dbf-bf8eeb384ef0f29aec50",
           "file": "routes.spec.js",
-          "line": 32,
+          "line": 31,
           "column": 1
         },
         {
-          "title": "search opens the correct advisor and stays within role permissions",
+          "title": "search, account identity and route permission remain synchronized",
           "ok": true,
           "tags": [],
           "tests": [
@@ -612,12 +870,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1146,
+                  "duration": 4623,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-11T12:50:46.831Z",
+                  "startTime": "2026-09-12T11:30:09.306Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -625,9 +883,85 @@
               "status": "expected"
             }
           ],
-          "id": "b57c54f1355337d53dbf-8a123823374598732f98",
+          "id": "b57c54f1355337d53dbf-4bc136150de8977c9af9",
           "file": "routes.spec.js",
-          "line": 50,
+          "line": 49,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "spatial.spec.js",
+      "file": "spatial.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Team is a long lateral and diagonal journey with a held scroll curl",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9552,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-12T11:30:13.945Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a961d5e636b5fd8533d4-69f25f2fa02f29d9e73b",
+          "file": "spatial.spec.js",
+          "line": 26,
+          "column": 1
+        },
+        {
+          "title": "corner drag holds, reverses, cancels and completes one turn",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4641,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-12T11:30:23.508Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a961d5e636b5fd8533d4-2568abafa5d95e451dda",
+          "file": "spatial.spec.js",
+          "line": 61,
           "column": 1
         }
       ]
@@ -654,12 +988,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1151,
+                  "duration": 1808,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-11T12:50:47.997Z",
+                  "startTime": "2026-09-12T11:30:28.163Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -673,7 +1007,7 @@
           "column": 1
         },
         {
-          "title": "advisor recording restricts the advisor and validates the amount",
+          "title": "advisor sales and form scrolling respect identity and camera position",
           "ok": true,
           "tags": [],
           "tests": [
@@ -688,12 +1022,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 795,
+                  "duration": 1353,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-11T12:50:49.155Z",
+                  "startTime": "2026-09-12T11:30:29.979Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -701,13 +1035,13 @@
               "status": "expected"
             }
           ],
-          "id": "500e814c046e2132c6e8-2738c2f2e09672134535",
+          "id": "500e814c046e2132c6e8-972be5885d46aab96e69",
           "file": "workflows.spec.js",
-          "line": 33,
+          "line": 31,
           "column": 1
         },
         {
-          "title": "targets create, edit and persist while advisors cannot edit them",
+          "title": "target create, edit and persistence retain advisor permissions",
           "ok": true,
           "tags": [],
           "tests": [
@@ -722,12 +1056,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1421,
+                  "duration": 3982,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-11T12:50:49.957Z",
+                  "startTime": "2026-09-12T11:30:31.339Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -735,13 +1069,13 @@
               "status": "expected"
             }
           ],
-          "id": "500e814c046e2132c6e8-ae03d173b33fd897bb25",
+          "id": "500e814c046e2132c6e8-bf86fcd348b4b45df3d2",
           "file": "workflows.spec.js",
-          "line": 47,
+          "line": 49,
           "column": 1
         },
         {
-          "title": "reward redemption deducts once and preserves lifetime membership",
+          "title": "catalogue redemption deducts once, preserves lifetime membership and filters rewards",
           "ok": true,
           "tags": [],
           "tests": [
@@ -756,12 +1090,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1310,
+                  "duration": 3126,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-11T12:50:51.386Z",
+                  "startTime": "2026-09-12T11:30:35.329Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -769,13 +1103,13 @@
               "status": "expected"
             }
           ],
-          "id": "500e814c046e2132c6e8-df4eef519f3eb7f8c8c7",
+          "id": "500e814c046e2132c6e8-e1205973cf7b6f676fc1",
           "file": "workflows.spec.js",
-          "line": 65,
+          "line": 68,
           "column": 1
         },
         {
-          "title": "manager reward recipient, forecast scenarios, alerts and action plan work",
+          "title": "forecast scenarios, reviewed alerts and intelligence actions work",
           "ok": true,
           "tags": [],
           "tests": [
@@ -790,12 +1124,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1437,
+                  "duration": 8433,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-11T12:50:52.703Z",
+                  "startTime": "2026-09-12T11:30:38.465Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -803,9 +1137,43 @@
               "status": "expected"
             }
           ],
-          "id": "500e814c046e2132c6e8-65880ff55db777779630",
+          "id": "500e814c046e2132c6e8-5e4bcba727065680861e",
           "file": "workflows.spec.js",
-          "line": 88,
+          "line": 89,
+          "column": 1
+        },
+        {
+          "title": "ranking sorting and advisor details retain meaningful routes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2396,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-12T11:30:46.905Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "500e814c046e2132c6e8-f26e34a83cc1fb953f7f",
+          "file": "workflows.spec.js",
+          "line": 109,
           "column": 1
         },
         {
@@ -824,12 +1192,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1143,
+                  "duration": 3619,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-11T12:50:54.148Z",
+                  "startTime": "2026-09-12T11:30:49.309Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -839,7 +1207,7 @@
           ],
           "id": "500e814c046e2132c6e8-5300debfa7bba7b4d33e",
           "file": "workflows.spec.js",
-          "line": 117,
+          "line": 120,
           "column": 1
         }
       ]
@@ -847,9 +1215,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-09-11T12:49:56.183Z",
-    "duration": 59457.885,
-    "expected": 22,
+    "startTime": "2026-09-12T11:27:59.811Z",
+    "duration": 174147.732,
+    "expected": 32,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

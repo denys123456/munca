@@ -40,6 +40,7 @@ export const navigationByRole = {
     item('rewards', 'Rewards', 'Rewards', 'Reward program status', Gift),
     item('ai-insights', 'AI Insights', 'AI', 'Management intelligence', BrainCircuit),
     item('dealership-activity', 'Dealership Activity', 'Activity', 'Sales and product activity', Building2),
+    item('profile', 'Profile', 'Account', 'Manager profile', UserRoundCog),
   ],
   ADMIN: [
     item('admin-overview', 'Overview', 'Administration', 'Program control center', ShieldCheck),
@@ -53,10 +54,10 @@ export const navigationByRole = {
     item('admin-health', 'System Health', 'Operations', 'Service health and fallbacks', HeartPulse),
     item('admin-audit', 'Audit / Activity', 'Operations', 'Operational activity', History),
     item('admin-settings', 'Settings', 'Administration', 'Platform settings', Settings),
+    item('profile', 'Profile', 'Account', 'Administrator profile', UserRoundCog),
   ],
 }
 
 function item(page, label, section, title, icon) {
   return { page, label, section, title, icon }
 }
-

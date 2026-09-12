@@ -1,19 +1,19 @@
 ﻿@font-face { font-family: 'Champions Sans'; src: local('Segoe UI Variable Text'), local('Segoe UI'); font-weight: 100 900; font-display: swap; }
 :root {
   font-family: 'Champions Sans', 'Segoe UI', sans-serif;
-  color-scheme: dark;
-  --bg: #0d131b;
-  --surface: #151e28;
-  --surface-raised: #202c39;
-  --text: #f2f1ec;
-  --text-soft: #c2ccd6;
-  --text-muted: #8e9daa;
-  --line: #ffffff12;
-  --line-bright: #ffffff25;
-  --emerald: #a3d3bc;
-  --gold: #ddc49d;
-  --blue: #abc8ec;
-  --coral: #e6ad9d;
+  color-scheme: light;
+  --bg: #f8f6ef;
+  --surface: #f3f0e7;
+  --surface-raised: #fdfbf6;
+  --text: #292c28;
+  --text-soft: #535a50;
+  --text-muted: #77796e;
+  --line: #454a351c;
+  --line-bright: #454a3538;
+  --emerald: #4f614a;
+  --gold: #9c8152;
+  --blue: #3a5360;
+  --coral: #a95e45;
   --ease: cubic-bezier(.2,.7,.2,1);
   color: var(--text);
   background: var(--bg);

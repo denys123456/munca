@@ -1,5 +1,4 @@
 ﻿@media (min-width: 1600px) {
-  .product-workspace { padding-inline: 56px; }
   .overview-main { grid-template-columns: minmax(0, 1fr) 390px; gap: 40px; }
   .intelligence-brief { padding: 32px; }
   .intelligence-brief h2 { font-size: 36px; }
@@ -7,10 +6,7 @@
   .intelligence-masthead { margin-inline: -56px; padding-inline: 56px; }
 }
 @media (max-width: 1200px) {
-  .product-workspace { padding-inline: 28px; }
-  .topbar-actions { gap: 12px; }
   .global-search { width: 175px; }
-  .topbar .brand-copy strong { font-size: 20px; }
   .overview-main { grid-template-columns: minmax(0, 1fr) 295px; gap: 24px; }
   .intelligence-brief { padding: 22px; }
   .intelligence-brief h2 { font-size: 27px; }
@@ -22,10 +18,7 @@
   .ranking-preview-row .status-pill { display: none; }
 }
 @media (max-width: 980px) {
-  .product-workspace { padding-inline: 24px; }
   .global-search { width: 150px; }
-  .topbar .brand-copy small { display: none; }
-  .topbar .brand-symbol { display: none; }
   .demo-account-switcher { padding-left: 10px; }
   .demo-account-switcher select { max-width: 150px; }
   .overview-main { grid-template-columns: 1fr; }
@@ -57,21 +50,6 @@
 }
 @media (max-width: 700px) {
   body { min-width: 320px; }
-  .product-workspace { margin-left: 0; padding: 0 20px 95px; }
-  .sidebar { width: 100%; height: 66px; top: auto; bottom: 0; padding: 0 8px; border-right: 0; border-top: 1px solid var(--line-bright); overflow: visible; }
-  .sidebar:hover, .sidebar:has(:focus-visible) { width: 100%; box-shadow: none; }
-  .sidebar > .brand-lockup, .rail-bottom { display: none; }
-  .main-navigation { flex-direction: row; margin: 0; padding-block: 8px; gap: 2px; overflow-x: auto; }
-  .main-navigation a { width: 55px; height: 46px; flex: 0 0 55px; padding: 5px; flex-direction: column; justify-content: center; gap: 4px; border-radius: 4px; }
-  .main-navigation a > span { display: block; opacity: 1; transform: none; font-size: 7px; max-width: 50px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .main-navigation a svg { width: 18px; height: 18px; }
-  .main-navigation a.is-route-active::before { top: -8px; left: 17px; width: 21px; height: 2px; }
-  .topbar { height: auto; min-height: 104px; flex-wrap: wrap; gap: 15px; padding: 19px 0 15px; }
-  .topbar .brand-copy strong { font-size: 22px; }
-  .topbar .brand-symbol { display: grid; width: 27px; flex-basis: 27px; }
-  .topbar .brand-symbol svg { width: 25px; height: 25px; }
-  .topbar .brand-lockup { gap: 8px; }
-  .topbar-actions { display: contents; }
   .global-search { order: 3; width: calc(100% - 175px); }
   .demo-account-switcher { order: 4; max-width: 163px; padding-left: 10px; }
   .demo-account-switcher > span { font-size: 7px; }
@@ -162,8 +140,6 @@
   .profile-hero p { overflow-wrap: anywhere; font-size: 11px; }
   .workspace-footer { flex-direction: column; font-size: 9px; }
   .toast { right: 20px; bottom: 80px; font-size: 12px; }
-  .intro-identity .brand-copy strong { font-size: 29px; }
-  .intro-identity p { font-size: 16px; }
 }
 @media (max-width: 1200px) {
   .reward-hero { grid-template-columns: 1fr 355px; gap: 30px; }
@@ -241,9 +217,6 @@
   .service-banner { flex-wrap: wrap; font-size: 11px; }
   .service-banner > span { flex-basis: 100%; }
   .skip-link { left: 20px; }
-  .intro-identity .brand-copy strong { font-size: 29px; }
-  .sidebar:hover { width: 100%; }
-  .topbar .brand-copy strong { font-size: 21px; }
   .global-search { width: calc(100% - 164px); }
   .global-search input { min-width: 0; }
   .global-search > svg { width: 14px; }
@@ -252,7 +225,6 @@
   .compact-list.vertical > div { overflow-wrap: anywhere; }
 }
 @media (max-width: 380px) {
-  .product-workspace { padding-inline: 16px; }
   .reward-catalog { grid-template-columns: 1fr; }
   .reward-content h3 { min-height: 0; }
   .reward-content .progress-label { flex-direction: row; }

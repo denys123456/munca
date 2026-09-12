@@ -1,120 +1,82 @@
-﻿import { test, expect, start, navigate } from './helpers.js'
+﻿import { test, expect, start } from './helpers.js'
 
-test('intro types individual characters once per session and reveals the workspace', async ({ page }) => {
+test('fountain pen draws paths once per session then holds and reveals', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' })
-  await page.addInitScript(() => {
-    window.introTextSamples = []
-    const observer = new MutationObserver(() => {
-      const text = document.querySelector('.intro-identity p')?.textContent
-      if (typeof text === 'string' && window.introTextSamples.at(-1) !== text) window.introTextSamples.push(text)
-    })
-    observer.observe(document, { childList: true, subtree: true, characterData: true })
-    setTimeout(() => observer.disconnect(), 5000)
-  })
-  await page.goto('/')
-  await expect(page.locator('.intro-sequence')).toBeVisible()
-  await expect(page.locator('.intro-sequence')).toHaveCount(0)
-  const samples = await page.evaluate(() => window.introTextSamples)
-  expect(samples.at(-1)).toBe('Turn performance into progress.')
-  const lengths = samples.map((sample) => sample.length)
-  expect(lengths).toContain(1)
-  expect(lengths).toContain(2)
-  for (let index = 1; index < lengths.length; index += 1) expect(lengths[index] - lengths[index - 1]).toBe(1)
-  await expect(page.locator('.product-workspace')).not.toHaveAttribute('inert')
+  await page.goto('/#/team-performance')
+  await expect(page.getByRole('button', { name: 'Open book', exact: true })).toBeFocused()
+  await page.getByRole('button', { name: 'Open book', exact: true }).click()
+  await expect(page.locator('.book-intro')).toHaveAttribute('data-phase', 'writing')
+  await expect(page.locator('.publication-environment')).toHaveAttribute('inert')
+  await page.waitForTimeout(1500)
+  const ink = await page.locator('[data-ink]').evaluateAll((paths) => paths.map((path) => Number(path.style.strokeDashoffset)))
+  expect(ink.some((value) => value === 0)).toBe(true)
+  expect(ink.some((value) => value > 0)).toBe(true)
+  await page.screenshot({ path: 'artifacts/reader-pen-writing.png' })
+  await expect(page.locator('.book-intro')).toHaveAttribute('data-phase', 'holding', { timeout: 8000 })
+  await page.screenshot({ path: 'artifacts/reader-inscription.png' })
+  await page.waitForTimeout(2200)
+  await expect(page.locator('.book-intro')).toHaveAttribute('data-phase', 'holding')
+  await expect(page.locator('.book-intro')).toHaveCount(0)
   await page.reload()
-  await expect(page.locator('.intro-sequence')).toHaveCount(0)
-  const separateSession = await page.context().browser().newContext()
-  const freshPage = await separateSession.newPage()
-  await freshPage.goto('http://127.0.0.1:5173')
-  await expect(freshPage.locator('.intro-sequence')).toBeVisible()
-  await separateSession.close()
+  await expect(page.locator('.book-intro')).toHaveCount(0)
 })
 
-test('focus dwell cancels early and quick movement never opens the wrong card', async ({ page }) => {
-  await start(page, 'alex-manager', 'overview', 'no-preference')
-  const cards = page.locator('[data-focusable]')
-  await cards.first().hover()
-  await page.waitForTimeout(400)
-  await page.mouse.move(800, 150)
-  await page.waitForTimeout(800)
-  await expect(page.locator('[data-focus-layer]')).toHaveCount(0)
-  for (let index = 0; index < 4; index += 1) { await cards.nth(index).hover(); await page.waitForTimeout(140) }
-  await page.mouse.move(900, 150)
-  await page.waitForTimeout(1100)
-  await expect(page.locator('[data-focus-layer]')).toHaveCount(0)
-  await cards.nth(2).hover()
-  await expect(page.locator('.focused-card')).toBeVisible()
-  await expect(page.locator('.focused-card')).toHaveAttribute('aria-label', 'Projected close')
-  await page.waitForTimeout(300)
-  const focused = await page.locator('.focused-card').boundingBox()
-  expect(focused.x).toBeGreaterThanOrEqual(0)
-  expect(focused.y).toBeGreaterThanOrEqual(0)
-  expect(focused.x + focused.width).toBeLessThanOrEqual(1440)
-  expect(focused.y + focused.height).toBeLessThanOrEqual(1000)
-  expect(await page.locator('.focus-backdrop').evaluate((element) => getComputedStyle(element).backdropFilter)).toBe('blur(11px)')
-  expect(await page.locator('.focused-card').evaluate((element) => getComputedStyle(element).filter)).toBe('none')
-  await page.screenshot({ path: 'artifacts/focus-view.png' })
-  await page.mouse.move(1300, 700)
-  await expect(page.locator('[data-focus-layer]')).toHaveCount(0)
-  await expect(cards.nth(2)).toHaveAttribute('data-focused', 'false')
-})
-
-test('focus cleans up on Escape, scroll, resize and route change', async ({ page }) => {
-  await start(page, 'alex-manager', 'overview', 'no-preference')
-  const card = page.locator('[data-focusable]').first()
-  for (const dismissal of ['Escape', 'scroll', 'resize', 'route']) {
-    await navigate(page, 'overview')
-    await page.evaluate(() => scrollTo(0, 0))
-    await expect.poll(() => page.evaluate(() => scrollY)).toBe(0)
-    await page.mouse.move(1000, 150)
-    await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))))
-    await card.hover()
-    await expect(page.locator('.focused-card')).toBeVisible()
-    if (dismissal === 'Escape') await page.keyboard.press('Escape')
-    if (dismissal === 'scroll') {
-      await page.evaluate(() => {
-        window.focusScrollFinished = false
-        document.addEventListener('scrollend', () => { window.focusScrollFinished = true }, { once: true })
-      })
-      await page.mouse.wheel(0, 300)
-      await expect.poll(() => page.evaluate(() => window.focusScrollFinished)).toBe(true)
-    }
-    if (dismissal === 'resize') await page.setViewportSize({ width: 1200, height: 800 })
-    if (dismissal === 'route') await navigate(page, 'rewards')
-    await expect(page.locator('[data-focus-layer]')).toHaveCount(0)
-    await page.mouse.move(1000, 160)
-  }
-})
-
-test('touch and reduced motion disable delayed focus', async ({ browser }) => {
-  const context = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true })
-  const page = await context.newPage()
-  await start(page, 'alex-manager', 'overview', 'no-preference')
-  await page.locator('[data-focusable]').first().tap()
-  await page.waitForTimeout(1200)
-  await expect(page.locator('[data-focus-layer]')).toHaveCount(0)
-  await page.emulateMedia({ reducedMotion: 'reduce' })
-  await expect(page.locator('.intro-sequence')).toHaveCount(0)
-  await context.close()
-})
-
-test('pointer movement produces no React commits or persistent animation loops', async ({ page }) => {
+test('mouse movement and scroll frames do not rerender the React tree', async ({ page }) => {
   await page.addInitScript(() => {
     window.championsCommits = 0
-    window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = {
-      supportsFiber: true, inject: () => 1,
-      onCommitFiberRoot: () => { window.championsCommits += 1 },
-      onCommitFiberUnmount: () => {},
-      onPostCommitFiberRoot: () => {}
-    }
+    window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = { supportsFiber: true, inject: () => 1, onCommitFiberRoot: () => { window.championsCommits += 1 }, onCommitFiberUnmount: () => {}, onPostCommitFiberRoot: () => {} }
   })
-  await start(page, 'alex-manager', 'overview', 'no-preference')
-  await page.waitForTimeout(600)
+  await start(page, 'alex-manager', 'team-performance', 'no-preference', false)
+  await page.mouse.move(45, 920)
+  await page.mouse.wheel(0, 100)
+  await page.waitForTimeout(500)
   const initial = await page.evaluate(() => window.championsCommits)
-  for (let step = 0; step < 48; step += 1) await page.mouse.move(150 + (step % 12) * 90, 260 + (step % 4) * 20)
-  await page.mouse.move(800, 130)
-  const final = await page.evaluate(() => window.championsCommits)
-  expect(final).toBe(initial)
-  await expect.poll(() => page.evaluate(() => document.getAnimations().filter((animation) => animation.playState === 'running').length)).toBe(0)
+  for (let step = 0; step < 30; step += 1) {
+    await page.mouse.move(45 + step, 920)
+    await page.mouse.wheel(0, 18)
+  }
+  await page.waitForTimeout(500)
+  expect(await page.evaluate(() => window.championsCommits)).toBe(initial)
+  expect(await page.evaluate(() => document.getAnimations().filter((animation) => animation.playState === 'running').length)).toBe(0)
+  const frames = await page.evaluate(() => new Promise((resolve) => {
+    const samples = []
+    let last = performance.now()
+    function sample(time) {
+      samples.push(time - last)
+      last = time
+      if (samples.length < 60) requestAnimationFrame(sample)
+      else resolve(samples.sort((first, second) => first - second))
+    }
+    requestAnimationFrame(sample)
+  }))
+  expect(frames[55]).toBeLessThan(50)
+  console.log('Frame intervals: median ' + frames[30].toFixed(1) + 'ms, p93 ' + frames[55].toFixed(1) + 'ms')
+})
+
+test('large wheel bursts stay in one chapter and direction reversal follows the same sheet', async ({ page }) => {
+  await start(page, 'alex-manager', 'team-performance', 'no-preference', false)
+  await page.mouse.move(45, 920)
+  await page.mouse.wheel(0, 50000)
+  await page.waitForTimeout(400)
+  const first = Number(await page.locator('.is-front .paper-layer').getAttribute('data-progress'))
+  expect(first).toBeLessThan(.04)
+  await page.mouse.wheel(0, -80)
+  await page.waitForTimeout(400)
+  expect(Number(await page.locator('.is-front .paper-layer').getAttribute('data-progress'))).toBeLessThan(first)
+  for (const delta of [60, 12, 4, -20, 5, 100, -75, 60]) { await page.mouse.wheel(0, delta); await page.waitForTimeout(20) }
+  await expect(page.locator('.publication')).toHaveAttribute('data-route', 'team-performance')
+})
+
+test('reduced motion opens immediately and touch advances the spatial camera', async ({ browser }) => {
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true, reducedMotion: 'reduce' })
+  const page = await context.newPage()
+  await page.goto('http://127.0.0.1:5173/#/team-performance')
+  await expect(page.locator('.book-intro')).toHaveCount(0)
+  const session = await context.newCDPSession(page)
+  await session.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: 90, y: 660 }] })
+  for (const y of [620, 580, 530, 480]) await session.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: 90, y }] })
+  await session.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] })
+  expect(Number(await page.locator('.is-front .paper-layer').getAttribute('data-progress'))).toBeGreaterThan(0)
+  await context.close()
 })
 
