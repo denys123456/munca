@@ -10,6 +10,8 @@ public interface RewardRepository {
     Reward save(Reward reward);
 
     Optional<Reward> findById(Long rewardId);
+    Optional<Reward> lock(Long rewardId);
+    org.springframework.data.domain.Page<Reward> search(String search,org.springframework.data.domain.Pageable page);
 
     List<Reward> findActiveRewards();
 }

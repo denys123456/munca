@@ -1,12 +1,12 @@
 services:
   postgres:
-    image: postgres:16
+    image: postgres:16-alpine
     environment:
       POSTGRES_DB: championsclub
       POSTGRES_USER: championsclub
-      POSTGRES_PASSWORD: championsclub_dev
+      POSTGRES_PASSWORD: ${SPRING_DATASOURCE_PASSWORD:?Set SPRING_DATASOURCE_PASSWORD in .env}
     ports:
-      - "5432:5432"
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -18,26 +18,39 @@ services:
   ml-service:
     build: ./ml-service
     ports:
-      - "8000:8000"
+      - "127.0.0.1:${ML_PORT:-8000}:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2)"]
+      interval: 15s
+      timeout: 3s
+      retries: 5
 
   backend:
     build: ./backend
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/championsclub
       SPRING_DATASOURCE_USERNAME: championsclub
-      SPRING_DATASOURCE_PASSWORD: championsclub_dev
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD:?Set SPRING_DATASOURCE_PASSWORD in .env}
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-}
+      CHAMPIONSCLUB_JWT_SECRET: ${CHAMPIONSCLUB_JWT_SECRET:?Set a strong JWT secret in .env}
       CHAMPIONSCLUB_ML_BASE_URL: http://ml-service:8000
-      CHAMPIONSCLUB_AI_PROVIDER: MOCK
-      CHAMPIONSCLUB_DEMO_PASSWORD: change-this-before-production
+      CHAMPIONSCLUB_AI_PROVIDER: ${CHAMPIONSCLUB_AI_PROVIDER:-DISABLED}
+      CHAMPIONSCLUB_AI_API_KEY: ${CHAMPIONSCLUB_AI_API_KEY:-}
+      CHAMPIONSCLUB_AI_ENDPOINT: ${CHAMPIONSCLUB_AI_ENDPOINT:-https://api.openai.com/v1/chat/completions}
+      CHAMPIONSCLUB_AI_MODEL: ${CHAMPIONSCLUB_AI_MODEL:-}
+      CHAMPIONSCLUB_DEMO_PASSWORD: ${CHAMPIONSCLUB_DEMO_PASSWORD:-}
+      CHAMPIONSCLUB_CORS_ALLOWED_ORIGIN: ${CHAMPIONSCLUB_CORS_ALLOWED_ORIGIN:-http://localhost:5173}
+      CHAMPIONSCLUB_SCHEDULING_ENABLED: ${CHAMPIONSCLUB_SCHEDULING_ENABLED:-true}
     ports:
-      - "8080:8080"
+      - "127.0.0.1:${BACKEND_PORT:-8080}:8080"
     depends_on:
       postgres:
         condition: service_healthy
       ml-service:
-        condition: service_started
+        condition: service_healthy
 
   frontend:
+    profiles: ["frontend"]
     build: ./frontend
     ports:
       - "5173:5173"
@@ -47,4 +60,3 @@ services:
 
 volumes:
   postgres_data:
-

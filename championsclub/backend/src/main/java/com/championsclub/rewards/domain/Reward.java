@@ -7,6 +7,9 @@ public class Reward {
     private final String category;
     private final int requiredPoints;
     private final RewardStatus status;
+    private final Integer stock;
+    private final String description;
+    private final String imageReference;
 
     private Reward(Builder builder) {
         this.id = builder.id;
@@ -14,6 +17,10 @@ public class Reward {
         this.category = requireText(builder.category);
         this.requiredPoints = requirePositive(builder.requiredPoints);
         this.status = builder.status == null ? RewardStatus.ACTIVE : builder.status;
+        this.stock = builder.stock;
+        this.description = builder.description;
+        this.imageReference = builder.imageReference;
+        if (stock != null && stock < 0) throw new IllegalArgumentException("Reward stock cannot be negative.");
     }
 
     public static Builder builder() {
@@ -21,8 +28,12 @@ public class Reward {
     }
 
     public boolean canBeRedeemedWith(int availablePoints) {
-        return status == RewardStatus.ACTIVE && availablePoints >= requiredPoints;
+        return available() && availablePoints >= requiredPoints;
     }
+    public boolean available() { return status == RewardStatus.ACTIVE && (stock == null || stock > 0); }
+    public Integer stock() { return stock; }
+    public String description() { return description; }
+    public String imageReference() { return imageReference; }
 
     public Long id() {
         return id;
@@ -64,6 +75,12 @@ public class Reward {
         private String category;
         private int requiredPoints;
         private RewardStatus status;
+        private Integer stock;
+        private String description = "";
+        private String imageReference;
+        public Builder stock(Integer stock) { this.stock=stock; return this; }
+        public Builder description(String description) { this.description=description; return this; }
+        public Builder imageReference(String imageReference) { this.imageReference=imageReference; return this; }
 
         private Builder() {
         }
@@ -98,4 +115,3 @@ public class Reward {
         }
     }
 }
-

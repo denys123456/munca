@@ -4,7 +4,7 @@ spring:
   datasource:
     url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/championsclub}
     username: ${SPRING_DATASOURCE_USERNAME:championsclub}
-    password: ${SPRING_DATASOURCE_PASSWORD:championsclub_dev}
+    password: ${SPRING_DATASOURCE_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: validate
@@ -16,10 +16,23 @@ championsclub:
   ml:
     base-url: ${CHAMPIONSCLUB_ML_BASE_URL:http://localhost:8000}
   ai:
-    provider: ${CHAMPIONSCLUB_AI_PROVIDER:MOCK}
+    provider: ${CHAMPIONSCLUB_AI_PROVIDER:DISABLED}
     api-key: ${CHAMPIONSCLUB_AI_API_KEY:}
+    endpoint: ${CHAMPIONSCLUB_AI_ENDPOINT:https://api.openai.com/v1/chat/completions}
+    model: ${CHAMPIONSCLUB_AI_MODEL:}
+    timeout-seconds: ${CHAMPIONSCLUB_AI_TIMEOUT_SECONDS:12}
   security:
-    demo-password: ${CHAMPIONSCLUB_DEMO_PASSWORD:change-this-before-production}
+    jwt-secret: ${CHAMPIONSCLUB_JWT_SECRET}
+  bootstrap:
+    enabled: ${CHAMPIONSCLUB_BOOTSTRAP_ENABLED:false}
+    email: ${CHAMPIONSCLUB_BOOTSTRAP_EMAIL:}
+    password: ${CHAMPIONSCLUB_BOOTSTRAP_PASSWORD:}
+  demo:
+    enabled: false
+    password: ${CHAMPIONSCLUB_DEMO_PASSWORD:}
+  scheduling:
+    enabled: ${CHAMPIONSCLUB_SCHEDULING_ENABLED:true}
+    cron: ${CHAMPIONSCLUB_SCHEDULING_CRON:0 0 6 * * *}
   cors:
     allowed-origin: ${CHAMPIONSCLUB_CORS_ALLOWED_ORIGIN:http://localhost:5173}
 

@@ -31,6 +31,11 @@ class RewardEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private RewardStatus status;
+    private Integer stock;
+    private String description;
+    private String imageReference;
+    @org.hibernate.annotations.UpdateTimestamp
+    private java.time.Instant updatedAt;
 
     protected RewardEntity() {
     }
@@ -41,6 +46,9 @@ class RewardEntity {
         this.category = reward.category();
         this.requiredPoints = reward.requiredPoints();
         this.status = reward.status();
+        this.stock = reward.stock();
+        this.description = reward.description();
+        this.imageReference = reward.imageReference();
     }
 
     static RewardEntity fromDomain(Reward reward) {
@@ -54,6 +62,7 @@ class RewardEntity {
                 .category(category)
                 .requiredPoints(requiredPoints)
                 .status(status)
+                .stock(stock).description(description).imageReference(imageReference)
                 .build();
     }
 }

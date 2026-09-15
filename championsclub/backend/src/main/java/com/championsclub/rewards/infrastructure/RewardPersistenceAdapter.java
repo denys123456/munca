@@ -10,6 +10,10 @@ import java.util.Optional;
 
 @Repository
 class RewardPersistenceAdapter implements RewardRepository {
+    public java.util.Optional<Reward> lock(Long id) { return jpaRewardRepository.lock(id).map(RewardEntity::toDomain); }
+    public org.springframework.data.domain.Page<Reward> search(String search,org.springframework.data.domain.Pageable page) {
+        return jpaRewardRepository.search(search,page).map(RewardEntity::toDomain);
+    }
 
     private final JpaRewardRepository jpaRewardRepository;
 

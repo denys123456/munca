@@ -1,54 +1,33 @@
 package com.championsclub.rewards.infrastructure;
-
-import com.championsclub.rewards.application.GetRewardCatalogQuery;
-import com.championsclub.rewards.application.GetRewardCatalogQueryHandler;
-import com.championsclub.rewards.application.RedeemRewardCommand;
-import com.championsclub.rewards.application.RedeemRewardCommandHandler;
-import com.championsclub.rewards.application.RewardCatalogItem;
+import com.championsclub.rewards.application.*;
+import com.championsclub.common.application.Pages;
+import com.championsclub.security.application.Access;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-
+import jakarta.validation.constraints.*;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.*;
 @RestController
-@RequestMapping("/api/rewards")
 class RewardsController {
-
-    private final GetRewardCatalogQueryHandler getRewardCatalogQueryHandler;
-    private final RedeemRewardCommandHandler redeemRewardCommandHandler;
-
-    RewardsController(
-            GetRewardCatalogQueryHandler getRewardCatalogQueryHandler,
-            RedeemRewardCommandHandler redeemRewardCommandHandler
-    ) {
-        this.getRewardCatalogQueryHandler = getRewardCatalogQueryHandler;
-        this.redeemRewardCommandHandler = redeemRewardCommandHandler;
+    private final RewardQueries queries;
+    private final RedeemRewardCommandHandler commands;
+    private final Access access;
+    RewardsController(RewardQueries queries, RedeemRewardCommandHandler commands, Access access) {
+        this.queries=queries; this.commands=commands; this.access=access;
     }
-
-    @GetMapping("/advisor/{advisorId}")
-    @PreAuthorize("hasAnyRole('SALES_ADVISOR','MANAGER','ADMIN')")
-    List<RewardCatalogItem> getRewardCatalog(@PathVariable Long advisorId) {
-        return getRewardCatalogQueryHandler.getRewardCatalog(new GetRewardCatalogQuery(advisorId));
+    @GetMapping("/api/rewards/advisor/{advisorId}")
+    Page<RewardQueries.RewardEligibility> catalog(@PathVariable long advisorId, @RequestParam(defaultValue="") String search,
+                                                @RequestParam(defaultValue="0") int page, @RequestParam(defaultValue="20") int size) {
+        return queries.catalog(advisorId, search, Pages.of(page, size));
     }
-
-    @PostMapping("/redemptions")
-    @ResponseStatus(HttpStatus.CREATED)
-    @PreAuthorize("hasAnyRole('SALES_ADVISOR','ADMIN')")
-    void redeemReward(@Valid @RequestBody RedeemRewardRequest request) {
-        redeemRewardCommandHandler.redeemReward(new RedeemRewardCommand(request.advisorId(), request.rewardId()));
+    @PostMapping("/api/rewards/redemptions")
+    @ResponseStatus(org.springframework.http.HttpStatus.CREATED)
+    RedemptionStore.Redemption redeem(@Valid @RequestBody RedeemRequest request) {
+        return commands.redeemReward(new RedeemRewardCommand(request.advisorId() == null ? access.current().id() : request.advisorId(), request.rewardId()));
     }
-
-    record RedeemRewardRequest(@NotNull @Positive Long advisorId, @NotNull @Positive Long rewardId) {
+    @GetMapping("/api/redemptions")
+    Page<RedemptionStore.Redemption> history(@RequestParam(required=false) Long advisorId,
+                                            @RequestParam(defaultValue="0") int page, @RequestParam(defaultValue="20") int size) {
+        return queries.history(advisorId, Pages.of(page, size));
     }
+    record RedeemRequest(@Positive Long advisorId, @NotNull @Positive Long rewardId) {}
 }
-

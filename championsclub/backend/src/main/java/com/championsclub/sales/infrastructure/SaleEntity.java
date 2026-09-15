@@ -21,6 +21,8 @@ class SaleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String externalReference;
+    private String currency;
 
     @Column(nullable = false)
     private Long advisorId;
@@ -49,6 +51,8 @@ class SaleEntity {
 
     private SaleEntity(Sale sale) {
         this.id = sale.id();
+        this.externalReference = sale.externalReference();
+        this.currency = sale.currency();
         this.advisorId = sale.advisorId();
         this.dealershipId = sale.dealershipId();
         this.productId = sale.productId();
@@ -65,6 +69,8 @@ class SaleEntity {
     Sale toDomain() {
         return Sale.builder()
                 .id(id)
+                .externalReference(externalReference)
+                .currency(currency)
                 .advisorId(advisorId)
                 .dealershipId(dealershipId)
                 .productId(productId)
@@ -75,4 +81,3 @@ class SaleEntity {
                 .build();
     }
 }
-
