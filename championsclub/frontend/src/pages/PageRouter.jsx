@@ -5,8 +5,20 @@ import { AlertsPage } from './shared/AlertsPage.jsx'
 import { SalesActivityPage } from './shared/SalesActivityPage.jsx'
 import { TargetsPage } from './shared/TargetsPage.jsx'
 import { ProfilePage } from './shared/ProfilePage.jsx'
+import { OverviewPage } from './shared/OverviewPage.jsx'
+import { PerformancePage } from './shared/PerformancePage.jsx'
+import { RewardsPage } from './shared/RewardsPage.jsx'
+import { ForecastsPage } from './shared/ForecastsPage.jsx'
+import { AiInsightsPage } from './shared/AiInsightsPage.jsx'
+import { LeaderboardPage } from './shared/LeaderboardPage.jsx'
 
 export function PageRouter(props) {
+  if (props.activePage === 'overview') return <OverviewPage {...props} />
+  if (props.activePage === 'my-performance' || props.activePage === 'team-performance') return <PerformancePage {...props} />
+  if (props.activePage === 'rewards') return <RewardsPage {...props} />
+  if (props.activePage === 'forecasts') return <ForecastsPage {...props} />
+  if (props.activePage === 'ai-insights') return <AiInsightsPage {...props} />
+  if (props.activePage === 'leaderboard') return <LeaderboardPage {...props} />
   if (props.activePage.startsWith('admin-')) {
     return <AdminPage {...props} />
   }

@@ -1,0 +1,66 @@
+@media (min-width: 1600px) { .story-copy { padding-top: 18svh; } }
+@media (max-height: 750px) and (min-width: 721px) { .experience-navigation { height: 75px; } .story-copy { padding-top: 19svh; } .story-eyebrow { margin-bottom: 16px; } .scene-caption, .scene-data, .final-actions { bottom: 101px; } .experience-bottom-bar { bottom: 22px; } .scroll-cue { bottom: 105px; } .intelligence-signals { top: 20%; } .intelligence-signals > div { padding-block: 9px; } .advisor-contributions > div { padding-block: 10px; } }
+@media (max-width: 1100px) { .navigation-edition { display: none; } .story-copy h1 { font-size: 12.7vw; } .story-copy h1 span { padding-left: 8vw; } .hero-spec { top: auto; bottom: 205px; } .intelligence-signals { width: 260px; max-width: 32vw; } .forecast-telemetry { gap: 22px; } }
+@media (max-width: 720px) {
+  .automotive-experience { height: calc(100svh + 15600px); }
+  .experience-stage { min-height: 570px; }
+  .experience-navigation { height: 77px; padding-inline: 22px; gap: 10px; }
+  .experience-brand { font-size: 15px; letter-spacing: -.7px; }
+  .experience-brand > span { font-size: 8px; margin-left: 3px; }
+  .navigation-actions { gap: 15px; }
+  .account-toggle { font-size: 0; gap: 4px; min-height: 40px; min-width: 28px; }
+  .account-toggle i { width: 6px; height: 6px; }
+  .workspace-toggle { font-size: 8px; gap: 7px; }
+  .workspace-toggle svg { width: 12px; }
+  .story-copy { padding: 18svh 22px 0; }
+  .story-eyebrow { font-size: 7px; letter-spacing: 1px; margin-bottom: 20px; }
+  .story-copy h1 { font-size: 17.3vw; line-height: .9; }
+  .story-copy h1 span { padding-left: 0; }
+  .story-copy h2, .story-copy-12 h2 { font-size: 15vw; line-height: .9; }
+  .story-copy-4 h2, .story-copy-5 h2, .story-copy-6 h2, .story-copy-7 h2, .story-copy-8 h2, .story-copy-9 h2, .story-copy-10 h2 { font-size: 12.6vw; }
+  .hero-spec { display: none; }
+  .scene-caption { left: 22px; bottom: 140px; max-width: 220px; }
+  .scene-caption > span { font-size: 7px; line-height: 1.7; margin-bottom: 8px; }
+  .scene-caption p { font-size: 11px; }
+  .scroll-cue { bottom: 101px; left: 22px; right: auto; font-size: 7px; }
+  .experience-bottom-bar { left: 22px; right: 22px; bottom: 19px; padding-top: 15px; }
+  .chapter-index-toggle { font-size: 8px; gap: 9px; }
+  .chapter-index-toggle i { margin-inline: 0; width: 16px; }
+  .chapter-index-toggle > span:last-child { display: none; }
+  .model-disclosure { font-size: 6px; letter-spacing: .5px; }
+  .model-disclosure span { margin-left: 5px; }
+  .scene-data { left: 22px; right: 22px; bottom: 109px; min-width: 0; max-width: none; }
+  .scene-metric > span { font-size: 7px; }
+  .scene-metric > strong { font-size: 53px; margin-block: 6px; }
+  .scene-metric > small { font-size: 7px; }
+  .data-provenance { font-size: 6px; margin-top: 9px; }
+  .story-panel-4 .scene-caption, .story-panel-6 .scene-caption, .story-panel-7 .scene-caption, .story-panel-8 .scene-caption, .story-panel-9 .scene-caption, .story-panel-10 .scene-caption, .story-panel-12 .scene-caption { display: none; }
+  .mechanical-key { top: auto; bottom: 105px; left: 22px; right: 22px; width: auto; display: flex; flex-wrap: wrap; gap: 13px; font-size: 6px; }
+  .mechanical-key > small { display: none; }
+  .story-panel-2 .scene-caption, .story-panel-5 .scene-caption { bottom: 172px; }
+  .advisor-contributions { bottom: 105px; display: grid; grid-template-columns: 1fr 1fr; gap: 0 22px; width: auto; }
+  .advisor-contributions > .micro-label, .advisor-contributions > .data-provenance { grid-column: 1 / -1; }
+  .advisor-contributions > div { gap: 5px; padding-block: 10px; }
+  .advisor-contributions > div > span { font-size: 9px; }
+  .advisor-contributions > div > strong { font-size: 10px; }
+  .advisor-contributions > div > small { font-size: 6px; }
+  .advisor-contributions > div:nth-of-type(5) { display: none; }
+  .forecast-telemetry { bottom: 143px; left: 22px; right: 22px; justify-content: space-between; gap: 10px; }
+  .forecast-telemetry .scene-metric > strong { font-size: 29px; }
+  .forecast-telemetry > .data-provenance { left: 0; right: auto; max-width: 280px; }
+  .intelligence-signals { bottom: 100px; left: 22px; right: 22px; top: auto; width: auto; max-width: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; }
+  .intelligence-signals > .micro-label { grid-column: 1 / -1; font-size: 7px; }
+  .intelligence-signals > div { padding-block: 8px; }
+  .intelligence-signals > div > span { font-size: 6px; }
+  .intelligence-signals p { font-size: 8px; line-height: 1.5; }
+  .intelligence-signals .scene-link { font-size: 7px; margin-top: 0; align-self: end; }
+  .material-grades { font-size: 7px; margin-bottom: 14px; }
+  .recognition-data .scene-link { margin-top: 4px; padding-block: 10px; }
+  .final-actions { bottom: 111px; left: 22px; right: 22px; align-items: flex-start; gap: 16px; }
+  .final-actions > span { font-size: 17px; }
+  .workspace-cta { font-size: 8px; padding: 14px 16px; gap: 20px; }
+  .component-anchor { display: none; }
+  .chapter-index { grid-template-columns: 1fr; }
+  .chapter-index button { padding-block: 13px; }
+  .graphics-fallback { display: grid; gap: 15px; bottom: 100px; }
+}

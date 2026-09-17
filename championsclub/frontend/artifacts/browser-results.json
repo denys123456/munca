@@ -86,12 +86,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2748,
+                  "duration": 2737,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-12T11:28:00.441Z",
+                  "startTime": "2026-09-17T09:57:56.107Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -120,12 +120,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2783,
+                  "duration": 2218,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-12T11:28:03.565Z",
+                  "startTime": "2026-09-17T09:57:59.194Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -154,12 +154,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2807,
+                  "duration": 2194,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-12T11:28:06.357Z",
+                  "startTime": "2026-09-17T09:58:01.421Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -188,12 +188,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2731,
+                  "duration": 2167,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-12T11:28:09.173Z",
+                  "startTime": "2026-09-17T09:58:03.623Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -222,12 +222,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2679,
+                  "duration": 2183,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-12T11:28:11.913Z",
+                  "startTime": "2026-09-17T09:58:05.797Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -256,12 +256,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 5833,
+                  "duration": 3826,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-12T11:28:14.606Z",
+                  "startTime": "2026-09-17T09:58:07.989Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -277,18 +277,18 @@
       ]
     },
     {
-      "title": "book.spec.js",
-      "file": "book.spec.js",
+      "title": "experience.spec.js",
+      "file": "experience.spec.js",
       "column": 0,
       "line": 0,
       "specs": [
         {
-          "title": "phone utilities, chapter navigation and closing remain usable",
+          "title": "the whole automotive story scrubs, stops and reverses without React frame updates",
           "ok": true,
           "tags": [],
           "tests": [
             {
-              "timeout": 30000,
+              "timeout": 90000,
               "annotations": [],
               "expectedStatus": "passed",
               "projectId": "",
@@ -298,12 +298,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3217,
+                  "duration": 4972,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-12T11:28:20.466Z",
+                  "startTime": "2026-09-17T09:58:11.842Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -311,13 +311,13 @@
               "status": "expected"
             }
           ],
-          "id": "a23a6e98a7c77929248d-485eddf574c0f846f457",
-          "file": "book.spec.js",
-          "line": 3,
+          "id": "2d243af4b6ac2ee83f7c-c5028b9bedbdde7734b2",
+          "file": "experience.spec.js",
+          "line": 13,
           "column": 1
         },
         {
-          "title": "chart focus is a sharp portal with contextual data and one blurred backdrop",
+          "title": "chapter selection and workspace round trips preserve the scene and resources",
           "ok": true,
           "tags": [],
           "tests": [
@@ -332,12 +332,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2561,
+                  "duration": 3964,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-12T11:28:23.692Z",
+                  "startTime": "2026-09-17T09:58:16.822Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -345,13 +345,13 @@
               "status": "expected"
             }
           ],
-          "id": "a23a6e98a7c77929248d-4fb27967eaafb0e4aa3a",
-          "file": "book.spec.js",
-          "line": 30,
+          "id": "2d243af4b6ac2ee83f7c-c5450a0e56d668169b0a",
+          "file": "experience.spec.js",
+          "line": 53,
           "column": 1
         },
         {
-          "title": "rapid direct navigation cannot commit a stale route",
+          "title": "mobile and reduced motion retain every chapter and the operational exit",
           "ok": true,
           "tags": [],
           "tests": [
@@ -366,12 +366,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3678,
+                  "duration": 1902,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-12T11:28:26.263Z",
+                  "startTime": "2026-09-17T09:58:20.794Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -379,55 +379,13 @@
               "status": "expected"
             }
           ],
-          "id": "a23a6e98a7c77929248d-30da04c2ebf710dd3766",
-          "file": "book.spec.js",
-          "line": 52,
-          "column": 1
-        }
-      ]
-    },
-    {
-      "title": "motion.spec.js",
-      "file": "motion.spec.js",
-      "column": 0,
-      "line": 0,
-      "specs": [
-        {
-          "title": "fountain pen draws paths once per session then holds and reveals",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 13565,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-12T11:28:29.962Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "ff7637d3e5d3b9e2ba70-7a897157faafe6bb0707",
-          "file": "motion.spec.js",
-          "line": 3,
+          "id": "2d243af4b6ac2ee83f7c-1a903dd048bfa00ebb43",
+          "file": "experience.spec.js",
+          "line": 72,
           "column": 1
         },
         {
-          "title": "mouse movement and scroll frames do not rerender the React tree",
+          "title": "a lost graphics context leaves a usable workspace exit",
           "ok": true,
           "tags": [],
           "tests": [
@@ -442,272 +400,130 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3316,
+                  "duration": 1455,
                   "errors": [],
-                  "stdout": [
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-17T09:58:22.704Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2d243af4b6ac2ee83f7c-8c0a647ea1091e916c05",
+          "file": "experience.spec.js",
+          "line": 87,
+          "column": 1
+        },
+        {
+          "title": "the manifest loads a named GLTF assembly and rejects incompatible parts before playback",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3143,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-17T09:58:24.167Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2d243af4b6ac2ee83f7c-ccaba6c2372635c716ff",
+          "file": "experience.spec.js",
+          "line": 95,
+          "column": 1
+        },
+        {
+          "title": "mobile full motion fits the car and keeps touch scrolling reversible",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7410,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeCloseTo\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m, \u001b[22mprecision\u001b[2m)\u001b[22m\n\nExpected: \u001b[32m0.25\u001b[39m\nReceived: \u001b[31m0.29346\u001b[39m\n\nExpected precision:    3\nExpected difference: < \u001b[32m0.0005\u001b[39m\nReceived difference:   \u001b[31m0.04346\u001b[39m\n\nCall Log:\n- Timeout 6000ms exceeded while waiting on the predicate",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeCloseTo\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m, \u001b[22mprecision\u001b[2m)\u001b[22m\n\nExpected: \u001b[32m0.25\u001b[39m\nReceived: \u001b[31m0.29346\u001b[39m\n\nExpected precision:    3\nExpected difference: < \u001b[32m0.0005\u001b[39m\nReceived difference:   \u001b[31m0.04346\u001b[39m\n\nCall Log:\n- Timeout 6000ms exceeded while waiting on the predicate\n    at travelTo (C:\\Users\\Jitu\\OneDrive\\Desktop\\proiect munca\\championsclub\\frontend\\tests\\helpers.js:48:117)\n    at C:\\Users\\Jitu\\OneDrive\\Desktop\\proiect munca\\championsclub\\frontend\\tests\\experience.spec.js:137:3",
+                    "location": {
+                      "file": "C:\\Users\\Jitu\\OneDrive\\Desktop\\proiect munca\\championsclub\\frontend\\tests\\helpers.js",
+                      "column": 117,
+                      "line": 48
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39mhelpers.js:48\n\n  46 |     window.scrollTo(0, progress * (root.offsetHeight - innerHeight))\n  47 |   }, destination)\n> 48 |   await expect.poll(async () => Number(await page.locator('.automotive-experience').getAttribute('data-progress'))).toBeCloseTo(destination, 3)\n     |                                                                                                                     ^\n  49 | }\n  50 |\n  51 | export async function state(page) {"
+                  },
+                  "errors": [
                     {
-                      "text": "Frame intervals: median 4.2ms, p93 4.2ms\n"
+                      "location": {
+                        "file": "C:\\Users\\Jitu\\OneDrive\\Desktop\\proiect munca\\championsclub\\frontend\\tests\\helpers.js",
+                        "column": 117,
+                        "line": 48
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeCloseTo\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m, \u001b[22mprecision\u001b[2m)\u001b[22m\n\nExpected: \u001b[32m0.25\u001b[39m\nReceived: \u001b[31m0.29346\u001b[39m\n\nExpected precision:    3\nExpected difference: < \u001b[32m0.0005\u001b[39m\nReceived difference:   \u001b[31m0.04346\u001b[39m\n\nCall Log:\n- Timeout 6000ms exceeded while waiting on the predicate\n\n   at helpers.js:48\n\n  46 |     window.scrollTo(0, progress * (root.offsetHeight - innerHeight))\n  47 |   }, destination)\n> 48 |   await expect.poll(async () => Number(await page.locator('.automotive-experience').getAttribute('data-progress'))).toBeCloseTo(destination, 3)\n     |                                                                                                                     ^\n  49 | }\n  50 |\n  51 | export async function state(page) {\n    at travelTo (C:\\Users\\Jitu\\OneDrive\\Desktop\\proiect munca\\championsclub\\frontend\\tests\\helpers.js:48:117)\n    at C:\\Users\\Jitu\\OneDrive\\Desktop\\proiect munca\\championsclub\\frontend\\tests\\experience.spec.js:137:3"
                     }
                   ],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-12T11:28:43.535Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "ff7637d3e5d3b9e2ba70-84dc5e034bab3e6dc63a",
-          "file": "motion.spec.js",
-          "line": 24,
-          "column": 1
-        },
-        {
-          "title": "large wheel bursts stay in one chapter and direction reversal follows the same sheet",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 2334,
-                  "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-12T11:28:46.860Z",
+                  "startTime": "2026-09-17T09:58:27.320Z",
                   "annotations": [],
-                  "attachments": []
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\Jitu\\OneDrive\\Desktop\\proiect munca\\championsclub\\frontend\\test-results\\experience-mobile-full-mot-0eb9c--touch-scrolling-reversible\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\Jitu\\OneDrive\\Desktop\\proiect munca\\championsclub\\frontend\\test-results\\experience-mobile-full-mot-0eb9c--touch-scrolling-reversible\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\Jitu\\OneDrive\\Desktop\\proiect munca\\championsclub\\frontend\\test-results\\experience-mobile-full-mot-0eb9c--touch-scrolling-reversible\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\Jitu\\OneDrive\\Desktop\\proiect munca\\championsclub\\frontend\\tests\\helpers.js",
+                    "column": 117,
+                    "line": 48
+                  }
                 }
               ],
-              "status": "expected"
+              "status": "unexpected"
             }
           ],
-          "id": "ff7637d3e5d3b9e2ba70-679d0bf5661c48bec728",
-          "file": "motion.spec.js",
-          "line": 56,
-          "column": 1
-        },
-        {
-          "title": "reduced motion opens immediately and touch advances the spatial camera",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 1258,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-12T11:28:49.201Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "ff7637d3e5d3b9e2ba70-973d7f400a4b3ad01d4e",
-          "file": "motion.spec.js",
-          "line": 70,
-          "column": 1
-        }
-      ]
-    },
-    {
-      "title": "reader-boundaries.spec.js",
-      "file": "reader-boundaries.spec.js",
-      "column": 0,
-      "line": 0,
-      "specs": [
-        {
-          "title": "Escape releases a held corner and wheel over the corner still turns the sheet",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 4323,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-12T11:28:50.483Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "fc1ccd622b2e3782fd30-589cc683532be1ac2c8e",
-          "file": "reader-boundaries.spec.js",
-          "line": 3,
-          "column": 1
-        },
-        {
-          "title": "browser Back unfolds the previous sheet even when its chapter number is higher",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 3483,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-12T11:28:54.814Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "fc1ccd622b2e3782fd30-2ef44fd7edc6158ba6a4",
-          "file": "reader-boundaries.spec.js",
-          "line": 28,
-          "column": 1
-        },
-        {
-          "title": "touch scroll stays inside the working page while the camera remains still",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 1490,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-12T11:28:58.305Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "fc1ccd622b2e3782fd30-0c85eeaed3279a22f83a",
-          "file": "reader-boundaries.spec.js",
-          "line": 40,
-          "column": 1
-        },
-        {
-          "title": "the closing sheet can turn back and advisor detail continues to the next chapter",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 3017,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-12T11:28:59.806Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "fc1ccd622b2e3782fd30-4c42ed239a093422e5f3",
-          "file": "reader-boundaries.spec.js",
-          "line": 59,
-          "column": 1
-        },
-        {
-          "title": "utility panels dismiss on Escape and release their focus",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 1294,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-12T11:29:02.851Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "fc1ccd622b2e3782fd30-8b91a4b1e6a41c399c8c",
-          "file": "reader-boundaries.spec.js",
-          "line": 75,
+          "id": "2d243af4b6ac2ee83f7c-92c17b2a6bf957bdef13",
+          "file": "experience.spec.js",
+          "line": 122,
           "column": 1
         }
       ]
@@ -719,27 +535,27 @@
       "line": 0,
       "specs": [
         {
-          "title": "manager chapters render at desktop, tablet and phone widths",
+          "title": "manager workspaces render at desktop and mobile widths",
           "ok": true,
           "tags": [],
           "tests": [
             {
-              "timeout": 120000,
+              "timeout": 90000,
               "annotations": [],
               "expectedStatus": "passed",
               "projectId": "",
               "projectName": "",
               "results": [
                 {
-                  "workerIndex": 0,
+                  "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 24407,
+                  "duration": 3143,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-12T11:29:04.178Z",
+                  "startTime": "2026-09-17T09:58:35.445Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -747,33 +563,33 @@
               "status": "expected"
             }
           ],
-          "id": "b57c54f1355337d53dbf-1e32044747c6e3bc2278",
+          "id": "b57c54f1355337d53dbf-4250931e5cd793c16be9",
           "file": "routes.spec.js",
-          "line": 11,
+          "line": 10,
           "column": 3
         },
         {
-          "title": "advisor chapters render at desktop, tablet and phone widths",
+          "title": "advisor workspaces render at desktop and mobile widths",
           "ok": true,
           "tags": [],
           "tests": [
             {
-              "timeout": 120000,
+              "timeout": 90000,
               "annotations": [],
               "expectedStatus": "passed",
               "projectId": "",
               "projectName": "",
               "results": [
                 {
-                  "workerIndex": 0,
+                  "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 15286,
+                  "duration": 1940,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-12T11:29:28.593Z",
+                  "startTime": "2026-09-17T09:58:39.051Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -781,33 +597,33 @@
               "status": "expected"
             }
           ],
-          "id": "b57c54f1355337d53dbf-215a15c16b0d1d7f7e2e",
+          "id": "b57c54f1355337d53dbf-a76765e76b4b0c16c100",
           "file": "routes.spec.js",
-          "line": 11,
+          "line": 10,
           "column": 3
         },
         {
-          "title": "admin chapters render at desktop, tablet and phone widths",
+          "title": "admin workspaces render at desktop and mobile widths",
           "ok": true,
           "tags": [],
           "tests": [
             {
-              "timeout": 120000,
+              "timeout": 90000,
               "annotations": [],
               "expectedStatus": "passed",
               "projectId": "",
               "projectName": "",
               "results": [
                 {
-                  "workerIndex": 0,
+                  "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 20932,
+                  "duration": 2626,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-12T11:29:43.886Z",
+                  "startTime": "2026-09-17T09:58:40.999Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -815,154 +631,10 @@
               "status": "expected"
             }
           ],
-          "id": "b57c54f1355337d53dbf-621525343577378b6686",
+          "id": "b57c54f1355337d53dbf-2aed1e5782fa5f997ed3",
           "file": "routes.spec.js",
-          "line": 11,
+          "line": 10,
           "column": 3
-        },
-        {
-          "title": "bookmarks skim with one destination underneath and browser Back restores the sheet",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 4461,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-12T11:30:04.827Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "b57c54f1355337d53dbf-bf8eeb384ef0f29aec50",
-          "file": "routes.spec.js",
-          "line": 31,
-          "column": 1
-        },
-        {
-          "title": "search, account identity and route permission remain synchronized",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 4623,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-12T11:30:09.306Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "b57c54f1355337d53dbf-4bc136150de8977c9af9",
-          "file": "routes.spec.js",
-          "line": 49,
-          "column": 1
-        }
-      ]
-    },
-    {
-      "title": "spatial.spec.js",
-      "file": "spatial.spec.js",
-      "column": 0,
-      "line": 0,
-      "specs": [
-        {
-          "title": "Team is a long lateral and diagonal journey with a held scroll curl",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 9552,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-12T11:30:13.945Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "a961d5e636b5fd8533d4-69f25f2fa02f29d9e73b",
-          "file": "spatial.spec.js",
-          "line": 26,
-          "column": 1
-        },
-        {
-          "title": "corner drag holds, reverses, cancels and completes one turn",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 4641,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-12T11:30:23.508Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "a961d5e636b5fd8533d4-2568abafa5d95e451dda",
-          "file": "spatial.spec.js",
-          "line": 61,
-          "column": 1
         }
       ]
     },
@@ -973,7 +645,7 @@
       "line": 0,
       "specs": [
         {
-          "title": "a new sale persists and updates performance, points and targets",
+          "title": "a recorded sale persists and updates the cinematic performance data",
           "ok": true,
           "tags": [],
           "tests": [
@@ -985,15 +657,15 @@
               "projectName": "",
               "results": [
                 {
-                  "workerIndex": 0,
+                  "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1808,
+                  "duration": 2076,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-12T11:30:28.163Z",
+                  "startTime": "2026-09-17T09:58:43.645Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1001,13 +673,13 @@
               "status": "expected"
             }
           ],
-          "id": "500e814c046e2132c6e8-e81e7d5e891cbe76ec04",
+          "id": "500e814c046e2132c6e8-bb3d05c8128b818df6e1",
           "file": "workflows.spec.js",
           "line": 3,
           "column": 1
         },
         {
-          "title": "advisor sales and form scrolling respect identity and camera position",
+          "title": "target creation and editing retain advisor permissions",
           "ok": true,
           "tags": [],
           "tests": [
@@ -1019,15 +691,15 @@
               "projectName": "",
               "results": [
                 {
-                  "workerIndex": 0,
+                  "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1353,
+                  "duration": 2985,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-12T11:30:29.979Z",
+                  "startTime": "2026-09-17T09:58:45.728Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1035,13 +707,13 @@
               "status": "expected"
             }
           ],
-          "id": "500e814c046e2132c6e8-972be5885d46aab96e69",
+          "id": "500e814c046e2132c6e8-5d48bcc01266b7a4ed23",
           "file": "workflows.spec.js",
-          "line": 31,
+          "line": 26,
           "column": 1
         },
         {
-          "title": "target create, edit and persistence retain advisor permissions",
+          "title": "redemption deducts available points once and preserves lifetime membership",
           "ok": true,
           "tags": [],
           "tests": [
@@ -1053,15 +725,15 @@
               "projectName": "",
               "results": [
                 {
-                  "workerIndex": 0,
+                  "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3982,
+                  "duration": 1283,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-12T11:30:31.339Z",
+                  "startTime": "2026-09-17T09:58:48.721Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1069,43 +741,9 @@
               "status": "expected"
             }
           ],
-          "id": "500e814c046e2132c6e8-bf86fcd348b4b45df3d2",
+          "id": "500e814c046e2132c6e8-f75850e3f4d423b4e0c2",
           "file": "workflows.spec.js",
-          "line": 49,
-          "column": 1
-        },
-        {
-          "title": "catalogue redemption deducts once, preserves lifetime membership and filters rewards",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 3126,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-12T11:30:35.329Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "500e814c046e2132c6e8-e1205973cf7b6f676fc1",
-          "file": "workflows.spec.js",
-          "line": 68,
+          "line": 44,
           "column": 1
         },
         {
@@ -1121,15 +759,15 @@
               "projectName": "",
               "results": [
                 {
-                  "workerIndex": 0,
+                  "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 8433,
+                  "duration": 1889,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-12T11:30:38.465Z",
+                  "startTime": "2026-09-17T09:58:50.012Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1139,11 +777,11 @@
           ],
           "id": "500e814c046e2132c6e8-5e4bcba727065680861e",
           "file": "workflows.spec.js",
-          "line": 89,
+          "line": 63,
           "column": 1
         },
         {
-          "title": "ranking sorting and advisor details retain meaningful routes",
+          "title": "account preferences and role routes remain independent",
           "ok": true,
           "tags": [],
           "tests": [
@@ -1155,15 +793,15 @@
               "projectName": "",
               "results": [
                 {
-                  "workerIndex": 0,
+                  "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2396,
+                  "duration": 3655,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-12T11:30:46.905Z",
+                  "startTime": "2026-09-17T09:58:51.909Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1171,43 +809,9 @@
               "status": "expected"
             }
           ],
-          "id": "500e814c046e2132c6e8-f26e34a83cc1fb953f7f",
+          "id": "500e814c046e2132c6e8-6c155a8783b4b3dfed44",
           "file": "workflows.spec.js",
-          "line": 109,
-          "column": 1
-        },
-        {
-          "title": "account preferences remain independent across navigation and reload",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 3619,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-12T11:30:49.309Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "500e814c046e2132c6e8-5300debfa7bba7b4d33e",
-          "file": "workflows.spec.js",
-          "line": 120,
+          "line": 80,
           "column": 1
         }
       ]
@@ -1215,11 +819,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-09-12T11:27:59.811Z",
-    "duration": 174147.732,
-    "expected": 32,
+    "startTime": "2026-09-17T09:57:55.692Z",
+    "duration": 60110.514,
+    "expected": 19,
     "skipped": 0,
-    "unexpected": 0,
+    "unexpected": 1,
     "flaky": 0
   }
 }

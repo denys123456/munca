@@ -1,30 +1,35 @@
-import { useCallback, useEffect, useState } from 'react'
-import { HashRouter, useNavigate } from 'react-router-dom'
+import { lazy, Suspense, useEffect, useState } from 'react'
+import { HashRouter, useLocation, useNavigate } from 'react-router-dom'
 import { demoAccounts } from './product/demoData.js'
 import { readAccountId, saveAccountId } from './product/storage.js'
 import { useProductData } from './product/useProductData.js'
 import { getDefaultPageForRole } from './product/pageRegistry.js'
-import { Publication } from './components/publication/Publication.jsx'
 import { Toast } from './components/shell/Toast.jsx'
-import { BookOpening, hasOpenedBook } from './components/publication/BookOpening.jsx'
+import { ExperienceNavigation } from './experience/ui/ExperienceNavigation.jsx'
+
+const AutomotiveExperience = lazy(() => import('./experience/AutomotiveExperience.jsx'))
+const Workspace = lazy(() => import('./workspace/Workspace.jsx'))
 
 export default function App() {
-  return <HashRouter><PublicationApp /></HashRouter>
+  return <HashRouter><ChampionsClub /></HashRouter>
 }
 
-function PublicationApp() {
+function ChampionsClub() {
   const [accountId, setAccountId] = useState(readAccountId)
-  const [opening, setOpening] = useState(() => !hasOpenedBook())
-  const [closed, setClosed] = useState(false)
   const [switching, setSwitching] = useState(null)
-  const finishOpening = useCallback(() => { setOpening(false); setClosed(false) }, [])
   const account = demoAccounts.find((item) => item.id === accountId) ?? demoAccounts[1]
   const data = useProductData(account)
   const navigate = useNavigate()
+  const location = useLocation()
+  const workspaceOpen = location.pathname !== '/'
+
+  function openWorkspace(page) {
+    navigate(`/workspace/${page ?? getDefaultPageForRole(account.role)}`)
+  }
 
   function changeAccount(id) {
     const next = demoAccounts.find((item) => item.id === id)
-    if (!next || id === accountId) return
+    if (!next || next.id === account.id) return
     setSwitching(next)
   }
 
@@ -32,17 +37,18 @@ function PublicationApp() {
     if (!switching) return
     const commit = setTimeout(() => {
       saveAccountId(switching.id)
-      navigate(`/${switching.role === 'MANAGER' ? 'team-performance' : getDefaultPageForRole(switching.role)}`, { replace: true })
       setAccountId(switching.id)
-    }, 250)
-    const finish = setTimeout(() => setSwitching(null), 1000)
+      if (workspaceOpen) navigate(`/workspace/${getDefaultPageForRole(switching.role)}`, { replace: true })
+    }, 180)
+    const finish = setTimeout(() => setSwitching(null), 480)
     return () => { clearTimeout(commit); clearTimeout(finish) }
-  }, [switching, navigate])
+  }, [switching, navigate, workspaceOpen])
 
   return <>
-    <div className="publication-environment" inert={opening || closed || Boolean(switching)}><Publication key={account.id} account={account} accounts={demoAccounts} data={data} onChangeAccount={changeAccount} onCloseBook={() => setClosed(true)} /></div>
-    {(opening || closed) && <BookOpening closed={closed} onComplete={finishOpening} />}
-    {switching && <div className="identity-transition" role="status"><span>Ex libris</span><strong>{switching.name}</strong><small>{switching.title}</small></div>}
+    <ExperienceNavigation account={account} accounts={demoAccounts} data={data} workspaceOpen={workspaceOpen} onExperience={() => navigate('/')} onWorkspace={openWorkspace} onChangeAccount={changeAccount} />
+    <Suspense fallback={<div className="initial-loading">CHAMPIONSCLUB<span>ENGINEERING PERFORMANCE</span></div>}><AutomotiveExperience data={data} paused={workspaceOpen || Boolean(switching)} onWorkspace={openWorkspace} /></Suspense>
+    {workspaceOpen && <Suspense fallback={<div className="workspace-loading" role="status">PREPARING YOUR WORKSPACE</div>}><Workspace key={account.id} account={account} data={data} onNavigate={openWorkspace} /></Suspense>}
+    {switching && <div className="identity-transition" role="status"><span>CONNECTED AS</span><strong>{switching.name}</strong><small>{switching.title}</small></div>}
     <Toast message={data.message} onClose={data.clearMessage} />
   </>
 }

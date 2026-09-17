@@ -11,6 +11,7 @@
   const next = {
     ...state,
     advisors,
+    liveAdvisorIds: advisorView ? [account.advisorId] : (dashboard.leaderboard ?? []).map((entry) => entry.advisorId),
     dealership: advisorView ? state.dealership : { ...state.dealership, monthlySales: Number(dashboard.monthSales), monthlyTarget: Number(dashboard.monthTarget) },
     forecast: hasForecast ? { ...state.forecast, ...dashboard.forecast, predictedSales: Number(dashboard.forecast.predictedSales) } : state.forecast,
     forecastScope: advisorView ? 'advisor' : 'dealership',

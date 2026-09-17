@@ -38,7 +38,6 @@ export function ForecastChart({ actual, predicted, target, history, confidence, 
     const keyboard = (event) => { if (event.key === 'Escape') dismiss() }
     const preference = matchMedia('(prefers-reduced-motion: reduce)')
     document.addEventListener('scroll', dismiss, true)
-    document.addEventListener('publication-camera', dismiss)
     document.addEventListener('keydown', keyboard)
     window.addEventListener('blur', dismiss)
     window.addEventListener('resize', resize)
@@ -46,7 +45,6 @@ export function ForecastChart({ actual, predicted, target, history, confidence, 
     return () => {
       cancelPreview()
       document.removeEventListener('scroll', dismiss, true)
-      document.removeEventListener('publication-camera', dismiss)
       document.removeEventListener('keydown', keyboard)
       window.removeEventListener('blur', dismiss)
       window.removeEventListener('resize', resize)

@@ -1,0 +1,7 @@
+{
+  "vehicle": { "url": null, "scale": 1, "nodes": {}, "enginePosition": [-1.25, 0.54, 0], "engineScale": 0.48 },
+  "engine": { "url": null, "scale": 1, "nodes": {} },
+  "drivetrain": { "url": null, "scale": 1, "nodes": {} },
+  "environment": { "url": null },
+  "decoders": { "draco": null, "ktx2": null }
+}

@@ -1,50 +1,56 @@
-﻿# ChampionsClub Interactive Publication
+# ChampionsClub automotive experience
 
-The reader treats the viewport as a camera over a large editorial sheet. The route changes after the sheet has turned. React Router retains meaningful chapter URLs, history and role permissions.
+The active frontend is one continuous real-time Three.js scene. A 21,600 px desktop timeline connects 13 stages from the complete vehicle through its mechanical systems and back again. Mobile uses 15,600 px and wider camera framing. The former publication, page turning and paper theme have been removed.
 
-## Reading engine
+## Scene architecture
 
-- `components/publication/Publication.jsx` coordinates two mounted sheets, route preparation, input states and the final route commit.
-- `camera.js` translates one canvas with `translate3d`. Wheel intent is bounded and smoothed in an on-demand animation frame loop. Scroll frames do not update React state.
-- `chapterJourneys.js` defines separate spatial paths and scroll distances. Team Performance spans 11 waypoints over approximately 880vh of input at desktop sizes. Forecasts travels laterally across a single panoramic chart before visiting the model explanation and recommendations.
-- `curl.js` clips the current sheet against a moving diagonal fold, reflects the underside and shades the curved paper. Scroll, corner dragging and direct navigation use this same geometry. The destination already exists underneath. Only the rigid book cover uses a hinge rotation.
-- Pointer capture holds the corner during dragging. Release below the completion threshold returns the sheet. Escape also cancels. Wheel input remains effective over the corner itself.
-- Direct bookmarks skim through lightweight intermediate sheets. Browser Back uses the history direction and restores the chapter camera position. Refresh and deep links open the requested permitted chapter.
-- Reader controls and thin index tabs remain outside the moving canvas. Search, notifications and account selection remain available throughout exploration.
+- `experience/AutomotiveExperience.jsx` owns lifecycle, loading, accessibility and the composition layers.
+- `ExperienceTimeline.js` defines the chapters and a paused GSAP timeline. Lenis and one ScrollTrigger map native document scroll to that timeline. Reversing scroll seeks the same transforms backward.
+- `three/createExperienceScene.js` owns one renderer. It draws only after a scroll, resize or data invalidation. No scroll values or camera positions enter React state.
+- `CameraRig.js` uses controlled camera positions and targets. Reduced motion fixes the camera while preserving scroll-controlled decomposition and chapter access.
+- `LightingRig.js` creates local floating-point studio reflections, key and rim lights plus floor contact shading. No post-processing stack is used.
+- `scenes/MechanicalRig.js` animates named vehicle, engine and drivetrain assemblies from their saved rest transforms. The engine remains in the same scene throughout the approach. ECU focus and recognition materials are functions of scroll progress.
+- `scenes/ForecastGeometry.js` draws arcs whose lengths come from the active account's actual, forecast and target values.
+- `three/AssetPreloader.js` compiles material variants and uploads visible geometry before the loading experience disappears. This avoids first-use stalls during the story.
+- `three/PerformanceController.js` caps device pixel ratio and reduces resolution and shadows when sustained moving-frame cost rises.
+- `three/ModelLoader.js` loads optional GLTF assets from `public/models/manifest.json`. GLTF, Meshopt, Draco, KTX2 and HDR loaders are requested only when configured. Invalid replacement models are rejected before playback and disclosed in the model information dialog.
 
-## Chapters and local work
+The geometry is an original procedural concept study. It is not a photorealistic final automobile or mechanically certified engine. The [asset audit and replacement contract](automotive-assets.md) identify the production assets still required.
 
-`pages/editorial` contains Team Performance, Overview, Forecasts, Intelligence, Rewards, Leaderboard, working chapters and the closing sheet.
+## Workspace and identities
 
-The camera reveals management workspaces as part of each working chapter. Forms, lists and tables then use ordinary local scrolling. Their wheel and touch input does not move the chapter. Account switching selects a separate fictional identity, changes permissions and opens the appropriate starting chapter.
+The top navigation opens a separate compatible operational workspace at `#/workspace/<page>`. The scene stays mounted and paused underneath, so returning resumes the same position without reloading models. Lists, forms and dialogs use native local scrolling. Old operational URLs redirect to their permitted workspace equivalent.
 
-Forecast charts measure their available canvas size so text and points remain undistorted. Click, Enter, Space or intentional mouse dwell opens a sharp magnifier in a portal with a single blurred backdrop. Camera movement pauses when a dialog opens. The magnifier shows contextual values from the selected data and identifies illustrative scenario ranges.
+Jane Doe, Alex Smith and John Doe remain separate persisted demo account identities. Switching identities changes the active data scope, permissions and available routes. It never edits a user's role. All existing sales, reward, target, administration, preferences, notification and search actions remain in the product layer.
 
-The fountain pen introduction draws SVG ink paths with the nib following the stroke. It runs once per browser session, holds the completed inscription for three seconds and then reveals the reader. Reduced motion opens the reader immediately. Closing the book returns to the cover.
+## Data integrity
 
-## Data and permissions
+The API adapters, Basic authentication headers and backend contracts are preserved. Without `VITE_API_BASE_URL`, the app explicitly shows seeded demo data. With the variable set, it requests the existing authenticated dashboard endpoint and preserves retry and demo fallback behavior.
 
-Backend endpoints, authentication headers and business contracts remain in the existing API and product modules. The publication consumes those modules without changing the backend.
+The cinematic story reads values from product state. It never estimates an advisor forecast by taking a share of dealership sales. A missing or wrongly scoped service forecast is shown as unavailable. Live advisor contribution lists contain only advisor IDs returned by the service. Intelligence uses service summaries and recommendations when available, with unsupported explanatory fields left unavailable. Demo intelligence remains explicitly labeled.
 
-Without `VITE_API_BASE_URL`, the application uses the saved demonstration workspace. With an API URL configured, it requests the authenticated dashboard and retains service retry behavior. A backend outage leaves the demo workspace usable. Live sales and redemption keep their existing request contracts and permission checks.
+Operational Conservative and Stretch scenarios remain available as explicitly labeled what-if adjustments. Their arbitrary former probability values have been removed. Historical chart context and confidence regions remain explicitly illustrative. Detailed management features without live write endpoints keep their existing demo-only guards.
 
 ## Verification
 
-From `frontend`, start the reader:
+Run the frontend from `championsclub/frontend`:
 
-```bash
-npm run dev -- --host 127.0.0.1 --port 5173 --strictPort
+```sh
+npm install
+npm run dev -- --port 5173
 ```
 
-Then run:
+With the server running:
 
-```bash
+```sh
+npm test
+npm run test:data
+npm run profile
 npm run build
-npx playwright test
-node scripts/audit-publication.mjs
-node scripts/profile.mjs
 ```
 
-The browser suite uses Microsoft Edge. It checks every role's routes at 320–1440px, long spatial travel, oversized wheel gestures, reversals, held scroll curls, pointer capture, cancellation, completion, browser history, touch scrolling, the pen introduction and chart focus. Functional coverage includes saved sales, targets, redemptions, rankings, alerts, account preferences and administration CRUD in demo mode.
+The browser suite uses Microsoft Edge. It checks all 13 chapters, exact forward/backward state equivalence, idle rendering, React commits, repeated workspace navigation, mobile framing, reduced motion, context loss and named GLTF replacement/fallback. It also exercises every role's routes at desktop and mobile widths plus sales, targets, reward redemption, intelligence actions, account preferences and administration CRUD.
 
-The composition audit inspects 120 camera stops across phone, laptop and desktop viewports and saves representative screenshots in `artifacts/compositions`. The performance script measures frame timing, React commits, long tasks and blur usage while the camera and curl are moving. Reports are written to `artifacts/composition-audit.json` and `artifacts/reader-performance.json`.
+The data contract tests verify missing service forecasts, scoped advisor forecasts and honest demo provenance. They do not substitute for testing a deployed backend. No live API is configured in this checkout.
+
+`artifacts/automotive/performance.json` contains a local browser profile. Frame timings depend on hardware, browser, capture mode and display refresh rate. The report records scroll-frame timing, long tasks, React commits, draw calls, submitted triangles, memory resource counts and idle frames. Final GLB assets must be profiled again after replacement.

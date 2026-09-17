@@ -1,45 +1,19 @@
-import { ArrowUpRight, BadgeEuro, Target, TrendingUp, Users, Trophy } from 'lucide-react'
+import { ArrowUpRight, BadgeEuro, Target, TrendingUp, Trophy } from 'lucide-react'
 import { KpiCard } from '../../components/ui/KpiCard.jsx'
 import { ForecastChart } from '../../components/charts/ForecastChart.jsx'
-import { IntelligenceBrief } from '../../components/ui/IntelligenceBrief.jsx'
-import { ProgressBar } from '../../components/ui/ProgressBar.jsx'
-import { StatusPill } from '../../components/ui/StatusPill.jsx'
-import { formatCurrency } from '../../product/formatters.js'
-import automotiveImage from '../../assets/automotive-dashboard.png'
+import { getStoryData, currency, percentage } from '../../experience/storyData.js'
 
 export function OverviewPage({ data, role, setActivePage }) {
-  const advisor = data.advisors.find((item) => item.id === data.currentUser.advisorId) ?? data.advisors[0]
-  const isAdvisor = role === 'SALES_ADVISOR'
-  const sales = isAdvisor ? advisor.sales : data.dealership.monthlySales
-  const target = isAdvisor ? advisor.target : data.dealership.monthlyTarget
-  const factor = isAdvisor ? advisor.sales / data.dealership.monthlySales : 1
-  const predicted = Math.round(data.forecast.predictedSales * (data.forecastSource === 'live' && data.forecastScope === 'advisor' ? 1 : factor))
-  const growth = (sales / (data.dealership.previousCycleSales * factor) - 1) * 100
-  const change = `${growth >= 0 ? '+' : ''}${growth.toFixed(1)}%`
-  const atRisk = data.advisors.filter((item) => item.sales / item.target < .6).length
-  const progress = Math.round(sales * 100 / target)
-  const topPerformers = [...data.advisors].sort((first, second) => second.sales - first.sales).slice(0, 3)
-
+  const metrics = getStoryData(data)
   return <div className="page-stack overview-page">
     <section className="kpi-grid" aria-label="Performance summary">
-      <KpiCard icon={BadgeEuro} label="Booked volume" value={formatCurrency(sales)} detail={`${change} versus previous cycle`} tone="success" />
-      <KpiCard icon={Target} label="Target achievement" value={`${progress}%`} detail={`${formatCurrency(Math.abs(target - sales))} ${sales >= target ? 'above' : 'to'} your target`} />
-      <KpiCard icon={TrendingUp} label="Projected close" value={formatCurrency(predicted)} detail={`${Math.round(data.forecast.confidence * 100)}% model confidence`} tone="success" />
-      <KpiCard icon={isAdvisor ? Trophy : Users} label={isAdvisor ? 'Your points balance' : 'Advisors to support'} value={isAdvisor ? (advisor.availablePoints ?? advisor.points).toLocaleString('en') : String(atRisk).padStart(2, '0')} detail={isAdvisor ? `${advisor.level} member` : 'A little attention. A measurable difference.'} tone="warning" />
+      <KpiCard icon={BadgeEuro} label="Booked volume" value={currency(metrics.actual)} detail={metrics.source} />
+      <KpiCard icon={Target} label="Target achievement" value={percentage(metrics.achievement)} detail={`${currency(metrics.target)} cycle target`} />
+      <KpiCard icon={TrendingUp} label="Projected close" value={currency(metrics.forecast)} detail={metrics.forecastSource} />
+      <KpiCard icon={Trophy} label={metrics.personal ? 'Your points balance' : 'Team points balance'} value={metrics.balance.toLocaleString('en')} detail={metrics.personal ? metrics.advisor.level : 'Demo ledger context'} />
     </section>
-    <section className="overview-main">
-      <div className="performance-canvas"><header className="canvas-header"><div><span className="eyebrow">THE BIG PICTURE</span><h2>Your trajectory. In perspective.</h2></div><span className="canvas-cycle">SEPTEMBER <i /></span></header>
-        <div className="canvas-value"><strong>{formatCurrency(sales)}</strong><span><TrendingUp /> {change} <small>vs. last cycle</small></span></div>
-        <ForecastChart actual={sales} predicted={predicted} target={target} history={data.charts.monthlySales.map((value) => value * factor)} compact />
-        <div className="canvas-bottom"><div><span className="signal-dot" /><span>Projected to finish <strong>{Math.round(Math.abs(predicted / target - 1) * 100)}% {predicted >= target ? 'above' : 'below'} target</strong></span></div><button className="text-action" type="button" onClick={() => setActivePage(isAdvisor ? 'my-performance' : 'forecasts')}>Explore performance <ArrowUpRight /></button></div>
-      </div>
-      <IntelligenceBrief data={data} onOpen={() => setActivePage('ai-insights')} />
-    </section>
-    <section className="overview-bottom">
-      <div className="ranking-preview"><header className="section-header"><div><span className="eyebrow">PEOPLE BEHIND THE PROGRESS</span><h2>{isAdvisor ? 'Your next milestone' : 'Leading the way'}</h2></div><button className="text-action" type="button" onClick={() => setActivePage(isAdvisor ? 'rewards' : 'leaderboard')}>{isAdvisor ? 'Rewards' : 'Full rankings'}<ArrowUpRight /></button></header>
-        {isAdvisor ? <div className="milestone-preview"><Trophy /><h3>Gold is closer with every sale.</h3><ProgressBar label={`${advisor.points.toLocaleString('en')} / ${data.settings.gold.toLocaleString('en')} lifetime points`} value={advisor.points / data.settings.gold * 100} /></div> : topPerformers.map((item, index) => <button type="button" className="ranking-preview-row" key={item.id} onClick={() => setActivePage('advisor-detail', item.id)}><span className="rank-number">0{index + 1}</span><span className="avatar">{item.name.split(' ').map((part) => part[0]).join('')}</span><span className="ranking-person"><strong>{item.name}</strong><small>{item.title}</small></span><StatusPill value={item.level} /><strong>{formatCurrency(item.sales)}</strong><ArrowUpRight /></button>)}
-      </div>
-      <div className="club-feature"><img src={automotiveImage} alt="Volkswagen vehicles in a contemporary dealership showroom" /><div className="club-feature-copy"><span className="eyebrow">THE CHAMPIONSCLUB COLLECTION</span><h2>Performance deserves<br />something exceptional.</h2><button type="button" onClick={() => setActivePage('rewards')}>Discover your rewards <ArrowUpRight /></button></div></div>
-    </section>
+    <section className="overview-main"><div className="performance-canvas"><header className="canvas-header"><div><span className="eyebrow">PERFORMANCE / CURRENT CYCLE</span><h2>Your trajectory. In perspective.</h2></div></header><div className="canvas-value"><strong>{currency(metrics.actual)}</strong></div>{metrics.forecast != null ? <ForecastChart actual={metrics.actual} predicted={metrics.forecast} target={metrics.target} history={data.charts.monthlySales} confidence={metrics.confidence} compact /> : <p className="soft-copy">No verified forecast is available for this account.</p>}<div className="canvas-bottom"><span className="soft-copy">Historical context uses the seeded demo series.</span><button className="text-action" onClick={() => setActivePage(metrics.personal ? 'my-performance' : 'forecasts')}>Explore performance <ArrowUpRight /></button></div></div>
+      <aside className="intelligence-brief"><span className="eyebrow">CHAMPIONS INTELLIGENCE</span><h2>Signal into direction.</h2><p className="intelligence-lead">{metrics.insight}</p><span className="micro-label">{metrics.intelligenceSource}</span><button className="text-action" onClick={() => setActivePage('ai-insights')}>Open your intelligence brief <ArrowUpRight /></button></aside></section>
+    <section className="panel"><header className="section-header"><div><span className="eyebrow">PEOPLE BEHIND THE PERFORMANCE</span><h2>{metrics.personal ? 'Your contribution' : 'Team contribution'}</h2></div>{role === 'MANAGER' && <button className="text-action" onClick={() => setActivePage('leaderboard')}>Full rankings <ArrowUpRight /></button>}</header>{[...metrics.contributors].sort((first, second) => second.sales - first.sales).map((advisor, index) => <button className="ranking-preview-row" key={advisor.id} onClick={() => setActivePage(metrics.personal ? 'my-performance' : 'advisor-detail', metrics.personal ? undefined : advisor.id)}><span className="rank-number">{String(index + 1).padStart(2, '0')}</span><span className="ranking-person"><strong>{advisor.name}</strong><small>{advisor.title}</small></span><strong>{currency(advisor.sales)}</strong><ArrowUpRight /></button>)}</section>
   </div>
 }

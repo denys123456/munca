@@ -2,6 +2,8 @@
 
 ChampionsClub is a presentation-grade sales management platform for a nationwide Volkswagen Financial Services incentive program. It upgrades a reward portal into an AI-powered platform for sales advisors, dealership managers and administrators.
 
+The frontend opens with an original scroll-driven automotive experience built with Three.js, GSAP and Lenis. Its unbranded procedural concept vehicle decomposes into an engine, connects mechanical systems to application data and reassembles. Operational pages are available through the Workspace control. Final licensed vehicle and engine GLB assets are still required. See [frontend architecture](docs/frontend-product-structure.md) and [asset requirements](docs/automotive-assets.md).
+
 ## Solution Overview
 
 The application helps teams understand current performance, target progress, gamification level, reward readiness, alerts and forecasted outcomes within seconds.
@@ -85,6 +87,7 @@ Domain has no Spring, HTTP, PostgreSQL, Python or AI dependencies. Application c
 - Spring Boot, Spring Web, Spring Security, Spring Data JPA and Bean Validation
 - PostgreSQL and Flyway
 - React, JavaScript, CSS and Vite
+- Three.js, GSAP ScrollTrigger and Lenis
 - Python, FastAPI and pytest
 - Docker Compose
 
@@ -164,7 +167,12 @@ Frontend:
 ```bash
 cd frontend
 npm run build
+npm run test:data
+npm test
+npm run profile
 ```
+
+The browser tests and profile require the frontend dev server on port 5173. The browser suite uses Microsoft Edge.
 
 ## Database
 

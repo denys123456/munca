@@ -12,7 +12,6 @@ export function Dialog({ title, children, onClose, className = '' }) {
     const dialog = reference.current
     const previousFocus = document.activeElement
     const previousOverflow = document.body.style.overflow
-    document.dispatchEvent(new Event('publication-focus'))
     dialog.showModal()
     document.body.style.overflow = 'hidden'
     const cancel = (event) => { event.preventDefault(); closeRef.current() }
