@@ -6,13 +6,17 @@ public class FinancialProduct {
 
     private final Long id;
     private final String name;
-    private final int pointsPerThousandEuro;
+    private final String code;
+    private final String description;
+    private final boolean active;
     private final boolean isEligible;
 
     private FinancialProduct(Builder builder) {
         this.id = builder.id;
         this.name = requireText(builder.name);
-        this.pointsPerThousandEuro = requirePositive(builder.pointsPerThousandEuro);
+        this.code = requireText(builder.code);
+        this.description = builder.description;
+        this.active = builder.active;
         this.isEligible = builder.isEligible;
     }
 
@@ -20,12 +24,10 @@ public class FinancialProduct {
         return new Builder();
     }
 
-    public int calculatePoints(BigDecimal financedAmount) {
-        if (!isEligible || financedAmount == null || financedAmount.signum() <= 0) {
-            return 0;
-        }
-        return financedAmount.divideToIntegralValue(BigDecimal.valueOf(1000)).intValue() * pointsPerThousandEuro;
-    }
+    public boolean acceptsSale() { return active && isEligible; }
+    public String code() { return code; }
+    public String description() { return description; }
+    public boolean active() { return active; }
 
     public Long id() {
         return id;
@@ -35,9 +37,6 @@ public class FinancialProduct {
         return name;
     }
 
-    public int pointsPerThousandEuro() {
-        return pointsPerThousandEuro;
-    }
 
     public boolean isEligible() {
         return isEligible;
@@ -50,17 +49,16 @@ public class FinancialProduct {
         return value.trim();
     }
 
-    private static int requirePositive(int value) {
-        if (value <= 0) {
-            throw new IllegalArgumentException("Points per thousand Euro must be positive.");
-        }
-        return value;
-    }
 
     public static final class Builder {
         private Long id;
         private String name;
-        private int pointsPerThousandEuro;
+        private String code;
+        private String description = "";
+        private boolean active = true;
+        public Builder code(String code) { this.code=code; return this; }
+        public Builder description(String description) { this.description=description; return this; }
+        public Builder active(boolean active) { this.active=active; return this; }
         private boolean isEligible = true;
 
         private Builder() {
@@ -76,10 +74,6 @@ public class FinancialProduct {
             return this;
         }
 
-        public Builder pointsPerThousandEuro(int pointsPerThousandEuro) {
-            this.pointsPerThousandEuro = pointsPerThousandEuro;
-            return this;
-        }
 
         public Builder eligible(boolean eligible) {
             isEligible = eligible;
@@ -91,4 +85,3 @@ public class FinancialProduct {
         }
     }
 }
-

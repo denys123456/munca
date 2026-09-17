@@ -22,7 +22,11 @@ class FinancialProductEntity {
     private String name;
 
     @Column(nullable = false)
-    private int pointsPerThousandEuro;
+    private String code;
+    private String description;
+    private boolean active;
+    @org.hibernate.annotations.UpdateTimestamp
+    private java.time.Instant updatedAt;
 
     @Column(nullable = false)
     private boolean eligible;
@@ -33,7 +37,9 @@ class FinancialProductEntity {
     private FinancialProductEntity(FinancialProduct product) {
         this.id = product.id();
         this.name = product.name();
-        this.pointsPerThousandEuro = product.pointsPerThousandEuro();
+        this.code = product.code();
+        this.description = product.description();
+        this.active = product.active();
         this.eligible = product.isEligible();
     }
 
@@ -45,7 +51,7 @@ class FinancialProductEntity {
         return FinancialProduct.builder()
                 .id(id)
                 .name(name)
-                .pointsPerThousandEuro(pointsPerThousandEuro)
+                .code(code).description(description).active(active)
                 .eligible(eligible)
                 .build();
     }

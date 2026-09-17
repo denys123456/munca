@@ -18,6 +18,8 @@ public class User {
         this.dealershipId = builder.dealershipId;
         this.role = requireValue(builder.role);
         this.status = builder.status == null ? UserStatus.ACTIVE : builder.status;
+        if (role != UserRole.ADMIN && (dealershipId == null || dealershipId <= 0))
+            throw new IllegalArgumentException("Advisors and managers require a dealership.");
     }
 
     public static Builder builder() {
@@ -29,7 +31,7 @@ public class User {
     }
 
     public boolean canManageDealership(Long requestedDealershipId) {
-        return role == UserRole.ADMIN || role == UserRole.MANAGER && dealershipId.equals(requestedDealershipId);
+        return role == UserRole.ADMIN || role == UserRole.MANAGER && java.util.Objects.equals(dealershipId,requestedDealershipId);
     }
 
     public Long id() {
@@ -126,4 +128,3 @@ public class User {
         }
     }
 }
-

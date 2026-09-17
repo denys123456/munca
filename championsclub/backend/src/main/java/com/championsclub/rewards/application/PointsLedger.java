@@ -4,6 +4,5 @@ public interface PointsLedger {
 
     int calculateAvailablePoints(Long advisorId);
 
-    void recordRewardRedemption(Long advisorId, Long rewardId, int redeemedPoints);
+    void append(Long advisorId, com.championsclub.points.domain.PointTransactionType type, int amount, long sourceId, String description);
 }
-

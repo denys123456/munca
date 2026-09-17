@@ -16,6 +16,8 @@ class RewardRedemptionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private java.util.UUID voucherCode;
+    private String status;
 
     @Column(nullable = false)
     private Long advisorId;
@@ -37,6 +39,11 @@ class RewardRedemptionEntity {
         this.rewardId = rewardId;
         this.redeemedPoints = redeemedPoints;
         this.redeemedAt = Instant.now();
+        this.voucherCode = java.util.UUID.randomUUID();
+        this.status = "ISSUED";
+    }
+    com.championsclub.rewards.application.RedemptionStore.Redemption response() {
+        return new com.championsclub.rewards.application.RedemptionStore.Redemption(id, advisorId, rewardId, redeemedPoints,
+                redeemedAt, voucherCode, status);
     }
 }
-

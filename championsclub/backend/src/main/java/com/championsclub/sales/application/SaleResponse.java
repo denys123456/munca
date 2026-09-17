@@ -10,7 +10,13 @@ public record SaleResponse(
         Long productId,
         BigDecimal financedAmount,
         LocalDate saleDate,
-        int awardedPoints
+        int awardedPoints,
+        String externalReference,
+        String currency,
+        com.championsclub.sales.domain.SaleStatus status
 ) {
+    public static SaleResponse from(com.championsclub.sales.domain.Sale sale) {
+        return new SaleResponse(sale.id(), sale.advisorId(), sale.dealershipId(), sale.productId(), sale.financedAmount(),
+                sale.saleDate(), sale.awardedPoints(), sale.externalReference(), sale.currency(), sale.status());
+    }
 }
-

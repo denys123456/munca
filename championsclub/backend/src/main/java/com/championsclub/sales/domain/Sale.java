@@ -6,6 +6,8 @@ import java.time.LocalDate;
 public class Sale {
 
     private final Long id;
+    private final String externalReference;
+    private final String currency;
     private final Long advisorId;
     private final Long dealershipId;
     private final Long productId;
@@ -16,6 +18,8 @@ public class Sale {
 
     private Sale(Builder builder) {
         this.id = builder.id;
+        this.externalReference = builder.externalReference;
+        this.currency = builder.currency;
         this.advisorId = requireId(builder.advisorId);
         this.dealershipId = requireId(builder.dealershipId);
         this.productId = requireId(builder.productId);
@@ -35,6 +39,14 @@ public class Sale {
 
     public Long id() {
         return id;
+    }
+    public String externalReference() { return externalReference; }
+    public String currency() { return currency; }
+    public Sale cancel() {
+        if (status != SaleStatus.RECORDED) throw new IllegalStateException("Only recorded sales can be cancelled.");
+        return builder().id(id).advisorId(advisorId).dealershipId(dealershipId).productId(productId)
+                .financedAmount(financedAmount).saleDate(saleDate).awardedPoints(awardedPoints)
+                .externalReference(externalReference).currency(currency).status(SaleStatus.CANCELLED).build();
     }
 
     public Long advisorId() {
@@ -76,6 +88,8 @@ public class Sale {
         if (value == null || value.signum() <= 0) {
             throw new IllegalArgumentException("Sale amount must be positive.");
         }
+        if (value.scale() > 2 || value.precision() - value.scale() > 12)
+            throw new IllegalArgumentException("Sale amount must have at most 12 integer digits and two decimal places.");
         return value;
     }
 
@@ -88,6 +102,10 @@ public class Sale {
 
     public static final class Builder {
         private Long id;
+        private String externalReference;
+        private String currency = "EUR";
+        public Builder externalReference(String value) { this.externalReference = value; return this; }
+        public Builder currency(String value) { this.currency = value; return this; }
         private Long advisorId;
         private Long dealershipId;
         private Long productId;
@@ -144,4 +162,3 @@ public class Sale {
         }
     }
 }
-

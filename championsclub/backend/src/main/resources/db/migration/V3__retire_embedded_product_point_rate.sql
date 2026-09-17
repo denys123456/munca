@@ -1,0 +1,1 @@
+alter table financial_products drop column points_per_thousand_euro;

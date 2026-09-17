@@ -9,7 +9,11 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-interface JpaSaleRepository extends JpaRepository<SaleEntity, Long> {
+interface JpaSaleRepository extends JpaRepository<SaleEntity, Long>, org.springframework.data.jpa.repository.JpaSpecificationExecutor<SaleEntity> {
+    boolean existsByExternalReference(String reference);
+    @org.springframework.data.jpa.repository.Lock(jakarta.persistence.LockModeType.PESSIMISTIC_WRITE)
+    @Query("select s from SaleEntity s where s.id = :id")
+    java.util.Optional<SaleEntity> lock(@Param("id") long id);
 
     @Query("""
             select coalesce(sum(s.financedAmount), 0)
@@ -55,4 +59,3 @@ interface JpaSaleRepository extends JpaRepository<SaleEntity, Long> {
             @Param("toDate") LocalDate toDate
     );
 }
-
