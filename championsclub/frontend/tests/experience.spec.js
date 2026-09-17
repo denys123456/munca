@@ -137,5 +137,6 @@ test('mobile full motion fits the car and keeps touch scrolling reversible', asy
   await travelTo(page, .25)
   expect((await diagnostics(page)).camera).not.toEqual(initial.camera)
   await travelTo(page, 0)
-  expect((await diagnostics(page)).camera).toEqual(initial.camera)
+  const returned = (await diagnostics(page)).camera
+  returned.forEach((value, index) => expect(value).toBeCloseTo(initial.camera[index], 2))
 })

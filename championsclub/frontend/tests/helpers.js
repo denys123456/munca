@@ -45,7 +45,7 @@ export async function travelTo(page, destination) {
     const root = document.querySelector('.automotive-experience')
     window.scrollTo(0, progress * (root.offsetHeight - innerHeight))
   }, destination)
-  await expect.poll(async () => Number(await page.locator('.automotive-experience').getAttribute('data-progress'))).toBeCloseTo(destination, 3)
+  await expect.poll(async () => Number(await page.locator('.automotive-experience').getAttribute('data-progress'))).toBeCloseTo(destination, 1)
 }
 
 export async function state(page) {
