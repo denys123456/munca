@@ -23,19 +23,24 @@ function createBody(root, materials) {
   const body = part(root, 'Body')
   for (const side of [-1, 1]) {
     sidePanel(body, side, materials.paint)
-    tube(body, [[-2.4, .93, side * .82], [-1.55, 1.09, side * .89], [0, 1.025, side * .91], [1.6, 1.09, side * .87], [2.4, .93, side * .79]], .012, materials.machined)
-    box(body, [2.04, .08, .10], materials.graphite, [0, .33, side * .94])
-    box(body, [.24, .023, .021], materials.machined, [.44, .92, side * .93], .009)
+    tube(body, [[-2.4, .93, side * .82], [-1.55, 1.09, side * .89], [0, 1.025, side * .91], [1.62, 1.08, side * .87], [2.4, .93, side * .79]], .012, materials.machined)
+    // Arteon's crisp shoulder and lower door character line.
+    box(body, [2.10, .055, .08], materials.graphite, [0, .36, side * .95], .018)
+    box(body, [2.25, .022, .018], materials.machined, [.08, .91, side * .935], .008)
   }
   loft(body, [[1, .94, .84, .05], [1.5, .97, .9, .09], [2.25, .91, .84, .11], [2.48, .79, .69, .11]], materials.paint)
-  box(body, [.18, .32, 1.7], materials.paint, [-2.43, .62, 0], .075)
-  box(body, [.05, .16, 1.16], materials.graphite, [-2.532, .59, 0], .025)
-  box(body, [.10, .04, 1.76], materials.graphite, [-2.48, .4, 0])
-  box(body, [.09, .032, 1.6], materials.whiteLight, [-2.49, .86, 0], .012)
+  box(body, [.18, .32, 1.72], materials.paint, [-2.43, .62, 0], .075)
+  box(body, [.05, .16, 1.22], materials.graphite, [-2.532, .59, 0], .025)
+  // Wide Arteon grille with the emblem centered between the chrome blades.
+  for (let index = 0; index < 4; index += 1) {
+    box(body, [.035, .026, 1.55 - index * .12], materials.machined, [-2.555, .72 + index * .055, 0], .008)
+  }
+  box(body, [.10, .04, 1.78], materials.graphite, [-2.48, .4, 0])
+  box(body, [.09, .032, 1.66], materials.whiteLight, [-2.49, .88, 0], .012)
   box(body, [.11, .22, 1.66], materials.paint, [2.4, .64, 0], .055)
   box(body, [.06, .037, 1.65], materials.redLight, [2.455, .86, 0], .009)
   box(body, [.16, .09, 1.68], materials.graphite, [2.42, .38, 0])
-  for (let index = 0; index < 7; index += 1) box(body, [.04, .13, .014], materials.darkMetal, [-2.56, .59, (index - 3) * .14], .004)
+  for (let index = 0; index < 7; index += 1) box(body, [.04, .13, .014], materials.darkMetal, [-2.56, .51, (index - 3) * .14], .004)
   consolidate(body)
   return body
 }
@@ -44,13 +49,13 @@ function createCabin(root, materials) {
   const interior = part(root, 'Interior')
   const cabinPoints = []
   for (const side of [-1, 1]) {
-    cabinPoints.push(new THREE.Vector3(-1.12, 1.055, side * .77), new THREE.Vector3(-.40, 1.63, side * .58), new THREE.Vector3(.48, 1.63, side * .58), new THREE.Vector3(1.3, 1.055, side * .79))
+    cabinPoints.push(new THREE.Vector3(-1.12, 1.055, side * .77), new THREE.Vector3(-.40, 1.58, side * .58), new THREE.Vector3(.42, 1.55, side * .58), new THREE.Vector3(1.38, 1.045, side * .78))
   }
   mesh(interior, new ConvexGeometry(cabinPoints), materials.glass)
-  box(interior, [.94, .055, 1.19], materials.paint, [.04, 1.645, 0], .025)
+  box(interior, [.93, .055, 1.19], materials.paint, [.02, 1.60, 0], .025)
   for (const side of [-1, 1]) {
-    tube(interior, [[-1.13, 1.045, side * .76], [-.33, 1.63, side * .54], [.47, 1.615, side * .55], [1.3, 1.025, side * .81]], .027, materials.paint)
-    tube(interior, [[.19, 1.61, side * .57], [.27, 1.06, side * .81]], .022, materials.graphite)
+    tube(interior, [[-1.13, 1.045, side * .76], [-.33, 1.58, side * .54], [.42, 1.55, side * .55], [1.38, 1.035, side * .80]], .027, materials.paint)
+    tube(interior, [[.16, 1.55, side * .57], [.27, 1.06, side * .81]], .022, materials.graphite)
     box(interior, [.21, .095, .16], materials.paint, [-.65, 1.12, side * 1.0], .035)
   }
   consolidate(interior)

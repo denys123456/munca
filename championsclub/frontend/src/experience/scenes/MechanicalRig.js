@@ -1,5 +1,6 @@
 import { Box3, Color, Group, Vector3 } from 'three'
 import { createVehicle } from '../models/Vehicle.js'
+import { createVehicleMaterials } from '../models/VehicleMaterials.js'
 import { createEngine } from '../models/Engine.js'
 import { createDrivetrain } from '../models/Drivetrain.js'
 import { createMaterials } from '../three/materials.js'
@@ -26,7 +27,7 @@ function fadeMaterials(root) {
 }
 
 export function createMechanicalRig(assets) {
-  const vehicleMaterials = createMaterials()
+  const vehicleMaterials = createVehicleMaterials()
   const engineMaterials = createMaterials()
   const root = new Group()
   const vehicle = assets.vehicle ?? createVehicle(vehicleMaterials)
