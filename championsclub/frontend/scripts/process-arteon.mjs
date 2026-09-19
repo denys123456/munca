@@ -18,6 +18,8 @@ const metadata = JSON.parse(execFileSync(probe.path, ['-v', 'quiet', '-show_form
 const stream = metadata.streams.find((item) => item.codec_type === 'video')
 if (stream.width !== 1280 || stream.height !== 720 || stream.avg_frame_rate !== '24/1') throw new Error('Expected the reviewed 1280x720 24fps arteonCorect source.')
 const sourceHasAlpha = /^(yuva|gbrap|rgba|bgra|argb|abgr)/.test(stream.pix_fmt) || stream.tags?.alpha_mode === '1'
+const sourceFrames = JSON.parse(execFileSync(probe.path, ['-v', 'quiet', '-select_streams', 'v:0', '-show_frames', '-show_entries', 'frame=best_effort_timestamp_time,pkt_duration_time', '-of', 'json', source], { encoding: 'utf8' })).frames ?? []
+const sourceTimestamps = sourceFrames.map((frame, index) => Number(frame.best_effort_timestamp_time ?? index / 24))
 const variants = [{ name: 'desktop', width: 1280, height: 720, quality: 55 }, { name: 'mobile', width: 640, height: 360, quality: 50 }]
 for (const variant of variants) mkdirSync(`${output}/${variant.name}`, { recursive: true })
 const channels = sourceHasAlpha ? 4 : 3
@@ -60,6 +62,7 @@ const manifest = {
   source: { path: relative(project, source).replaceAll('\\', '/'), sha256: sourceHash, bytes: statSync(source).size, duration: Number(stream.duration), containerDuration: Number(metadata.format.duration), width: stream.width, height: stream.height, fps: 24, codec: stream.codec_name, pixelFormat: stream.pix_fmt, hasAlpha: sourceHasAlpha },
   frameCount: count, fps: deliveryFps, sourceFrameCount: Number(stream.nb_frames), sourceFps: 24, interpolation: 'motion-compensated minterpolate from original 24fps source', firstFrame: 0, lastFrame: count - 1, lastFrameTime: (count - 1) / deliveryFps,
   alpha: true, format: 'avif', variants, chapterFrames, scrollVh: 900,
+  frames: Array.from({ length: count }, (_, index) => ({ index, timestamp: index / deliveryFps, sourceFrameIndex: Math.min(Number(stream.nb_frames) - 1, Math.round(index * 24 / deliveryFps)), sourceTimestamp: sourceTimestamps[Math.min(sourceTimestamps.length - 1, Math.round(index * 24 / deliveryFps))] ?? index / deliveryFps, interpolated: index % 2 === 1, paths: Object.fromEntries(variants.map((variant) => [variant.name, `${variant.name}/${String(index).padStart(4, '0')}.avif`])) })),
   processing: { method: sourceHasAlpha ? 'source-alpha-preserved' : 'border-seeded checkerboard segmentation with neutral-tile clustering, connected-background flood fill, edge alpha refinement and bounded AVIF premultiplication', limitations: ['The source contains baked checkerboard pixels at anti-aliased subject edges; narrow neutral fringes may remain in high-contrast transition frames.', 'Interpolated frames preserve motion timing but are not additional source photography.'] },
   events: [
     { event: 'complete vehicle and orbit', start: 0, end: 3.75, frames: [0, 179] },

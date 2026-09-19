@@ -29,7 +29,7 @@
       "width": 1280,
       "height": 720,
       "quality": 55,
-      "bytes": 16418006,
+      "bytes": 16637803,
       "path": "desktop/{frame}.avif"
     },
     {
@@ -37,7 +37,7 @@
       "width": 640,
       "height": 360,
       "quality": 50,
-      "bytes": 7106272,
+      "bytes": 7230744,
       "path": "mobile/{frame}.avif"
     }
   ],
@@ -57,6 +57,5288 @@
     479
   ],
   "scrollVh": 900,
+  "frames": [
+    {
+      "index": 0,
+      "timestamp": 0,
+      "sourceFrameIndex": 0,
+      "sourceTimestamp": 0,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0000.avif",
+        "mobile": "mobile/0000.avif"
+      }
+    },
+    {
+      "index": 1,
+      "timestamp": 0.020833333333333332,
+      "sourceFrameIndex": 1,
+      "sourceTimestamp": 0.041667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0001.avif",
+        "mobile": "mobile/0001.avif"
+      }
+    },
+    {
+      "index": 2,
+      "timestamp": 0.041666666666666664,
+      "sourceFrameIndex": 1,
+      "sourceTimestamp": 0.041667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0002.avif",
+        "mobile": "mobile/0002.avif"
+      }
+    },
+    {
+      "index": 3,
+      "timestamp": 0.0625,
+      "sourceFrameIndex": 2,
+      "sourceTimestamp": 0.083333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0003.avif",
+        "mobile": "mobile/0003.avif"
+      }
+    },
+    {
+      "index": 4,
+      "timestamp": 0.08333333333333333,
+      "sourceFrameIndex": 2,
+      "sourceTimestamp": 0.083333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0004.avif",
+        "mobile": "mobile/0004.avif"
+      }
+    },
+    {
+      "index": 5,
+      "timestamp": 0.10416666666666667,
+      "sourceFrameIndex": 3,
+      "sourceTimestamp": 0.125,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0005.avif",
+        "mobile": "mobile/0005.avif"
+      }
+    },
+    {
+      "index": 6,
+      "timestamp": 0.125,
+      "sourceFrameIndex": 3,
+      "sourceTimestamp": 0.125,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0006.avif",
+        "mobile": "mobile/0006.avif"
+      }
+    },
+    {
+      "index": 7,
+      "timestamp": 0.14583333333333334,
+      "sourceFrameIndex": 4,
+      "sourceTimestamp": 0.166667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0007.avif",
+        "mobile": "mobile/0007.avif"
+      }
+    },
+    {
+      "index": 8,
+      "timestamp": 0.16666666666666666,
+      "sourceFrameIndex": 4,
+      "sourceTimestamp": 0.166667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0008.avif",
+        "mobile": "mobile/0008.avif"
+      }
+    },
+    {
+      "index": 9,
+      "timestamp": 0.1875,
+      "sourceFrameIndex": 5,
+      "sourceTimestamp": 0.208333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0009.avif",
+        "mobile": "mobile/0009.avif"
+      }
+    },
+    {
+      "index": 10,
+      "timestamp": 0.20833333333333334,
+      "sourceFrameIndex": 5,
+      "sourceTimestamp": 0.208333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0010.avif",
+        "mobile": "mobile/0010.avif"
+      }
+    },
+    {
+      "index": 11,
+      "timestamp": 0.22916666666666666,
+      "sourceFrameIndex": 6,
+      "sourceTimestamp": 0.25,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0011.avif",
+        "mobile": "mobile/0011.avif"
+      }
+    },
+    {
+      "index": 12,
+      "timestamp": 0.25,
+      "sourceFrameIndex": 6,
+      "sourceTimestamp": 0.25,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0012.avif",
+        "mobile": "mobile/0012.avif"
+      }
+    },
+    {
+      "index": 13,
+      "timestamp": 0.2708333333333333,
+      "sourceFrameIndex": 7,
+      "sourceTimestamp": 0.291667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0013.avif",
+        "mobile": "mobile/0013.avif"
+      }
+    },
+    {
+      "index": 14,
+      "timestamp": 0.2916666666666667,
+      "sourceFrameIndex": 7,
+      "sourceTimestamp": 0.291667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0014.avif",
+        "mobile": "mobile/0014.avif"
+      }
+    },
+    {
+      "index": 15,
+      "timestamp": 0.3125,
+      "sourceFrameIndex": 8,
+      "sourceTimestamp": 0.333333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0015.avif",
+        "mobile": "mobile/0015.avif"
+      }
+    },
+    {
+      "index": 16,
+      "timestamp": 0.3333333333333333,
+      "sourceFrameIndex": 8,
+      "sourceTimestamp": 0.333333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0016.avif",
+        "mobile": "mobile/0016.avif"
+      }
+    },
+    {
+      "index": 17,
+      "timestamp": 0.3541666666666667,
+      "sourceFrameIndex": 9,
+      "sourceTimestamp": 0.375,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0017.avif",
+        "mobile": "mobile/0017.avif"
+      }
+    },
+    {
+      "index": 18,
+      "timestamp": 0.375,
+      "sourceFrameIndex": 9,
+      "sourceTimestamp": 0.375,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0018.avif",
+        "mobile": "mobile/0018.avif"
+      }
+    },
+    {
+      "index": 19,
+      "timestamp": 0.3958333333333333,
+      "sourceFrameIndex": 10,
+      "sourceTimestamp": 0.416667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0019.avif",
+        "mobile": "mobile/0019.avif"
+      }
+    },
+    {
+      "index": 20,
+      "timestamp": 0.4166666666666667,
+      "sourceFrameIndex": 10,
+      "sourceTimestamp": 0.416667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0020.avif",
+        "mobile": "mobile/0020.avif"
+      }
+    },
+    {
+      "index": 21,
+      "timestamp": 0.4375,
+      "sourceFrameIndex": 11,
+      "sourceTimestamp": 0.458333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0021.avif",
+        "mobile": "mobile/0021.avif"
+      }
+    },
+    {
+      "index": 22,
+      "timestamp": 0.4583333333333333,
+      "sourceFrameIndex": 11,
+      "sourceTimestamp": 0.458333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0022.avif",
+        "mobile": "mobile/0022.avif"
+      }
+    },
+    {
+      "index": 23,
+      "timestamp": 0.4791666666666667,
+      "sourceFrameIndex": 12,
+      "sourceTimestamp": 0.5,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0023.avif",
+        "mobile": "mobile/0023.avif"
+      }
+    },
+    {
+      "index": 24,
+      "timestamp": 0.5,
+      "sourceFrameIndex": 12,
+      "sourceTimestamp": 0.5,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0024.avif",
+        "mobile": "mobile/0024.avif"
+      }
+    },
+    {
+      "index": 25,
+      "timestamp": 0.5208333333333334,
+      "sourceFrameIndex": 13,
+      "sourceTimestamp": 0.541667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0025.avif",
+        "mobile": "mobile/0025.avif"
+      }
+    },
+    {
+      "index": 26,
+      "timestamp": 0.5416666666666666,
+      "sourceFrameIndex": 13,
+      "sourceTimestamp": 0.541667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0026.avif",
+        "mobile": "mobile/0026.avif"
+      }
+    },
+    {
+      "index": 27,
+      "timestamp": 0.5625,
+      "sourceFrameIndex": 14,
+      "sourceTimestamp": 0.583333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0027.avif",
+        "mobile": "mobile/0027.avif"
+      }
+    },
+    {
+      "index": 28,
+      "timestamp": 0.5833333333333334,
+      "sourceFrameIndex": 14,
+      "sourceTimestamp": 0.583333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0028.avif",
+        "mobile": "mobile/0028.avif"
+      }
+    },
+    {
+      "index": 29,
+      "timestamp": 0.6041666666666666,
+      "sourceFrameIndex": 15,
+      "sourceTimestamp": 0.625,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0029.avif",
+        "mobile": "mobile/0029.avif"
+      }
+    },
+    {
+      "index": 30,
+      "timestamp": 0.625,
+      "sourceFrameIndex": 15,
+      "sourceTimestamp": 0.625,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0030.avif",
+        "mobile": "mobile/0030.avif"
+      }
+    },
+    {
+      "index": 31,
+      "timestamp": 0.6458333333333334,
+      "sourceFrameIndex": 16,
+      "sourceTimestamp": 0.666667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0031.avif",
+        "mobile": "mobile/0031.avif"
+      }
+    },
+    {
+      "index": 32,
+      "timestamp": 0.6666666666666666,
+      "sourceFrameIndex": 16,
+      "sourceTimestamp": 0.666667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0032.avif",
+        "mobile": "mobile/0032.avif"
+      }
+    },
+    {
+      "index": 33,
+      "timestamp": 0.6875,
+      "sourceFrameIndex": 17,
+      "sourceTimestamp": 0.708333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0033.avif",
+        "mobile": "mobile/0033.avif"
+      }
+    },
+    {
+      "index": 34,
+      "timestamp": 0.7083333333333334,
+      "sourceFrameIndex": 17,
+      "sourceTimestamp": 0.708333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0034.avif",
+        "mobile": "mobile/0034.avif"
+      }
+    },
+    {
+      "index": 35,
+      "timestamp": 0.7291666666666666,
+      "sourceFrameIndex": 18,
+      "sourceTimestamp": 0.75,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0035.avif",
+        "mobile": "mobile/0035.avif"
+      }
+    },
+    {
+      "index": 36,
+      "timestamp": 0.75,
+      "sourceFrameIndex": 18,
+      "sourceTimestamp": 0.75,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0036.avif",
+        "mobile": "mobile/0036.avif"
+      }
+    },
+    {
+      "index": 37,
+      "timestamp": 0.7708333333333334,
+      "sourceFrameIndex": 19,
+      "sourceTimestamp": 0.791667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0037.avif",
+        "mobile": "mobile/0037.avif"
+      }
+    },
+    {
+      "index": 38,
+      "timestamp": 0.7916666666666666,
+      "sourceFrameIndex": 19,
+      "sourceTimestamp": 0.791667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0038.avif",
+        "mobile": "mobile/0038.avif"
+      }
+    },
+    {
+      "index": 39,
+      "timestamp": 0.8125,
+      "sourceFrameIndex": 20,
+      "sourceTimestamp": 0.833333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0039.avif",
+        "mobile": "mobile/0039.avif"
+      }
+    },
+    {
+      "index": 40,
+      "timestamp": 0.8333333333333334,
+      "sourceFrameIndex": 20,
+      "sourceTimestamp": 0.833333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0040.avif",
+        "mobile": "mobile/0040.avif"
+      }
+    },
+    {
+      "index": 41,
+      "timestamp": 0.8541666666666666,
+      "sourceFrameIndex": 21,
+      "sourceTimestamp": 0.875,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0041.avif",
+        "mobile": "mobile/0041.avif"
+      }
+    },
+    {
+      "index": 42,
+      "timestamp": 0.875,
+      "sourceFrameIndex": 21,
+      "sourceTimestamp": 0.875,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0042.avif",
+        "mobile": "mobile/0042.avif"
+      }
+    },
+    {
+      "index": 43,
+      "timestamp": 0.8958333333333334,
+      "sourceFrameIndex": 22,
+      "sourceTimestamp": 0.916667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0043.avif",
+        "mobile": "mobile/0043.avif"
+      }
+    },
+    {
+      "index": 44,
+      "timestamp": 0.9166666666666666,
+      "sourceFrameIndex": 22,
+      "sourceTimestamp": 0.916667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0044.avif",
+        "mobile": "mobile/0044.avif"
+      }
+    },
+    {
+      "index": 45,
+      "timestamp": 0.9375,
+      "sourceFrameIndex": 23,
+      "sourceTimestamp": 0.958333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0045.avif",
+        "mobile": "mobile/0045.avif"
+      }
+    },
+    {
+      "index": 46,
+      "timestamp": 0.9583333333333334,
+      "sourceFrameIndex": 23,
+      "sourceTimestamp": 0.958333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0046.avif",
+        "mobile": "mobile/0046.avif"
+      }
+    },
+    {
+      "index": 47,
+      "timestamp": 0.9791666666666666,
+      "sourceFrameIndex": 24,
+      "sourceTimestamp": 1,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0047.avif",
+        "mobile": "mobile/0047.avif"
+      }
+    },
+    {
+      "index": 48,
+      "timestamp": 1,
+      "sourceFrameIndex": 24,
+      "sourceTimestamp": 1,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0048.avif",
+        "mobile": "mobile/0048.avif"
+      }
+    },
+    {
+      "index": 49,
+      "timestamp": 1.0208333333333333,
+      "sourceFrameIndex": 25,
+      "sourceTimestamp": 1.041667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0049.avif",
+        "mobile": "mobile/0049.avif"
+      }
+    },
+    {
+      "index": 50,
+      "timestamp": 1.0416666666666667,
+      "sourceFrameIndex": 25,
+      "sourceTimestamp": 1.041667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0050.avif",
+        "mobile": "mobile/0050.avif"
+      }
+    },
+    {
+      "index": 51,
+      "timestamp": 1.0625,
+      "sourceFrameIndex": 26,
+      "sourceTimestamp": 1.083333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0051.avif",
+        "mobile": "mobile/0051.avif"
+      }
+    },
+    {
+      "index": 52,
+      "timestamp": 1.0833333333333333,
+      "sourceFrameIndex": 26,
+      "sourceTimestamp": 1.083333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0052.avif",
+        "mobile": "mobile/0052.avif"
+      }
+    },
+    {
+      "index": 53,
+      "timestamp": 1.1041666666666667,
+      "sourceFrameIndex": 27,
+      "sourceTimestamp": 1.125,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0053.avif",
+        "mobile": "mobile/0053.avif"
+      }
+    },
+    {
+      "index": 54,
+      "timestamp": 1.125,
+      "sourceFrameIndex": 27,
+      "sourceTimestamp": 1.125,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0054.avif",
+        "mobile": "mobile/0054.avif"
+      }
+    },
+    {
+      "index": 55,
+      "timestamp": 1.1458333333333333,
+      "sourceFrameIndex": 28,
+      "sourceTimestamp": 1.166667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0055.avif",
+        "mobile": "mobile/0055.avif"
+      }
+    },
+    {
+      "index": 56,
+      "timestamp": 1.1666666666666667,
+      "sourceFrameIndex": 28,
+      "sourceTimestamp": 1.166667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0056.avif",
+        "mobile": "mobile/0056.avif"
+      }
+    },
+    {
+      "index": 57,
+      "timestamp": 1.1875,
+      "sourceFrameIndex": 29,
+      "sourceTimestamp": 1.208333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0057.avif",
+        "mobile": "mobile/0057.avif"
+      }
+    },
+    {
+      "index": 58,
+      "timestamp": 1.2083333333333333,
+      "sourceFrameIndex": 29,
+      "sourceTimestamp": 1.208333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0058.avif",
+        "mobile": "mobile/0058.avif"
+      }
+    },
+    {
+      "index": 59,
+      "timestamp": 1.2291666666666667,
+      "sourceFrameIndex": 30,
+      "sourceTimestamp": 1.25,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0059.avif",
+        "mobile": "mobile/0059.avif"
+      }
+    },
+    {
+      "index": 60,
+      "timestamp": 1.25,
+      "sourceFrameIndex": 30,
+      "sourceTimestamp": 1.25,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0060.avif",
+        "mobile": "mobile/0060.avif"
+      }
+    },
+    {
+      "index": 61,
+      "timestamp": 1.2708333333333333,
+      "sourceFrameIndex": 31,
+      "sourceTimestamp": 1.291667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0061.avif",
+        "mobile": "mobile/0061.avif"
+      }
+    },
+    {
+      "index": 62,
+      "timestamp": 1.2916666666666667,
+      "sourceFrameIndex": 31,
+      "sourceTimestamp": 1.291667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0062.avif",
+        "mobile": "mobile/0062.avif"
+      }
+    },
+    {
+      "index": 63,
+      "timestamp": 1.3125,
+      "sourceFrameIndex": 32,
+      "sourceTimestamp": 1.333333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0063.avif",
+        "mobile": "mobile/0063.avif"
+      }
+    },
+    {
+      "index": 64,
+      "timestamp": 1.3333333333333333,
+      "sourceFrameIndex": 32,
+      "sourceTimestamp": 1.333333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0064.avif",
+        "mobile": "mobile/0064.avif"
+      }
+    },
+    {
+      "index": 65,
+      "timestamp": 1.3541666666666667,
+      "sourceFrameIndex": 33,
+      "sourceTimestamp": 1.375,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0065.avif",
+        "mobile": "mobile/0065.avif"
+      }
+    },
+    {
+      "index": 66,
+      "timestamp": 1.375,
+      "sourceFrameIndex": 33,
+      "sourceTimestamp": 1.375,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0066.avif",
+        "mobile": "mobile/0066.avif"
+      }
+    },
+    {
+      "index": 67,
+      "timestamp": 1.3958333333333333,
+      "sourceFrameIndex": 34,
+      "sourceTimestamp": 1.416667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0067.avif",
+        "mobile": "mobile/0067.avif"
+      }
+    },
+    {
+      "index": 68,
+      "timestamp": 1.4166666666666667,
+      "sourceFrameIndex": 34,
+      "sourceTimestamp": 1.416667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0068.avif",
+        "mobile": "mobile/0068.avif"
+      }
+    },
+    {
+      "index": 69,
+      "timestamp": 1.4375,
+      "sourceFrameIndex": 35,
+      "sourceTimestamp": 1.458333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0069.avif",
+        "mobile": "mobile/0069.avif"
+      }
+    },
+    {
+      "index": 70,
+      "timestamp": 1.4583333333333333,
+      "sourceFrameIndex": 35,
+      "sourceTimestamp": 1.458333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0070.avif",
+        "mobile": "mobile/0070.avif"
+      }
+    },
+    {
+      "index": 71,
+      "timestamp": 1.4791666666666667,
+      "sourceFrameIndex": 36,
+      "sourceTimestamp": 1.5,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0071.avif",
+        "mobile": "mobile/0071.avif"
+      }
+    },
+    {
+      "index": 72,
+      "timestamp": 1.5,
+      "sourceFrameIndex": 36,
+      "sourceTimestamp": 1.5,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0072.avif",
+        "mobile": "mobile/0072.avif"
+      }
+    },
+    {
+      "index": 73,
+      "timestamp": 1.5208333333333333,
+      "sourceFrameIndex": 37,
+      "sourceTimestamp": 1.541667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0073.avif",
+        "mobile": "mobile/0073.avif"
+      }
+    },
+    {
+      "index": 74,
+      "timestamp": 1.5416666666666667,
+      "sourceFrameIndex": 37,
+      "sourceTimestamp": 1.541667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0074.avif",
+        "mobile": "mobile/0074.avif"
+      }
+    },
+    {
+      "index": 75,
+      "timestamp": 1.5625,
+      "sourceFrameIndex": 38,
+      "sourceTimestamp": 1.583333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0075.avif",
+        "mobile": "mobile/0075.avif"
+      }
+    },
+    {
+      "index": 76,
+      "timestamp": 1.5833333333333333,
+      "sourceFrameIndex": 38,
+      "sourceTimestamp": 1.583333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0076.avif",
+        "mobile": "mobile/0076.avif"
+      }
+    },
+    {
+      "index": 77,
+      "timestamp": 1.6041666666666667,
+      "sourceFrameIndex": 39,
+      "sourceTimestamp": 1.625,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0077.avif",
+        "mobile": "mobile/0077.avif"
+      }
+    },
+    {
+      "index": 78,
+      "timestamp": 1.625,
+      "sourceFrameIndex": 39,
+      "sourceTimestamp": 1.625,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0078.avif",
+        "mobile": "mobile/0078.avif"
+      }
+    },
+    {
+      "index": 79,
+      "timestamp": 1.6458333333333333,
+      "sourceFrameIndex": 40,
+      "sourceTimestamp": 1.666667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0079.avif",
+        "mobile": "mobile/0079.avif"
+      }
+    },
+    {
+      "index": 80,
+      "timestamp": 1.6666666666666667,
+      "sourceFrameIndex": 40,
+      "sourceTimestamp": 1.666667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0080.avif",
+        "mobile": "mobile/0080.avif"
+      }
+    },
+    {
+      "index": 81,
+      "timestamp": 1.6875,
+      "sourceFrameIndex": 41,
+      "sourceTimestamp": 1.708333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0081.avif",
+        "mobile": "mobile/0081.avif"
+      }
+    },
+    {
+      "index": 82,
+      "timestamp": 1.7083333333333333,
+      "sourceFrameIndex": 41,
+      "sourceTimestamp": 1.708333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0082.avif",
+        "mobile": "mobile/0082.avif"
+      }
+    },
+    {
+      "index": 83,
+      "timestamp": 1.7291666666666667,
+      "sourceFrameIndex": 42,
+      "sourceTimestamp": 1.75,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0083.avif",
+        "mobile": "mobile/0083.avif"
+      }
+    },
+    {
+      "index": 84,
+      "timestamp": 1.75,
+      "sourceFrameIndex": 42,
+      "sourceTimestamp": 1.75,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0084.avif",
+        "mobile": "mobile/0084.avif"
+      }
+    },
+    {
+      "index": 85,
+      "timestamp": 1.7708333333333333,
+      "sourceFrameIndex": 43,
+      "sourceTimestamp": 1.791667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0085.avif",
+        "mobile": "mobile/0085.avif"
+      }
+    },
+    {
+      "index": 86,
+      "timestamp": 1.7916666666666667,
+      "sourceFrameIndex": 43,
+      "sourceTimestamp": 1.791667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0086.avif",
+        "mobile": "mobile/0086.avif"
+      }
+    },
+    {
+      "index": 87,
+      "timestamp": 1.8125,
+      "sourceFrameIndex": 44,
+      "sourceTimestamp": 1.833333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0087.avif",
+        "mobile": "mobile/0087.avif"
+      }
+    },
+    {
+      "index": 88,
+      "timestamp": 1.8333333333333333,
+      "sourceFrameIndex": 44,
+      "sourceTimestamp": 1.833333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0088.avif",
+        "mobile": "mobile/0088.avif"
+      }
+    },
+    {
+      "index": 89,
+      "timestamp": 1.8541666666666667,
+      "sourceFrameIndex": 45,
+      "sourceTimestamp": 1.875,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0089.avif",
+        "mobile": "mobile/0089.avif"
+      }
+    },
+    {
+      "index": 90,
+      "timestamp": 1.875,
+      "sourceFrameIndex": 45,
+      "sourceTimestamp": 1.875,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0090.avif",
+        "mobile": "mobile/0090.avif"
+      }
+    },
+    {
+      "index": 91,
+      "timestamp": 1.8958333333333333,
+      "sourceFrameIndex": 46,
+      "sourceTimestamp": 1.916667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0091.avif",
+        "mobile": "mobile/0091.avif"
+      }
+    },
+    {
+      "index": 92,
+      "timestamp": 1.9166666666666667,
+      "sourceFrameIndex": 46,
+      "sourceTimestamp": 1.916667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0092.avif",
+        "mobile": "mobile/0092.avif"
+      }
+    },
+    {
+      "index": 93,
+      "timestamp": 1.9375,
+      "sourceFrameIndex": 47,
+      "sourceTimestamp": 1.958333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0093.avif",
+        "mobile": "mobile/0093.avif"
+      }
+    },
+    {
+      "index": 94,
+      "timestamp": 1.9583333333333333,
+      "sourceFrameIndex": 47,
+      "sourceTimestamp": 1.958333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0094.avif",
+        "mobile": "mobile/0094.avif"
+      }
+    },
+    {
+      "index": 95,
+      "timestamp": 1.9791666666666667,
+      "sourceFrameIndex": 48,
+      "sourceTimestamp": 2,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0095.avif",
+        "mobile": "mobile/0095.avif"
+      }
+    },
+    {
+      "index": 96,
+      "timestamp": 2,
+      "sourceFrameIndex": 48,
+      "sourceTimestamp": 2,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0096.avif",
+        "mobile": "mobile/0096.avif"
+      }
+    },
+    {
+      "index": 97,
+      "timestamp": 2.0208333333333335,
+      "sourceFrameIndex": 49,
+      "sourceTimestamp": 2.041667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0097.avif",
+        "mobile": "mobile/0097.avif"
+      }
+    },
+    {
+      "index": 98,
+      "timestamp": 2.0416666666666665,
+      "sourceFrameIndex": 49,
+      "sourceTimestamp": 2.041667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0098.avif",
+        "mobile": "mobile/0098.avif"
+      }
+    },
+    {
+      "index": 99,
+      "timestamp": 2.0625,
+      "sourceFrameIndex": 50,
+      "sourceTimestamp": 2.083333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0099.avif",
+        "mobile": "mobile/0099.avif"
+      }
+    },
+    {
+      "index": 100,
+      "timestamp": 2.0833333333333335,
+      "sourceFrameIndex": 50,
+      "sourceTimestamp": 2.083333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0100.avif",
+        "mobile": "mobile/0100.avif"
+      }
+    },
+    {
+      "index": 101,
+      "timestamp": 2.1041666666666665,
+      "sourceFrameIndex": 51,
+      "sourceTimestamp": 2.125,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0101.avif",
+        "mobile": "mobile/0101.avif"
+      }
+    },
+    {
+      "index": 102,
+      "timestamp": 2.125,
+      "sourceFrameIndex": 51,
+      "sourceTimestamp": 2.125,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0102.avif",
+        "mobile": "mobile/0102.avif"
+      }
+    },
+    {
+      "index": 103,
+      "timestamp": 2.1458333333333335,
+      "sourceFrameIndex": 52,
+      "sourceTimestamp": 2.166667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0103.avif",
+        "mobile": "mobile/0103.avif"
+      }
+    },
+    {
+      "index": 104,
+      "timestamp": 2.1666666666666665,
+      "sourceFrameIndex": 52,
+      "sourceTimestamp": 2.166667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0104.avif",
+        "mobile": "mobile/0104.avif"
+      }
+    },
+    {
+      "index": 105,
+      "timestamp": 2.1875,
+      "sourceFrameIndex": 53,
+      "sourceTimestamp": 2.208333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0105.avif",
+        "mobile": "mobile/0105.avif"
+      }
+    },
+    {
+      "index": 106,
+      "timestamp": 2.2083333333333335,
+      "sourceFrameIndex": 53,
+      "sourceTimestamp": 2.208333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0106.avif",
+        "mobile": "mobile/0106.avif"
+      }
+    },
+    {
+      "index": 107,
+      "timestamp": 2.2291666666666665,
+      "sourceFrameIndex": 54,
+      "sourceTimestamp": 2.25,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0107.avif",
+        "mobile": "mobile/0107.avif"
+      }
+    },
+    {
+      "index": 108,
+      "timestamp": 2.25,
+      "sourceFrameIndex": 54,
+      "sourceTimestamp": 2.25,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0108.avif",
+        "mobile": "mobile/0108.avif"
+      }
+    },
+    {
+      "index": 109,
+      "timestamp": 2.2708333333333335,
+      "sourceFrameIndex": 55,
+      "sourceTimestamp": 2.291667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0109.avif",
+        "mobile": "mobile/0109.avif"
+      }
+    },
+    {
+      "index": 110,
+      "timestamp": 2.2916666666666665,
+      "sourceFrameIndex": 55,
+      "sourceTimestamp": 2.291667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0110.avif",
+        "mobile": "mobile/0110.avif"
+      }
+    },
+    {
+      "index": 111,
+      "timestamp": 2.3125,
+      "sourceFrameIndex": 56,
+      "sourceTimestamp": 2.333333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0111.avif",
+        "mobile": "mobile/0111.avif"
+      }
+    },
+    {
+      "index": 112,
+      "timestamp": 2.3333333333333335,
+      "sourceFrameIndex": 56,
+      "sourceTimestamp": 2.333333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0112.avif",
+        "mobile": "mobile/0112.avif"
+      }
+    },
+    {
+      "index": 113,
+      "timestamp": 2.3541666666666665,
+      "sourceFrameIndex": 57,
+      "sourceTimestamp": 2.375,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0113.avif",
+        "mobile": "mobile/0113.avif"
+      }
+    },
+    {
+      "index": 114,
+      "timestamp": 2.375,
+      "sourceFrameIndex": 57,
+      "sourceTimestamp": 2.375,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0114.avif",
+        "mobile": "mobile/0114.avif"
+      }
+    },
+    {
+      "index": 115,
+      "timestamp": 2.3958333333333335,
+      "sourceFrameIndex": 58,
+      "sourceTimestamp": 2.416667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0115.avif",
+        "mobile": "mobile/0115.avif"
+      }
+    },
+    {
+      "index": 116,
+      "timestamp": 2.4166666666666665,
+      "sourceFrameIndex": 58,
+      "sourceTimestamp": 2.416667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0116.avif",
+        "mobile": "mobile/0116.avif"
+      }
+    },
+    {
+      "index": 117,
+      "timestamp": 2.4375,
+      "sourceFrameIndex": 59,
+      "sourceTimestamp": 2.458333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0117.avif",
+        "mobile": "mobile/0117.avif"
+      }
+    },
+    {
+      "index": 118,
+      "timestamp": 2.4583333333333335,
+      "sourceFrameIndex": 59,
+      "sourceTimestamp": 2.458333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0118.avif",
+        "mobile": "mobile/0118.avif"
+      }
+    },
+    {
+      "index": 119,
+      "timestamp": 2.4791666666666665,
+      "sourceFrameIndex": 60,
+      "sourceTimestamp": 2.5,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0119.avif",
+        "mobile": "mobile/0119.avif"
+      }
+    },
+    {
+      "index": 120,
+      "timestamp": 2.5,
+      "sourceFrameIndex": 60,
+      "sourceTimestamp": 2.5,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0120.avif",
+        "mobile": "mobile/0120.avif"
+      }
+    },
+    {
+      "index": 121,
+      "timestamp": 2.5208333333333335,
+      "sourceFrameIndex": 61,
+      "sourceTimestamp": 2.541667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0121.avif",
+        "mobile": "mobile/0121.avif"
+      }
+    },
+    {
+      "index": 122,
+      "timestamp": 2.5416666666666665,
+      "sourceFrameIndex": 61,
+      "sourceTimestamp": 2.541667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0122.avif",
+        "mobile": "mobile/0122.avif"
+      }
+    },
+    {
+      "index": 123,
+      "timestamp": 2.5625,
+      "sourceFrameIndex": 62,
+      "sourceTimestamp": 2.583333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0123.avif",
+        "mobile": "mobile/0123.avif"
+      }
+    },
+    {
+      "index": 124,
+      "timestamp": 2.5833333333333335,
+      "sourceFrameIndex": 62,
+      "sourceTimestamp": 2.583333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0124.avif",
+        "mobile": "mobile/0124.avif"
+      }
+    },
+    {
+      "index": 125,
+      "timestamp": 2.6041666666666665,
+      "sourceFrameIndex": 63,
+      "sourceTimestamp": 2.625,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0125.avif",
+        "mobile": "mobile/0125.avif"
+      }
+    },
+    {
+      "index": 126,
+      "timestamp": 2.625,
+      "sourceFrameIndex": 63,
+      "sourceTimestamp": 2.625,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0126.avif",
+        "mobile": "mobile/0126.avif"
+      }
+    },
+    {
+      "index": 127,
+      "timestamp": 2.6458333333333335,
+      "sourceFrameIndex": 64,
+      "sourceTimestamp": 2.666667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0127.avif",
+        "mobile": "mobile/0127.avif"
+      }
+    },
+    {
+      "index": 128,
+      "timestamp": 2.6666666666666665,
+      "sourceFrameIndex": 64,
+      "sourceTimestamp": 2.666667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0128.avif",
+        "mobile": "mobile/0128.avif"
+      }
+    },
+    {
+      "index": 129,
+      "timestamp": 2.6875,
+      "sourceFrameIndex": 65,
+      "sourceTimestamp": 2.708333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0129.avif",
+        "mobile": "mobile/0129.avif"
+      }
+    },
+    {
+      "index": 130,
+      "timestamp": 2.7083333333333335,
+      "sourceFrameIndex": 65,
+      "sourceTimestamp": 2.708333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0130.avif",
+        "mobile": "mobile/0130.avif"
+      }
+    },
+    {
+      "index": 131,
+      "timestamp": 2.7291666666666665,
+      "sourceFrameIndex": 66,
+      "sourceTimestamp": 2.75,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0131.avif",
+        "mobile": "mobile/0131.avif"
+      }
+    },
+    {
+      "index": 132,
+      "timestamp": 2.75,
+      "sourceFrameIndex": 66,
+      "sourceTimestamp": 2.75,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0132.avif",
+        "mobile": "mobile/0132.avif"
+      }
+    },
+    {
+      "index": 133,
+      "timestamp": 2.7708333333333335,
+      "sourceFrameIndex": 67,
+      "sourceTimestamp": 2.791667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0133.avif",
+        "mobile": "mobile/0133.avif"
+      }
+    },
+    {
+      "index": 134,
+      "timestamp": 2.7916666666666665,
+      "sourceFrameIndex": 67,
+      "sourceTimestamp": 2.791667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0134.avif",
+        "mobile": "mobile/0134.avif"
+      }
+    },
+    {
+      "index": 135,
+      "timestamp": 2.8125,
+      "sourceFrameIndex": 68,
+      "sourceTimestamp": 2.833333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0135.avif",
+        "mobile": "mobile/0135.avif"
+      }
+    },
+    {
+      "index": 136,
+      "timestamp": 2.8333333333333335,
+      "sourceFrameIndex": 68,
+      "sourceTimestamp": 2.833333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0136.avif",
+        "mobile": "mobile/0136.avif"
+      }
+    },
+    {
+      "index": 137,
+      "timestamp": 2.8541666666666665,
+      "sourceFrameIndex": 69,
+      "sourceTimestamp": 2.875,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0137.avif",
+        "mobile": "mobile/0137.avif"
+      }
+    },
+    {
+      "index": 138,
+      "timestamp": 2.875,
+      "sourceFrameIndex": 69,
+      "sourceTimestamp": 2.875,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0138.avif",
+        "mobile": "mobile/0138.avif"
+      }
+    },
+    {
+      "index": 139,
+      "timestamp": 2.8958333333333335,
+      "sourceFrameIndex": 70,
+      "sourceTimestamp": 2.916667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0139.avif",
+        "mobile": "mobile/0139.avif"
+      }
+    },
+    {
+      "index": 140,
+      "timestamp": 2.9166666666666665,
+      "sourceFrameIndex": 70,
+      "sourceTimestamp": 2.916667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0140.avif",
+        "mobile": "mobile/0140.avif"
+      }
+    },
+    {
+      "index": 141,
+      "timestamp": 2.9375,
+      "sourceFrameIndex": 71,
+      "sourceTimestamp": 2.958333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0141.avif",
+        "mobile": "mobile/0141.avif"
+      }
+    },
+    {
+      "index": 142,
+      "timestamp": 2.9583333333333335,
+      "sourceFrameIndex": 71,
+      "sourceTimestamp": 2.958333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0142.avif",
+        "mobile": "mobile/0142.avif"
+      }
+    },
+    {
+      "index": 143,
+      "timestamp": 2.9791666666666665,
+      "sourceFrameIndex": 72,
+      "sourceTimestamp": 3,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0143.avif",
+        "mobile": "mobile/0143.avif"
+      }
+    },
+    {
+      "index": 144,
+      "timestamp": 3,
+      "sourceFrameIndex": 72,
+      "sourceTimestamp": 3,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0144.avif",
+        "mobile": "mobile/0144.avif"
+      }
+    },
+    {
+      "index": 145,
+      "timestamp": 3.0208333333333335,
+      "sourceFrameIndex": 73,
+      "sourceTimestamp": 3.041667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0145.avif",
+        "mobile": "mobile/0145.avif"
+      }
+    },
+    {
+      "index": 146,
+      "timestamp": 3.0416666666666665,
+      "sourceFrameIndex": 73,
+      "sourceTimestamp": 3.041667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0146.avif",
+        "mobile": "mobile/0146.avif"
+      }
+    },
+    {
+      "index": 147,
+      "timestamp": 3.0625,
+      "sourceFrameIndex": 74,
+      "sourceTimestamp": 3.083333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0147.avif",
+        "mobile": "mobile/0147.avif"
+      }
+    },
+    {
+      "index": 148,
+      "timestamp": 3.0833333333333335,
+      "sourceFrameIndex": 74,
+      "sourceTimestamp": 3.083333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0148.avif",
+        "mobile": "mobile/0148.avif"
+      }
+    },
+    {
+      "index": 149,
+      "timestamp": 3.1041666666666665,
+      "sourceFrameIndex": 75,
+      "sourceTimestamp": 3.125,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0149.avif",
+        "mobile": "mobile/0149.avif"
+      }
+    },
+    {
+      "index": 150,
+      "timestamp": 3.125,
+      "sourceFrameIndex": 75,
+      "sourceTimestamp": 3.125,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0150.avif",
+        "mobile": "mobile/0150.avif"
+      }
+    },
+    {
+      "index": 151,
+      "timestamp": 3.1458333333333335,
+      "sourceFrameIndex": 76,
+      "sourceTimestamp": 3.166667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0151.avif",
+        "mobile": "mobile/0151.avif"
+      }
+    },
+    {
+      "index": 152,
+      "timestamp": 3.1666666666666665,
+      "sourceFrameIndex": 76,
+      "sourceTimestamp": 3.166667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0152.avif",
+        "mobile": "mobile/0152.avif"
+      }
+    },
+    {
+      "index": 153,
+      "timestamp": 3.1875,
+      "sourceFrameIndex": 77,
+      "sourceTimestamp": 3.208333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0153.avif",
+        "mobile": "mobile/0153.avif"
+      }
+    },
+    {
+      "index": 154,
+      "timestamp": 3.2083333333333335,
+      "sourceFrameIndex": 77,
+      "sourceTimestamp": 3.208333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0154.avif",
+        "mobile": "mobile/0154.avif"
+      }
+    },
+    {
+      "index": 155,
+      "timestamp": 3.2291666666666665,
+      "sourceFrameIndex": 78,
+      "sourceTimestamp": 3.25,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0155.avif",
+        "mobile": "mobile/0155.avif"
+      }
+    },
+    {
+      "index": 156,
+      "timestamp": 3.25,
+      "sourceFrameIndex": 78,
+      "sourceTimestamp": 3.25,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0156.avif",
+        "mobile": "mobile/0156.avif"
+      }
+    },
+    {
+      "index": 157,
+      "timestamp": 3.2708333333333335,
+      "sourceFrameIndex": 79,
+      "sourceTimestamp": 3.291667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0157.avif",
+        "mobile": "mobile/0157.avif"
+      }
+    },
+    {
+      "index": 158,
+      "timestamp": 3.2916666666666665,
+      "sourceFrameIndex": 79,
+      "sourceTimestamp": 3.291667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0158.avif",
+        "mobile": "mobile/0158.avif"
+      }
+    },
+    {
+      "index": 159,
+      "timestamp": 3.3125,
+      "sourceFrameIndex": 80,
+      "sourceTimestamp": 3.333333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0159.avif",
+        "mobile": "mobile/0159.avif"
+      }
+    },
+    {
+      "index": 160,
+      "timestamp": 3.3333333333333335,
+      "sourceFrameIndex": 80,
+      "sourceTimestamp": 3.333333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0160.avif",
+        "mobile": "mobile/0160.avif"
+      }
+    },
+    {
+      "index": 161,
+      "timestamp": 3.3541666666666665,
+      "sourceFrameIndex": 81,
+      "sourceTimestamp": 3.375,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0161.avif",
+        "mobile": "mobile/0161.avif"
+      }
+    },
+    {
+      "index": 162,
+      "timestamp": 3.375,
+      "sourceFrameIndex": 81,
+      "sourceTimestamp": 3.375,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0162.avif",
+        "mobile": "mobile/0162.avif"
+      }
+    },
+    {
+      "index": 163,
+      "timestamp": 3.3958333333333335,
+      "sourceFrameIndex": 82,
+      "sourceTimestamp": 3.416667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0163.avif",
+        "mobile": "mobile/0163.avif"
+      }
+    },
+    {
+      "index": 164,
+      "timestamp": 3.4166666666666665,
+      "sourceFrameIndex": 82,
+      "sourceTimestamp": 3.416667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0164.avif",
+        "mobile": "mobile/0164.avif"
+      }
+    },
+    {
+      "index": 165,
+      "timestamp": 3.4375,
+      "sourceFrameIndex": 83,
+      "sourceTimestamp": 3.458333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0165.avif",
+        "mobile": "mobile/0165.avif"
+      }
+    },
+    {
+      "index": 166,
+      "timestamp": 3.4583333333333335,
+      "sourceFrameIndex": 83,
+      "sourceTimestamp": 3.458333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0166.avif",
+        "mobile": "mobile/0166.avif"
+      }
+    },
+    {
+      "index": 167,
+      "timestamp": 3.4791666666666665,
+      "sourceFrameIndex": 84,
+      "sourceTimestamp": 3.5,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0167.avif",
+        "mobile": "mobile/0167.avif"
+      }
+    },
+    {
+      "index": 168,
+      "timestamp": 3.5,
+      "sourceFrameIndex": 84,
+      "sourceTimestamp": 3.5,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0168.avif",
+        "mobile": "mobile/0168.avif"
+      }
+    },
+    {
+      "index": 169,
+      "timestamp": 3.5208333333333335,
+      "sourceFrameIndex": 85,
+      "sourceTimestamp": 3.541667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0169.avif",
+        "mobile": "mobile/0169.avif"
+      }
+    },
+    {
+      "index": 170,
+      "timestamp": 3.5416666666666665,
+      "sourceFrameIndex": 85,
+      "sourceTimestamp": 3.541667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0170.avif",
+        "mobile": "mobile/0170.avif"
+      }
+    },
+    {
+      "index": 171,
+      "timestamp": 3.5625,
+      "sourceFrameIndex": 86,
+      "sourceTimestamp": 3.583333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0171.avif",
+        "mobile": "mobile/0171.avif"
+      }
+    },
+    {
+      "index": 172,
+      "timestamp": 3.5833333333333335,
+      "sourceFrameIndex": 86,
+      "sourceTimestamp": 3.583333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0172.avif",
+        "mobile": "mobile/0172.avif"
+      }
+    },
+    {
+      "index": 173,
+      "timestamp": 3.6041666666666665,
+      "sourceFrameIndex": 87,
+      "sourceTimestamp": 3.625,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0173.avif",
+        "mobile": "mobile/0173.avif"
+      }
+    },
+    {
+      "index": 174,
+      "timestamp": 3.625,
+      "sourceFrameIndex": 87,
+      "sourceTimestamp": 3.625,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0174.avif",
+        "mobile": "mobile/0174.avif"
+      }
+    },
+    {
+      "index": 175,
+      "timestamp": 3.6458333333333335,
+      "sourceFrameIndex": 88,
+      "sourceTimestamp": 3.666667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0175.avif",
+        "mobile": "mobile/0175.avif"
+      }
+    },
+    {
+      "index": 176,
+      "timestamp": 3.6666666666666665,
+      "sourceFrameIndex": 88,
+      "sourceTimestamp": 3.666667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0176.avif",
+        "mobile": "mobile/0176.avif"
+      }
+    },
+    {
+      "index": 177,
+      "timestamp": 3.6875,
+      "sourceFrameIndex": 89,
+      "sourceTimestamp": 3.708333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0177.avif",
+        "mobile": "mobile/0177.avif"
+      }
+    },
+    {
+      "index": 178,
+      "timestamp": 3.7083333333333335,
+      "sourceFrameIndex": 89,
+      "sourceTimestamp": 3.708333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0178.avif",
+        "mobile": "mobile/0178.avif"
+      }
+    },
+    {
+      "index": 179,
+      "timestamp": 3.7291666666666665,
+      "sourceFrameIndex": 90,
+      "sourceTimestamp": 3.75,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0179.avif",
+        "mobile": "mobile/0179.avif"
+      }
+    },
+    {
+      "index": 180,
+      "timestamp": 3.75,
+      "sourceFrameIndex": 90,
+      "sourceTimestamp": 3.75,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0180.avif",
+        "mobile": "mobile/0180.avif"
+      }
+    },
+    {
+      "index": 181,
+      "timestamp": 3.7708333333333335,
+      "sourceFrameIndex": 91,
+      "sourceTimestamp": 3.791667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0181.avif",
+        "mobile": "mobile/0181.avif"
+      }
+    },
+    {
+      "index": 182,
+      "timestamp": 3.7916666666666665,
+      "sourceFrameIndex": 91,
+      "sourceTimestamp": 3.791667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0182.avif",
+        "mobile": "mobile/0182.avif"
+      }
+    },
+    {
+      "index": 183,
+      "timestamp": 3.8125,
+      "sourceFrameIndex": 92,
+      "sourceTimestamp": 3.833333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0183.avif",
+        "mobile": "mobile/0183.avif"
+      }
+    },
+    {
+      "index": 184,
+      "timestamp": 3.8333333333333335,
+      "sourceFrameIndex": 92,
+      "sourceTimestamp": 3.833333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0184.avif",
+        "mobile": "mobile/0184.avif"
+      }
+    },
+    {
+      "index": 185,
+      "timestamp": 3.8541666666666665,
+      "sourceFrameIndex": 93,
+      "sourceTimestamp": 3.875,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0185.avif",
+        "mobile": "mobile/0185.avif"
+      }
+    },
+    {
+      "index": 186,
+      "timestamp": 3.875,
+      "sourceFrameIndex": 93,
+      "sourceTimestamp": 3.875,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0186.avif",
+        "mobile": "mobile/0186.avif"
+      }
+    },
+    {
+      "index": 187,
+      "timestamp": 3.8958333333333335,
+      "sourceFrameIndex": 94,
+      "sourceTimestamp": 3.916667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0187.avif",
+        "mobile": "mobile/0187.avif"
+      }
+    },
+    {
+      "index": 188,
+      "timestamp": 3.9166666666666665,
+      "sourceFrameIndex": 94,
+      "sourceTimestamp": 3.916667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0188.avif",
+        "mobile": "mobile/0188.avif"
+      }
+    },
+    {
+      "index": 189,
+      "timestamp": 3.9375,
+      "sourceFrameIndex": 95,
+      "sourceTimestamp": 3.958333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0189.avif",
+        "mobile": "mobile/0189.avif"
+      }
+    },
+    {
+      "index": 190,
+      "timestamp": 3.9583333333333335,
+      "sourceFrameIndex": 95,
+      "sourceTimestamp": 3.958333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0190.avif",
+        "mobile": "mobile/0190.avif"
+      }
+    },
+    {
+      "index": 191,
+      "timestamp": 3.9791666666666665,
+      "sourceFrameIndex": 96,
+      "sourceTimestamp": 4,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0191.avif",
+        "mobile": "mobile/0191.avif"
+      }
+    },
+    {
+      "index": 192,
+      "timestamp": 4,
+      "sourceFrameIndex": 96,
+      "sourceTimestamp": 4,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0192.avif",
+        "mobile": "mobile/0192.avif"
+      }
+    },
+    {
+      "index": 193,
+      "timestamp": 4.020833333333333,
+      "sourceFrameIndex": 97,
+      "sourceTimestamp": 4.041667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0193.avif",
+        "mobile": "mobile/0193.avif"
+      }
+    },
+    {
+      "index": 194,
+      "timestamp": 4.041666666666667,
+      "sourceFrameIndex": 97,
+      "sourceTimestamp": 4.041667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0194.avif",
+        "mobile": "mobile/0194.avif"
+      }
+    },
+    {
+      "index": 195,
+      "timestamp": 4.0625,
+      "sourceFrameIndex": 98,
+      "sourceTimestamp": 4.083333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0195.avif",
+        "mobile": "mobile/0195.avif"
+      }
+    },
+    {
+      "index": 196,
+      "timestamp": 4.083333333333333,
+      "sourceFrameIndex": 98,
+      "sourceTimestamp": 4.083333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0196.avif",
+        "mobile": "mobile/0196.avif"
+      }
+    },
+    {
+      "index": 197,
+      "timestamp": 4.104166666666667,
+      "sourceFrameIndex": 99,
+      "sourceTimestamp": 4.125,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0197.avif",
+        "mobile": "mobile/0197.avif"
+      }
+    },
+    {
+      "index": 198,
+      "timestamp": 4.125,
+      "sourceFrameIndex": 99,
+      "sourceTimestamp": 4.125,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0198.avif",
+        "mobile": "mobile/0198.avif"
+      }
+    },
+    {
+      "index": 199,
+      "timestamp": 4.145833333333333,
+      "sourceFrameIndex": 100,
+      "sourceTimestamp": 4.166667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0199.avif",
+        "mobile": "mobile/0199.avif"
+      }
+    },
+    {
+      "index": 200,
+      "timestamp": 4.166666666666667,
+      "sourceFrameIndex": 100,
+      "sourceTimestamp": 4.166667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0200.avif",
+        "mobile": "mobile/0200.avif"
+      }
+    },
+    {
+      "index": 201,
+      "timestamp": 4.1875,
+      "sourceFrameIndex": 101,
+      "sourceTimestamp": 4.208333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0201.avif",
+        "mobile": "mobile/0201.avif"
+      }
+    },
+    {
+      "index": 202,
+      "timestamp": 4.208333333333333,
+      "sourceFrameIndex": 101,
+      "sourceTimestamp": 4.208333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0202.avif",
+        "mobile": "mobile/0202.avif"
+      }
+    },
+    {
+      "index": 203,
+      "timestamp": 4.229166666666667,
+      "sourceFrameIndex": 102,
+      "sourceTimestamp": 4.25,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0203.avif",
+        "mobile": "mobile/0203.avif"
+      }
+    },
+    {
+      "index": 204,
+      "timestamp": 4.25,
+      "sourceFrameIndex": 102,
+      "sourceTimestamp": 4.25,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0204.avif",
+        "mobile": "mobile/0204.avif"
+      }
+    },
+    {
+      "index": 205,
+      "timestamp": 4.270833333333333,
+      "sourceFrameIndex": 103,
+      "sourceTimestamp": 4.291667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0205.avif",
+        "mobile": "mobile/0205.avif"
+      }
+    },
+    {
+      "index": 206,
+      "timestamp": 4.291666666666667,
+      "sourceFrameIndex": 103,
+      "sourceTimestamp": 4.291667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0206.avif",
+        "mobile": "mobile/0206.avif"
+      }
+    },
+    {
+      "index": 207,
+      "timestamp": 4.3125,
+      "sourceFrameIndex": 104,
+      "sourceTimestamp": 4.333333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0207.avif",
+        "mobile": "mobile/0207.avif"
+      }
+    },
+    {
+      "index": 208,
+      "timestamp": 4.333333333333333,
+      "sourceFrameIndex": 104,
+      "sourceTimestamp": 4.333333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0208.avif",
+        "mobile": "mobile/0208.avif"
+      }
+    },
+    {
+      "index": 209,
+      "timestamp": 4.354166666666667,
+      "sourceFrameIndex": 105,
+      "sourceTimestamp": 4.375,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0209.avif",
+        "mobile": "mobile/0209.avif"
+      }
+    },
+    {
+      "index": 210,
+      "timestamp": 4.375,
+      "sourceFrameIndex": 105,
+      "sourceTimestamp": 4.375,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0210.avif",
+        "mobile": "mobile/0210.avif"
+      }
+    },
+    {
+      "index": 211,
+      "timestamp": 4.395833333333333,
+      "sourceFrameIndex": 106,
+      "sourceTimestamp": 4.416667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0211.avif",
+        "mobile": "mobile/0211.avif"
+      }
+    },
+    {
+      "index": 212,
+      "timestamp": 4.416666666666667,
+      "sourceFrameIndex": 106,
+      "sourceTimestamp": 4.416667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0212.avif",
+        "mobile": "mobile/0212.avif"
+      }
+    },
+    {
+      "index": 213,
+      "timestamp": 4.4375,
+      "sourceFrameIndex": 107,
+      "sourceTimestamp": 4.458333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0213.avif",
+        "mobile": "mobile/0213.avif"
+      }
+    },
+    {
+      "index": 214,
+      "timestamp": 4.458333333333333,
+      "sourceFrameIndex": 107,
+      "sourceTimestamp": 4.458333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0214.avif",
+        "mobile": "mobile/0214.avif"
+      }
+    },
+    {
+      "index": 215,
+      "timestamp": 4.479166666666667,
+      "sourceFrameIndex": 108,
+      "sourceTimestamp": 4.5,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0215.avif",
+        "mobile": "mobile/0215.avif"
+      }
+    },
+    {
+      "index": 216,
+      "timestamp": 4.5,
+      "sourceFrameIndex": 108,
+      "sourceTimestamp": 4.5,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0216.avif",
+        "mobile": "mobile/0216.avif"
+      }
+    },
+    {
+      "index": 217,
+      "timestamp": 4.520833333333333,
+      "sourceFrameIndex": 109,
+      "sourceTimestamp": 4.541667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0217.avif",
+        "mobile": "mobile/0217.avif"
+      }
+    },
+    {
+      "index": 218,
+      "timestamp": 4.541666666666667,
+      "sourceFrameIndex": 109,
+      "sourceTimestamp": 4.541667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0218.avif",
+        "mobile": "mobile/0218.avif"
+      }
+    },
+    {
+      "index": 219,
+      "timestamp": 4.5625,
+      "sourceFrameIndex": 110,
+      "sourceTimestamp": 4.583333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0219.avif",
+        "mobile": "mobile/0219.avif"
+      }
+    },
+    {
+      "index": 220,
+      "timestamp": 4.583333333333333,
+      "sourceFrameIndex": 110,
+      "sourceTimestamp": 4.583333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0220.avif",
+        "mobile": "mobile/0220.avif"
+      }
+    },
+    {
+      "index": 221,
+      "timestamp": 4.604166666666667,
+      "sourceFrameIndex": 111,
+      "sourceTimestamp": 4.625,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0221.avif",
+        "mobile": "mobile/0221.avif"
+      }
+    },
+    {
+      "index": 222,
+      "timestamp": 4.625,
+      "sourceFrameIndex": 111,
+      "sourceTimestamp": 4.625,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0222.avif",
+        "mobile": "mobile/0222.avif"
+      }
+    },
+    {
+      "index": 223,
+      "timestamp": 4.645833333333333,
+      "sourceFrameIndex": 112,
+      "sourceTimestamp": 4.666667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0223.avif",
+        "mobile": "mobile/0223.avif"
+      }
+    },
+    {
+      "index": 224,
+      "timestamp": 4.666666666666667,
+      "sourceFrameIndex": 112,
+      "sourceTimestamp": 4.666667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0224.avif",
+        "mobile": "mobile/0224.avif"
+      }
+    },
+    {
+      "index": 225,
+      "timestamp": 4.6875,
+      "sourceFrameIndex": 113,
+      "sourceTimestamp": 4.708333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0225.avif",
+        "mobile": "mobile/0225.avif"
+      }
+    },
+    {
+      "index": 226,
+      "timestamp": 4.708333333333333,
+      "sourceFrameIndex": 113,
+      "sourceTimestamp": 4.708333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0226.avif",
+        "mobile": "mobile/0226.avif"
+      }
+    },
+    {
+      "index": 227,
+      "timestamp": 4.729166666666667,
+      "sourceFrameIndex": 114,
+      "sourceTimestamp": 4.75,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0227.avif",
+        "mobile": "mobile/0227.avif"
+      }
+    },
+    {
+      "index": 228,
+      "timestamp": 4.75,
+      "sourceFrameIndex": 114,
+      "sourceTimestamp": 4.75,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0228.avif",
+        "mobile": "mobile/0228.avif"
+      }
+    },
+    {
+      "index": 229,
+      "timestamp": 4.770833333333333,
+      "sourceFrameIndex": 115,
+      "sourceTimestamp": 4.791667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0229.avif",
+        "mobile": "mobile/0229.avif"
+      }
+    },
+    {
+      "index": 230,
+      "timestamp": 4.791666666666667,
+      "sourceFrameIndex": 115,
+      "sourceTimestamp": 4.791667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0230.avif",
+        "mobile": "mobile/0230.avif"
+      }
+    },
+    {
+      "index": 231,
+      "timestamp": 4.8125,
+      "sourceFrameIndex": 116,
+      "sourceTimestamp": 4.833333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0231.avif",
+        "mobile": "mobile/0231.avif"
+      }
+    },
+    {
+      "index": 232,
+      "timestamp": 4.833333333333333,
+      "sourceFrameIndex": 116,
+      "sourceTimestamp": 4.833333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0232.avif",
+        "mobile": "mobile/0232.avif"
+      }
+    },
+    {
+      "index": 233,
+      "timestamp": 4.854166666666667,
+      "sourceFrameIndex": 117,
+      "sourceTimestamp": 4.875,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0233.avif",
+        "mobile": "mobile/0233.avif"
+      }
+    },
+    {
+      "index": 234,
+      "timestamp": 4.875,
+      "sourceFrameIndex": 117,
+      "sourceTimestamp": 4.875,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0234.avif",
+        "mobile": "mobile/0234.avif"
+      }
+    },
+    {
+      "index": 235,
+      "timestamp": 4.895833333333333,
+      "sourceFrameIndex": 118,
+      "sourceTimestamp": 4.916667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0235.avif",
+        "mobile": "mobile/0235.avif"
+      }
+    },
+    {
+      "index": 236,
+      "timestamp": 4.916666666666667,
+      "sourceFrameIndex": 118,
+      "sourceTimestamp": 4.916667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0236.avif",
+        "mobile": "mobile/0236.avif"
+      }
+    },
+    {
+      "index": 237,
+      "timestamp": 4.9375,
+      "sourceFrameIndex": 119,
+      "sourceTimestamp": 4.958333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0237.avif",
+        "mobile": "mobile/0237.avif"
+      }
+    },
+    {
+      "index": 238,
+      "timestamp": 4.958333333333333,
+      "sourceFrameIndex": 119,
+      "sourceTimestamp": 4.958333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0238.avif",
+        "mobile": "mobile/0238.avif"
+      }
+    },
+    {
+      "index": 239,
+      "timestamp": 4.979166666666667,
+      "sourceFrameIndex": 120,
+      "sourceTimestamp": 5,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0239.avif",
+        "mobile": "mobile/0239.avif"
+      }
+    },
+    {
+      "index": 240,
+      "timestamp": 5,
+      "sourceFrameIndex": 120,
+      "sourceTimestamp": 5,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0240.avif",
+        "mobile": "mobile/0240.avif"
+      }
+    },
+    {
+      "index": 241,
+      "timestamp": 5.020833333333333,
+      "sourceFrameIndex": 121,
+      "sourceTimestamp": 5.041667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0241.avif",
+        "mobile": "mobile/0241.avif"
+      }
+    },
+    {
+      "index": 242,
+      "timestamp": 5.041666666666667,
+      "sourceFrameIndex": 121,
+      "sourceTimestamp": 5.041667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0242.avif",
+        "mobile": "mobile/0242.avif"
+      }
+    },
+    {
+      "index": 243,
+      "timestamp": 5.0625,
+      "sourceFrameIndex": 122,
+      "sourceTimestamp": 5.083333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0243.avif",
+        "mobile": "mobile/0243.avif"
+      }
+    },
+    {
+      "index": 244,
+      "timestamp": 5.083333333333333,
+      "sourceFrameIndex": 122,
+      "sourceTimestamp": 5.083333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0244.avif",
+        "mobile": "mobile/0244.avif"
+      }
+    },
+    {
+      "index": 245,
+      "timestamp": 5.104166666666667,
+      "sourceFrameIndex": 123,
+      "sourceTimestamp": 5.125,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0245.avif",
+        "mobile": "mobile/0245.avif"
+      }
+    },
+    {
+      "index": 246,
+      "timestamp": 5.125,
+      "sourceFrameIndex": 123,
+      "sourceTimestamp": 5.125,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0246.avif",
+        "mobile": "mobile/0246.avif"
+      }
+    },
+    {
+      "index": 247,
+      "timestamp": 5.145833333333333,
+      "sourceFrameIndex": 124,
+      "sourceTimestamp": 5.166667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0247.avif",
+        "mobile": "mobile/0247.avif"
+      }
+    },
+    {
+      "index": 248,
+      "timestamp": 5.166666666666667,
+      "sourceFrameIndex": 124,
+      "sourceTimestamp": 5.166667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0248.avif",
+        "mobile": "mobile/0248.avif"
+      }
+    },
+    {
+      "index": 249,
+      "timestamp": 5.1875,
+      "sourceFrameIndex": 125,
+      "sourceTimestamp": 5.208333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0249.avif",
+        "mobile": "mobile/0249.avif"
+      }
+    },
+    {
+      "index": 250,
+      "timestamp": 5.208333333333333,
+      "sourceFrameIndex": 125,
+      "sourceTimestamp": 5.208333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0250.avif",
+        "mobile": "mobile/0250.avif"
+      }
+    },
+    {
+      "index": 251,
+      "timestamp": 5.229166666666667,
+      "sourceFrameIndex": 126,
+      "sourceTimestamp": 5.25,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0251.avif",
+        "mobile": "mobile/0251.avif"
+      }
+    },
+    {
+      "index": 252,
+      "timestamp": 5.25,
+      "sourceFrameIndex": 126,
+      "sourceTimestamp": 5.25,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0252.avif",
+        "mobile": "mobile/0252.avif"
+      }
+    },
+    {
+      "index": 253,
+      "timestamp": 5.270833333333333,
+      "sourceFrameIndex": 127,
+      "sourceTimestamp": 5.291667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0253.avif",
+        "mobile": "mobile/0253.avif"
+      }
+    },
+    {
+      "index": 254,
+      "timestamp": 5.291666666666667,
+      "sourceFrameIndex": 127,
+      "sourceTimestamp": 5.291667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0254.avif",
+        "mobile": "mobile/0254.avif"
+      }
+    },
+    {
+      "index": 255,
+      "timestamp": 5.3125,
+      "sourceFrameIndex": 128,
+      "sourceTimestamp": 5.333333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0255.avif",
+        "mobile": "mobile/0255.avif"
+      }
+    },
+    {
+      "index": 256,
+      "timestamp": 5.333333333333333,
+      "sourceFrameIndex": 128,
+      "sourceTimestamp": 5.333333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0256.avif",
+        "mobile": "mobile/0256.avif"
+      }
+    },
+    {
+      "index": 257,
+      "timestamp": 5.354166666666667,
+      "sourceFrameIndex": 129,
+      "sourceTimestamp": 5.375,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0257.avif",
+        "mobile": "mobile/0257.avif"
+      }
+    },
+    {
+      "index": 258,
+      "timestamp": 5.375,
+      "sourceFrameIndex": 129,
+      "sourceTimestamp": 5.375,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0258.avif",
+        "mobile": "mobile/0258.avif"
+      }
+    },
+    {
+      "index": 259,
+      "timestamp": 5.395833333333333,
+      "sourceFrameIndex": 130,
+      "sourceTimestamp": 5.416667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0259.avif",
+        "mobile": "mobile/0259.avif"
+      }
+    },
+    {
+      "index": 260,
+      "timestamp": 5.416666666666667,
+      "sourceFrameIndex": 130,
+      "sourceTimestamp": 5.416667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0260.avif",
+        "mobile": "mobile/0260.avif"
+      }
+    },
+    {
+      "index": 261,
+      "timestamp": 5.4375,
+      "sourceFrameIndex": 131,
+      "sourceTimestamp": 5.458333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0261.avif",
+        "mobile": "mobile/0261.avif"
+      }
+    },
+    {
+      "index": 262,
+      "timestamp": 5.458333333333333,
+      "sourceFrameIndex": 131,
+      "sourceTimestamp": 5.458333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0262.avif",
+        "mobile": "mobile/0262.avif"
+      }
+    },
+    {
+      "index": 263,
+      "timestamp": 5.479166666666667,
+      "sourceFrameIndex": 132,
+      "sourceTimestamp": 5.5,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0263.avif",
+        "mobile": "mobile/0263.avif"
+      }
+    },
+    {
+      "index": 264,
+      "timestamp": 5.5,
+      "sourceFrameIndex": 132,
+      "sourceTimestamp": 5.5,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0264.avif",
+        "mobile": "mobile/0264.avif"
+      }
+    },
+    {
+      "index": 265,
+      "timestamp": 5.520833333333333,
+      "sourceFrameIndex": 133,
+      "sourceTimestamp": 5.541667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0265.avif",
+        "mobile": "mobile/0265.avif"
+      }
+    },
+    {
+      "index": 266,
+      "timestamp": 5.541666666666667,
+      "sourceFrameIndex": 133,
+      "sourceTimestamp": 5.541667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0266.avif",
+        "mobile": "mobile/0266.avif"
+      }
+    },
+    {
+      "index": 267,
+      "timestamp": 5.5625,
+      "sourceFrameIndex": 134,
+      "sourceTimestamp": 5.583333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0267.avif",
+        "mobile": "mobile/0267.avif"
+      }
+    },
+    {
+      "index": 268,
+      "timestamp": 5.583333333333333,
+      "sourceFrameIndex": 134,
+      "sourceTimestamp": 5.583333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0268.avif",
+        "mobile": "mobile/0268.avif"
+      }
+    },
+    {
+      "index": 269,
+      "timestamp": 5.604166666666667,
+      "sourceFrameIndex": 135,
+      "sourceTimestamp": 5.625,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0269.avif",
+        "mobile": "mobile/0269.avif"
+      }
+    },
+    {
+      "index": 270,
+      "timestamp": 5.625,
+      "sourceFrameIndex": 135,
+      "sourceTimestamp": 5.625,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0270.avif",
+        "mobile": "mobile/0270.avif"
+      }
+    },
+    {
+      "index": 271,
+      "timestamp": 5.645833333333333,
+      "sourceFrameIndex": 136,
+      "sourceTimestamp": 5.666667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0271.avif",
+        "mobile": "mobile/0271.avif"
+      }
+    },
+    {
+      "index": 272,
+      "timestamp": 5.666666666666667,
+      "sourceFrameIndex": 136,
+      "sourceTimestamp": 5.666667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0272.avif",
+        "mobile": "mobile/0272.avif"
+      }
+    },
+    {
+      "index": 273,
+      "timestamp": 5.6875,
+      "sourceFrameIndex": 137,
+      "sourceTimestamp": 5.708333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0273.avif",
+        "mobile": "mobile/0273.avif"
+      }
+    },
+    {
+      "index": 274,
+      "timestamp": 5.708333333333333,
+      "sourceFrameIndex": 137,
+      "sourceTimestamp": 5.708333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0274.avif",
+        "mobile": "mobile/0274.avif"
+      }
+    },
+    {
+      "index": 275,
+      "timestamp": 5.729166666666667,
+      "sourceFrameIndex": 138,
+      "sourceTimestamp": 5.75,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0275.avif",
+        "mobile": "mobile/0275.avif"
+      }
+    },
+    {
+      "index": 276,
+      "timestamp": 5.75,
+      "sourceFrameIndex": 138,
+      "sourceTimestamp": 5.75,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0276.avif",
+        "mobile": "mobile/0276.avif"
+      }
+    },
+    {
+      "index": 277,
+      "timestamp": 5.770833333333333,
+      "sourceFrameIndex": 139,
+      "sourceTimestamp": 5.791667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0277.avif",
+        "mobile": "mobile/0277.avif"
+      }
+    },
+    {
+      "index": 278,
+      "timestamp": 5.791666666666667,
+      "sourceFrameIndex": 139,
+      "sourceTimestamp": 5.791667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0278.avif",
+        "mobile": "mobile/0278.avif"
+      }
+    },
+    {
+      "index": 279,
+      "timestamp": 5.8125,
+      "sourceFrameIndex": 140,
+      "sourceTimestamp": 5.833333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0279.avif",
+        "mobile": "mobile/0279.avif"
+      }
+    },
+    {
+      "index": 280,
+      "timestamp": 5.833333333333333,
+      "sourceFrameIndex": 140,
+      "sourceTimestamp": 5.833333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0280.avif",
+        "mobile": "mobile/0280.avif"
+      }
+    },
+    {
+      "index": 281,
+      "timestamp": 5.854166666666667,
+      "sourceFrameIndex": 141,
+      "sourceTimestamp": 5.875,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0281.avif",
+        "mobile": "mobile/0281.avif"
+      }
+    },
+    {
+      "index": 282,
+      "timestamp": 5.875,
+      "sourceFrameIndex": 141,
+      "sourceTimestamp": 5.875,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0282.avif",
+        "mobile": "mobile/0282.avif"
+      }
+    },
+    {
+      "index": 283,
+      "timestamp": 5.895833333333333,
+      "sourceFrameIndex": 142,
+      "sourceTimestamp": 5.916667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0283.avif",
+        "mobile": "mobile/0283.avif"
+      }
+    },
+    {
+      "index": 284,
+      "timestamp": 5.916666666666667,
+      "sourceFrameIndex": 142,
+      "sourceTimestamp": 5.916667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0284.avif",
+        "mobile": "mobile/0284.avif"
+      }
+    },
+    {
+      "index": 285,
+      "timestamp": 5.9375,
+      "sourceFrameIndex": 143,
+      "sourceTimestamp": 5.958333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0285.avif",
+        "mobile": "mobile/0285.avif"
+      }
+    },
+    {
+      "index": 286,
+      "timestamp": 5.958333333333333,
+      "sourceFrameIndex": 143,
+      "sourceTimestamp": 5.958333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0286.avif",
+        "mobile": "mobile/0286.avif"
+      }
+    },
+    {
+      "index": 287,
+      "timestamp": 5.979166666666667,
+      "sourceFrameIndex": 144,
+      "sourceTimestamp": 6,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0287.avif",
+        "mobile": "mobile/0287.avif"
+      }
+    },
+    {
+      "index": 288,
+      "timestamp": 6,
+      "sourceFrameIndex": 144,
+      "sourceTimestamp": 6,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0288.avif",
+        "mobile": "mobile/0288.avif"
+      }
+    },
+    {
+      "index": 289,
+      "timestamp": 6.020833333333333,
+      "sourceFrameIndex": 145,
+      "sourceTimestamp": 6.041667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0289.avif",
+        "mobile": "mobile/0289.avif"
+      }
+    },
+    {
+      "index": 290,
+      "timestamp": 6.041666666666667,
+      "sourceFrameIndex": 145,
+      "sourceTimestamp": 6.041667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0290.avif",
+        "mobile": "mobile/0290.avif"
+      }
+    },
+    {
+      "index": 291,
+      "timestamp": 6.0625,
+      "sourceFrameIndex": 146,
+      "sourceTimestamp": 6.083333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0291.avif",
+        "mobile": "mobile/0291.avif"
+      }
+    },
+    {
+      "index": 292,
+      "timestamp": 6.083333333333333,
+      "sourceFrameIndex": 146,
+      "sourceTimestamp": 6.083333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0292.avif",
+        "mobile": "mobile/0292.avif"
+      }
+    },
+    {
+      "index": 293,
+      "timestamp": 6.104166666666667,
+      "sourceFrameIndex": 147,
+      "sourceTimestamp": 6.125,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0293.avif",
+        "mobile": "mobile/0293.avif"
+      }
+    },
+    {
+      "index": 294,
+      "timestamp": 6.125,
+      "sourceFrameIndex": 147,
+      "sourceTimestamp": 6.125,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0294.avif",
+        "mobile": "mobile/0294.avif"
+      }
+    },
+    {
+      "index": 295,
+      "timestamp": 6.145833333333333,
+      "sourceFrameIndex": 148,
+      "sourceTimestamp": 6.166667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0295.avif",
+        "mobile": "mobile/0295.avif"
+      }
+    },
+    {
+      "index": 296,
+      "timestamp": 6.166666666666667,
+      "sourceFrameIndex": 148,
+      "sourceTimestamp": 6.166667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0296.avif",
+        "mobile": "mobile/0296.avif"
+      }
+    },
+    {
+      "index": 297,
+      "timestamp": 6.1875,
+      "sourceFrameIndex": 149,
+      "sourceTimestamp": 6.208333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0297.avif",
+        "mobile": "mobile/0297.avif"
+      }
+    },
+    {
+      "index": 298,
+      "timestamp": 6.208333333333333,
+      "sourceFrameIndex": 149,
+      "sourceTimestamp": 6.208333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0298.avif",
+        "mobile": "mobile/0298.avif"
+      }
+    },
+    {
+      "index": 299,
+      "timestamp": 6.229166666666667,
+      "sourceFrameIndex": 150,
+      "sourceTimestamp": 6.25,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0299.avif",
+        "mobile": "mobile/0299.avif"
+      }
+    },
+    {
+      "index": 300,
+      "timestamp": 6.25,
+      "sourceFrameIndex": 150,
+      "sourceTimestamp": 6.25,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0300.avif",
+        "mobile": "mobile/0300.avif"
+      }
+    },
+    {
+      "index": 301,
+      "timestamp": 6.270833333333333,
+      "sourceFrameIndex": 151,
+      "sourceTimestamp": 6.291667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0301.avif",
+        "mobile": "mobile/0301.avif"
+      }
+    },
+    {
+      "index": 302,
+      "timestamp": 6.291666666666667,
+      "sourceFrameIndex": 151,
+      "sourceTimestamp": 6.291667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0302.avif",
+        "mobile": "mobile/0302.avif"
+      }
+    },
+    {
+      "index": 303,
+      "timestamp": 6.3125,
+      "sourceFrameIndex": 152,
+      "sourceTimestamp": 6.333333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0303.avif",
+        "mobile": "mobile/0303.avif"
+      }
+    },
+    {
+      "index": 304,
+      "timestamp": 6.333333333333333,
+      "sourceFrameIndex": 152,
+      "sourceTimestamp": 6.333333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0304.avif",
+        "mobile": "mobile/0304.avif"
+      }
+    },
+    {
+      "index": 305,
+      "timestamp": 6.354166666666667,
+      "sourceFrameIndex": 153,
+      "sourceTimestamp": 6.375,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0305.avif",
+        "mobile": "mobile/0305.avif"
+      }
+    },
+    {
+      "index": 306,
+      "timestamp": 6.375,
+      "sourceFrameIndex": 153,
+      "sourceTimestamp": 6.375,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0306.avif",
+        "mobile": "mobile/0306.avif"
+      }
+    },
+    {
+      "index": 307,
+      "timestamp": 6.395833333333333,
+      "sourceFrameIndex": 154,
+      "sourceTimestamp": 6.416667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0307.avif",
+        "mobile": "mobile/0307.avif"
+      }
+    },
+    {
+      "index": 308,
+      "timestamp": 6.416666666666667,
+      "sourceFrameIndex": 154,
+      "sourceTimestamp": 6.416667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0308.avif",
+        "mobile": "mobile/0308.avif"
+      }
+    },
+    {
+      "index": 309,
+      "timestamp": 6.4375,
+      "sourceFrameIndex": 155,
+      "sourceTimestamp": 6.458333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0309.avif",
+        "mobile": "mobile/0309.avif"
+      }
+    },
+    {
+      "index": 310,
+      "timestamp": 6.458333333333333,
+      "sourceFrameIndex": 155,
+      "sourceTimestamp": 6.458333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0310.avif",
+        "mobile": "mobile/0310.avif"
+      }
+    },
+    {
+      "index": 311,
+      "timestamp": 6.479166666666667,
+      "sourceFrameIndex": 156,
+      "sourceTimestamp": 6.5,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0311.avif",
+        "mobile": "mobile/0311.avif"
+      }
+    },
+    {
+      "index": 312,
+      "timestamp": 6.5,
+      "sourceFrameIndex": 156,
+      "sourceTimestamp": 6.5,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0312.avif",
+        "mobile": "mobile/0312.avif"
+      }
+    },
+    {
+      "index": 313,
+      "timestamp": 6.520833333333333,
+      "sourceFrameIndex": 157,
+      "sourceTimestamp": 6.541667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0313.avif",
+        "mobile": "mobile/0313.avif"
+      }
+    },
+    {
+      "index": 314,
+      "timestamp": 6.541666666666667,
+      "sourceFrameIndex": 157,
+      "sourceTimestamp": 6.541667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0314.avif",
+        "mobile": "mobile/0314.avif"
+      }
+    },
+    {
+      "index": 315,
+      "timestamp": 6.5625,
+      "sourceFrameIndex": 158,
+      "sourceTimestamp": 6.583333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0315.avif",
+        "mobile": "mobile/0315.avif"
+      }
+    },
+    {
+      "index": 316,
+      "timestamp": 6.583333333333333,
+      "sourceFrameIndex": 158,
+      "sourceTimestamp": 6.583333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0316.avif",
+        "mobile": "mobile/0316.avif"
+      }
+    },
+    {
+      "index": 317,
+      "timestamp": 6.604166666666667,
+      "sourceFrameIndex": 159,
+      "sourceTimestamp": 6.625,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0317.avif",
+        "mobile": "mobile/0317.avif"
+      }
+    },
+    {
+      "index": 318,
+      "timestamp": 6.625,
+      "sourceFrameIndex": 159,
+      "sourceTimestamp": 6.625,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0318.avif",
+        "mobile": "mobile/0318.avif"
+      }
+    },
+    {
+      "index": 319,
+      "timestamp": 6.645833333333333,
+      "sourceFrameIndex": 160,
+      "sourceTimestamp": 6.666667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0319.avif",
+        "mobile": "mobile/0319.avif"
+      }
+    },
+    {
+      "index": 320,
+      "timestamp": 6.666666666666667,
+      "sourceFrameIndex": 160,
+      "sourceTimestamp": 6.666667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0320.avif",
+        "mobile": "mobile/0320.avif"
+      }
+    },
+    {
+      "index": 321,
+      "timestamp": 6.6875,
+      "sourceFrameIndex": 161,
+      "sourceTimestamp": 6.708333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0321.avif",
+        "mobile": "mobile/0321.avif"
+      }
+    },
+    {
+      "index": 322,
+      "timestamp": 6.708333333333333,
+      "sourceFrameIndex": 161,
+      "sourceTimestamp": 6.708333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0322.avif",
+        "mobile": "mobile/0322.avif"
+      }
+    },
+    {
+      "index": 323,
+      "timestamp": 6.729166666666667,
+      "sourceFrameIndex": 162,
+      "sourceTimestamp": 6.75,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0323.avif",
+        "mobile": "mobile/0323.avif"
+      }
+    },
+    {
+      "index": 324,
+      "timestamp": 6.75,
+      "sourceFrameIndex": 162,
+      "sourceTimestamp": 6.75,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0324.avif",
+        "mobile": "mobile/0324.avif"
+      }
+    },
+    {
+      "index": 325,
+      "timestamp": 6.770833333333333,
+      "sourceFrameIndex": 163,
+      "sourceTimestamp": 6.791667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0325.avif",
+        "mobile": "mobile/0325.avif"
+      }
+    },
+    {
+      "index": 326,
+      "timestamp": 6.791666666666667,
+      "sourceFrameIndex": 163,
+      "sourceTimestamp": 6.791667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0326.avif",
+        "mobile": "mobile/0326.avif"
+      }
+    },
+    {
+      "index": 327,
+      "timestamp": 6.8125,
+      "sourceFrameIndex": 164,
+      "sourceTimestamp": 6.833333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0327.avif",
+        "mobile": "mobile/0327.avif"
+      }
+    },
+    {
+      "index": 328,
+      "timestamp": 6.833333333333333,
+      "sourceFrameIndex": 164,
+      "sourceTimestamp": 6.833333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0328.avif",
+        "mobile": "mobile/0328.avif"
+      }
+    },
+    {
+      "index": 329,
+      "timestamp": 6.854166666666667,
+      "sourceFrameIndex": 165,
+      "sourceTimestamp": 6.875,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0329.avif",
+        "mobile": "mobile/0329.avif"
+      }
+    },
+    {
+      "index": 330,
+      "timestamp": 6.875,
+      "sourceFrameIndex": 165,
+      "sourceTimestamp": 6.875,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0330.avif",
+        "mobile": "mobile/0330.avif"
+      }
+    },
+    {
+      "index": 331,
+      "timestamp": 6.895833333333333,
+      "sourceFrameIndex": 166,
+      "sourceTimestamp": 6.916667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0331.avif",
+        "mobile": "mobile/0331.avif"
+      }
+    },
+    {
+      "index": 332,
+      "timestamp": 6.916666666666667,
+      "sourceFrameIndex": 166,
+      "sourceTimestamp": 6.916667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0332.avif",
+        "mobile": "mobile/0332.avif"
+      }
+    },
+    {
+      "index": 333,
+      "timestamp": 6.9375,
+      "sourceFrameIndex": 167,
+      "sourceTimestamp": 6.958333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0333.avif",
+        "mobile": "mobile/0333.avif"
+      }
+    },
+    {
+      "index": 334,
+      "timestamp": 6.958333333333333,
+      "sourceFrameIndex": 167,
+      "sourceTimestamp": 6.958333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0334.avif",
+        "mobile": "mobile/0334.avif"
+      }
+    },
+    {
+      "index": 335,
+      "timestamp": 6.979166666666667,
+      "sourceFrameIndex": 168,
+      "sourceTimestamp": 7,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0335.avif",
+        "mobile": "mobile/0335.avif"
+      }
+    },
+    {
+      "index": 336,
+      "timestamp": 7,
+      "sourceFrameIndex": 168,
+      "sourceTimestamp": 7,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0336.avif",
+        "mobile": "mobile/0336.avif"
+      }
+    },
+    {
+      "index": 337,
+      "timestamp": 7.020833333333333,
+      "sourceFrameIndex": 169,
+      "sourceTimestamp": 7.041667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0337.avif",
+        "mobile": "mobile/0337.avif"
+      }
+    },
+    {
+      "index": 338,
+      "timestamp": 7.041666666666667,
+      "sourceFrameIndex": 169,
+      "sourceTimestamp": 7.041667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0338.avif",
+        "mobile": "mobile/0338.avif"
+      }
+    },
+    {
+      "index": 339,
+      "timestamp": 7.0625,
+      "sourceFrameIndex": 170,
+      "sourceTimestamp": 7.083333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0339.avif",
+        "mobile": "mobile/0339.avif"
+      }
+    },
+    {
+      "index": 340,
+      "timestamp": 7.083333333333333,
+      "sourceFrameIndex": 170,
+      "sourceTimestamp": 7.083333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0340.avif",
+        "mobile": "mobile/0340.avif"
+      }
+    },
+    {
+      "index": 341,
+      "timestamp": 7.104166666666667,
+      "sourceFrameIndex": 171,
+      "sourceTimestamp": 7.125,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0341.avif",
+        "mobile": "mobile/0341.avif"
+      }
+    },
+    {
+      "index": 342,
+      "timestamp": 7.125,
+      "sourceFrameIndex": 171,
+      "sourceTimestamp": 7.125,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0342.avif",
+        "mobile": "mobile/0342.avif"
+      }
+    },
+    {
+      "index": 343,
+      "timestamp": 7.145833333333333,
+      "sourceFrameIndex": 172,
+      "sourceTimestamp": 7.166667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0343.avif",
+        "mobile": "mobile/0343.avif"
+      }
+    },
+    {
+      "index": 344,
+      "timestamp": 7.166666666666667,
+      "sourceFrameIndex": 172,
+      "sourceTimestamp": 7.166667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0344.avif",
+        "mobile": "mobile/0344.avif"
+      }
+    },
+    {
+      "index": 345,
+      "timestamp": 7.1875,
+      "sourceFrameIndex": 173,
+      "sourceTimestamp": 7.208333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0345.avif",
+        "mobile": "mobile/0345.avif"
+      }
+    },
+    {
+      "index": 346,
+      "timestamp": 7.208333333333333,
+      "sourceFrameIndex": 173,
+      "sourceTimestamp": 7.208333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0346.avif",
+        "mobile": "mobile/0346.avif"
+      }
+    },
+    {
+      "index": 347,
+      "timestamp": 7.229166666666667,
+      "sourceFrameIndex": 174,
+      "sourceTimestamp": 7.25,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0347.avif",
+        "mobile": "mobile/0347.avif"
+      }
+    },
+    {
+      "index": 348,
+      "timestamp": 7.25,
+      "sourceFrameIndex": 174,
+      "sourceTimestamp": 7.25,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0348.avif",
+        "mobile": "mobile/0348.avif"
+      }
+    },
+    {
+      "index": 349,
+      "timestamp": 7.270833333333333,
+      "sourceFrameIndex": 175,
+      "sourceTimestamp": 7.291667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0349.avif",
+        "mobile": "mobile/0349.avif"
+      }
+    },
+    {
+      "index": 350,
+      "timestamp": 7.291666666666667,
+      "sourceFrameIndex": 175,
+      "sourceTimestamp": 7.291667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0350.avif",
+        "mobile": "mobile/0350.avif"
+      }
+    },
+    {
+      "index": 351,
+      "timestamp": 7.3125,
+      "sourceFrameIndex": 176,
+      "sourceTimestamp": 7.333333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0351.avif",
+        "mobile": "mobile/0351.avif"
+      }
+    },
+    {
+      "index": 352,
+      "timestamp": 7.333333333333333,
+      "sourceFrameIndex": 176,
+      "sourceTimestamp": 7.333333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0352.avif",
+        "mobile": "mobile/0352.avif"
+      }
+    },
+    {
+      "index": 353,
+      "timestamp": 7.354166666666667,
+      "sourceFrameIndex": 177,
+      "sourceTimestamp": 7.375,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0353.avif",
+        "mobile": "mobile/0353.avif"
+      }
+    },
+    {
+      "index": 354,
+      "timestamp": 7.375,
+      "sourceFrameIndex": 177,
+      "sourceTimestamp": 7.375,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0354.avif",
+        "mobile": "mobile/0354.avif"
+      }
+    },
+    {
+      "index": 355,
+      "timestamp": 7.395833333333333,
+      "sourceFrameIndex": 178,
+      "sourceTimestamp": 7.416667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0355.avif",
+        "mobile": "mobile/0355.avif"
+      }
+    },
+    {
+      "index": 356,
+      "timestamp": 7.416666666666667,
+      "sourceFrameIndex": 178,
+      "sourceTimestamp": 7.416667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0356.avif",
+        "mobile": "mobile/0356.avif"
+      }
+    },
+    {
+      "index": 357,
+      "timestamp": 7.4375,
+      "sourceFrameIndex": 179,
+      "sourceTimestamp": 7.458333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0357.avif",
+        "mobile": "mobile/0357.avif"
+      }
+    },
+    {
+      "index": 358,
+      "timestamp": 7.458333333333333,
+      "sourceFrameIndex": 179,
+      "sourceTimestamp": 7.458333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0358.avif",
+        "mobile": "mobile/0358.avif"
+      }
+    },
+    {
+      "index": 359,
+      "timestamp": 7.479166666666667,
+      "sourceFrameIndex": 180,
+      "sourceTimestamp": 7.5,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0359.avif",
+        "mobile": "mobile/0359.avif"
+      }
+    },
+    {
+      "index": 360,
+      "timestamp": 7.5,
+      "sourceFrameIndex": 180,
+      "sourceTimestamp": 7.5,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0360.avif",
+        "mobile": "mobile/0360.avif"
+      }
+    },
+    {
+      "index": 361,
+      "timestamp": 7.520833333333333,
+      "sourceFrameIndex": 181,
+      "sourceTimestamp": 7.541667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0361.avif",
+        "mobile": "mobile/0361.avif"
+      }
+    },
+    {
+      "index": 362,
+      "timestamp": 7.541666666666667,
+      "sourceFrameIndex": 181,
+      "sourceTimestamp": 7.541667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0362.avif",
+        "mobile": "mobile/0362.avif"
+      }
+    },
+    {
+      "index": 363,
+      "timestamp": 7.5625,
+      "sourceFrameIndex": 182,
+      "sourceTimestamp": 7.583333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0363.avif",
+        "mobile": "mobile/0363.avif"
+      }
+    },
+    {
+      "index": 364,
+      "timestamp": 7.583333333333333,
+      "sourceFrameIndex": 182,
+      "sourceTimestamp": 7.583333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0364.avif",
+        "mobile": "mobile/0364.avif"
+      }
+    },
+    {
+      "index": 365,
+      "timestamp": 7.604166666666667,
+      "sourceFrameIndex": 183,
+      "sourceTimestamp": 7.625,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0365.avif",
+        "mobile": "mobile/0365.avif"
+      }
+    },
+    {
+      "index": 366,
+      "timestamp": 7.625,
+      "sourceFrameIndex": 183,
+      "sourceTimestamp": 7.625,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0366.avif",
+        "mobile": "mobile/0366.avif"
+      }
+    },
+    {
+      "index": 367,
+      "timestamp": 7.645833333333333,
+      "sourceFrameIndex": 184,
+      "sourceTimestamp": 7.666667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0367.avif",
+        "mobile": "mobile/0367.avif"
+      }
+    },
+    {
+      "index": 368,
+      "timestamp": 7.666666666666667,
+      "sourceFrameIndex": 184,
+      "sourceTimestamp": 7.666667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0368.avif",
+        "mobile": "mobile/0368.avif"
+      }
+    },
+    {
+      "index": 369,
+      "timestamp": 7.6875,
+      "sourceFrameIndex": 185,
+      "sourceTimestamp": 7.708333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0369.avif",
+        "mobile": "mobile/0369.avif"
+      }
+    },
+    {
+      "index": 370,
+      "timestamp": 7.708333333333333,
+      "sourceFrameIndex": 185,
+      "sourceTimestamp": 7.708333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0370.avif",
+        "mobile": "mobile/0370.avif"
+      }
+    },
+    {
+      "index": 371,
+      "timestamp": 7.729166666666667,
+      "sourceFrameIndex": 186,
+      "sourceTimestamp": 7.75,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0371.avif",
+        "mobile": "mobile/0371.avif"
+      }
+    },
+    {
+      "index": 372,
+      "timestamp": 7.75,
+      "sourceFrameIndex": 186,
+      "sourceTimestamp": 7.75,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0372.avif",
+        "mobile": "mobile/0372.avif"
+      }
+    },
+    {
+      "index": 373,
+      "timestamp": 7.770833333333333,
+      "sourceFrameIndex": 187,
+      "sourceTimestamp": 7.791667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0373.avif",
+        "mobile": "mobile/0373.avif"
+      }
+    },
+    {
+      "index": 374,
+      "timestamp": 7.791666666666667,
+      "sourceFrameIndex": 187,
+      "sourceTimestamp": 7.791667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0374.avif",
+        "mobile": "mobile/0374.avif"
+      }
+    },
+    {
+      "index": 375,
+      "timestamp": 7.8125,
+      "sourceFrameIndex": 188,
+      "sourceTimestamp": 7.833333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0375.avif",
+        "mobile": "mobile/0375.avif"
+      }
+    },
+    {
+      "index": 376,
+      "timestamp": 7.833333333333333,
+      "sourceFrameIndex": 188,
+      "sourceTimestamp": 7.833333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0376.avif",
+        "mobile": "mobile/0376.avif"
+      }
+    },
+    {
+      "index": 377,
+      "timestamp": 7.854166666666667,
+      "sourceFrameIndex": 189,
+      "sourceTimestamp": 7.875,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0377.avif",
+        "mobile": "mobile/0377.avif"
+      }
+    },
+    {
+      "index": 378,
+      "timestamp": 7.875,
+      "sourceFrameIndex": 189,
+      "sourceTimestamp": 7.875,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0378.avif",
+        "mobile": "mobile/0378.avif"
+      }
+    },
+    {
+      "index": 379,
+      "timestamp": 7.895833333333333,
+      "sourceFrameIndex": 190,
+      "sourceTimestamp": 7.916667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0379.avif",
+        "mobile": "mobile/0379.avif"
+      }
+    },
+    {
+      "index": 380,
+      "timestamp": 7.916666666666667,
+      "sourceFrameIndex": 190,
+      "sourceTimestamp": 7.916667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0380.avif",
+        "mobile": "mobile/0380.avif"
+      }
+    },
+    {
+      "index": 381,
+      "timestamp": 7.9375,
+      "sourceFrameIndex": 191,
+      "sourceTimestamp": 7.958333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0381.avif",
+        "mobile": "mobile/0381.avif"
+      }
+    },
+    {
+      "index": 382,
+      "timestamp": 7.958333333333333,
+      "sourceFrameIndex": 191,
+      "sourceTimestamp": 7.958333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0382.avif",
+        "mobile": "mobile/0382.avif"
+      }
+    },
+    {
+      "index": 383,
+      "timestamp": 7.979166666666667,
+      "sourceFrameIndex": 192,
+      "sourceTimestamp": 8,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0383.avif",
+        "mobile": "mobile/0383.avif"
+      }
+    },
+    {
+      "index": 384,
+      "timestamp": 8,
+      "sourceFrameIndex": 192,
+      "sourceTimestamp": 8,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0384.avif",
+        "mobile": "mobile/0384.avif"
+      }
+    },
+    {
+      "index": 385,
+      "timestamp": 8.020833333333334,
+      "sourceFrameIndex": 193,
+      "sourceTimestamp": 8.041667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0385.avif",
+        "mobile": "mobile/0385.avif"
+      }
+    },
+    {
+      "index": 386,
+      "timestamp": 8.041666666666666,
+      "sourceFrameIndex": 193,
+      "sourceTimestamp": 8.041667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0386.avif",
+        "mobile": "mobile/0386.avif"
+      }
+    },
+    {
+      "index": 387,
+      "timestamp": 8.0625,
+      "sourceFrameIndex": 194,
+      "sourceTimestamp": 8.083333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0387.avif",
+        "mobile": "mobile/0387.avif"
+      }
+    },
+    {
+      "index": 388,
+      "timestamp": 8.083333333333334,
+      "sourceFrameIndex": 194,
+      "sourceTimestamp": 8.083333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0388.avif",
+        "mobile": "mobile/0388.avif"
+      }
+    },
+    {
+      "index": 389,
+      "timestamp": 8.104166666666666,
+      "sourceFrameIndex": 195,
+      "sourceTimestamp": 8.125,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0389.avif",
+        "mobile": "mobile/0389.avif"
+      }
+    },
+    {
+      "index": 390,
+      "timestamp": 8.125,
+      "sourceFrameIndex": 195,
+      "sourceTimestamp": 8.125,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0390.avif",
+        "mobile": "mobile/0390.avif"
+      }
+    },
+    {
+      "index": 391,
+      "timestamp": 8.145833333333334,
+      "sourceFrameIndex": 196,
+      "sourceTimestamp": 8.166667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0391.avif",
+        "mobile": "mobile/0391.avif"
+      }
+    },
+    {
+      "index": 392,
+      "timestamp": 8.166666666666666,
+      "sourceFrameIndex": 196,
+      "sourceTimestamp": 8.166667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0392.avif",
+        "mobile": "mobile/0392.avif"
+      }
+    },
+    {
+      "index": 393,
+      "timestamp": 8.1875,
+      "sourceFrameIndex": 197,
+      "sourceTimestamp": 8.208333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0393.avif",
+        "mobile": "mobile/0393.avif"
+      }
+    },
+    {
+      "index": 394,
+      "timestamp": 8.208333333333334,
+      "sourceFrameIndex": 197,
+      "sourceTimestamp": 8.208333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0394.avif",
+        "mobile": "mobile/0394.avif"
+      }
+    },
+    {
+      "index": 395,
+      "timestamp": 8.229166666666666,
+      "sourceFrameIndex": 198,
+      "sourceTimestamp": 8.25,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0395.avif",
+        "mobile": "mobile/0395.avif"
+      }
+    },
+    {
+      "index": 396,
+      "timestamp": 8.25,
+      "sourceFrameIndex": 198,
+      "sourceTimestamp": 8.25,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0396.avif",
+        "mobile": "mobile/0396.avif"
+      }
+    },
+    {
+      "index": 397,
+      "timestamp": 8.270833333333334,
+      "sourceFrameIndex": 199,
+      "sourceTimestamp": 8.291667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0397.avif",
+        "mobile": "mobile/0397.avif"
+      }
+    },
+    {
+      "index": 398,
+      "timestamp": 8.291666666666666,
+      "sourceFrameIndex": 199,
+      "sourceTimestamp": 8.291667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0398.avif",
+        "mobile": "mobile/0398.avif"
+      }
+    },
+    {
+      "index": 399,
+      "timestamp": 8.3125,
+      "sourceFrameIndex": 200,
+      "sourceTimestamp": 8.333333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0399.avif",
+        "mobile": "mobile/0399.avif"
+      }
+    },
+    {
+      "index": 400,
+      "timestamp": 8.333333333333334,
+      "sourceFrameIndex": 200,
+      "sourceTimestamp": 8.333333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0400.avif",
+        "mobile": "mobile/0400.avif"
+      }
+    },
+    {
+      "index": 401,
+      "timestamp": 8.354166666666666,
+      "sourceFrameIndex": 201,
+      "sourceTimestamp": 8.375,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0401.avif",
+        "mobile": "mobile/0401.avif"
+      }
+    },
+    {
+      "index": 402,
+      "timestamp": 8.375,
+      "sourceFrameIndex": 201,
+      "sourceTimestamp": 8.375,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0402.avif",
+        "mobile": "mobile/0402.avif"
+      }
+    },
+    {
+      "index": 403,
+      "timestamp": 8.395833333333334,
+      "sourceFrameIndex": 202,
+      "sourceTimestamp": 8.416667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0403.avif",
+        "mobile": "mobile/0403.avif"
+      }
+    },
+    {
+      "index": 404,
+      "timestamp": 8.416666666666666,
+      "sourceFrameIndex": 202,
+      "sourceTimestamp": 8.416667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0404.avif",
+        "mobile": "mobile/0404.avif"
+      }
+    },
+    {
+      "index": 405,
+      "timestamp": 8.4375,
+      "sourceFrameIndex": 203,
+      "sourceTimestamp": 8.458333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0405.avif",
+        "mobile": "mobile/0405.avif"
+      }
+    },
+    {
+      "index": 406,
+      "timestamp": 8.458333333333334,
+      "sourceFrameIndex": 203,
+      "sourceTimestamp": 8.458333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0406.avif",
+        "mobile": "mobile/0406.avif"
+      }
+    },
+    {
+      "index": 407,
+      "timestamp": 8.479166666666666,
+      "sourceFrameIndex": 204,
+      "sourceTimestamp": 8.5,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0407.avif",
+        "mobile": "mobile/0407.avif"
+      }
+    },
+    {
+      "index": 408,
+      "timestamp": 8.5,
+      "sourceFrameIndex": 204,
+      "sourceTimestamp": 8.5,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0408.avif",
+        "mobile": "mobile/0408.avif"
+      }
+    },
+    {
+      "index": 409,
+      "timestamp": 8.520833333333334,
+      "sourceFrameIndex": 205,
+      "sourceTimestamp": 8.541667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0409.avif",
+        "mobile": "mobile/0409.avif"
+      }
+    },
+    {
+      "index": 410,
+      "timestamp": 8.541666666666666,
+      "sourceFrameIndex": 205,
+      "sourceTimestamp": 8.541667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0410.avif",
+        "mobile": "mobile/0410.avif"
+      }
+    },
+    {
+      "index": 411,
+      "timestamp": 8.5625,
+      "sourceFrameIndex": 206,
+      "sourceTimestamp": 8.583333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0411.avif",
+        "mobile": "mobile/0411.avif"
+      }
+    },
+    {
+      "index": 412,
+      "timestamp": 8.583333333333334,
+      "sourceFrameIndex": 206,
+      "sourceTimestamp": 8.583333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0412.avif",
+        "mobile": "mobile/0412.avif"
+      }
+    },
+    {
+      "index": 413,
+      "timestamp": 8.604166666666666,
+      "sourceFrameIndex": 207,
+      "sourceTimestamp": 8.625,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0413.avif",
+        "mobile": "mobile/0413.avif"
+      }
+    },
+    {
+      "index": 414,
+      "timestamp": 8.625,
+      "sourceFrameIndex": 207,
+      "sourceTimestamp": 8.625,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0414.avif",
+        "mobile": "mobile/0414.avif"
+      }
+    },
+    {
+      "index": 415,
+      "timestamp": 8.645833333333334,
+      "sourceFrameIndex": 208,
+      "sourceTimestamp": 8.666667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0415.avif",
+        "mobile": "mobile/0415.avif"
+      }
+    },
+    {
+      "index": 416,
+      "timestamp": 8.666666666666666,
+      "sourceFrameIndex": 208,
+      "sourceTimestamp": 8.666667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0416.avif",
+        "mobile": "mobile/0416.avif"
+      }
+    },
+    {
+      "index": 417,
+      "timestamp": 8.6875,
+      "sourceFrameIndex": 209,
+      "sourceTimestamp": 8.708333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0417.avif",
+        "mobile": "mobile/0417.avif"
+      }
+    },
+    {
+      "index": 418,
+      "timestamp": 8.708333333333334,
+      "sourceFrameIndex": 209,
+      "sourceTimestamp": 8.708333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0418.avif",
+        "mobile": "mobile/0418.avif"
+      }
+    },
+    {
+      "index": 419,
+      "timestamp": 8.729166666666666,
+      "sourceFrameIndex": 210,
+      "sourceTimestamp": 8.75,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0419.avif",
+        "mobile": "mobile/0419.avif"
+      }
+    },
+    {
+      "index": 420,
+      "timestamp": 8.75,
+      "sourceFrameIndex": 210,
+      "sourceTimestamp": 8.75,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0420.avif",
+        "mobile": "mobile/0420.avif"
+      }
+    },
+    {
+      "index": 421,
+      "timestamp": 8.770833333333334,
+      "sourceFrameIndex": 211,
+      "sourceTimestamp": 8.791667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0421.avif",
+        "mobile": "mobile/0421.avif"
+      }
+    },
+    {
+      "index": 422,
+      "timestamp": 8.791666666666666,
+      "sourceFrameIndex": 211,
+      "sourceTimestamp": 8.791667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0422.avif",
+        "mobile": "mobile/0422.avif"
+      }
+    },
+    {
+      "index": 423,
+      "timestamp": 8.8125,
+      "sourceFrameIndex": 212,
+      "sourceTimestamp": 8.833333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0423.avif",
+        "mobile": "mobile/0423.avif"
+      }
+    },
+    {
+      "index": 424,
+      "timestamp": 8.833333333333334,
+      "sourceFrameIndex": 212,
+      "sourceTimestamp": 8.833333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0424.avif",
+        "mobile": "mobile/0424.avif"
+      }
+    },
+    {
+      "index": 425,
+      "timestamp": 8.854166666666666,
+      "sourceFrameIndex": 213,
+      "sourceTimestamp": 8.875,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0425.avif",
+        "mobile": "mobile/0425.avif"
+      }
+    },
+    {
+      "index": 426,
+      "timestamp": 8.875,
+      "sourceFrameIndex": 213,
+      "sourceTimestamp": 8.875,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0426.avif",
+        "mobile": "mobile/0426.avif"
+      }
+    },
+    {
+      "index": 427,
+      "timestamp": 8.895833333333334,
+      "sourceFrameIndex": 214,
+      "sourceTimestamp": 8.916667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0427.avif",
+        "mobile": "mobile/0427.avif"
+      }
+    },
+    {
+      "index": 428,
+      "timestamp": 8.916666666666666,
+      "sourceFrameIndex": 214,
+      "sourceTimestamp": 8.916667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0428.avif",
+        "mobile": "mobile/0428.avif"
+      }
+    },
+    {
+      "index": 429,
+      "timestamp": 8.9375,
+      "sourceFrameIndex": 215,
+      "sourceTimestamp": 8.958333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0429.avif",
+        "mobile": "mobile/0429.avif"
+      }
+    },
+    {
+      "index": 430,
+      "timestamp": 8.958333333333334,
+      "sourceFrameIndex": 215,
+      "sourceTimestamp": 8.958333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0430.avif",
+        "mobile": "mobile/0430.avif"
+      }
+    },
+    {
+      "index": 431,
+      "timestamp": 8.979166666666666,
+      "sourceFrameIndex": 216,
+      "sourceTimestamp": 9,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0431.avif",
+        "mobile": "mobile/0431.avif"
+      }
+    },
+    {
+      "index": 432,
+      "timestamp": 9,
+      "sourceFrameIndex": 216,
+      "sourceTimestamp": 9,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0432.avif",
+        "mobile": "mobile/0432.avif"
+      }
+    },
+    {
+      "index": 433,
+      "timestamp": 9.020833333333334,
+      "sourceFrameIndex": 217,
+      "sourceTimestamp": 9.041667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0433.avif",
+        "mobile": "mobile/0433.avif"
+      }
+    },
+    {
+      "index": 434,
+      "timestamp": 9.041666666666666,
+      "sourceFrameIndex": 217,
+      "sourceTimestamp": 9.041667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0434.avif",
+        "mobile": "mobile/0434.avif"
+      }
+    },
+    {
+      "index": 435,
+      "timestamp": 9.0625,
+      "sourceFrameIndex": 218,
+      "sourceTimestamp": 9.083333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0435.avif",
+        "mobile": "mobile/0435.avif"
+      }
+    },
+    {
+      "index": 436,
+      "timestamp": 9.083333333333334,
+      "sourceFrameIndex": 218,
+      "sourceTimestamp": 9.083333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0436.avif",
+        "mobile": "mobile/0436.avif"
+      }
+    },
+    {
+      "index": 437,
+      "timestamp": 9.104166666666666,
+      "sourceFrameIndex": 219,
+      "sourceTimestamp": 9.125,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0437.avif",
+        "mobile": "mobile/0437.avif"
+      }
+    },
+    {
+      "index": 438,
+      "timestamp": 9.125,
+      "sourceFrameIndex": 219,
+      "sourceTimestamp": 9.125,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0438.avif",
+        "mobile": "mobile/0438.avif"
+      }
+    },
+    {
+      "index": 439,
+      "timestamp": 9.145833333333334,
+      "sourceFrameIndex": 220,
+      "sourceTimestamp": 9.166667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0439.avif",
+        "mobile": "mobile/0439.avif"
+      }
+    },
+    {
+      "index": 440,
+      "timestamp": 9.166666666666666,
+      "sourceFrameIndex": 220,
+      "sourceTimestamp": 9.166667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0440.avif",
+        "mobile": "mobile/0440.avif"
+      }
+    },
+    {
+      "index": 441,
+      "timestamp": 9.1875,
+      "sourceFrameIndex": 221,
+      "sourceTimestamp": 9.208333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0441.avif",
+        "mobile": "mobile/0441.avif"
+      }
+    },
+    {
+      "index": 442,
+      "timestamp": 9.208333333333334,
+      "sourceFrameIndex": 221,
+      "sourceTimestamp": 9.208333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0442.avif",
+        "mobile": "mobile/0442.avif"
+      }
+    },
+    {
+      "index": 443,
+      "timestamp": 9.229166666666666,
+      "sourceFrameIndex": 222,
+      "sourceTimestamp": 9.25,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0443.avif",
+        "mobile": "mobile/0443.avif"
+      }
+    },
+    {
+      "index": 444,
+      "timestamp": 9.25,
+      "sourceFrameIndex": 222,
+      "sourceTimestamp": 9.25,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0444.avif",
+        "mobile": "mobile/0444.avif"
+      }
+    },
+    {
+      "index": 445,
+      "timestamp": 9.270833333333334,
+      "sourceFrameIndex": 223,
+      "sourceTimestamp": 9.291667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0445.avif",
+        "mobile": "mobile/0445.avif"
+      }
+    },
+    {
+      "index": 446,
+      "timestamp": 9.291666666666666,
+      "sourceFrameIndex": 223,
+      "sourceTimestamp": 9.291667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0446.avif",
+        "mobile": "mobile/0446.avif"
+      }
+    },
+    {
+      "index": 447,
+      "timestamp": 9.3125,
+      "sourceFrameIndex": 224,
+      "sourceTimestamp": 9.333333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0447.avif",
+        "mobile": "mobile/0447.avif"
+      }
+    },
+    {
+      "index": 448,
+      "timestamp": 9.333333333333334,
+      "sourceFrameIndex": 224,
+      "sourceTimestamp": 9.333333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0448.avif",
+        "mobile": "mobile/0448.avif"
+      }
+    },
+    {
+      "index": 449,
+      "timestamp": 9.354166666666666,
+      "sourceFrameIndex": 225,
+      "sourceTimestamp": 9.375,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0449.avif",
+        "mobile": "mobile/0449.avif"
+      }
+    },
+    {
+      "index": 450,
+      "timestamp": 9.375,
+      "sourceFrameIndex": 225,
+      "sourceTimestamp": 9.375,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0450.avif",
+        "mobile": "mobile/0450.avif"
+      }
+    },
+    {
+      "index": 451,
+      "timestamp": 9.395833333333334,
+      "sourceFrameIndex": 226,
+      "sourceTimestamp": 9.416667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0451.avif",
+        "mobile": "mobile/0451.avif"
+      }
+    },
+    {
+      "index": 452,
+      "timestamp": 9.416666666666666,
+      "sourceFrameIndex": 226,
+      "sourceTimestamp": 9.416667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0452.avif",
+        "mobile": "mobile/0452.avif"
+      }
+    },
+    {
+      "index": 453,
+      "timestamp": 9.4375,
+      "sourceFrameIndex": 227,
+      "sourceTimestamp": 9.458333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0453.avif",
+        "mobile": "mobile/0453.avif"
+      }
+    },
+    {
+      "index": 454,
+      "timestamp": 9.458333333333334,
+      "sourceFrameIndex": 227,
+      "sourceTimestamp": 9.458333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0454.avif",
+        "mobile": "mobile/0454.avif"
+      }
+    },
+    {
+      "index": 455,
+      "timestamp": 9.479166666666666,
+      "sourceFrameIndex": 228,
+      "sourceTimestamp": 9.5,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0455.avif",
+        "mobile": "mobile/0455.avif"
+      }
+    },
+    {
+      "index": 456,
+      "timestamp": 9.5,
+      "sourceFrameIndex": 228,
+      "sourceTimestamp": 9.5,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0456.avif",
+        "mobile": "mobile/0456.avif"
+      }
+    },
+    {
+      "index": 457,
+      "timestamp": 9.520833333333334,
+      "sourceFrameIndex": 229,
+      "sourceTimestamp": 9.541667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0457.avif",
+        "mobile": "mobile/0457.avif"
+      }
+    },
+    {
+      "index": 458,
+      "timestamp": 9.541666666666666,
+      "sourceFrameIndex": 229,
+      "sourceTimestamp": 9.541667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0458.avif",
+        "mobile": "mobile/0458.avif"
+      }
+    },
+    {
+      "index": 459,
+      "timestamp": 9.5625,
+      "sourceFrameIndex": 230,
+      "sourceTimestamp": 9.583333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0459.avif",
+        "mobile": "mobile/0459.avif"
+      }
+    },
+    {
+      "index": 460,
+      "timestamp": 9.583333333333334,
+      "sourceFrameIndex": 230,
+      "sourceTimestamp": 9.583333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0460.avif",
+        "mobile": "mobile/0460.avif"
+      }
+    },
+    {
+      "index": 461,
+      "timestamp": 9.604166666666666,
+      "sourceFrameIndex": 231,
+      "sourceTimestamp": 9.625,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0461.avif",
+        "mobile": "mobile/0461.avif"
+      }
+    },
+    {
+      "index": 462,
+      "timestamp": 9.625,
+      "sourceFrameIndex": 231,
+      "sourceTimestamp": 9.625,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0462.avif",
+        "mobile": "mobile/0462.avif"
+      }
+    },
+    {
+      "index": 463,
+      "timestamp": 9.645833333333334,
+      "sourceFrameIndex": 232,
+      "sourceTimestamp": 9.666667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0463.avif",
+        "mobile": "mobile/0463.avif"
+      }
+    },
+    {
+      "index": 464,
+      "timestamp": 9.666666666666666,
+      "sourceFrameIndex": 232,
+      "sourceTimestamp": 9.666667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0464.avif",
+        "mobile": "mobile/0464.avif"
+      }
+    },
+    {
+      "index": 465,
+      "timestamp": 9.6875,
+      "sourceFrameIndex": 233,
+      "sourceTimestamp": 9.708333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0465.avif",
+        "mobile": "mobile/0465.avif"
+      }
+    },
+    {
+      "index": 466,
+      "timestamp": 9.708333333333334,
+      "sourceFrameIndex": 233,
+      "sourceTimestamp": 9.708333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0466.avif",
+        "mobile": "mobile/0466.avif"
+      }
+    },
+    {
+      "index": 467,
+      "timestamp": 9.729166666666666,
+      "sourceFrameIndex": 234,
+      "sourceTimestamp": 9.75,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0467.avif",
+        "mobile": "mobile/0467.avif"
+      }
+    },
+    {
+      "index": 468,
+      "timestamp": 9.75,
+      "sourceFrameIndex": 234,
+      "sourceTimestamp": 9.75,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0468.avif",
+        "mobile": "mobile/0468.avif"
+      }
+    },
+    {
+      "index": 469,
+      "timestamp": 9.770833333333334,
+      "sourceFrameIndex": 235,
+      "sourceTimestamp": 9.791667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0469.avif",
+        "mobile": "mobile/0469.avif"
+      }
+    },
+    {
+      "index": 470,
+      "timestamp": 9.791666666666666,
+      "sourceFrameIndex": 235,
+      "sourceTimestamp": 9.791667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0470.avif",
+        "mobile": "mobile/0470.avif"
+      }
+    },
+    {
+      "index": 471,
+      "timestamp": 9.8125,
+      "sourceFrameIndex": 236,
+      "sourceTimestamp": 9.833333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0471.avif",
+        "mobile": "mobile/0471.avif"
+      }
+    },
+    {
+      "index": 472,
+      "timestamp": 9.833333333333334,
+      "sourceFrameIndex": 236,
+      "sourceTimestamp": 9.833333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0472.avif",
+        "mobile": "mobile/0472.avif"
+      }
+    },
+    {
+      "index": 473,
+      "timestamp": 9.854166666666666,
+      "sourceFrameIndex": 237,
+      "sourceTimestamp": 9.875,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0473.avif",
+        "mobile": "mobile/0473.avif"
+      }
+    },
+    {
+      "index": 474,
+      "timestamp": 9.875,
+      "sourceFrameIndex": 237,
+      "sourceTimestamp": 9.875,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0474.avif",
+        "mobile": "mobile/0474.avif"
+      }
+    },
+    {
+      "index": 475,
+      "timestamp": 9.895833333333334,
+      "sourceFrameIndex": 238,
+      "sourceTimestamp": 9.916667,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0475.avif",
+        "mobile": "mobile/0475.avif"
+      }
+    },
+    {
+      "index": 476,
+      "timestamp": 9.916666666666666,
+      "sourceFrameIndex": 238,
+      "sourceTimestamp": 9.916667,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0476.avif",
+        "mobile": "mobile/0476.avif"
+      }
+    },
+    {
+      "index": 477,
+      "timestamp": 9.9375,
+      "sourceFrameIndex": 239,
+      "sourceTimestamp": 9.958333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0477.avif",
+        "mobile": "mobile/0477.avif"
+      }
+    },
+    {
+      "index": 478,
+      "timestamp": 9.958333333333334,
+      "sourceFrameIndex": 239,
+      "sourceTimestamp": 9.958333,
+      "interpolated": false,
+      "paths": {
+        "desktop": "desktop/0478.avif",
+        "mobile": "mobile/0478.avif"
+      }
+    },
+    {
+      "index": 479,
+      "timestamp": 9.979166666666666,
+      "sourceFrameIndex": 239,
+      "sourceTimestamp": 9.958333,
+      "interpolated": true,
+      "paths": {
+        "desktop": "desktop/0479.avif",
+        "mobile": "mobile/0479.avif"
+      }
+    }
+  ],
   "processing": {
     "method": "border-seeded checkerboard segmentation with neutral-tile clustering, connected-background flood fill, edge alpha refinement and bounded AVIF premultiplication",
     "limitations": [
@@ -147,5 +5429,5 @@
     "seamless": false,
     "note": "First and last views are similar but vehicle position, scale and body details differ slightly. Hold frame 239; reverse only on user scroll."
   },
-  "productionFrameBytes": 23524278
+  "productionFrameBytes": 23868547
 }

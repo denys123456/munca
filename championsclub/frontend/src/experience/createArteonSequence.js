@@ -182,7 +182,14 @@ export function createArteonSequence(host, callbacks) {
   function applyProgress(value) {
     progress = Math.max(0, Math.min(1, value))
     visualProgress = progress
-    const frame = frameAtProgress(progress, manifest?.frameCount ?? deliveryFrameCount)
+    const frame = manifest?.frames?.length
+      ? (() => {
+        const targetTime = progress * (manifest.source?.duration ?? manifest.frames[manifest.frames.length - 1].timestamp)
+        let low = 0; let high = manifest.frames.length - 1
+        while (low < high) { const middle = Math.ceil((low + high) / 2); if (manifest.frames[middle].timestamp < targetTime) low = middle; else high = middle - 1 }
+        return Math.min(manifest.frames.length - 1, Math.max(0, low + (manifest.frames[low]?.timestamp < targetTime ? 1 : 0)))
+      })()
+      : frameAtProgress(progress, manifest?.frameCount ?? deliveryFrameCount)
     const next = reducedMotion ? chapterFrames.reduce((closest, candidate) => Math.abs(candidate - frame) < Math.abs(closest - frame) ? candidate : closest, 0) : frame
     direction = next === requested ? direction : Math.sign(next - requested)
     const changed = next !== requested
@@ -232,7 +239,7 @@ export function createArteonSequence(host, callbacks) {
     .then((response) => { if (!response.ok) throw new Error('Cinematic manifest could not load.'); return response.json() })
     .then((value) => {
       if (disposed) return
-      if (value.frameCount < 480 || value.fps !== deliveryFps || !value.alpha || !value.variants?.length) throw new Error('Cinematic manifest is incompatible.')
+      if (value.frameCount < 480 || value.fps !== deliveryFps || value.frames?.length !== value.frameCount || !value.alpha || !value.variants?.length) throw new Error('Cinematic manifest is incompatible.')
       manifest = value
       variant = manifest.variants.find((item) => item.name === (compact ? 'mobile' : 'desktop'))
       if (!variant) throw new Error('Cinematic resolution is unavailable.')
@@ -252,7 +259,7 @@ export function createArteonSequence(host, callbacks) {
         cachedFrames: cache.size, cacheLimit, inFlight: requests.size, queued: queue.length, variant: variant?.name,
         decodedBytes: cache.size * (variant?.width ?? 0) * (variant?.height ?? 0) * 4,
         canvasBytes: canvas.width * canvas.height * 4, decodeMeanMs: decodes ? decodeTotal / decodes : 0, decodeMaxMs: decodeMax, drawMaxMs: drawMax,
-        reducedMotion, frameCount: manifest?.frameCount, sourceTime: displayed / (manifest?.fps ?? deliveryFps), targetProgress, visualProgress, momentum, buffering: requested !== displayed }
+        reducedMotion, frameCount: manifest?.frameCount, sourceTime: manifest?.frames?.[displayed]?.timestamp ?? displayed / (manifest?.fps ?? deliveryFps), targetProgress, visualProgress, momentum, buffering: requested !== displayed }
     },
     destroy() {
       disposed = true

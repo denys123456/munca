@@ -62,8 +62,8 @@ export async function matteFrame(rgb, width, height, time = 0) {
     let alpha = background[p] ? 0 : 1
     const y = Math.floor(p / width)
     const exterior = time < 5.2 || time > 8.4
-    if (alpha && exterior && y > height * .70 && Math.min(r, g, b) > 55 && Math.max(r, g, b) - Math.min(r, g, b) < 34) {
-      alpha *= 1 - smooth(height * .70, height * .90, y)
+    if (alpha && exterior && y > height * .70 && Math.min(r, g, b) > 35 && Math.max(r, g, b) - Math.min(r, g, b) < 34) {
+      alpha *= 1 - smooth(height * .70, height * .88, y)
     }
     if (alpha && exterior && y > height * .89) alpha = 0
     if (alpha && nearest < 92 && Math.max(r, g, b) > 165) alpha = smooth(45, 92, nearest)

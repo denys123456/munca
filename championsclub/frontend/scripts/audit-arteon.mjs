@@ -1,10 +1,19 @@
 import sharp from 'sharp'
-import { readFileSync, writeFileSync, statSync, readdirSync } from 'node:fs'
+import { readFileSync, writeFileSync, statSync, readdirSync, existsSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import assert from 'node:assert/strict'
 
 const manifest = JSON.parse(readFileSync('public/media/arteon/manifest.json'))
 assert.equal(createHash('sha256').update(readFileSync(`../../${manifest.source.path.split('/').pop()}`)).digest('hex'), manifest.source.sha256)
+assert.equal(manifest.frames.length, manifest.frameCount)
+for (let index = 0; index < manifest.frames.length; index++) {
+  const frame = manifest.frames[index]
+  assert.equal(frame.index, index)
+  assert.ok(Number.isFinite(frame.timestamp) && (index === 0 || frame.timestamp > manifest.frames[index - 1].timestamp))
+  assert.ok(Number.isFinite(frame.sourceTimestamp))
+  assert.ok(frame.sourceFrameIndex >= 0 && frame.sourceFrameIndex < manifest.sourceFrameCount)
+  for (const variant of manifest.variants) assert.ok(existsSync(`public/media/arteon/${frame.paths[variant.name]}`), `Missing manifest asset: ${frame.paths[variant.name]}`)
+}
 const report = { sourceUnchanged: true, checkedFrames: 0, opaqueMacroFrames: [], productionBytes: statSync('public/media/arteon/manifest.json').size, greenPixels: 0, maximumGreenExcess: 0, samples: [] }
 for (const variant of manifest.variants) {
   const files = readdirSync(`public/media/arteon/${variant.name}`).filter((name) => name.endsWith(`.${manifest.format}`))
