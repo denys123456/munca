@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto'
 import assert from 'node:assert/strict'
 
 const manifest = JSON.parse(readFileSync('public/media/arteon/manifest.json'))
-assert.equal(createHash('sha256').update(readFileSync('../../arteon.mp4')).digest('hex'), manifest.source.sha256)
+assert.equal(createHash('sha256').update(readFileSync(`../../${manifest.source.path.split('/').pop()}`)).digest('hex'), manifest.source.sha256)
 const report = { sourceUnchanged: true, checkedFrames: 0, opaqueMacroFrames: [], productionBytes: statSync('public/media/arteon/manifest.json').size, greenPixels: 0, maximumGreenExcess: 0, samples: [] }
 for (const variant of manifest.variants) {
   const files = readdirSync(`public/media/arteon/${variant.name}`).filter((name) => name.endsWith(`.${manifest.format}`))

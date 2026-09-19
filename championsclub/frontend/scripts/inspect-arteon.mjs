@@ -4,7 +4,7 @@ import { resolve } from 'node:path'
 import ffmpeg from 'ffmpeg-static'
 import probe from 'ffprobe-static'
 
-const source = resolve(process.argv[2] ?? '../../arteon.mp4')
+const source = resolve(process.argv[2] ?? '../../arteonCorect.mp4')
 const output = resolve('artifacts/arteon')
 mkdirSync(output, { recursive: true })
 const metadata = execFileSync(probe.path, ['-v', 'quiet', '-show_format', '-show_streams', '-of', 'json', source])

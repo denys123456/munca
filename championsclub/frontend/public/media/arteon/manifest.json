@@ -1,9 +1,9 @@
 {
   "version": 1,
   "source": {
-    "path": "arteon.mp4",
-    "sha256": "86224d48e388fd2b1408d9841b3fa42de3da403f5061fa56bd37374a4fae1cf1",
-    "bytes": 5272371,
+    "path": "arteonCorect.mp4",
+    "sha256": "61e032fe4ee0a556d6433c1ac56dd0fd907b0b01231ae3c11c676637d481514b",
+    "bytes": 4899569,
     "duration": 10,
     "containerDuration": 10.006,
     "width": 1280,
@@ -29,7 +29,7 @@
       "width": 1280,
       "height": 720,
       "quality": 55,
-      "bytes": 16270168,
+      "bytes": 16418006,
       "path": "desktop/{frame}.avif"
     },
     {
@@ -37,7 +37,7 @@
       "width": 640,
       "height": 360,
       "quality": 50,
-      "bytes": 6647669,
+      "bytes": 7106272,
       "path": "mobile/{frame}.avif"
     }
   ],
@@ -58,10 +58,9 @@
   ],
   "scrollVh": 900,
   "processing": {
-    "method": "adaptive green chroma matte with dark-surface protection, RGB despill, temporal alpha refinement and fitted gray gradient difference matte for engine",
+    "method": "border-seeded checkerboard segmentation with neutral-tile clustering, connected-background flood fill, edge alpha refinement and bounded AVIF premultiplication",
     "limitations": [
-      "The source bakes cross-dissolves into opaque footage; transition mattes are approximate.",
-      "Fine gray-on-gray metal edges can retain some matte fringe.",
+      "The source contains baked checkerboard pixels at anti-aliased subject edges; narrow neutral fringes may remain in high-contrast transition frames.",
       "Interpolated frames preserve motion timing but are not additional source photography."
     ]
   },
@@ -148,5 +147,5 @@
     "seamless": false,
     "note": "First and last views are similar but vehicle position, scale and body details differ slightly. Hold frame 239; reverse only on user scroll."
   },
-  "productionFrameBytes": 22917837
+  "productionFrameBytes": 23524278
 }

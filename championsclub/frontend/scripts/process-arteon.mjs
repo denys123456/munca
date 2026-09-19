@@ -9,16 +9,14 @@ import { encodeArteon } from './encode-arteon.mjs'
 import { chapterFrames } from '../src/experience/arteonTimeline.js'
 
 const project = resolve('../..')
-const source = resolve(process.argv[2] ?? '../../arteon.mp4')
+const source = resolve(process.argv[2] ?? '../../arteonCorect.mp4')
 const output = resolve('public/media/arteon')
 if (source.startsWith(output)) throw new Error('The source must remain outside the production output.')
 const hash = () => createHash('sha256').update(readFileSync(source)).digest('hex')
 const sourceHash = hash()
 const metadata = JSON.parse(execFileSync(probe.path, ['-v', 'quiet', '-show_format', '-show_streams', '-of', 'json', source], { encoding: 'utf8' }))
 const stream = metadata.streams.find((item) => item.codec_type === 'video')
-if (stream.width !== 1280 || stream.height !== 720 || stream.avg_frame_rate !== '24/1') {
-  throw new Error('This matte and interpolation manifest were reviewed for the supplied 1280x720 24fps Arteon source. Reinspect different footage before processing.')
-}
+if (stream.width !== 1280 || stream.height !== 720 || stream.avg_frame_rate !== '24/1') throw new Error('Expected the reviewed 1280x720 24fps arteonCorect source.')
 const sourceHasAlpha = /^(yuva|gbrap|rgba|bgra|argb|abgr)/.test(stream.pix_fmt) || stream.tags?.alpha_mode === '1'
 const variants = [{ name: 'desktop', width: 1280, height: 720, quality: 55 }, { name: 'mobile', width: 640, height: 360, quality: 50 }]
 for (const variant of variants) mkdirSync(`${output}/${variant.name}`, { recursive: true })
@@ -62,7 +60,7 @@ const manifest = {
   source: { path: relative(project, source).replaceAll('\\', '/'), sha256: sourceHash, bytes: statSync(source).size, duration: Number(stream.duration), containerDuration: Number(metadata.format.duration), width: stream.width, height: stream.height, fps: 24, codec: stream.codec_name, pixelFormat: stream.pix_fmt, hasAlpha: sourceHasAlpha },
   frameCount: count, fps: deliveryFps, sourceFrameCount: Number(stream.nb_frames), sourceFps: 24, interpolation: 'motion-compensated minterpolate from original 24fps source', firstFrame: 0, lastFrame: count - 1, lastFrameTime: (count - 1) / deliveryFps,
   alpha: true, format: 'avif', variants, chapterFrames, scrollVh: 900,
-  processing: { method: sourceHasAlpha ? 'source-alpha-preserved' : 'adaptive green chroma matte with dark-surface protection, RGB despill, temporal alpha refinement and fitted gray gradient difference matte for engine', limitations: ['The source bakes cross-dissolves into opaque footage; transition mattes are approximate.', 'Fine gray-on-gray metal edges can retain some matte fringe.', 'Interpolated frames preserve motion timing but are not additional source photography.'] },
+  processing: { method: sourceHasAlpha ? 'source-alpha-preserved' : 'border-seeded checkerboard segmentation with neutral-tile clustering, connected-background flood fill, edge alpha refinement and bounded AVIF premultiplication', limitations: ['The source contains baked checkerboard pixels at anti-aliased subject edges; narrow neutral fringes may remain in high-contrast transition frames.', 'Interpolated frames preserve motion timing but are not additional source photography.'] },
   events: [
     { event: 'complete vehicle and orbit', start: 0, end: 3.75, frames: [0, 179] },
     { event: 'hood opening', start: 3.75, end: 4.625, frames: [180, 221] },

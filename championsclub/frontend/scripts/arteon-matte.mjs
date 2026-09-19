@@ -1,111 +1,76 @@
 import sharp from 'sharp'
 
 const clamp = (value) => Math.max(0, Math.min(1, value))
-const smooth = (a, b, value) => { const t = clamp((value - a) / (b - a)); return t * t * (3 - 2 * t) }
-const basis = (x, y) => [1, x, y, x * x, x * y, y * y, x ** 4, y ** 4, x * x * y * y]
+const smooth = (a, b, value) => { const t = clamp((value - a) / Math.max(1e-6, b - a)); return t * t * (3 - 2 * t) }
+const distance = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2])
 
-function solve(matrix, vector) {
-  const n = vector.length
-  const rows = matrix.map((row, i) => [...row, vector[i]])
-  for (let i = 0; i < n; i++) {
-    let pivot = i
-    for (let j = i + 1; j < n; j++) if (Math.abs(rows[j][i]) > Math.abs(rows[pivot][i])) pivot = j
-    ;[rows[i], rows[pivot]] = [rows[pivot], rows[i]]
-    const scale = rows[i][i] || 1e-8
-    for (let k = i; k <= n; k++) rows[i][k] /= scale
-    for (let j = 0; j < n; j++) {
-      if (j === i) continue
-      const factor = rows[j][i]
-      for (let k = i; k <= n; k++) rows[j][k] -= factor * rows[i][k]
-    }
+function sampleBackground(rgb, width, height) {
+  const samples = []
+  const push = (x, y) => { const p = (y * width + x) * 3; samples.push([rgb[p], rgb[p + 1], rgb[p + 2]]) }
+  for (let x = 0; x < width; x += 8) { push(x, 0); push(x, 1); push(x, height - 2); push(x, height - 1) }
+  for (let y = 0; y < height; y += 8) { push(0, y); push(1, y); push(width - 2, y); push(width - 1, y) }
+  const bright = samples.filter(([r, g, b]) => r > 175 && g > 175 && b > 175)
+  if (bright.length < 20) return null
+  const clusters = []
+  for (const sample of bright) {
+    const cluster = clusters.find((item) => distance(item.center, sample) < 35)
+    if (!cluster) clusters.push({ center: [...sample], count: 1 })
+    else { cluster.center = cluster.center.map((value, index) => (value * cluster.count + sample[index]) / (cluster.count + 1)); cluster.count++ }
   }
-  return rows.map((row) => row[n])
+  clusters.sort((a, b) => b.count - a.count)
+  return clusters.length > 1 ? [clusters[0].center, clusters[1].center] : [clusters[0].center, clusters[0].center]
 }
 
-// The engine has a neutral blue-gray gradient plate. Fit that plate only from
-// flat, bright background patches; never key the car by luminance.
-function fitPlate(rgb, width, height, transition) {
-  let samples = []
-  for (let y = 8; y < height - 8; y += 12) for (let x = 8; x < width - 8; x += 12) {
-    const values = [[], [], []]
-    for (const dy of [-3, 0, 3]) for (const dx of [-3, 0, 3]) {
-      const p = ((y + dy) * width + x + dx) * 3
-      for (let c = 0; c < 3; c++) values[c].push(rgb[p + c])
-    }
-    const means = values.map((v) => v.reduce((a, b) => a + b, 0) / v.length)
-    const variation = Math.max(...values.map((v) => Math.max(...v) - Math.min(...v)))
-    // 4:2:0 compression and the studio gradient make the plate vary by more
-    // than five levels even in flat areas.  A slightly wider sample gate gives
-    // the regression enough points to model the gray engine stage without
-    // treating dark mechanical surfaces as background.
-    if (variation < 15 && means[0] > (transition ? 55 : 125) && means[2] - means[0] > 0 && means[2] - means[0] < (transition ? 100 : 38) && means[1] >= means[0] - 2) {
-      samples.push({ b: basis(x / width * 2 - 1, y / height * 2 - 1), color: means })
-    }
-  }
-  if (samples.length < 40) return null
-  let coefficients
-  for (let pass = 0; pass < 4; pass++) {
-    const matrix = Array.from({ length: 9 }, () => Array(9).fill(0))
-    const vectors = Array.from({ length: 3 }, () => Array(9).fill(0))
-    for (const sample of samples) for (let i = 0; i < 9; i++) {
-      for (let j = 0; j < 9; j++) matrix[i][j] += sample.b[i] * sample.b[j]
-      for (let c = 0; c < 3; c++) vectors[c][i] += sample.b[i] * sample.color[c]
-    }
-    coefficients = vectors.map((vector) => solve(matrix, vector))
-    samples = samples.filter((s) => Math.abs(s.color[0] - coefficients[0].reduce((sum, v, i) => sum + v * s.b[i], 0)) < 9)
-    if (samples.length < 40) break
-  }
-  return coefficients
+function isBackgroundPixel(rgb, p, colors) {
+  const color = [rgb[p], rgb[p + 1], rgb[p + 2]]
+  const nearest = Math.min(distance(color, colors[0]), distance(color, colors[1]))
+  const neutral = Math.max(color[0], color[1], color[2]) - Math.min(color[0], color[1], color[2]) < 24
+  return neutral && nearest < 76
 }
 
-export async function matteFrame(rgb, width, height, time) {
-  const rgba = Buffer.alloc(width * height * 4)
-  // Start the fitted gray-stage matte as the camera enters the engine.  The
-  // old start at 6.125s left the first macro frames as an opaque rectangle.
-  // Stop before the source's return dissolve.  The reappearing vehicle has
-  // gray body reflections that are part of the subject and must stay opaque.
-  const grayWeight = smooth(5.25, 5.75, time) * (1 - smooth(7.75, 8.0, time))
-  const plate = grayWeight > 0 ? fitPlate(rgb, width, height, true) : null
-  const returnDissolve = time >= 7.875 && time < 8.375
-  const corner = (20 * width + width - 20) * 3
-  const cornerGreen = (rgb[corner + 1] - Math.max(rgb[corner], rgb[corner + 2])) / Math.max(1, rgb[corner + 1])
-  const keyHigh = returnDissolve ? Math.max(.045, cornerGreen * .8) : .46
+function growBackground(rgb, width, height, colors) {
+  const total = width * height
+  const background = new Uint8Array(total)
+  const queue = new Int32Array(total)
+  let head = 0; let tail = 0
   for (let y = 0; y < height; y++) for (let x = 0; x < width; x++) {
     const p = y * width + x
-    let [r, g, b] = rgb.subarray(p * 3, p * 3 + 3)
-    const green = (g - Math.max(r, b)) / Math.max(g, 1)
-    let alpha = 1 - smooth(returnDissolve ? keyHigh * .25 : .16, keyHigh, green) * smooth(returnDissolve ? 2 : 10, returnDissolve ? 12 : 40, g - Math.max(r, b))
-    const darkProtection = (1 - smooth(65, 95, Math.max(r, b))) * (1 - smooth(.4, .54, green))
-    alpha = Math.max(alpha, darkProtection)
-    if (plate) {
-      const terms = basis(x / width * 2 - 1, y / height * 2 - 1)
-      const background = plate.map((co) => co.reduce((sum, v, i) => sum + v * terms[i], 0))
-      const difference = Math.max(Math.abs(r - background[0]), Math.abs(g - background[1]), Math.abs(b - background[2]))
-      const grayAlpha = smooth(4, 14, difference)
-      alpha *= 1 - grayWeight * (1 - grayAlpha)
-      if (grayWeight === 1 && grayAlpha > .02 && grayAlpha < 1) {
-        // Refine edge luminance without amplifying tiny compressed chroma
-        // differences into colored ringing around neutral metal.
-        const luminance = (r + g + b) / 3
-        const plateLuminance = background.reduce((sum, value) => sum + value, 0) / 3
-        const refined = Math.max(0, Math.min(255, (luminance - plateLuminance * (1 - grayAlpha)) / grayAlpha))
-        r = Math.max(0, refined + r - luminance)
-        g = Math.max(0, refined + g - luminance)
-        b = Math.max(0, refined + b - luminance)
-      }
+    if (x < 3 || y < 3 || x >= width - 3 || y >= height - 3) {
+      if (isBackgroundPixel(rgb, p * 3, colors)) { background[p] = 1; queue[tail++] = p }
     }
-    // Remove spill from both partially covered edges and opaque reflections.
-    // Red/blue detail and the original opaque black surfaces are retained.
-    g = Math.min(g, Math.max(r, b))
-    rgba[p * 4] = Math.min(255, r)
-    rgba[p * 4 + 1] = Math.min(255, g)
-    rgba[p * 4 + 2] = Math.min(255, b)
-    rgba[p * 4 + 3] = Math.round(alpha * 255)
+  }
+  while (head < tail) {
+    const p = queue[head++]; const x = p % width
+    for (const next of [p - 1, p + 1, p - width, p + width]) {
+      if (next < 0 || next >= total || background[next]) continue
+      const nx = next % width
+      if (Math.abs(nx - x) > 1 || !isBackgroundPixel(rgb, next * 3, colors)) continue
+      background[next] = 1; queue[tail++] = next
+    }
+  }
+  return background
+}
+
+export async function matteFrame(rgb, width, height, time = 0) {
+  const rgba = Buffer.alloc(width * height * 4)
+  const colors = sampleBackground(rgb, width, height)
+  const background = colors ? growBackground(rgb, width, height, colors) : new Uint8Array(width * height)
+  for (let p = 0; p < width * height; p++) {
+    const source = p * 3; const r = rgb[source]; const g = rgb[source + 1]; const b = rgb[source + 2]
+    const color = [r, g, b]
+    const nearest = colors ? Math.min(distance(color, colors[0]), distance(color, colors[1])) : 255
+    let alpha = background[p] ? 0 : 1
+    const y = Math.floor(p / width)
+    const exterior = time < 5.2 || time > 8.4
+    if (alpha && exterior && y > height * .70 && Math.min(r, g, b) > 55 && Math.max(r, g, b) - Math.min(r, g, b) < 34) {
+      alpha *= 1 - smooth(height * .70, height * .90, y)
+    }
+    if (alpha && exterior && y > height * .89) alpha = 0
+    if (alpha && nearest < 92 && Math.max(r, g, b) > 165) alpha = smooth(45, 92, nearest)
+    const out = p * 4; rgba[out] = r; rgba[out + 1] = g; rgba[out + 2] = b; rgba[out + 3] = Math.round(alpha * 255)
   }
   const source = sharp(rgba, { raw: { width, height, channels: 4 } })
-  // A subpixel alpha refinement suppresses 4:2:0 chroma stair-steps without
-  // blurring the original bodywork, chrome or engine RGB detail.
-  const alpha = await source.clone().extractChannel(3).median(3).blur(.6).raw().toBuffer()
+  const alpha = await source.clone().extractChannel(3).median(3).blur(.45).raw().toBuffer()
   for (let p = 0; p < width * height; p++) rgba[p * 4 + 3] = alpha[p]
   return sharp(rgba, { raw: { width, height, channels: 4 } })
 }
