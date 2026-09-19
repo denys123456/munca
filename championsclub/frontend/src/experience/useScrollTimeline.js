@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
 import { Color } from 'three'
 import { createTimeline, smoothRange } from './ExperienceTimeline.js'
+import { chapterFrames, storyPhase } from './arteonTimeline.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -20,8 +21,8 @@ export function useScrollTimeline(root, runtime, api, paused, ready) {
     const color = new Color()
     const lenis = new Lenis({ lerp: .15, smoothWheel: !matchMedia('(prefers-reduced-motion: reduce)').matches, syncTouch: false, virtualScroll: () => !document.querySelector('dialog[open]'), prevent: (node) => Boolean(node.closest('[data-lenis-prevent]')) })
     const update = (progress) => {
-      timeline.seek(progress)
-      const phase = progress * 12
+      const phase = storyPhase(progress)
+      timeline.seek(phase / 12)
       const chapter = Math.min(12, Math.round(phase))
       element.dataset.chapter = String(chapter)
       element.dataset.progress = progress.toFixed(5)
@@ -52,7 +53,7 @@ export function useScrollTimeline(root, runtime, api, paused, ready) {
     const tick = (time) => lenis.raf(time * 1000)
     gsap.ticker.add(tick)
     api.current = {
-      seek(chapter) { lenis.scrollTo(trigger.start + (trigger.end - trigger.start) * chapter / 12, { duration: matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 1.5 }) },
+      seek(chapter) { lenis.scrollTo(trigger.start + (trigger.end - trigger.start) * chapterFrames[chapter] / 239, { duration: matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 1.5 }) },
       pause(value) { if (value) lenis.stop(); else { lenis.start(); runtime.current?.invalidate() } },
       refresh() { trigger.refresh(); update(trigger.progress) }
     }

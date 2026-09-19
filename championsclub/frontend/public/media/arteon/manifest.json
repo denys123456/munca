@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "source": {
+    "path": "arteon.mp4",
+    "sha256": "86224d48e388fd2b1408d9841b3fa42de3da403f5061fa56bd37374a4fae1cf1",
+    "bytes": 5272371,
+    "duration": 10,
+    "containerDuration": 10.006,
+    "width": 1280,
+    "height": 720,
+    "fps": 24,
+    "codec": "h264",
+    "pixelFormat": "yuv420p",
+    "hasAlpha": false
+  },
+  "frameCount": 240,
+  "fps": 24,
+  "firstFrame": 0,
+  "lastFrame": 239,
+  "lastFrameTime": 9.958333333333334,
+  "alpha": true,
+  "format": "webp",
+  "variants": [
+    {
+      "name": "desktop",
+      "width": 1280,
+      "height": 720,
+      "quality": 84,
+      "bytes": 22557134,
+      "path": "desktop/{frame}.webp"
+    },
+    {
+      "name": "mobile",
+      "width": 640,
+      "height": 360,
+      "quality": 80,
+      "bytes": 15366340,
+      "path": "mobile/{frame}.webp"
+    }
+  ],
+  "chapterFrames": [
+    0,
+    30,
+    96,
+    126,
+    142,
+    156,
+    165,
+    174,
+    181,
+    188,
+    198,
+    211,
+    239
+  ],
+  "scrollVh": 900,
+  "processing": {
+    "method": "green chroma matte with dark-surface protection, RGB despill, fitted gray gradient difference matte for engine",
+    "limitations": [
+      "The source bakes cross-dissolves into opaque footage; transition mattes are approximate.",
+      "Fine gray-on-gray metal edges can retain some matte fringe.",
+      "Source resolution is 720p; no synthetic detail or frames are generated."
+    ]
+  },
+  "events": [
+    {
+      "event": "complete vehicle and orbit",
+      "start": 0,
+      "end": 3.75,
+      "frames": [
+        0,
+        89
+      ]
+    },
+    {
+      "event": "hood opening",
+      "start": 3.75,
+      "end": 4.625,
+      "frames": [
+        90,
+        110
+      ]
+    },
+    {
+      "event": "camera approaches and enters engine bay",
+      "start": 4.625,
+      "end": 6,
+      "frames": [
+        111,
+        143
+      ]
+    },
+    {
+      "event": "dissolve into exploded internals",
+      "start": 6,
+      "end": 6.5,
+      "frames": [
+        144,
+        155
+      ]
+    },
+    {
+      "event": "exploded components, moving pistons and crankshaft",
+      "start": 6.5,
+      "end": 7.875,
+      "frames": [
+        156,
+        188
+      ]
+    },
+    {
+      "event": "dissolve back to open-hood vehicle",
+      "start": 7.875,
+      "end": 8.375,
+      "frames": [
+        189,
+        200
+      ]
+    },
+    {
+      "event": "hood closes and camera withdraws",
+      "start": 8.375,
+      "end": 8.958333,
+      "frames": [
+        201,
+        214
+      ]
+    },
+    {
+      "event": "complete vehicle held through final frame",
+      "start": 8.958333,
+      "end": 10,
+      "frames": [
+        215,
+        239
+      ]
+    }
+  ],
+  "reconstruction": {
+    "completeVehicleReturns": true,
+    "explicitPartByPartAssembly": false,
+    "note": "Return uses a source cross-dissolve, followed by hood closure. No continuous internal camera traversal or full physical reassembly is present."
+  },
+  "loop": {
+    "seamless": false,
+    "note": "First and last views are similar but vehicle position, scale and body details differ slightly. Hold frame 239; reverse only on user scroll."
+  },
+  "productionFrameBytes": 37923474
+}

@@ -2,7 +2,7 @@
 @media (max-height: 750px) and (min-width: 721px) { .experience-navigation { height: 75px; } .story-copy { padding-top: 19svh; } .story-eyebrow { margin-bottom: 16px; } .scene-caption, .scene-data, .final-actions { bottom: 101px; } .experience-bottom-bar { bottom: 22px; } .scroll-cue { bottom: 105px; } .intelligence-signals { top: 20%; } .intelligence-signals > div { padding-block: 9px; } .advisor-contributions > div { padding-block: 10px; } }
 @media (max-width: 1100px) { .navigation-edition { display: none; } .story-copy h1 { font-size: 12.7vw; } .story-copy h1 span { padding-left: 8vw; } .hero-spec { top: auto; bottom: 205px; } .intelligence-signals { width: 260px; max-width: 32vw; } .forecast-telemetry { gap: 22px; } }
 @media (max-width: 720px) {
-  .automotive-experience { height: calc(100svh + 15600px); }
+  .automotive-experience { height: 1000svh; }
   .experience-stage { min-height: 570px; }
   .experience-navigation { height: 77px; padding-inline: 22px; gap: 10px; }
   .experience-brand { font-size: 15px; letter-spacing: -.7px; }
