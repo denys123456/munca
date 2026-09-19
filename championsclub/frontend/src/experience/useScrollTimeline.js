@@ -19,7 +19,9 @@ export function useScrollTimeline(root, runtime, api, paused, ready) {
     const light = new Color('#e6e9e8')
     const dark = new Color('#11181d')
     const color = new Color()
-    const lenis = new Lenis({ lerp: .15, smoothWheel: !matchMedia('(prefers-reduced-motion: reduce)').matches, syncTouch: false, virtualScroll: () => !document.querySelector('dialog[open]'), prevent: (node) => Boolean(node.closest('[data-lenis-prevent]')) })
+    // Native wheel deltas already provide the precise scrub input we need.
+    // Lenis smoothing here used to add a second, visibly delayed timeline.
+    const lenis = new Lenis({ lerp: .3, smoothWheel: false, syncTouch: false, virtualScroll: () => !document.querySelector('dialog[open]'), prevent: (node) => Boolean(node.closest('[data-lenis-prevent]')) })
     const update = (progress) => {
       const phase = storyPhase(progress)
       timeline.seek(phase / 12)

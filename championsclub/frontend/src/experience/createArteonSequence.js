@@ -1,5 +1,4 @@
 import { chapterFrames, frameAtProgress } from './arteonTimeline.js'
-import { smoothRange } from './ExperienceTimeline.js'
 
 const base = `${import.meta.env.BASE_URL}media/arteon/`
 
@@ -17,8 +16,11 @@ export function createArteonSequence(host, callbacks) {
   let wanted = new Set([0])
   const motionQuery = matchMedia('(prefers-reduced-motion: reduce)')
   const compact = host.clientWidth <= 720 || navigator.connection?.saveData || (navigator.deviceMemory && navigator.deviceMemory <= 4)
-  const cacheLimit = compact ? 24 : 28
-  const concurrency = compact ? 2 : 3
+  // Keep a small directional window decoded.  The previous 28-frame/3-request
+  // window caused rapid wheel input to abort almost every useful request and
+  // made the canvas visibly trail the scroll position.
+  const cacheLimit = compact ? 20 : 28
+  const concurrency = compact ? 3 : 6
   let reducedMotion = motionQuery.matches
   let manifest, variant, queue = []
   let requested = 0, displayed = -1, direction = 1, progress = 0
@@ -69,11 +71,14 @@ export function createArteonSequence(host, callbacks) {
     // Contain the entire original frame. Exterior geometry is never cropped;
     // engine close-ups retain their original crop. Native-size desktop cap.
     const mobile = width <= 720
-    const macro = mobile ? 0 : smoothRange(index / 24, 4.5, 5.75) * (1 - smoothRange(index / 24, 8.25, 9))
-    const frameWidth = Math.min(width * (mobile ? .98 : .90 - macro * .30), variant.width, height * (mobile ? .40 : .69 - macro * .25) * 16 / 9)
+    // Every source frame is already a fixed 1280x720 composition.  Keep one
+    // stable destination rectangle for the entire sequence so transparent
+    // matte bounds cannot make the vehicle jump smaller or larger.  Any camera
+    // zoom remains encoded in the source pixels themselves.
+    const frameWidth = Math.min(width * (mobile ? .98 : .90), variant.width, height * (mobile ? .40 : .69) * 16 / 9)
     const frameHeight = frameWidth * 9 / 16
-    const x = (width - frameWidth) / 2 * (1 - macro) + width * .085 * macro
-    const y = height * (mobile ? .48 : .57 + macro * .03) - frameHeight / 2
+    const x = (width - frameWidth) / 2
+    const y = height * (mobile ? .48 : .57) - frameHeight / 2
     context.imageSmoothingEnabled = true
     context.imageSmoothingQuality = 'high'
     context.drawImage(bitmap, x, y, frameWidth, frameHeight)

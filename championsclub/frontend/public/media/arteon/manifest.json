@@ -25,16 +25,16 @@
       "name": "desktop",
       "width": 1280,
       "height": 720,
-      "quality": 84,
-      "bytes": 22557134,
+      "quality": 78,
+      "bytes": 21303978,
       "path": "desktop/{frame}.webp"
     },
     {
       "name": "mobile",
       "width": 640,
       "height": 360,
-      "quality": 80,
-      "bytes": 15366340,
+      "quality": 74,
+      "bytes": 17210108,
       "path": "mobile/{frame}.webp"
     }
   ],
@@ -145,5 +145,5 @@
     "seamless": false,
     "note": "First and last views are similar but vehicle position, scale and body details differ slightly. Hold frame 239; reverse only on user scroll."
   },
-  "productionFrameBytes": 37923474
+  "productionFrameBytes": 38514086
 }

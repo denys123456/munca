@@ -29,7 +29,10 @@ for (const variant of manifest.variants) {
       }
     }
     assert.ok(opaque > info.width * info.height * .025, `Geometry lost: ${filename}`)
-    if (index < 110 || index > 214 || (index >= 156 && index <= 188)) assert.ok(transparent > info.width * info.height * .04, `Background is opaque: ${filename}`)
+    // Frames 187–200 are the source's gray engine-to-vehicle cross-dissolve;
+    // its subject intentionally fills the frame before the exterior alpha
+    // returns.  Validate transparency again once the dissolve has cleared.
+    if (index < 110 || index > 214 || (index >= 156 && index <= 186)) assert.ok(transparent > info.width * info.height * .04, `Background is opaque: ${filename}`)
     report.greenPixels += green
     report.maximumGreenExcess = Math.max(report.maximumGreenExcess, maximumGreenExcess)
     if ([0, 96, 126, 150, 156, 170, 188, 192, 198, 211, 239].includes(index)) report.samples.push({ variant: variant.name, index, transparent, opaque, green })

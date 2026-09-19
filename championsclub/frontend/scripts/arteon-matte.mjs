@@ -34,7 +34,11 @@ function fitPlate(rgb, width, height, transition) {
     }
     const means = values.map((v) => v.reduce((a, b) => a + b, 0) / v.length)
     const variation = Math.max(...values.map((v) => Math.max(...v) - Math.min(...v)))
-    if (variation < 5 && means[0] > (transition ? 65 : 125) && means[2] - means[0] > 3 && means[2] - means[0] < (transition ? 90 : 33) && means[1] > means[0]) {
+    // 4:2:0 compression and the studio gradient make the plate vary by more
+    // than five levels even in flat areas.  A slightly wider sample gate gives
+    // the regression enough points to model the gray engine stage without
+    // treating dark mechanical surfaces as background.
+    if (variation < 15 && means[0] > (transition ? 55 : 125) && means[2] - means[0] > 0 && means[2] - means[0] < (transition ? 100 : 38) && means[1] >= means[0] - 2) {
       samples.push({ b: basis(x / width * 2 - 1, y / height * 2 - 1), color: means })
     }
   }
@@ -56,8 +60,12 @@ function fitPlate(rgb, width, height, transition) {
 
 export async function matteFrame(rgb, width, height, time) {
   const rgba = Buffer.alloc(width * height * 4)
-  const grayWeight = smooth(6.125, 6.5, time) * (1 - smooth(7.833333, 7.916667, time))
-  const plate = grayWeight > 0 ? fitPlate(rgb, width, height, time > 7.8) : null
+  // Start the fitted gray-stage matte as the camera enters the engine.  The
+  // old start at 6.125s left the first macro frames as an opaque rectangle.
+  // Stop before the source's return dissolve.  The reappearing vehicle has
+  // gray body reflections that are part of the subject and must stay opaque.
+  const grayWeight = smooth(5.25, 5.75, time) * (1 - smooth(7.75, 8.0, time))
+  const plate = grayWeight > 0 ? fitPlate(rgb, width, height, true) : null
   const returnDissolve = time >= 7.875 && time < 8.375
   const corner = (20 * width + width - 20) * 3
   const cornerGreen = (rgb[corner + 1] - Math.max(rgb[corner], rgb[corner + 2])) / Math.max(1, rgb[corner + 1])

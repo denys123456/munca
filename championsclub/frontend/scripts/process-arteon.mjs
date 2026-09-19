@@ -20,7 +20,7 @@ if (stream.width !== 1280 || stream.height !== 720 || stream.nb_frames !== '240'
   throw new Error('This matte and event manifest were reviewed for the supplied 240-frame Arteon source. Reinspect different footage before processing.')
 }
 const sourceHasAlpha = /^(yuva|gbrap|rgba|bgra|argb|abgr)/.test(stream.pix_fmt) || stream.tags?.alpha_mode === '1'
-const variants = [{ name: 'desktop', width: 1280, height: 720, quality: 84 }, { name: 'mobile', width: 640, height: 360, quality: 80 }]
+const variants = [{ name: 'desktop', width: 1280, height: 720, quality: 78 }, { name: 'mobile', width: 640, height: 360, quality: 74 }]
 for (const variant of variants) mkdirSync(`${output}/${variant.name}`, { recursive: true })
 const channels = sourceHasAlpha ? 4 : 3
 const bytesPerFrame = stream.width * stream.height * channels
