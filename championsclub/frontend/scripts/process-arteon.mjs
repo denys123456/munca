@@ -16,15 +16,20 @@ const hash = () => createHash('sha256').update(readFileSync(source)).digest('hex
 const sourceHash = hash()
 const metadata = JSON.parse(execFileSync(probe.path, ['-v', 'quiet', '-show_format', '-show_streams', '-of', 'json', source], { encoding: 'utf8' }))
 const stream = metadata.streams.find((item) => item.codec_type === 'video')
-if (stream.width !== 1280 || stream.height !== 720 || stream.nb_frames !== '240' || stream.avg_frame_rate !== '24/1') {
-  throw new Error('This matte and event manifest were reviewed for the supplied 240-frame Arteon source. Reinspect different footage before processing.')
+if (stream.width !== 1280 || stream.height !== 720 || stream.avg_frame_rate !== '24/1') {
+  throw new Error('This matte and interpolation manifest were reviewed for the supplied 1280x720 24fps Arteon source. Reinspect different footage before processing.')
 }
 const sourceHasAlpha = /^(yuva|gbrap|rgba|bgra|argb|abgr)/.test(stream.pix_fmt) || stream.tags?.alpha_mode === '1'
-const variants = [{ name: 'desktop', width: 1280, height: 720, quality: 78 }, { name: 'mobile', width: 640, height: 360, quality: 74 }]
+const variants = [{ name: 'desktop', width: 1280, height: 720, quality: 55 }, { name: 'mobile', width: 640, height: 360, quality: 50 }]
 for (const variant of variants) mkdirSync(`${output}/${variant.name}`, { recursive: true })
 const channels = sourceHasAlpha ? 4 : 3
 const bytesPerFrame = stream.width * stream.height * channels
-const decoder = spawn(ffmpeg, ['-v', 'error', '-i', source, '-map', '0:v:0', '-vsync', '0', '-f', 'rawvideo', '-pix_fmt', sourceHasAlpha ? 'rgba' : 'rgb24', 'pipe:1'], { windowsHide: true })
+// Create a 48 fps delivery from the untouched source using motion-compensated
+// interpolation. This adds temporal samples without dropping source moments;
+// it is still decoded and matted offline before entering the browser.
+const deliveryFps = 48
+const expectedFrames = 480
+const decoder = spawn(ffmpeg, ['-v', 'error', '-i', source, '-map', '0:v:0', '-vf', `minterpolate=fps=${deliveryFps}:mi_mode=mci:mc_mode=aobmc:me_mode=bidir:vsbmc=1,tpad=stop_mode=clone:stop_duration=0.2`, '-frames:v', String(expectedFrames), '-vsync', '0', '-f', 'rawvideo', '-pix_fmt', sourceHasAlpha ? 'rgba' : 'rgb24', 'pipe:1'], { windowsHide: true })
 let stderr = ''
 decoder.stderr.on('data', (chunk) => { stderr += chunk })
 const finished = new Promise((done, fail) => { decoder.on('error', fail); decoder.on('close', (code) => code === 0 ? done() : fail(new Error(stderr))) })
@@ -36,37 +41,37 @@ for await (const chunk of decoder.stdout) {
     const raw = pending.subarray(0, bytesPerFrame)
     const frame = sourceHasAlpha
       ? (await import('sharp')).default(raw, { raw: { width: stream.width, height: stream.height, channels } })
-      : await matteFrame(raw, stream.width, stream.height, count / 24)
+      : await matteFrame(raw, stream.width, stream.height, count / deliveryFps)
     for (const variant of variants) {
-      writeFileSync(`${output}/${variant.name}/${String(count).padStart(4, '0')}.webp`, await encodeArteon(frame, variant))
+      writeFileSync(`${output}/${variant.name}/${String(count).padStart(4, '0')}.avif`, await encodeArteon(frame, variant))
     }
     pending = pending.subarray(bytesPerFrame)
     count++
-    if (count % 24 === 0) console.log(`Processed ${count}/240 source frames`)
+    if (count % deliveryFps === 0) console.log(`Processed ${count}/${expectedFrames} delivery frames`)
   }
 }
 await finished
-if (count !== 240 || pending.length) throw new Error(`Incomplete decode: ${count} frames`)
+if (count !== expectedFrames || pending.length) throw new Error(`Incomplete decode: ${count} frames`)
 if (hash() !== sourceHash) throw new Error('Source integrity check failed')
 for (const variant of variants) {
-  variant.bytes = readdirSync(`${output}/${variant.name}`).filter((name) => name.endsWith('.webp')).reduce((sum, name) => sum + statSync(`${output}/${variant.name}/${name}`).size, 0)
-  variant.path = `${variant.name}/{frame}.webp`
+  variant.bytes = readdirSync(`${output}/${variant.name}`).filter((name) => name.endsWith('.avif')).reduce((sum, name) => sum + statSync(`${output}/${variant.name}/${name}`).size, 0)
+  variant.path = `${variant.name}/{frame}.avif`
 }
 const manifest = {
   version: 1,
   source: { path: relative(project, source).replaceAll('\\', '/'), sha256: sourceHash, bytes: statSync(source).size, duration: Number(stream.duration), containerDuration: Number(metadata.format.duration), width: stream.width, height: stream.height, fps: 24, codec: stream.codec_name, pixelFormat: stream.pix_fmt, hasAlpha: sourceHasAlpha },
-  frameCount: count, fps: 24, firstFrame: 0, lastFrame: count - 1, lastFrameTime: (count - 1) / 24,
-  alpha: true, format: 'webp', variants, chapterFrames, scrollVh: 900,
-  processing: { method: sourceHasAlpha ? 'source-alpha-preserved' : 'green chroma matte with dark-surface protection, RGB despill, fitted gray gradient difference matte for engine', limitations: ['The source bakes cross-dissolves into opaque footage; transition mattes are approximate.', 'Fine gray-on-gray metal edges can retain some matte fringe.', 'Source resolution is 720p; no synthetic detail or frames are generated.'] },
+  frameCount: count, fps: deliveryFps, sourceFrameCount: Number(stream.nb_frames), sourceFps: 24, interpolation: 'motion-compensated minterpolate from original 24fps source', firstFrame: 0, lastFrame: count - 1, lastFrameTime: (count - 1) / deliveryFps,
+  alpha: true, format: 'avif', variants, chapterFrames, scrollVh: 900,
+  processing: { method: sourceHasAlpha ? 'source-alpha-preserved' : 'adaptive green chroma matte with dark-surface protection, RGB despill, temporal alpha refinement and fitted gray gradient difference matte for engine', limitations: ['The source bakes cross-dissolves into opaque footage; transition mattes are approximate.', 'Fine gray-on-gray metal edges can retain some matte fringe.', 'Interpolated frames preserve motion timing but are not additional source photography.'] },
   events: [
-    { event: 'complete vehicle and orbit', start: 0, end: 3.75, frames: [0, 89] },
-    { event: 'hood opening', start: 3.75, end: 4.625, frames: [90, 110] },
-    { event: 'camera approaches and enters engine bay', start: 4.625, end: 6, frames: [111, 143] },
-    { event: 'dissolve into exploded internals', start: 6, end: 6.5, frames: [144, 155] },
-    { event: 'exploded components, moving pistons and crankshaft', start: 6.5, end: 7.875, frames: [156, 188] },
-    { event: 'dissolve back to open-hood vehicle', start: 7.875, end: 8.375, frames: [189, 200] },
-    { event: 'hood closes and camera withdraws', start: 8.375, end: 8.958333, frames: [201, 214] },
-    { event: 'complete vehicle held through final frame', start: 8.958333, end: 10, frames: [215, 239] }
+    { event: 'complete vehicle and orbit', start: 0, end: 3.75, frames: [0, 179] },
+    { event: 'hood opening', start: 3.75, end: 4.625, frames: [180, 221] },
+    { event: 'camera approaches and enters engine bay', start: 4.625, end: 6, frames: [222, 287] },
+    { event: 'dissolve into exploded internals', start: 6, end: 6.5, frames: [288, 311] },
+    { event: 'exploded components, moving pistons and crankshaft', start: 6.5, end: 7.875, frames: [312, 377] },
+    { event: 'dissolve back to open-hood vehicle', start: 7.875, end: 8.375, frames: [378, 401] },
+    { event: 'hood closes and camera withdraws', start: 8.375, end: 8.958333, frames: [402, 429] },
+    { event: 'complete vehicle held through final frame', start: 8.958333, end: 10, frames: [430, 479] }
   ],
   reconstruction: { completeVehicleReturns: true, explicitPartByPartAssembly: false, note: 'Return uses a source cross-dissolve, followed by hood closure. No continuous internal camera traversal or full physical reassembly is present.' },
   loop: { seamless: false, note: 'First and last views are similar but vehicle position, scale and body details differ slightly. Hold frame 239; reverse only on user scroll.' },

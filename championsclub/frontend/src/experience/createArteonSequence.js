@@ -1,4 +1,4 @@
-import { chapterFrames, frameAtProgress } from './arteonTimeline.js'
+import { chapterFrames, deliveryFrameCount, deliveryFps, frameAtProgress } from './arteonTimeline.js'
 
 const base = `${import.meta.env.BASE_URL}media/arteon/`
 
@@ -24,6 +24,7 @@ export function createArteonSequence(host, callbacks) {
   let reducedMotion = motionQuery.matches
   let manifest, variant, queue = []
   let requested = 0, displayed = -1, direction = 1, progress = 0
+  let targetProgress = 0, visualProgress = 0, momentum = 0, motionFrame = 0
   let disposed = false, ready = false, scheduled = 0, dirty = true
   let width = 0, height = 0, draws = 0, decodes = 0, evictions = 0
   let decodeTotal = 0, decodeMax = 0, drawMax = 0, errorReported = false
@@ -178,14 +179,41 @@ export function createArteonSequence(host, callbacks) {
     invalidate()
   }
 
-  function seek(value) {
+  function applyProgress(value) {
     progress = Math.max(0, Math.min(1, value))
-    const frame = frameAtProgress(progress, manifest?.frameCount)
+    visualProgress = progress
+    const frame = frameAtProgress(progress, manifest?.frameCount ?? deliveryFrameCount)
     const next = reducedMotion ? chapterFrames.reduce((closest, candidate) => Math.abs(candidate - frame) < Math.abs(closest - frame) ? candidate : closest, 0) : frame
     direction = next === requested ? direction : Math.sign(next - requested)
     const changed = next !== requested
     requested = next
     if (changed || displayed < 0) plan()
+  }
+
+  function animateMotion() {
+    motionFrame = 0
+    const projected = Math.max(0, Math.min(1, targetProgress + momentum))
+    const delta = projected - visualProgress
+    visualProgress += delta * (reducedMotion ? 1 : .28)
+    momentum *= reducedMotion ? 0 : .84
+    applyProgress(visualProgress)
+    if (!reducedMotion && (Math.abs(targetProgress - visualProgress) > .00035 || Math.abs(momentum) > .00003)) motionFrame = requestAnimationFrame(animateMotion)
+  }
+
+  function seek(value) {
+    const nextTarget = Math.max(0, Math.min(1, value))
+    const inputDelta = nextTarget - targetProgress
+    if (Math.abs(inputDelta) > .00001) {
+      const nextDirection = Math.sign(inputDelta)
+      if (nextDirection && nextDirection !== direction) momentum = 0
+      direction = nextDirection || direction
+      // A bounded tail gives the stopped scroll a soft continuation without
+      // letting the cinematic drift away from the user's final position.
+      momentum = Math.max(-.012, Math.min(.012, inputDelta * .32))
+    }
+    targetProgress = nextTarget
+    if (reducedMotion) applyProgress(targetProgress)
+    else if (!motionFrame) motionFrame = requestAnimationFrame(animateMotion)
   }
 
   const resize = new ResizeObserver(() => { dirty = true; invalidate() })
@@ -204,7 +232,7 @@ export function createArteonSequence(host, callbacks) {
     .then((response) => { if (!response.ok) throw new Error('Cinematic manifest could not load.'); return response.json() })
     .then((value) => {
       if (disposed) return
-      if (value.frameCount !== 240 || !value.alpha || !value.variants?.length) throw new Error('Cinematic manifest is incompatible.')
+      if (value.frameCount < 480 || value.fps !== deliveryFps || !value.alpha || !value.variants?.length) throw new Error('Cinematic manifest is incompatible.')
       manifest = value
       variant = manifest.variants.find((item) => item.name === (compact ? 'mobile' : 'desktop'))
       if (!variant) throw new Error('Cinematic resolution is unavailable.')
@@ -224,7 +252,7 @@ export function createArteonSequence(host, callbacks) {
         cachedFrames: cache.size, cacheLimit, inFlight: requests.size, queued: queue.length, variant: variant?.name,
         decodedBytes: cache.size * (variant?.width ?? 0) * (variant?.height ?? 0) * 4,
         canvasBytes: canvas.width * canvas.height * 4, decodeMeanMs: decodes ? decodeTotal / decodes : 0, decodeMaxMs: decodeMax, drawMaxMs: drawMax,
-        reducedMotion, frameCount: manifest?.frameCount, sourceTime: displayed / 24, buffering: requested !== displayed }
+        reducedMotion, frameCount: manifest?.frameCount, sourceTime: displayed / (manifest?.fps ?? deliveryFps), targetProgress, visualProgress, momentum, buffering: requested !== displayed }
     },
     destroy() {
       disposed = true
@@ -234,6 +262,7 @@ export function createArteonSequence(host, callbacks) {
       cache.clear()
       queue = []
       cancelAnimationFrame(scheduled)
+      cancelAnimationFrame(motionFrame)
       clearTimeout(retryTimer)
       resize.disconnect()
       document.removeEventListener('visibilitychange', onVisibility)

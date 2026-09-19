@@ -13,53 +13,56 @@
     "pixelFormat": "yuv420p",
     "hasAlpha": false
   },
-  "frameCount": 240,
-  "fps": 24,
+  "frameCount": 480,
+  "fps": 48,
+  "sourceFrameCount": 240,
+  "sourceFps": 24,
+  "interpolation": "motion-compensated minterpolate from original 24fps source",
   "firstFrame": 0,
-  "lastFrame": 239,
-  "lastFrameTime": 9.958333333333334,
+  "lastFrame": 479,
+  "lastFrameTime": 9.979166666666666,
   "alpha": true,
-  "format": "webp",
+  "format": "avif",
   "variants": [
     {
       "name": "desktop",
       "width": 1280,
       "height": 720,
-      "quality": 78,
-      "bytes": 21303978,
-      "path": "desktop/{frame}.webp"
+      "quality": 55,
+      "bytes": 16270168,
+      "path": "desktop/{frame}.avif"
     },
     {
       "name": "mobile",
       "width": 640,
       "height": 360,
-      "quality": 74,
-      "bytes": 17210108,
-      "path": "mobile/{frame}.webp"
+      "quality": 50,
+      "bytes": 6647669,
+      "path": "mobile/{frame}.avif"
     }
   ],
   "chapterFrames": [
     0,
-    30,
-    96,
-    126,
-    142,
-    156,
-    165,
-    174,
-    181,
-    188,
-    198,
-    211,
-    239
+    60,
+    192,
+    252,
+    284,
+    312,
+    330,
+    348,
+    362,
+    376,
+    396,
+    422,
+    479
   ],
   "scrollVh": 900,
   "processing": {
-    "method": "green chroma matte with dark-surface protection, RGB despill, fitted gray gradient difference matte for engine",
+    "method": "adaptive green chroma matte with dark-surface protection, RGB despill, temporal alpha refinement and fitted gray gradient difference matte for engine",
     "limitations": [
       "The source bakes cross-dissolves into opaque footage; transition mattes are approximate.",
       "Fine gray-on-gray metal edges can retain some matte fringe.",
-      "Source resolution is 720p; no synthetic detail or frames are generated."
+      "Interpolated frames preserve motion timing but are not additional source photography."
     ]
   },
   "events": [
@@ -69,7 +72,7 @@
       "end": 3.75,
       "frames": [
         0,
-        89
+        179
       ]
     },
     {
@@ -77,8 +80,8 @@
       "start": 3.75,
       "end": 4.625,
       "frames": [
-        90,
-        110
+        180,
+        221
       ]
     },
     {
@@ -86,8 +89,8 @@
       "start": 4.625,
       "end": 6,
       "frames": [
-        111,
-        143
+        222,
+        287
       ]
     },
     {
@@ -95,8 +98,8 @@
       "start": 6,
       "end": 6.5,
       "frames": [
-        144,
-        155
+        288,
+        311
       ]
     },
     {
@@ -104,8 +107,8 @@
       "start": 6.5,
       "end": 7.875,
       "frames": [
-        156,
-        188
+        312,
+        377
       ]
     },
     {
@@ -113,8 +116,8 @@
       "start": 7.875,
       "end": 8.375,
       "frames": [
-        189,
-        200
+        378,
+        401
       ]
     },
     {
@@ -122,8 +125,8 @@
       "start": 8.375,
       "end": 8.958333,
       "frames": [
-        201,
-        214
+        402,
+        429
       ]
     },
     {
@@ -131,8 +134,8 @@
       "start": 8.958333,
       "end": 10,
       "frames": [
-        215,
-        239
+        430,
+        479
       ]
     }
   ],
@@ -145,5 +148,5 @@
     "seamless": false,
     "note": "First and last views are similar but vehicle position, scale and body details differ slightly. Hold frame 239; reverse only on user scroll."
   },
-  "productionFrameBytes": 38514086
+  "productionFrameBytes": 22917837
 }

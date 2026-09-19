@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
 import { Color } from 'three'
 import { createTimeline, smoothRange } from './ExperienceTimeline.js'
-import { chapterFrames, storyPhase } from './arteonTimeline.js'
+import { chapterFrames, deliveryFrameCount, storyPhase } from './arteonTimeline.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -55,7 +55,7 @@ export function useScrollTimeline(root, runtime, api, paused, ready) {
     const tick = (time) => lenis.raf(time * 1000)
     gsap.ticker.add(tick)
     api.current = {
-      seek(chapter) { lenis.scrollTo(trigger.start + (trigger.end - trigger.start) * chapterFrames[chapter] / 239, { duration: matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 1.5 }) },
+      seek(chapter) { lenis.scrollTo(trigger.start + (trigger.end - trigger.start) * chapterFrames[chapter] / (deliveryFrameCount - 1), { duration: matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 1.5 }) },
       pause(value) { if (value) lenis.stop(); else { lenis.start(); runtime.current?.invalidate() } },
       refresh() { trigger.refresh(); update(trigger.progress) }
     }
