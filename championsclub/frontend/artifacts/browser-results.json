@@ -86,12 +86,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2816,
+                  "duration": 1781,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-17T15:35:57.243Z",
+                  "startTime": "2026-09-20T11:47:17.904Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -120,12 +120,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2272,
+                  "duration": 1695,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-17T15:36:00.422Z",
+                  "startTime": "2026-09-20T11:47:20.007Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -154,12 +154,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2220,
+                  "duration": 1708,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-17T15:36:02.704Z",
+                  "startTime": "2026-09-20T11:47:21.711Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -188,12 +188,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2269,
+                  "duration": 1692,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-17T15:36:04.934Z",
+                  "startTime": "2026-09-20T11:47:23.427Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -222,12 +222,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2289,
+                  "duration": 1734,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-17T15:36:07.216Z",
+                  "startTime": "2026-09-20T11:47:25.126Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -256,12 +256,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3879,
+                  "duration": 3375,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-17T15:36:09.513Z",
+                  "startTime": "2026-09-20T11:47:26.868Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -283,7 +283,7 @@
       "line": 0,
       "specs": [
         {
-          "title": "the whole automotive story scrubs, stops and reverses without React frame updates",
+          "title": "all 15 source moments and every boundary in both directions preserve stable opaque framing",
           "ok": true,
           "tags": [],
           "tests": [
@@ -298,12 +298,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 5154,
+                  "duration": 5645,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-17T15:36:13.428Z",
+                  "startTime": "2026-09-20T11:47:30.277Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -311,13 +311,115 @@
               "status": "expected"
             }
           ],
-          "id": "2d243af4b6ac2ee83f7c-c5028b9bedbdde7734b2",
+          "id": "2d243af4b6ac2ee83f7c-6ef3b3a5108e09c35eca",
           "file": "experience.spec.js",
-          "line": 13,
+          "line": 28,
           "column": 1
         },
         {
-          "title": "chapter selection and workspace round trips preserve the scene and resources",
+          "title": "slow forward and reverse scrubbing reaches every original frame, without stale presentation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 58494,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-20T11:47:35.932Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2d243af4b6ac2ee83f7c-15de6379211f8673028f",
+          "file": "experience.spec.js",
+          "line": 71,
+          "column": 1
+        },
+        {
+          "title": "fast jumps, direction reversals, stops, and boundary interruption settle with one controller",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6186,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-20T11:48:34.436Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2d243af4b6ac2ee83f7c-8ee5f7132ff485738e60",
+          "file": "experience.spec.js",
+          "line": 85,
+          "column": 1
+        },
+        {
+          "title": "resize, repeated cycles and workspace round trips retain bounded resources",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4468,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-20T11:48:40.631Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2d243af4b6ac2ee83f7c-af7452d02b64c6ffe9cf",
+          "file": "experience.spec.js",
+          "line": 117,
+          "column": 1
+        },
+        {
+          "title": "mobile and reduced motion preserve the complete frame and accessible navigation",
           "ok": true,
           "tags": [],
           "tests": [
@@ -332,12 +434,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 4023,
+                  "duration": 2702,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-17T15:36:18.591Z",
+                  "startTime": "2026-09-20T11:48:45.108Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -345,13 +447,47 @@
               "status": "expected"
             }
           ],
-          "id": "2d243af4b6ac2ee83f7c-c5450a0e56d668169b0a",
+          "id": "2d243af4b6ac2ee83f7c-56951a7bee158e6cf216",
           "file": "experience.spec.js",
-          "line": 53,
+          "line": 155,
           "column": 1
         },
         {
-          "title": "mobile and reduced motion retain every chapter and the operational exit",
+          "title": "delayed media cannot flash stale scenes; image compatibility fallback and failure exits work",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3969,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-20T11:48:47.816Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2d243af4b6ac2ee83f7c-60885ad6469b471e2e7a",
+          "file": "experience.spec.js",
+          "line": 179,
+          "column": 1
+        },
+        {
+          "title": "native touch scrolling reverses and a short landscape viewport contains the complete source",
           "ok": true,
           "tags": [],
           "tests": [
@@ -366,12 +502,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2470,
+                  "duration": 2854,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-17T15:36:22.623Z",
+                  "startTime": "2026-09-20T11:48:51.794Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -379,111 +515,9 @@
               "status": "expected"
             }
           ],
-          "id": "2d243af4b6ac2ee83f7c-1a903dd048bfa00ebb43",
+          "id": "2d243af4b6ac2ee83f7c-dc9ede35cedef1614b92",
           "file": "experience.spec.js",
-          "line": 72,
-          "column": 1
-        },
-        {
-          "title": "a lost graphics context leaves a usable workspace exit",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 1444,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-17T15:36:25.101Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "2d243af4b6ac2ee83f7c-8c0a647ea1091e916c05",
-          "file": "experience.spec.js",
-          "line": 87,
-          "column": 1
-        },
-        {
-          "title": "the manifest loads a named GLTF assembly and rejects incompatible parts before playback",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 3068,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-17T15:36:26.554Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "2d243af4b6ac2ee83f7c-ccaba6c2372635c716ff",
-          "file": "experience.spec.js",
-          "line": 95,
-          "column": 1
-        },
-        {
-          "title": "mobile full motion fits the car and keeps touch scrolling reversible",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 1326,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-17T15:36:29.629Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "2d243af4b6ac2ee83f7c-92c17b2a6bf957bdef13",
-          "file": "experience.spec.js",
-          "line": 122,
+          "line": 203,
           "column": 1
         }
       ]
@@ -510,12 +544,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2657,
+                  "duration": 2039,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-17T15:36:30.973Z",
+                  "startTime": "2026-09-20T11:48:54.672Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -544,12 +578,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2055,
+                  "duration": 1629,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-17T15:36:33.637Z",
+                  "startTime": "2026-09-20T11:48:56.718Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -578,12 +612,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2517,
+                  "duration": 1942,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-17T15:36:35.700Z",
+                  "startTime": "2026-09-20T11:48:58.355Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -620,12 +654,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2033,
+                  "duration": 1578,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-17T15:36:38.234Z",
+                  "startTime": "2026-09-20T11:49:00.323Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -654,12 +688,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3015,
+                  "duration": 2463,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-17T15:36:40.275Z",
+                  "startTime": "2026-09-20T11:49:01.908Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -669,7 +703,7 @@
           ],
           "id": "500e814c046e2132c6e8-5d48bcc01266b7a4ed23",
           "file": "workflows.spec.js",
-          "line": 26,
+          "line": 27,
           "column": 1
         },
         {
@@ -688,12 +722,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1314,
+                  "duration": 999,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-17T15:36:43.298Z",
+                  "startTime": "2026-09-20T11:49:04.378Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -703,7 +737,7 @@
           ],
           "id": "500e814c046e2132c6e8-f75850e3f4d423b4e0c2",
           "file": "workflows.spec.js",
-          "line": 44,
+          "line": 45,
           "column": 1
         },
         {
@@ -722,12 +756,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1977,
+                  "duration": 1506,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-17T15:36:44.621Z",
+                  "startTime": "2026-09-20T11:49:05.385Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -737,7 +771,7 @@
           ],
           "id": "500e814c046e2132c6e8-5e4bcba727065680861e",
           "file": "workflows.spec.js",
-          "line": 63,
+          "line": 64,
           "column": 1
         },
         {
@@ -756,12 +790,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3748,
+                  "duration": 3204,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-17T15:36:46.607Z",
+                  "startTime": "2026-09-20T11:49:06.899Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -771,7 +805,7 @@
           ],
           "id": "500e814c046e2132c6e8-6c155a8783b4b3dfed44",
           "file": "workflows.spec.js",
-          "line": 80,
+          "line": 81,
           "column": 1
         }
       ]
@@ -779,9 +813,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-09-17T15:35:56.854Z",
-    "duration": 53854.388000000006,
-    "expected": 20,
+    "startTime": "2026-09-20T11:47:17.526Z",
+    "duration": 113050.366,
+    "expected": 21,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

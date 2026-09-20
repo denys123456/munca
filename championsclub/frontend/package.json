@@ -10,8 +10,12 @@
     "test": "playwright test",
     "test:data": "node --test tests/data-contracts.test.mjs",
     "profile": "node scripts/profile.mjs",
-    "media:inspect": "node scripts/inspect-arteon.mjs",
-    "media:arteon": "node scripts/process-arteon.mjs"
+    "media:inspect": "node scripts/inspect-cinematic.mjs",
+    "media:arteon": "node scripts/prepare-cinematic.mjs",
+    "media:benchmark": "node scripts/benchmark-cinematic.mjs",
+    "media:audit": "node scripts/audit-cinematic.mjs",
+    "profile:cinematic": "node scripts/profile-cinematic.mjs",
+    "test:cinematic": "node --test tests/cinematic-timeline.test.mjs && playwright test tests/experience.spec.js"
   },
   "dependencies": {
     "@fontsource/barlow-condensed": "^5.3.0",

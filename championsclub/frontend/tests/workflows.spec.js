@@ -1,5 +1,4 @@
 import { test, expect, start, navigate, state, changeAccount, travelTo } from './helpers.js'
-import { chapterFrames } from '../src/experience/arteonTimeline.js'
 
 test('a recorded sale persists and updates the cinematic performance data', async ({ page }) => {
   await start(page, 'alex-manager', 'dealership-activity')
@@ -20,7 +19,7 @@ test('a recorded sale persists and updates the cinematic performance data', asyn
   await expect(page.locator('.premium-table-row')).toHaveCount(2)
   await page.getByRole('button', { name: 'EXPERIENCE', exact: true }).click()
   await expect(page.locator('.experience-loading')).toHaveCount(0, { timeout: 20000 })
-  await travelTo(page, chapterFrames[4] / 239)
+  await travelTo(page, await page.evaluate(() => document.querySelector('.experience-canvas').getDiagnostics().chapterProgress[4]))
   await expect(page.locator('.story-panel-4')).toBeVisible()
   await expect(page.locator('.story-panel-4')).toContainText('€322,400')
 })

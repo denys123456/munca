@@ -1,3 +1,5 @@
 # Local cinematic inspection and browser evidence; production frames live in public/media.
 /artifacts/arteon/
+/artifacts/cinematic/
 /test-results/arteon/
+/test-results/

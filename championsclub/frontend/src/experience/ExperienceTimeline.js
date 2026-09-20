@@ -1,19 +1,19 @@
 import gsap from 'gsap'
 
 export const chapters = [
-  { name: 'The complete system', label: '01 / THE COMPLETE SYSTEM', title: ['PERFORMANCE', 'IS A SYSTEM.'], note: 'An exploration of the forces that move us.' },
-  { name: 'Designed to move', label: '02 / DESIGNED TO MOVE', title: ['NOTHING MOVES', 'ALONE.'], note: 'A shared direction. A greater ambition.' },
-  { name: 'Beneath the surface', label: '03 / BENEATH THE SURFACE', title: ['EVERY PART.', 'ONE PURPOSE.'], note: 'Look closer. Performance is a connected machine.' },
-  { name: 'Into the engine', label: '04 / THE SOURCE OF MOTION', title: ['GREATNESS', 'COMES FROM WITHIN.'], note: 'From the whole to the heart of the system.' },
-  { name: 'The engine', label: '05 / SALES PERFORMANCE', title: ['THIS IS', 'YOUR DRIVING FORCE.'], note: 'Every result begins with the work inside.' },
-  { name: 'Mechanical harmony', label: '06 / MECHANICAL HARMONY', title: ['COMPLEXITY.', 'IN PERFECT ORDER.'], note: 'Individual systems. Precisely connected.' },
+  { name: 'The complete system', label: '01 / THE CHAMPIONSCLUB EXPERIENCE', title: ['PRECISION', 'IN MOTION.'], note: 'Human ambition. Mechanical precision.' },
+  { name: 'Designed to move', label: '02 / THE EXTERIOR', title: ['DESIGNED', 'TO MOVE.'], note: 'Every perspective reveals a shared purpose.' },
+  { name: 'Beneath the surface', label: '03 / BENEATH THE SURFACE', title: ['BEYOND', 'THE SURFACE.'], note: 'Look closer. Performance is a connected machine.' },
+  { name: 'Into the engine', label: '04 / THE SOURCE OF MOTION', title: ['POWER,', 'REVEALED.'], note: 'An opening into the heart of the system.' },
+  { name: 'The engine', label: '05 / THE ENGINEERING STUDY', title: ['THE MECHANICAL', 'HEART.'], note: 'Every result begins with the work inside.' },
+  { name: 'Mechanical harmony', label: '06 / MECHANICAL HARMONY', title: ['ENGINEERED', 'TO PERFORM.'], note: 'Individual systems. Precisely connected.' },
   { name: 'Individual contribution', label: '07 / THE PEOPLE BEHIND THE POWER', title: ['INDIVIDUAL DRIVE.', 'COLLECTIVE FORCE.'], note: 'Every advisor contributes to the motion.' },
-  { name: 'Team output', label: '08 / TEAM PERFORMANCE', title: ['MANY MOVEMENTS.', 'ONE MOMENTUM.'], note: 'Contribution becomes coordinated output.' },
+  { name: 'Team output', label: '08 / TEAM PERFORMANCE', title: ['PERFORMANCE,', 'REIMAGINED.'], note: 'Contribution becomes coordinated output.' },
   { name: 'The road ahead', label: '09 / FORECASTING', title: ['READ THE ROAD.', 'SHAPE WHAT’S NEXT.'], note: 'Actual performance. A projected finish. A shared target.' },
   { name: 'Champions Intelligence', label: '10 / CHAMPIONS INTELLIGENCE', title: ['SIGNAL', 'INTO DIRECTION.'], note: 'The control system behind your next move.' },
   { name: 'Recognition', label: '11 / RECOGNITION, REFINED', title: ['PROGRESS', 'HAS ITS REWARDS.'], note: 'Bronze. Silver. Gold. Recognition earned through contribution.' },
   { name: 'One machine', label: '12 / BACK IN SYNC', title: ['EVERYTHING', 'COMES TOGETHER.'], note: 'People. Strategy. Intelligence. One connected system.' },
-  { name: 'Forward, together', label: '13 / CHAMPIONSCLUB', title: ['EVERY PART', 'MOVES US FORWARD.'], note: 'Turn performance into progress.' }
+  { name: 'Forward, together', label: '13 / CHAMPIONSCLUB', title: ['FORWARD.', 'TOGETHER.'], note: 'Turn performance into progress.' }
 ]
 
 const poses = [

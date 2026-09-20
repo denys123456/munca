@@ -33,6 +33,7 @@ export default function AutomotiveExperience({ data, paused, onWorkspace }) {
         onReady: (value) => { if (active) { setModels(value); setReady(true) } },
         onError: (message) => { if (active) { setError(message); setReady(true) } },
         onFrameAvailable: () => { if (active) setError((current) => current ? '' : current) },
+        onTimeline: () => controls.current?.refresh(),
         onAnchor: (x, y) => { if (anchor.current) anchor.current.style.transform = `translate3d(${x}px, ${y}px, 0)` }
       })
       canvasHost.current.getDiagnostics = () => runtime.current?.diagnostics()
@@ -63,6 +64,6 @@ export default function AutomotiveExperience({ data, paused, onWorkspace }) {
       {error && <div className="graphics-fallback" role="status"><span>GRAPHICS UNAVAILABLE</span><p>{error}</p><button className="workspace-cta" onClick={() => onWorkspace()}>OPEN WORKSPACE ↗</button></div>}
     </div>
     {indexOpen && <Dialog title="Explore the system" onClose={() => setIndexOpen(false)} className="chapter-dialog"><nav className="chapter-index" aria-label="Story chapters">{chapters.map((chapter, index) => <button key={chapter.name} aria-current={Number(root.current?.dataset.chapter) === index ? 'step' : undefined} onClick={() => seek(index)}><span>{String(index + 1).padStart(2, '0')}</span>{chapter.name}<span>↗</span></button>)}</nav></Dialog>}
-    {modelInfo && <Dialog title="The Arteon cinematic" onClose={() => setModelInfo(false)}><div className="model-information"><p>The Volkswagen Arteon, from exterior orbit to the moving components inside. Scroll to advance, stop to hold, and scroll back to retrace the sequence.</p><dl><dt>Vehicle</dt><dd>{models?.vehicle ?? 'Unavailable'}</dd><dt>Engine</dt><dd>{models?.engine ?? 'Unavailable'}</dd><dt>Data</dt><dd>{metrics.source === 'SEEDED DEMO DATA' ? 'Seeded demo workspace' : 'Connected performance service'}</dd></dl><p>The original footage returns to the complete vehicle through a dissolve and hood closure. With reduced motion enabled, scrolling selects static chapter views.</p></div></Dialog>}
+    {modelInfo && <Dialog title="The Arteon cinematic" onClose={() => setModelInfo(false)}><div className="model-information"><p>The Volkswagen Arteon, from the exterior to its mechanical heart. Scroll to explore, pause to settle, and scroll back to retrace every movement.</p><dl><dt>Vehicle</dt><dd>{models?.vehicle ?? 'Unavailable'}</dd><dt>Engine</dt><dd>{models?.engine ?? 'Unavailable'}</dd><dt>Data</dt><dd>{metrics.source === 'SEEDED DEMO DATA' ? 'Seeded demo workspace' : 'Connected performance service'}</dd></dl><p>Three original films. An exterior showcase, an opening hood, and an isolated engine study. The engineering film reverses to reconstruct the engine before returning to the car. Reduced motion selects static chapter views.</p></div></Dialog>}
   </main>
 }
