@@ -74,8 +74,8 @@ export function createArteonSequence(host, callbacks) {
     const mobile = width <= 720
     // Every source frame is already a fixed 1280x720 composition.  Keep one
     // stable destination rectangle for the entire sequence so transparent
-    // matte bounds cannot make the vehicle jump smaller or larger.  Any camera
-    // zoom remains encoded in the source pixels themselves.
+    // Source-frame geometry is fixed for the entire sequence. Any camera zoom
+    // remains encoded in the original source pixels themselves.
     const frameWidth = Math.min(width * (mobile ? .98 : .90), variant.width, height * (mobile ? .40 : .69) * 16 / 9)
     const frameHeight = frameWidth * 9 / 16
     const x = (width - frameWidth) / 2
@@ -239,7 +239,7 @@ export function createArteonSequence(host, callbacks) {
     .then((response) => { if (!response.ok) throw new Error('Cinematic manifest could not load.'); return response.json() })
     .then((value) => {
       if (disposed) return
-      if (value.frameCount < 480 || value.fps !== deliveryFps || value.frames?.length !== value.frameCount || !value.alpha || !value.variants?.length) throw new Error('Cinematic manifest is incompatible.')
+      if (value.frameCount < deliveryFrameCount || value.fps !== deliveryFps || value.frames?.length !== value.frameCount || !value.variants?.length) throw new Error('Cinematic manifest is incompatible.')
       manifest = value
       variant = manifest.variants.find((item) => item.name === (compact ? 'mobile' : 'desktop'))
       if (!variant) throw new Error('Cinematic resolution is unavailable.')
