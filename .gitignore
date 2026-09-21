@@ -1,0 +1,65 @@
+/.work/
+
+# Local environment values; keep reviewed, placeholder-only examples.
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Explicit local credential/configuration files (not public certificates).
+credentials.json
+secrets.json
+service-account.json
+service-account-*.json
+config.local.json
+settings.local.json
+application-local.properties
+application-local.yml
+application-local.yaml
+application-secrets.properties
+application-secrets.yml
+application-secrets.yaml
+*.private.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+.ssh/
+.secrets/
+.credentials/
+.git-credentials
+.netrc
+_netrc
+.pgpass
+pgpass.conf
+
+# Local repository packages, database exports and generated datasets.
+/ChampionsClub.zip
+/championsclub/ChampionsClub.zip
+/ChampionsClub_M7_start.zip
+/championsclub/ChampionsClub_M7_start.zip
+/championsclub/backups/
+/championsclub/database-dumps/
+/championsclub/data/generated/
+*.sql.gz
+*.sql.zip
+*.dump
+
+# Reproducible ML output; keep the empty runtime directory in source control.
+/championsclub/ml-service/artifacts/*
+!/championsclub/ml-service/artifacts/.gitkeep
+/championsclub/ml-service/artifacts-backup-*/
+/championsclub/ml-service/candidate-artifacts/
+
+# Local browser captures can contain login requests and session information.
+/championsclub/frontend/artifacts/
+/championsclub/frontend/test-results/
+/championsclub/frontend/playwright-report/
+/championsclub/frontend/blob-report/
+
+# Local logs, caches and editor settings.
+*.log
+/.pytest_cache/
+/.idea/
+/.vscode/

@@ -1,32 +1,41 @@
 package com.championsclub.sales.domain;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.time.LocalDate;
 
 public class Sale {
-
     private final Long id;
     private final String externalReference;
     private final String currency;
     private final Long advisorId;
     private final Long dealershipId;
     private final Long productId;
-    private final BigDecimal financedAmount;
+    private final BigDecimal contractAmount;
     private final LocalDate saleDate;
     private final int awardedPoints;
     private final SaleStatus status;
+    private final VehiclePowertrain vehiclePowertrain;
+    private final VehicleCondition vehicleCondition;
+    private final CustomerSegment customerSegment;
+    private final Instant cancelledAt;
 
     private Sale(Builder builder) {
         this.id = builder.id;
-        this.externalReference = builder.externalReference;
-        this.currency = builder.currency;
+        this.externalReference = requireText(builder.externalReference, "External sale reference must be provided.");
+        this.currency = requireText(builder.currency, "Sale currency must be provided.");
         this.advisorId = requireId(builder.advisorId);
         this.dealershipId = requireId(builder.dealershipId);
         this.productId = requireId(builder.productId);
-        this.financedAmount = requirePositiveAmount(builder.financedAmount);
+        this.contractAmount = requirePositiveAmount(builder.contractAmount);
         this.saleDate = builder.saleDate == null ? LocalDate.now() : builder.saleDate;
         this.awardedPoints = requireNonNegative(builder.awardedPoints);
         this.status = builder.status == null ? SaleStatus.RECORDED : builder.status;
+        this.vehiclePowertrain = builder.vehiclePowertrain == null ? VehiclePowertrain.UNKNOWN : builder.vehiclePowertrain;
+        this.vehicleCondition = builder.vehicleCondition == null ? VehicleCondition.UNKNOWN : builder.vehicleCondition;
+        this.customerSegment = builder.customerSegment == null ? CustomerSegment.UNKNOWN : builder.customerSegment;
+        this.cancelledAt = builder.cancelledAt;
+        validateCancellation();
     }
 
     public static Builder builder() {
@@ -37,16 +46,38 @@ public class Sale {
         return status == SaleStatus.RECORDED;
     }
 
+    public Sale cancel() {
+        if (status != SaleStatus.RECORDED) {
+            throw new IllegalStateException("Only recorded sales can be cancelled.");
+        }
+        return builder()
+                .id(id)
+                .advisorId(advisorId)
+                .dealershipId(dealershipId)
+                .productId(productId)
+                .contractAmount(contractAmount)
+                .saleDate(saleDate)
+                .awardedPoints(awardedPoints)
+                .externalReference(externalReference)
+                .currency(currency)
+                .status(SaleStatus.CANCELLED)
+                .vehiclePowertrain(vehiclePowertrain)
+                .vehicleCondition(vehicleCondition)
+                .customerSegment(customerSegment)
+                .cancelledAt(Instant.now())
+                .build();
+    }
+
     public Long id() {
         return id;
     }
-    public String externalReference() { return externalReference; }
-    public String currency() { return currency; }
-    public Sale cancel() {
-        if (status != SaleStatus.RECORDED) throw new IllegalStateException("Only recorded sales can be cancelled.");
-        return builder().id(id).advisorId(advisorId).dealershipId(dealershipId).productId(productId)
-                .financedAmount(financedAmount).saleDate(saleDate).awardedPoints(awardedPoints)
-                .externalReference(externalReference).currency(currency).status(SaleStatus.CANCELLED).build();
+
+    public String externalReference() {
+        return externalReference;
+    }
+
+    public String currency() {
+        return currency;
     }
 
     public Long advisorId() {
@@ -61,8 +92,8 @@ public class Sale {
         return productId;
     }
 
-    public BigDecimal financedAmount() {
-        return financedAmount;
+    public BigDecimal contractAmount() {
+        return contractAmount;
     }
 
     public LocalDate saleDate() {
@@ -77,6 +108,38 @@ public class Sale {
         return status;
     }
 
+    public VehiclePowertrain vehiclePowertrain() {
+        return vehiclePowertrain;
+    }
+
+    public VehicleCondition vehicleCondition() {
+        return vehicleCondition;
+    }
+
+    public CustomerSegment customerSegment() {
+        return customerSegment;
+    }
+
+    public Instant cancelledAt() {
+        return cancelledAt;
+    }
+
+    private void validateCancellation() {
+        if (status == SaleStatus.RECORDED && cancelledAt != null) {
+            throw new IllegalArgumentException("Recorded sales cannot have a cancellation timestamp.");
+        }
+        if (status == SaleStatus.CANCELLED && cancelledAt == null) {
+            throw new IllegalArgumentException("Cancelled sales require a cancellation timestamp.");
+        }
+    }
+
+    private static String requireText(String value, String message) {
+        if (value == null || value.isBlank()) {
+            throw new IllegalArgumentException(message);
+        }
+        return value.trim();
+    }
+
     private static Long requireId(Long value) {
         if (value == null || value <= 0) {
             throw new IllegalArgumentException("Sale identifiers must be positive.");
@@ -86,10 +149,11 @@ public class Sale {
 
     private static BigDecimal requirePositiveAmount(BigDecimal value) {
         if (value == null || value.signum() <= 0) {
-            throw new IllegalArgumentException("Sale amount must be positive.");
+            throw new IllegalArgumentException("Contract amount must be positive.");
         }
-        if (value.scale() > 2 || value.precision() - value.scale() > 12)
-            throw new IllegalArgumentException("Sale amount must have at most 12 integer digits and two decimal places.");
+        if (value.scale() > 2 || value.precision() - value.scale() > 12) {
+            throw new IllegalArgumentException("Contract amount must have at most 12 integer digits and two decimal places.");
+        }
         return value;
     }
 
@@ -104,21 +168,33 @@ public class Sale {
         private Long id;
         private String externalReference;
         private String currency = "EUR";
-        public Builder externalReference(String value) { this.externalReference = value; return this; }
-        public Builder currency(String value) { this.currency = value; return this; }
         private Long advisorId;
         private Long dealershipId;
         private Long productId;
-        private BigDecimal financedAmount;
+        private BigDecimal contractAmount;
         private LocalDate saleDate;
         private int awardedPoints;
         private SaleStatus status;
+        private VehiclePowertrain vehiclePowertrain = VehiclePowertrain.UNKNOWN;
+        private VehicleCondition vehicleCondition = VehicleCondition.UNKNOWN;
+        private CustomerSegment customerSegment = CustomerSegment.UNKNOWN;
+        private Instant cancelledAt;
 
         private Builder() {
         }
 
         public Builder id(Long id) {
             this.id = id;
+            return this;
+        }
+
+        public Builder externalReference(String externalReference) {
+            this.externalReference = externalReference;
+            return this;
+        }
+
+        public Builder currency(String currency) {
+            this.currency = currency;
             return this;
         }
 
@@ -137,8 +213,8 @@ public class Sale {
             return this;
         }
 
-        public Builder financedAmount(BigDecimal financedAmount) {
-            this.financedAmount = financedAmount;
+        public Builder contractAmount(BigDecimal contractAmount) {
+            this.contractAmount = contractAmount;
             return this;
         }
 
@@ -154,6 +230,26 @@ public class Sale {
 
         public Builder status(SaleStatus status) {
             this.status = status;
+            return this;
+        }
+
+        public Builder vehiclePowertrain(VehiclePowertrain vehiclePowertrain) {
+            this.vehiclePowertrain = vehiclePowertrain;
+            return this;
+        }
+
+        public Builder vehicleCondition(VehicleCondition vehicleCondition) {
+            this.vehicleCondition = vehicleCondition;
+            return this;
+        }
+
+        public Builder customerSegment(CustomerSegment customerSegment) {
+            this.customerSegment = customerSegment;
+            return this;
+        }
+
+        public Builder cancelledAt(Instant cancelledAt) {
+            this.cancelledAt = cancelledAt;
             return this;
         }
 

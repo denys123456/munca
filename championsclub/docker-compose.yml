@@ -17,6 +17,10 @@ services:
 
   ml-service:
     build: ./ml-service
+    environment:
+      CHAMPIONSCLUB_ML_ARTIFACT_DIR: /app/artifacts
+    volumes:
+      - ./ml-service/artifacts:/app/artifacts:ro
     ports:
       - "127.0.0.1:${ML_PORT:-8000}:8000"
     healthcheck:
@@ -39,10 +43,13 @@ services:
       CHAMPIONSCLUB_AI_ENDPOINT: ${CHAMPIONSCLUB_AI_ENDPOINT:-https://api.openai.com/v1/chat/completions}
       CHAMPIONSCLUB_AI_MODEL: ${CHAMPIONSCLUB_AI_MODEL:-}
       CHAMPIONSCLUB_DEMO_PASSWORD: ${CHAMPIONSCLUB_DEMO_PASSWORD:-}
+      CHAMPIONSCLUB_SYNTHETIC_DATA_DIRECTORY: /app/data/generated
       CHAMPIONSCLUB_CORS_ALLOWED_ORIGIN: ${CHAMPIONSCLUB_CORS_ALLOWED_ORIGIN:-http://localhost:5173}
       CHAMPIONSCLUB_SCHEDULING_ENABLED: ${CHAMPIONSCLUB_SCHEDULING_ENABLED:-true}
     ports:
       - "127.0.0.1:${BACKEND_PORT:-8080}:8080"
+    volumes:
+      - ./data/generated:/app/data/generated:ro
     depends_on:
       postgres:
         condition: service_healthy
@@ -52,11 +59,28 @@ services:
   frontend:
     profiles: ["frontend"]
     build: ./frontend
+    environment:
+      API_PROXY_TARGET: http://backend:8080
     ports:
       - "5173:5173"
     depends_on:
       backend:
         condition: service_started
+
+  data-generator:
+    profiles: ["data"]
+    build: ./data-pipeline
+    command: ["python", "-m", "championsclub_data.cli", "generate", "--output", "/output", "--calibration", "/workspace/config/calibration.json", "--contracts", "${CHAMPIONSCLUB_DATASET_CONTRACTS:-300000}", "--dealerships", "${CHAMPIONSCLUB_DATASET_DEALERSHIPS:-40}", "--advisors", "${CHAMPIONSCLUB_DATASET_ADVISORS:-600}", "--seed", "${CHAMPIONSCLUB_DATASET_SEED:-20260916}", "--start", "2024-01-01", "--end", "2026-09-15"]
+    volumes:
+      - ./data/generated:/output
+
+  ml-trainer:
+    profiles: ["ml-training"]
+    build: ./ml-service
+    command: ["python", "-m", "app.training", "--data-dir", "/data", "--artifact-dir", "/artifacts"]
+    volumes:
+      - ./data/generated:/data:ro
+      - ./ml-service/artifacts:/artifacts
 
 volumes:
   postgres_data:

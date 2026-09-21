@@ -1,5 +1,7 @@
 package com.championsclub.users.domain;
 
+import java.util.Objects;
+
 public class User {
 
     private final Long id;
@@ -8,6 +10,7 @@ public class User {
     private final String email;
     private final Long dealershipId;
     private final UserRole role;
+    private final AdvisorType advisorType;
     private final UserStatus status;
 
     private User(Builder builder) {
@@ -15,11 +18,11 @@ public class User {
         this.firstName = requireText(builder.firstName);
         this.lastName = requireText(builder.lastName);
         this.email = requireText(builder.email);
-        this.dealershipId = builder.dealershipId;
+        this.dealershipId = requireDealership(builder.dealershipId);
         this.role = requireValue(builder.role);
+        this.advisorType = builder.advisorType;
         this.status = builder.status == null ? UserStatus.ACTIVE : builder.status;
-        if (role != UserRole.ADMIN && (dealershipId == null || dealershipId <= 0))
-            throw new IllegalArgumentException("Advisors and managers require a dealership.");
+        validateAdvisorType();
     }
 
     public static Builder builder() {
@@ -31,7 +34,11 @@ public class User {
     }
 
     public boolean canManageDealership(Long requestedDealershipId) {
-        return role == UserRole.ADMIN || role == UserRole.MANAGER && java.util.Objects.equals(dealershipId,requestedDealershipId);
+        return role == UserRole.MANAGER && Objects.equals(dealershipId, requestedDealershipId);
+    }
+
+    public boolean isAdvisor() {
+        return role == UserRole.ADVISOR;
     }
 
     public Long id() {
@@ -58,8 +65,21 @@ public class User {
         return role;
     }
 
+    public AdvisorType advisorType() {
+        return advisorType;
+    }
+
     public UserStatus status() {
         return status;
+    }
+
+    private void validateAdvisorType() {
+        if (role == UserRole.ADVISOR && advisorType == null) {
+            throw new IllegalArgumentException("Advisors require an advisor type.");
+        }
+        if (role == UserRole.MANAGER && advisorType != null) {
+            throw new IllegalArgumentException("Managers cannot have an advisor type.");
+        }
     }
 
     private static String requireText(String value) {
@@ -67,6 +87,13 @@ public class User {
             throw new IllegalArgumentException("User values must be provided.");
         }
         return value.trim();
+    }
+
+    private static Long requireDealership(Long value) {
+        if (value == null || value <= 0) {
+            throw new IllegalArgumentException("Users require a dealership.");
+        }
+        return value;
     }
 
     private static UserRole requireValue(UserRole value) {
@@ -83,6 +110,7 @@ public class User {
         private String email;
         private Long dealershipId;
         private UserRole role;
+        private AdvisorType advisorType;
         private UserStatus status;
 
         private Builder() {
@@ -115,6 +143,11 @@ public class User {
 
         public Builder role(UserRole role) {
             this.role = role;
+            return this;
+        }
+
+        public Builder advisorType(AdvisorType advisorType) {
+            this.advisorType = advisorType;
             return this;
         }
 

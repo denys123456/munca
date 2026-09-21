@@ -123,11 +123,11 @@ Backend:
 ```text
 SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/championsclub
 SPRING_DATASOURCE_USERNAME=championsclub
-SPRING_DATASOURCE_PASSWORD=championsclub_dev
+SPRING_DATASOURCE_PASSWORD=<set-a-unique-local-database-password>
 CHAMPIONSCLUB_ML_BASE_URL=http://localhost:8000
 CHAMPIONSCLUB_AI_PROVIDER=MOCK
 CHAMPIONSCLUB_AI_API_KEY=
-CHAMPIONSCLUB_DEMO_PASSWORD=change-this-before-production
+CHAMPIONSCLUB_DEMO_PASSWORD=<set-a-unique-local-demo-password>
 CHAMPIONSCLUB_CORS_ALLOWED_ORIGIN=http://localhost:5173
 ```
 
@@ -135,8 +135,9 @@ Frontend:
 
 ```text
 VITE_API_BASE_URL=http://localhost:8080
-VITE_DEMO_PASSWORD=change-this-before-production
 ```
+
+Keep credentials in the ignored local `.env` file or server environment. `VITE_*` values are public browser configuration: never put API keys, database passwords, signing secrets or demo passwords there. Use the placeholder-only `.env.example` files as templates.
 
 ## Demo Accounts
 
@@ -184,7 +185,7 @@ DataGrip setup:
 - Port: `5432`
 - Database: `championsclub`
 - User: `championsclub`
-- Password: `championsclub_dev`
+- Password: use your local `SPRING_DATASOURCE_PASSWORD` value.
 
 Use DataGrip to inspect schemas, relationships, indexes, migration results and dashboard query data.
 

@@ -16,7 +16,7 @@ interface JpaSaleRepository extends JpaRepository<SaleEntity, Long>, org.springf
     java.util.Optional<SaleEntity> lock(@Param("id") long id);
 
     @Query("""
-            select coalesce(sum(s.financedAmount), 0)
+            select coalesce(sum(s.contractAmount), 0)
             from SaleEntity s
             where s.advisorId = :advisorId
             and s.status = :status
@@ -30,7 +30,7 @@ interface JpaSaleRepository extends JpaRepository<SaleEntity, Long>, org.springf
     );
 
     @Query("""
-            select coalesce(sum(s.financedAmount), 0)
+            select coalesce(sum(s.contractAmount), 0)
             from SaleEntity s
             where s.dealershipId = :dealershipId
             and s.status = :status
@@ -44,7 +44,7 @@ interface JpaSaleRepository extends JpaRepository<SaleEntity, Long>, org.springf
     );
 
     @Query("""
-            select coalesce(sum(s.financedAmount), 0)
+            select coalesce(sum(s.contractAmount), 0)
             from SaleEntity s
             where s.advisorId = :advisorId
             and s.status = :status

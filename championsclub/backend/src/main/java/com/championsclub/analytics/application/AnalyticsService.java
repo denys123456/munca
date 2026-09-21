@@ -1,73 +1,152 @@
 package com.championsclub.analytics.application;
-import com.championsclub.admin.application.ConfigurationStore;
-import com.championsclub.gamification.domain.GamificationProgress;
+
 import com.championsclub.security.application.Access;
 import com.championsclub.targets.application.TargetStore.OwnerType;
-import java.math.*;
-import java.time.*;
-import java.time.temporal.*;
-import java.util.*;
-import org.springframework.data.domain.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import org.springframework.stereotype.Service;
+
 @Service
 public class AnalyticsService {
+    private static final BigDecimal HUNDRED = BigDecimal.valueOf(100);
     private final AnalyticsRepository repository;
     private final Access access;
-    private final ConfigurationStore configuration;
-    public AnalyticsService(AnalyticsRepository repository, Access access, ConfigurationStore configuration) {
-        this.repository=repository; this.access=access; this.configuration=configuration;
+    private final AnalyticsPeriodValidator periods;
+
+    public AnalyticsService(
+            AnalyticsRepository repository,
+            Access access,
+            AnalyticsPeriodValidator periods
+    ) {
+        this.repository = repository;
+        this.access = access;
+        this.periods = periods;
     }
+
     public AnalyticsResult query(long id, OwnerType type, LocalDate start, LocalDate end) {
-        if (type == OwnerType.ADVISOR) access.advisor(id); else access.dealership(id);
+        if (type == OwnerType.ADVISOR) {
+            access.advisor(id);
+        } else {
+            access.dealership(id);
+        }
         return calculate(id, type, start, end);
     }
+
     public AnalyticsResult calculate(long id, OwnerType type, LocalDate start, LocalDate end) {
-        validate(start, end);
-        var daily=repository.daily(id, type, start, end);
-        long days=ChronoUnit.DAYS.between(start, end)+1;
-        BigDecimal previous=total(repository.daily(id, type, start.minusDays(days), start.minusDays(1)));
-        BigDecimal sales=total(daily);
-        BigDecimal growth=previous.signum() == 0 ? null : sales.subtract(previous).multiply(BigDecimal.valueOf(100)).divide(previous, 2, RoundingMode.HALF_UP);
-        return new AnalyticsResult(sales, previous, growth, daily, group(daily, true), group(daily, false),
-                repository.productMix(id, type, start, end));
+        periods.validate(start, end);
+        long days = ChronoUnit.DAYS.between(start, end) + 1;
+        LocalDate previousStart = start.minusDays(days);
+        LocalDate previousEnd = start.minusDays(1);
+        var current = repository.periodSummary(id, type, start, end);
+        var previous = repository.periodSummary(id, type, previousStart, previousEnd);
+        var daily = repository.daily(id, type, start, end);
+        return new AnalyticsResult(
+                start,
+                end,
+                current.sales(),
+                current.recordedContracts(),
+                current.averageContractAmount(),
+                current.cancelledContracts(),
+                cancellationRate(current),
+                previous.sales(),
+                previous.recordedContracts(),
+                percentageChange(current.sales(), previous.sales()),
+                percentageChange(current.recordedContracts(), previous.recordedContracts()),
+                daily,
+                group(daily, true),
+                group(daily, false),
+                productPerformance(repository.productMix(id, type, start, end), current),
+                dimensionPerformance(repository.productCategoryMix(id, type, start, end), current.recordedContracts()),
+                dimensionPerformance(repository.powertrainMix(id, type, start, end), current.recordedContracts()),
+                dimensionPerformance(repository.vehicleConditionMix(id, type, start, end), current.recordedContracts()),
+                dimensionPerformance(repository.customerSegmentMix(id, type, start, end), current.recordedContracts())
+        );
     }
-    public Page<Ranking> leaderboard(long dealershipId, LocalDate start, LocalDate end, Pageable page) {
-        var actor=access.current();
-        if (!(actor.role() == com.championsclub.users.domain.UserRole.SALES_ADVISOR && actor.dealershipId() == dealershipId))
-            access.dealership(dealershipId);
-        validate(start, end);
-        return ranking(dealershipId, start, end, page);
+
+    private BigDecimal cancellationRate(AnalyticsRepository.PeriodSummary summary) {
+        long totalContracts = summary.recordedContracts() + summary.cancelledContracts();
+        return totalContracts == 0
+                ? BigDecimal.ZERO
+                : percentage(summary.cancelledContracts(), totalContracts);
     }
-    public Page<Ranking> ranking(long dealershipId, LocalDate start, LocalDate end, Pageable page) {
-        var thresholds=configuration.thresholds();
-        var team=repository.team(dealershipId, start, end, page, false);
-        List<Ranking> result=new ArrayList<>();
-        int rank=(int)page.getOffset()+1;
-        for (var advisor : team) {
-            BigDecimal achievement=advisor.target().signum() == 0 ? null : advisor.sales().multiply(BigDecimal.valueOf(100))
-                    .divide(advisor.target(),2,RoundingMode.HALF_UP);
-            result.add(new Ranking(rank++, advisor, achievement,
-                    GamificationProgress.calculate(advisor.points(), thresholds.bronze(), thresholds.silver(), thresholds.gold())));
-        }
-        return new PageImpl<>(result, page, team.getTotalElements());
+
+    private BigDecimal percentageChange(BigDecimal current, BigDecimal previous) {
+        return previous.signum() == 0
+                ? null
+                : current.subtract(previous).multiply(HUNDRED).divide(previous, 2, RoundingMode.HALF_UP);
     }
-    private void validate(LocalDate start, LocalDate end) {
-        if (end.isBefore(start) || ChronoUnit.DAYS.between(start,end) > 365 || end.isAfter(LocalDate.now().withDayOfMonth(1).plusMonths(1).minusDays(1)))
-            throw new IllegalArgumentException("Analytics requires a valid period of at most one year.");
+
+    private BigDecimal percentageChange(long current, long previous) {
+        return previous == 0
+                ? null
+                : BigDecimal.valueOf(current - previous)
+                        .multiply(HUNDRED)
+                        .divide(BigDecimal.valueOf(previous), 2, RoundingMode.HALF_UP);
     }
-    private BigDecimal total(List<MlForecastClient.DailySale> series) {
-        return series.stream().map(MlForecastClient.DailySale::amount).reduce(BigDecimal.ZERO,BigDecimal::add);
+
+    private List<ProductPerformance> productPerformance(
+            List<AnalyticsRepository.ProductMix> products,
+            AnalyticsRepository.PeriodSummary summary
+    ) {
+        return products.stream()
+                .map(product -> new ProductPerformance(
+                        product.productId(),
+                        product.productCode(),
+                        product.productName(),
+                        product.category(),
+                        product.sales(),
+                        product.transactions(),
+                        percentage(product.sales(), summary.sales()),
+                        percentage(product.transactions(), summary.recordedContracts())
+                ))
+                .toList();
     }
+
+    private List<DimensionPerformance> dimensionPerformance(
+            List<AnalyticsRepository.DimensionMix> values,
+            long totalContracts
+    ) {
+        return values.stream()
+                .map(value -> new DimensionPerformance(
+                        value.value(),
+                        value.sales(),
+                        value.transactions(),
+                        percentage(value.transactions(), totalContracts)
+                ))
+                .toList();
+    }
+
+    private BigDecimal percentage(BigDecimal value, BigDecimal total) {
+        return total.signum() == 0
+                ? BigDecimal.ZERO
+                : value.multiply(HUNDRED).divide(total, 2, RoundingMode.HALF_UP);
+    }
+
+    private BigDecimal percentage(long value, long total) {
+        return total == 0
+                ? BigDecimal.ZERO
+                : BigDecimal.valueOf(value)
+                        .multiply(HUNDRED)
+                        .divide(BigDecimal.valueOf(total), 2, RoundingMode.HALF_UP);
+    }
+
     private List<MlForecastClient.DailySale> group(List<MlForecastClient.DailySale> daily, boolean weekly) {
-        Map<LocalDate, BigDecimal> groups=new TreeMap<>();
+        Map<LocalDate, BigDecimal> groups = new TreeMap<>();
         for (var point : daily) {
-            LocalDate date=weekly ? point.date().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY)) : point.date().withDayOfMonth(1);
-            groups.merge(date,point.amount(),BigDecimal::add);
+            LocalDate date = weekly
+                    ? point.date().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY))
+                    : point.date().withDayOfMonth(1);
+            groups.merge(date, point.amount(), BigDecimal::add);
         }
-        return groups.entrySet().stream().map(e -> new MlForecastClient.DailySale(e.getKey(),e.getValue())).toList();
+        return groups.entrySet().stream()
+                .map(entry -> new MlForecastClient.DailySale(entry.getKey(), entry.getValue()))
+                .toList();
     }
-    public record Ranking(int rank, AnalyticsRepository.AdvisorPerformance advisor, BigDecimal achievementPercentage, GamificationProgress gamification) {}
-    public record AnalyticsResult(BigDecimal sales, BigDecimal previousPeriodSales, BigDecimal growthPercentage,
-                                  List<MlForecastClient.DailySale> dailySales, List<MlForecastClient.DailySale> weeklySales,
-                                  List<MlForecastClient.DailySale> monthlySales, List<AnalyticsRepository.ProductMix> productMix) {}
 }

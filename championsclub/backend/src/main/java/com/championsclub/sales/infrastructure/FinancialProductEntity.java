@@ -1,6 +1,8 @@
 package com.championsclub.sales.infrastructure;
 
 import com.championsclub.sales.domain.FinancialProduct;
+import com.championsclub.sales.domain.ProductAdvisorScope;
+import com.championsclub.sales.domain.ProductCategory;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -13,23 +15,20 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "financial_products")
 class FinancialProductEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false)
     private String name;
-
-    @Column(nullable = false)
     private String code;
     private String description;
-    private boolean active;
-    @org.hibernate.annotations.UpdateTimestamp
-    private java.time.Instant updatedAt;
-
-    @Column(nullable = false)
     private boolean eligible;
+    private boolean active;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private ProductCategory category;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private ProductAdvisorScope advisorScope;
 
     protected FinancialProductEntity() {
     }
@@ -39,8 +38,10 @@ class FinancialProductEntity {
         this.name = product.name();
         this.code = product.code();
         this.description = product.description();
-        this.active = product.active();
         this.eligible = product.isEligible();
+        this.active = product.active();
+        this.category = product.category();
+        this.advisorScope = product.advisorScope();
     }
 
     static FinancialProductEntity fromDomain(FinancialProduct product) {
@@ -51,8 +52,12 @@ class FinancialProductEntity {
         return FinancialProduct.builder()
                 .id(id)
                 .name(name)
-                .code(code).description(description).active(active)
+                .code(code)
+                .description(description)
+                .category(category)
                 .eligible(eligible)
+                .active(active)
+                .advisorScope(advisorScope)
                 .build();
     }
 }

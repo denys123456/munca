@@ -15,28 +15,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/dashboard")
 class DashboardController {
-
-    private final GetAdvisorDashboardQueryHandler getAdvisorDashboardQueryHandler;
-    private final GetManagerDashboardQueryHandler getManagerDashboardQueryHandler;
+    private final GetAdvisorDashboardQueryHandler advisorDashboard;
+    private final GetManagerDashboardQueryHandler managerDashboard;
 
     DashboardController(
-            GetAdvisorDashboardQueryHandler getAdvisorDashboardQueryHandler,
-            GetManagerDashboardQueryHandler getManagerDashboardQueryHandler
+            GetAdvisorDashboardQueryHandler advisorDashboard,
+            GetManagerDashboardQueryHandler managerDashboard
     ) {
-        this.getAdvisorDashboardQueryHandler = getAdvisorDashboardQueryHandler;
-        this.getManagerDashboardQueryHandler = getManagerDashboardQueryHandler;
+        this.advisorDashboard = advisorDashboard;
+        this.managerDashboard = managerDashboard;
     }
 
     @GetMapping("/advisor/{advisorId}")
-    @PreAuthorize("hasAnyRole('SALES_ADVISOR','MANAGER','ADMIN')")
+    @PreAuthorize("hasAnyRole('ADVISOR','MANAGER')")
     AdvisorDashboard getAdvisorDashboard(@PathVariable Long advisorId) {
-        return getAdvisorDashboardQueryHandler.getAdvisorDashboard(new GetAdvisorDashboardQuery(advisorId));
+        return advisorDashboard.getAdvisorDashboard(new GetAdvisorDashboardQuery(advisorId));
     }
 
     @GetMapping("/manager/{managerId}/dealership/{dealershipId}")
-    @PreAuthorize("hasAnyRole('MANAGER','ADMIN')")
+    @PreAuthorize("hasRole('MANAGER')")
     ManagerDashboard getManagerDashboard(@PathVariable Long managerId, @PathVariable Long dealershipId) {
-        return getManagerDashboardQueryHandler.getManagerDashboard(new GetManagerDashboardQuery(managerId, dealershipId));
+        return managerDashboard.getManagerDashboard(new GetManagerDashboardQuery(managerId, dealershipId));
     }
 }
-

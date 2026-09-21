@@ -1,0 +1,1346 @@
+{
+  "archive": "ChampionsClub.zip",
+  "recoveryCommit": "7fbed9f",
+  "files": [
+    {
+      "path": "backend/.dockerignore",
+      "status": "modified",
+      "sha256": "32c89d15d130257ba408b02f2d913fcd1b32582b0a066c1b60e09e28dfd902f5"
+    },
+    {
+      "path": "backend/Dockerfile",
+      "status": "modified",
+      "sha256": "370f943e04a52a6f84d66ae8288b6aab083c4f77fc91dd0e067e8f1054b80beb"
+    },
+    {
+      "path": "backend/pom.xml",
+      "status": "modified",
+      "sha256": "afdf840a2213578cbe9b12bc64b82b129efb2300e7a142e6bf9a580b0cd9bdef"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/ai/application/AiClient.java",
+      "status": "modified",
+      "sha256": "80fcf66d763dc34e8b70b7a29fc5b593f7d3d528f5bb88e888f1eef054bc95aa"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/ai/application/DeterministicInsightFactory.java",
+      "status": "added",
+      "sha256": "b3075c8728b169a55bf8227a472cb482027fa9865524270fe10bc95b7b427d88"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/ai/application/InsightService.java",
+      "status": "modified",
+      "sha256": "f2a1a4abe194141655634aca2b2a5fc6f5cd9d90655a204d76d8cdacd9a1769d"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/ai/application/PerformanceInsight.java",
+      "status": "modified",
+      "sha256": "e44cc5936236c9ee23fd5501a7c8dcbabf1b2e180b9db828a1c1ad68a2400a2b"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/ai/infrastructure/OpenAiClient.java",
+      "status": "modified",
+      "sha256": "e80bada321ead42f4f46cc885e3c02649d9dfcf4222cd540c87f271997b96130"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/alerts/application/AlertEvaluator.java",
+      "status": "modified",
+      "sha256": "ad237c1417919ac2e0697e4e2eba4f66078e81af33415c8a5122000685e15327"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/alerts/application/AlertService.java",
+      "status": "modified",
+      "sha256": "84368c0c0977829d153a8459c29e1b210c1ee6adcff25a33d231ed760687b6f4"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/alerts/application/AlertStore.java",
+      "status": "modified",
+      "sha256": "142d612fd23c94031a5254119fe3c1c772edc8b3c619c23f40395a4070e1d8b6"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/alerts/application/PerformanceRefresh.java",
+      "status": "modified",
+      "sha256": "e4276f9a630331e884261d466279d42cff1de2f61558e677a3e809c17c4410df"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/alerts/application/SaleChanged.java",
+      "status": "modified",
+      "sha256": "f275e6342ea5d683f5d05f8233769106f0d78980f8393020da5b2275773eab45"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/alerts/domain/Alert.java",
+      "status": "unchanged",
+      "sha256": "37806e168ec6ad6fdad15abcddcd1f92d74f48a8e69c2360675ebe2bb72ccb8d"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/alerts/domain/AlertSeverity.java",
+      "status": "modified",
+      "sha256": "ff5884f3f7be1d3aa7671a74816ae6ec01ce79487ead5808a81f7fa630d68aac"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/alerts/domain/AlertType.java",
+      "status": "modified",
+      "sha256": "fa036d8b09757bfb4fceed1c0bcbe0d16746ced4c7064f412b4c871bc4acd73a"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/alerts/infrastructure/AlertController.java",
+      "status": "modified",
+      "sha256": "24f61ff05f1f1ba3d517fa5b3a3bfd998f6aed2781f85ade519def475f643764"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/alerts/infrastructure/JdbcAlertStore.java",
+      "status": "modified",
+      "sha256": "a8dd6b29ec8907228f3f7fa5e2a701d6ea7d1682c7fc7e20460472ce8f20eef0"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/alerts/infrastructure/PerformanceSchedule.java",
+      "status": "modified",
+      "sha256": "950c11d6e611cdab5b36676aa2aa400c49de8bda6873a5384bdf7919b0b632ee"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/analytics/application/AdvisorAnalyticsRepository.java",
+      "status": "added",
+      "sha256": "a7dc9190d48214f9c012e32e40525f951f991d9c581e3fb8d446bef3e0a40013"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/analytics/application/AdvisorRanking.java",
+      "status": "added",
+      "sha256": "8f518a1d2a9455d4bccb99d79abb0ef61c597a1c8e2cbb3ca52757f8f242c2cb"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/analytics/application/AnalyticsPeriodValidator.java",
+      "status": "added",
+      "sha256": "e84fafa308706d64500366102b179a920699eafb32012c67607e17390e0427c4"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/analytics/application/AnalyticsRepository.java",
+      "status": "modified",
+      "sha256": "4b59c5724a367abf1c929fb0dd9654acc704231d877668eb1ca30b1b90f06ee0"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/analytics/application/AnalyticsResult.java",
+      "status": "added",
+      "sha256": "0de78a02d07d9e4f1289d51da33fbdc3c38afd9fa7158029e41daf0ca2a08a6d"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/analytics/application/AnalyticsService.java",
+      "status": "modified",
+      "sha256": "96eacc503d7767ce9acaea094efd5e195b1c906b35d8c9f4a6614998b1751d94"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/analytics/application/DimensionPerformance.java",
+      "status": "added",
+      "sha256": "4ee97d81747e994ffa803940b58718fbac0ee56bd7ad1f770bb54dcf415a4a2a"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/analytics/application/ForecastService.java",
+      "status": "modified",
+      "sha256": "b8bf11a3cc61b93629e5e99aed1f1a1a73519a2c449f0f9254ca6fed906baff0"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/analytics/application/LeaderboardService.java",
+      "status": "added",
+      "sha256": "c4082dd7c5d18dd2ddb8de7d878b26c862d7d3ff62345233379e04aeb28a3cec"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/analytics/application/MlForecastClient.java",
+      "status": "modified",
+      "sha256": "c4485d05721aae66eaaeaba004d74fa32315665d31a7a2b84e4a4c951c71af55"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/analytics/application/ProductPerformance.java",
+      "status": "added",
+      "sha256": "9ce88e0d4cad31ed8ebf5b69b25e1a4aafa1718a4f9e9707dc700a1e49229c89"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/analytics/application/ReportingDateProvider.java",
+      "status": "added",
+      "sha256": "de0e62e7dd8c2984fa7ce455e649e7b7e42a9c87265ffb4816b793714c35d2f1"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/analytics/application/SalesForecast.java",
+      "status": "modified",
+      "sha256": "5039a7fab82ced8004e6e607606fff798e777ce07f7e237fa96722a2efe7c982"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/analytics/application/SalesTrend.java",
+      "status": "unchanged",
+      "sha256": "9b321a746f7d59f9696d166b21281c5b95c71e9fa34d82f42f644cceab4e6107"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/analytics/application/TeamAnalyticsRepository.java",
+      "status": "added",
+      "sha256": "2509eebb611b680c0e08e4b8ee1a720f804617d5eb2ee462622ef980764b6818"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/analytics/infrastructure/AnalyticsController.java",
+      "status": "modified",
+      "sha256": "2821bfe3cc9df28956d7ac00eca327e547892dc9a5d69e76926b0f4381e06650"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/analytics/infrastructure/FastApiMlForecastClient.java",
+      "status": "modified",
+      "sha256": "fec4db0f599faffa43d24fa2620f2a3f14fa3a9bfc8df3481c9d8cae9d693d3a"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/analytics/infrastructure/JdbcAdvisorAnalyticsRepository.java",
+      "status": "added",
+      "sha256": "5f0e8311f0e6032fd8fd09f0cbc75a7951b5dec4235ffe2713ed2fa5e6fc78e9"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/analytics/infrastructure/JdbcAnalyticsRepository.java",
+      "status": "modified",
+      "sha256": "ad976ebda593a9e09662985e8d45cf33082dd0b1929e41a9b85fe9f406686305"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/analytics/infrastructure/JdbcReportingDateProvider.java",
+      "status": "added",
+      "sha256": "c62dd9474c1ff287dcd38792ec5a8cfc0248f60e4231064de0c55d9fad101781"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/analytics/infrastructure/JdbcTeamAnalyticsRepository.java",
+      "status": "added",
+      "sha256": "50ad307ec73140df122e3618eaa565d0208a4d9450415c67e895a1e3579f38e4"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/audit/application/AuditLog.java",
+      "status": "modified",
+      "sha256": "3b838efb8c9bd8bc10eccb98d42350a1d485a94a1ce5670f52ee89d5869a39c7"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/audit/infrastructure/JdbcAuditLog.java",
+      "status": "modified",
+      "sha256": "acea031377aed47376306d1ea7c6878cf7e0858118988af65beee02815cf899a"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/ChampionsClubApplication.java",
+      "status": "unchanged",
+      "sha256": "bb22939ed47c1ad8b187a7864bb3fb6cf4904cda5a35d1fc5ffe05b69a6eeedb"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/common/application/BusinessRuleViolationException.java",
+      "status": "unchanged",
+      "sha256": "c7daf8c82e2bc600e9c8bcd4ac166136b70b807a79b4d4674fe692353435ceee"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/common/application/CachedGeneration.java",
+      "status": "modified",
+      "sha256": "8648a4fc06589e5fe6cc1898d227f492001986e2f8389961a87ec0784c5e49c7"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/common/application/ExternalServiceUnavailableException.java",
+      "status": "unchanged",
+      "sha256": "0ca0b11d25b092fdc71f24d44b6c7aeac08d1cb51d6dea1f66730bea33b9e2af"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/common/application/Pages.java",
+      "status": "modified",
+      "sha256": "8dcc8992b29800f0ebc9655b5ba5b87518d6795b32634277eec08fbeee75b276"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/common/application/ResourceNotFoundException.java",
+      "status": "unchanged",
+      "sha256": "e29f05106d5a5bdaa2c901af55e5537ae751393b9cac184da5a97d0c1142e748"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/common/application/ResultCache.java",
+      "status": "modified",
+      "sha256": "f313a2db7d25a28395fdd25e77b8b2342308a1cc5fc7819be732638be7225ba0"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/common/infrastructure/ErrorResponse.java",
+      "status": "modified",
+      "sha256": "480e822a622a44111fcade60fa34939c0d3aa307fe166d8ad85957e20e031a3c"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/common/infrastructure/FieldErrorResponse.java",
+      "status": "unchanged",
+      "sha256": "f85e231dde6b9e626c035500ca32eb4124f5c53919b1b2a212f764a8578df651"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/common/infrastructure/HttpClients.java",
+      "status": "modified",
+      "sha256": "b0b0da9ff9b3049304aeb7338b7642362e1a05aecc2bba82bc758996ef6ccfdc"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/common/infrastructure/JdbcResultCache.java",
+      "status": "modified",
+      "sha256": "b8dcdaa0113f2ef7499c651380c44bc7f666bf1543d37b2736bdec1fbeda31a7"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/common/infrastructure/PageResponseAdvice.java",
+      "status": "modified",
+      "sha256": "1c48a775c3952047c62d43ed4d21dbbbab7ae3cda829e936aff4e3633ecaf626"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/common/infrastructure/RestExceptionHandler.java",
+      "status": "modified",
+      "sha256": "c1f5a7151258c61082b352c10cdccc68c18570d7c939b6ac8318ca501ffa5fc6"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/dashboard/application/AdvisorDashboard.java",
+      "status": "modified",
+      "sha256": "ca596b4a8dd331c7d5c5a1eccd94f70de360adeff3344ca505013f1f3d6bb5d2"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/dashboard/application/AdvisorProfile.java",
+      "status": "added",
+      "sha256": "ff340b39666e2158a5967e37bab31ad7b3ab1dd65b02f3b2f283e7113bd8e6c5"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/dashboard/application/AdvisorProfileService.java",
+      "status": "added",
+      "sha256": "cb17c1d682335b70f1e398e37e4d1ad887251a5257dfc32927888706d3a4eadf"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/dashboard/application/DashboardAssembler.java",
+      "status": "modified",
+      "sha256": "ff68d0b74a9dbe2f03cd5879aec57c55fc0be3a8e0a0aedfae9368c82da1a137"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/dashboard/application/DealershipSummary.java",
+      "status": "added",
+      "sha256": "9251545c4e029ed29e2b08f3ce42d7d538a80a5f1e8dfa64ef23b99b5a66af7a"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/dashboard/application/GetAdvisorDashboardQuery.java",
+      "status": "unchanged",
+      "sha256": "420b93bb9432bf141524b13e7422d88ea19c629ceb9b18b678cad4b8048d5b52"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/dashboard/application/GetAdvisorDashboardQueryHandler.java",
+      "status": "modified",
+      "sha256": "cbee7987c8e2a3976bf617a68991cc739e606955ce32636aedfb7e3c69b7ac2f"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/dashboard/application/GetManagerDashboardQuery.java",
+      "status": "unchanged",
+      "sha256": "aeb05894ed2360fb11f471bac09d1d84d28c5bc60815d7b31af2e82bac73a6ed"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/dashboard/application/GetManagerDashboardQueryHandler.java",
+      "status": "modified",
+      "sha256": "04b77999b16c507dc2f390b816ae26b66f65d1712823b9fa17687d6fa5802637"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/dashboard/application/ManagerDashboard.java",
+      "status": "modified",
+      "sha256": "af374d3689d6ae0a625745bc94f1e3345b06d6ab00424f5b483ceeef5f7b9e01"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/dashboard/application/PerformanceFactsService.java",
+      "status": "modified",
+      "sha256": "377210f7762b3c0123b4ec038bbf22ca3e0ca5601e9edb3940418332fd98b793"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/dashboard/application/PerformanceSnapshotReader.java",
+      "status": "modified",
+      "sha256": "c6e0f631040dbb248daef02e642ceeeda4be4506f94edd336e93e79da314017a"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/dashboard/infrastructure/AdvisorDetailController.java",
+      "status": "modified",
+      "sha256": "82df511ed061d5e79eebf51346e1534a6250e380c2415c50d60491c2b5084ee0"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/dashboard/infrastructure/DashboardController.java",
+      "status": "modified",
+      "sha256": "bfe3274558d249538c740dc102ea44179fed397f59fb3bb533dea590680205bb"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/dealerships/application/DealershipRepository.java",
+      "status": "added",
+      "sha256": "f0be773aabef6aab2f97ce2f20127e759f36ae5ef5a3ea589db816ce503cd6b5"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/dealerships/domain/Dealership.java",
+      "status": "added",
+      "sha256": "9ba57d8dc540fe756bb585bdbcfa0e61ac756915d5f7de155eea579e24e7f162"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/dealerships/infrastructure/JdbcDealershipRepository.java",
+      "status": "added",
+      "sha256": "6b2e84206e0e5b953bd4a68ae594623efbd22d3207dfc5e1ab61852184c4c88f"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/demo/infrastructure/DemoDataSeeder.java",
+      "status": "modified",
+      "sha256": "cb70c51948f055c5b5ca033b236042040c2b41e79717c88f484f02b99af6f455"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/gamification/application/GamificationConfigurationRepository.java",
+      "status": "added",
+      "sha256": "71a1d9caf042b9947c399072f5e1995269f6a86ba37e050881822957a2f1248f"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/gamification/domain/GamificationLevel.java",
+      "status": "modified",
+      "sha256": "e1998026eb0c70b96c83cfba9063a4af34a5ddfddb310600c95e6898e09795d0"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/gamification/domain/GamificationProgress.java",
+      "status": "modified",
+      "sha256": "173424d74c536494f10d0f20912c4f25af79138214b5028db24776f7dfc328d1"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/gamification/domain/GamificationThresholds.java",
+      "status": "added",
+      "sha256": "89f2c11c13072def2de80531032e798bce239de07e96b254838d1c5d26ffcbb1"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/gamification/infrastructure/JdbcGamificationConfigurationRepository.java",
+      "status": "added",
+      "sha256": "c8e7255989422935dcbdae8f0669028a4eb6e4069f98529d3107f5c6a989c795"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/points/application/PointQueries.java",
+      "status": "modified",
+      "sha256": "aad16e74c50e1c891b82efeafed799547e65608583bd14321340956c96937309"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/points/application/PointRuleRepository.java",
+      "status": "added",
+      "sha256": "a800bb653287f92fbebde256730d1a53366dff8f37fec24b9da30198a8557ee0"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/points/application/PointService.java",
+      "status": "modified",
+      "sha256": "f4be7444d6417478d11b05a6df1b067350541d2b8ffa154dfebf8f873f7c55ae"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/points/domain/PointBalance.java",
+      "status": "modified",
+      "sha256": "05c8e493ac8fa315ec22053a204f1b166d2ecf6667c750b37ccea34525b11804"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/points/domain/PointRule.java",
+      "status": "modified",
+      "sha256": "57314b43db6c78796ca8a7d501257c7745d42d208db1db32d2e5e221368e3083"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/points/domain/PointTransactionType.java",
+      "status": "modified",
+      "sha256": "665257f8746673511211057d9be8a53482bcb5f0110f6d13da70865b49b4fe2f"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/points/infrastructure/JdbcPointQueries.java",
+      "status": "modified",
+      "sha256": "37b6f6a6e5d0995f4ca303629ce1575df4d07da85ca60a5881062d949f323703"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/points/infrastructure/JdbcPointRuleRepository.java",
+      "status": "added",
+      "sha256": "4c815a63c0c7129fa55a6538acd65a91ecf865cd5c5ee81f664c0f8671345bd2"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/points/infrastructure/JpaPointRepository.java",
+      "status": "modified",
+      "sha256": "2f58af4b988fad29fc29ae1eb6626d8a9e84147dbf686c05e2a0e523d1faf086"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/points/infrastructure/JpaPointsLedger.java",
+      "status": "modified",
+      "sha256": "f6adf2a35d485d865bb05097ac38cf75ff6b3132604d3ee93d235592a704fbdd"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/points/infrastructure/PointsController.java",
+      "status": "modified",
+      "sha256": "fc497fcf2c26d6188e9b14c0f411ac3e04065d86ce3d0400fde6348ef073882a"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/points/infrastructure/PointTransactionEntity.java",
+      "status": "modified",
+      "sha256": "44881c39de5ac756b97581bc3637d04c10c6c3453abbbfaa6e81918e62c0cf1b"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/recommendations/application/RecommendationEngine.java",
+      "status": "added",
+      "sha256": "31865508409775e130b818d99aa42ad5df3036a272996f7e1bfd4da01a681552"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/recommendations/domain/Recommendation.java",
+      "status": "added",
+      "sha256": "c07aea7553bf265cc690be1e7440d450a0572a8406b464a9ad419706488cca0f"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/recommendations/domain/RecommendationPriority.java",
+      "status": "added",
+      "sha256": "e3acd08d9cfe7afe8ef6e5c7614ad75b3550a0bdc607994c5e456705673aa3b8"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/recommendations/domain/RecommendationType.java",
+      "status": "added",
+      "sha256": "7a2e039eeedb24ae912488f98b9b80de2db0bb93627e22fde7beef774c473581"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/rewards/application/PointsLedger.java",
+      "status": "modified",
+      "sha256": "d6a872bc4e267e6066b2de2837f3507cfe4f6848ddb690a02083519b301dd3f1"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/rewards/application/RedeemRewardCommand.java",
+      "status": "unchanged",
+      "sha256": "38a3a8bd4bb8aa5b84d6cd2a3efa6ccd91fcfd3a732e2ac3b3c53e161a1a4ae6"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/rewards/application/RedeemRewardCommandHandler.java",
+      "status": "modified",
+      "sha256": "31daad567552d22e1e40930d8d263b4f987057695b3a6d780ba28385b71b90b1"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/rewards/application/RedemptionStore.java",
+      "status": "modified",
+      "sha256": "a73db42f83f1df69e5275641dc02fc8bc4c8d96042a006b8110f23f7910c2268"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/rewards/application/RewardQueries.java",
+      "status": "modified",
+      "sha256": "765e7f1c4533584414f9e377938ed865646312c31c5c3059bbc90a5de80bc82f"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/rewards/application/RewardRepository.java",
+      "status": "modified",
+      "sha256": "ed4c21409d81f413758abe0dd684096af7fde458c87ea222b3747a9e360d4d15"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/rewards/domain/Reward.java",
+      "status": "modified",
+      "sha256": "70d05d7c0fc81d55aac6f08203f4af9020c82a71ff91abb085a7d6e8016bb77c"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/rewards/domain/RewardStatus.java",
+      "status": "unchanged",
+      "sha256": "a78602fa35730f0a131c18d6e36354cd555e9f1cf6a1bcad841b25dc81c8c7bd"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/rewards/infrastructure/JpaRedemptionStore.java",
+      "status": "modified",
+      "sha256": "7b4f0c223decdf46136a76e98d77a7da1a74c6a38c10fb78ac8e406889eab428"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/rewards/infrastructure/JpaRewardRedemptionRepository.java",
+      "status": "modified",
+      "sha256": "3d41c156b83cdb50a03ab81a9dbd6730a1b8f38a6d825558c5dbe149188e8793"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/rewards/infrastructure/JpaRewardRepository.java",
+      "status": "modified",
+      "sha256": "969b5a0065c419815d22954bd5ba552788ca6b350b3ea6828d0901132c12a081"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/rewards/infrastructure/RewardEntity.java",
+      "status": "modified",
+      "sha256": "49167b7eb18d2abaffbeead7275122e64199352e18c080a7d86a50f83efd0f85"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/rewards/infrastructure/RewardPersistenceAdapter.java",
+      "status": "modified",
+      "sha256": "c14fc8c2040214d7ecd6059bbbd0bbd46fa7c50f6e21687f2afefc3f39d2e16c"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/rewards/infrastructure/RewardRedemptionEntity.java",
+      "status": "modified",
+      "sha256": "b9c66ddba435231c8130c921b399b7d31563d3b61783c1319abf6b03f028ba78"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/rewards/infrastructure/RewardsController.java",
+      "status": "modified",
+      "sha256": "c919d5066ea03b65ef5d1f8881d9ac29e2b0ce5b07819125176207462c19efcc"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/sales/application/CancelSaleCommandHandler.java",
+      "status": "modified",
+      "sha256": "ac29f624c60ae3a05f5dcdc6279bd6ce1331059f21f26a113b34e9cb4eb02fd7"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/sales/application/CreateSaleCommand.java",
+      "status": "modified",
+      "sha256": "2d67d55690bd5536af59bba7c2d3e85e09a4848149327e2fbe5256e940dab150"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/sales/application/CreateSaleCommandHandler.java",
+      "status": "modified",
+      "sha256": "34b21fdd76591da838c78ae72ab7de1e9f6509bbcbf3f186b35762da6375fcc7"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/sales/application/FinancialProductRepository.java",
+      "status": "modified",
+      "sha256": "12405774a86cd160390edfd4dda029f55a96cbb65015641f6e1c20fedeebc858"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/sales/application/SaleRepository.java",
+      "status": "modified",
+      "sha256": "5df14ad4154a31cfe69138c8df350a967a9c8ef5bb9f4b3666639acdaeb3756a"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/sales/application/SaleResponse.java",
+      "status": "modified",
+      "sha256": "bf047565bd49b8d72f51c4931687471e06e1cfc5476d47f8982ffd9fc3ea17b5"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/sales/application/SalesQueries.java",
+      "status": "modified",
+      "sha256": "894e3691ac24dec0e82c28df4b089f98934e50654744ba8b5e53c2a2fc237cf8"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/sales/domain/CustomerSegment.java",
+      "status": "added",
+      "sha256": "1e789bf2aaee6885ebc63e7d61453f9099fe6ba688a5874366b45f63198ec1f8"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/sales/domain/FinancialProduct.java",
+      "status": "modified",
+      "sha256": "2b74891314b3e3841e343e6c35f6e4421c749cfc27367a76571596eb224e5118"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/sales/domain/ProductAdvisorScope.java",
+      "status": "added",
+      "sha256": "184f628f38e99311523e0ea6daf0f98fc304b37f9a0d4abb7ba10203d1083a39"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/sales/domain/ProductCategory.java",
+      "status": "added",
+      "sha256": "eadc8e8bb5a6a6c09553f70f209aff8f13d855f2e1e76aa45b12be4230f8b925"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/sales/domain/Sale.java",
+      "status": "modified",
+      "sha256": "c574c2cdfb9f6ad7868c17ae29ac6577256c9e930d9889ea02c9d18aa7c18fd4"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/sales/domain/SaleStatus.java",
+      "status": "unchanged",
+      "sha256": "30bd03c9fb50061f100fa82ea14494a29fe676f4710823dd1c68841e9b2067c8"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/sales/domain/VehicleCondition.java",
+      "status": "added",
+      "sha256": "1dc5f26a7d5df2eed136e8eaa4c5b085a5e8cbc57df18d5fc47b96ebcf7f8b3e"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/sales/domain/VehiclePowertrain.java",
+      "status": "added",
+      "sha256": "c017f43861ef4d860815521fcac92f2052c48a4185a3ec45de8e73d968f35028"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/sales/infrastructure/FinancialProductEntity.java",
+      "status": "modified",
+      "sha256": "d069dbcbe9ee1e3f5816142bef9b51733f2e6e515b05701925be47cd5e9c4dd4"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/sales/infrastructure/FinancialProductPersistenceAdapter.java",
+      "status": "modified",
+      "sha256": "b5b33f3e2f18520c2fb9bc84b1f4fa2132fa15d0fe8ed75c3bb7aa2e1d1f7f9b"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/sales/infrastructure/JpaFinancialProductRepository.java",
+      "status": "modified",
+      "sha256": "831f52c3a18eca1de3120cde05ddb34505c1d567e649e3c0368de8b929a45c7b"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/sales/infrastructure/JpaSaleRepository.java",
+      "status": "modified",
+      "sha256": "51fb32b645c90041630c4f3e3aa0cf1a9304c59ccc81dea51c58bed1857878c9"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/sales/infrastructure/ProductCatalogController.java",
+      "status": "added",
+      "sha256": "5346e9d570ef4e50c17ffa7923eaad1223e067cd09b5d52a36b46b2598716734"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/sales/infrastructure/ProductResponse.java",
+      "status": "added",
+      "sha256": "cd9bbcb53a3863397dd3e7995ef33a817faa59660967ea9c5e80ebc660bc411d"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/sales/infrastructure/SaleEntity.java",
+      "status": "modified",
+      "sha256": "d5414062af4d6f95c14f67fcba20e7a9eff52d5c21e7efb9f73014762437e206"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/sales/infrastructure/SalePersistenceAdapter.java",
+      "status": "modified",
+      "sha256": "cb45aac0dca0d544fbfec237aa2149529e5bf60bdb774975705f36d014f3bd48"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/sales/infrastructure/SalesController.java",
+      "status": "modified",
+      "sha256": "c3c461ca862b851d9f9b8f9fcb986178df072476227157c4b110e8269cc16e18"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/security/application/Access.java",
+      "status": "modified",
+      "sha256": "0c8d1855bfd11a3bfddc4b6bdce3be06cb6ce125fa31a118769e89771e8f0663"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/security/application/AuthenticationService.java",
+      "status": "modified",
+      "sha256": "b86a12945c212eef432b57636b8561f7d74e84741da2c1a60bd1f0e898f1be32"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/security/infrastructure/AuthenticationController.java",
+      "status": "modified",
+      "sha256": "b6708e496fe47ff59b8183490567526fb0beabe475255a04b15b31c2ce4d13ec"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/security/infrastructure/DatabaseAccess.java",
+      "status": "modified",
+      "sha256": "603aa2553b1ac05a1de3773d8eda53f9ffc234b2ec9d4e85e8a4d61f5a33417a"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/security/infrastructure/SecurityConfiguration.java",
+      "status": "modified",
+      "sha256": "3cfc79c6364ceed026eb0867a108675334bc5543295a6d585953b6a7281f53c7"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/syntheticdata/application/SyntheticConfigurationImporter.java",
+      "status": "added",
+      "sha256": "5c054cb8e29e8ac6335e6f64a8a37a6944bc841dc0cc024a8e31ec3231a2e084"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/syntheticdata/application/SyntheticDatasetFiles.java",
+      "status": "added",
+      "sha256": "1f302ab9d184d9961139265214ffaece99817fed628187a0c96e76d7687e7cde"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/syntheticdata/application/SyntheticDatasetImporter.java",
+      "status": "added",
+      "sha256": "58625aa062a79b9c8f38202c6d0d8559eaf099801e4afbad552eb637e76dd002"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/syntheticdata/application/SyntheticDatasetRecords.java",
+      "status": "added",
+      "sha256": "8e8db361f5f8f7d472402f403331739ce164674da7ed58df1e841d5e37196ed4"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/syntheticdata/application/SyntheticPointTransactionWriter.java",
+      "status": "added",
+      "sha256": "74b58764b84c83415bce4edcf6995a03664a5db218149c60f289cf402c3e47b7"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/syntheticdata/application/SyntheticRedemptionImporter.java",
+      "status": "added",
+      "sha256": "ac3aa195c86830ba5a64dee287ddaa7e3924227ba1f08a05b9438235086cc006"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/syntheticdata/application/SyntheticReferenceDataImporter.java",
+      "status": "added",
+      "sha256": "4142bf908c0487ed5076fea9e5986211a095648c041fcaee12d564a8c3a65439"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/syntheticdata/application/SyntheticSalesImporter.java",
+      "status": "added",
+      "sha256": "d03d56f8cba922adc143344060c9b721fdc5c484db56cf1d9966673e4e889d5a"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/syntheticdata/infrastructure/SyntheticDatasetSeeder.java",
+      "status": "added",
+      "sha256": "a64027c9fd3259888b0ce22b9d2c56e0c10ba9c4e94832cd3b3192e08e841661"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/targets/application/TargetService.java",
+      "status": "modified",
+      "sha256": "ed4b2cc5fcc70e47dd902a3b27c79828fb7d8c7de73196e9241f7a2af18cd00b"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/targets/application/TargetStore.java",
+      "status": "modified",
+      "sha256": "dcdd94eb0dcc866fa8a8586955539b1cb3138d70ffab576af215bf23f846f2e7"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/targets/domain/Target.java",
+      "status": "unchanged",
+      "sha256": "e841a0b0dc095fdf2f4e08642dd28f078eee167195a22283ce8936d2b4aa33ff"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/targets/domain/TargetProgress.java",
+      "status": "modified",
+      "sha256": "d35e1d7e25f4e15309cf5219580d1206516d3281c85ed8e418553e33f66063be"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/targets/domain/TargetStatus.java",
+      "status": "unchanged",
+      "sha256": "f4a31cdd164bdde22a67c69ceeb941e8b5e016b8165e4850fe9227df31337bd0"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/targets/infrastructure/JdbcTargetStore.java",
+      "status": "modified",
+      "sha256": "642b9f7640e8745dee2bd54fb820a99ff9240b2b11870b2e454868b197f24d7b"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/targets/infrastructure/TargetController.java",
+      "status": "modified",
+      "sha256": "205be64f217909de1e58bd9b54a4980befb2304ac9d83e258b7c72b98641f41d"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/users/application/AdvisorQueries.java",
+      "status": "modified",
+      "sha256": "bd637e0ec2bb69b0ae4301e7c75c0f7aec56520e53dd1180ee81cbeda8f45911"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/users/application/UserAccount.java",
+      "status": "modified",
+      "sha256": "c8093b1097e197d983b1fe081add9b9c0872bbbc995cdf6718aaeb4c4883e47d"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/users/application/UserStore.java",
+      "status": "modified",
+      "sha256": "4b6088768b5579eaadee6a6afa12dd317893e1cb5db0388bbb6643a8bb4608d8"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/users/domain/AdvisorType.java",
+      "status": "added",
+      "sha256": "27af8f6ce01c807670e707e6a0b9761895e132b21734a4b0737aa551c8d400cc"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/users/domain/User.java",
+      "status": "modified",
+      "sha256": "b4f92247479774cefa810908ddc441a873b1a11a5f69180b16ed9b0e3d56a0a2"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/users/domain/UserRole.java",
+      "status": "modified",
+      "sha256": "075d08db75ee53cc8c6f5fa69dee2b838c877c2a3331e9903790bcb4f107d893"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/users/domain/UserStatus.java",
+      "status": "unchanged",
+      "sha256": "607b08345033c9fa612d2ca526b92a01a7599de39cf0792ec15338f34766b623"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/users/infrastructure/JpaUserRepository.java",
+      "status": "modified",
+      "sha256": "8820e5cdaf4e5461101a3770580f0ba2d18eee60afb7f4382b7595513ce1c290"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/users/infrastructure/JpaUserStore.java",
+      "status": "modified",
+      "sha256": "c64c279c70f9bc639bcf9da7392fd654bd93a91a0137bd5c11a67e02bc2dfaf0"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/users/infrastructure/UserController.java",
+      "status": "modified",
+      "sha256": "563dd6c698db6579a953a049e2ce324c53426bd2b9cd2ae8d8432769362348e5"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/users/infrastructure/UserEntity.java",
+      "status": "modified",
+      "sha256": "5741787f4c6f3ea61d178ce709db0f5e628a783be87ab95edd56831dba2c4cb2"
+    },
+    {
+      "path": "backend/src/main/resources/application-demo.yml",
+      "status": "modified",
+      "sha256": "bff01628c5e1aadb45ea6d701e49445fc2e6b8cd7296695cb5097c5f91076e60"
+    },
+    {
+      "path": "backend/src/main/resources/application-synthetic.yml",
+      "status": "added",
+      "sha256": "7fffb67b1363d7fcb71460c1e97e821c1cb5b21e76db34fb0fddb427b3e14788"
+    },
+    {
+      "path": "backend/src/main/resources/application.yml",
+      "status": "modified",
+      "sha256": "651ab6867c0b0cd72a6b9b9ae6f5b4bdd83410f29869a2cba555a90386e5d212"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V1__create_championsclub_schema.sql",
+      "status": "modified",
+      "sha256": "6932e7b7f55ec0a3f3619bf72b20216a3637f438ce428dae483b7a376f9e2809"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V2__complete_business_schema.sql",
+      "status": "modified",
+      "sha256": "b71f47eab2a85d3e65335367629208f69ebbc5507eed3eeaec2f2ada4032c0e8"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V3__retire_embedded_product_point_rate.sql",
+      "status": "modified",
+      "sha256": "9d4cb9dda1383ab2dff53d58bd1e3f7dad59ee8322c4a87b77a173e1bce11e1f"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V4__align_advisors_points_and_contracts.sql",
+      "status": "added",
+      "sha256": "60f24381bd647651e8dffbfe03b3f930ef761dcec45485103f226a3958972545"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V5__support_canonical_synthetic_dataset.sql",
+      "status": "added",
+      "sha256": "2a3008fb9168d82e17009357fac157b8a2492302c91f78cdc986fcbf845803c0"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V6__optimize_analytics_queries.sql",
+      "status": "added",
+      "sha256": "dfaf7bb1fce034e1bf1f5b8e6627a9e43dfa3e5194565e49b8d0967a55557295"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V7__calibrate_incentive_economy.sql",
+      "status": "added",
+      "sha256": "4e311434a93281040cc3dfb72ddfd529eef52b7c1780bb57b3224b6d4615840a"
+    },
+    {
+      "path": "backend/src/test/java/com/championsclub/ai/application/DeterministicInsightFactoryTest.java",
+      "status": "added",
+      "sha256": "cd975b510e9c3433c6f12019853de3893278937a5fc69bbcb9ebc52a60653f5e"
+    },
+    {
+      "path": "backend/src/test/java/com/championsclub/ai/application/InsightServiceTest.java",
+      "status": "added",
+      "sha256": "4c78e47ee0c4cc192ebf22b58e5e9def9b48da8e260ab6399c6bc6451c0e94d6"
+    },
+    {
+      "path": "backend/src/test/java/com/championsclub/dashboard/application/GetAdvisorDashboardQueryHandlerTest.java",
+      "status": "modified",
+      "sha256": "f525ea899830373f93ccbe1e6722280f7d327c73de1b7cbd58349033a01c6491"
+    },
+    {
+      "path": "backend/src/test/java/com/championsclub/gamification/domain/GamificationProgressTest.java",
+      "status": "modified",
+      "sha256": "682b383efe56a3c6a9289c5151b6e891d5594db4bd6896b6ad61369b5c63fc08"
+    },
+    {
+      "path": "backend/src/test/java/com/championsclub/integration/AnalyticsFoundationIntegrationTest.java",
+      "status": "added",
+      "sha256": "5bc0e6b7d33accde2e73730177ae4697b6b2e5a31eb92e564eef42580ed0ee12"
+    },
+    {
+      "path": "backend/src/test/java/com/championsclub/integration/DashboardIntegrationTest.java",
+      "status": "modified",
+      "sha256": "59a04c2863eb9ef1cf7fe3b983162ff609501aee2eb290f73d07784332278c93"
+    },
+    {
+      "path": "backend/src/test/java/com/championsclub/integration/GenerationCacheIntegrationTest.java",
+      "status": "modified",
+      "sha256": "9c20000a52d9a750ea1dc3bba3ee49e8d5ddd9d8fd957107dffcfe22a81740d0"
+    },
+    {
+      "path": "backend/src/test/java/com/championsclub/integration/IncentiveCalibrationIntegrationTest.java",
+      "status": "added",
+      "sha256": "ffb8630e8863aa8381d35c12e9e184215183d000e5e3f21fc33582bd91c78fed"
+    },
+    {
+      "path": "backend/src/test/java/com/championsclub/integration/PostgresIntegrationSupport.java",
+      "status": "modified",
+      "sha256": "68fd9f2feffe347a9b8a40fa27416ab990fef53a41271902e7c19ab292bb868f"
+    },
+    {
+      "path": "backend/src/test/java/com/championsclub/integration/ProductCatalogIntegrationTest.java",
+      "status": "added",
+      "sha256": "ac5948d0c99a716114d73fcca2b64736de7bed43ef3bc84032d5a000a4b74fc0"
+    },
+    {
+      "path": "backend/src/test/java/com/championsclub/integration/RedemptionIntegrationTest.java",
+      "status": "modified",
+      "sha256": "2a01d7e294cabf6313abdd1ed7e3f72c0461decf7d409ef6799b8c3a4cb730df"
+    },
+    {
+      "path": "backend/src/test/java/com/championsclub/integration/SalesIntegrationTest.java",
+      "status": "modified",
+      "sha256": "c89dc159948f1969b697b2a3680dc48c2315042944c5380fd80def344135785e"
+    },
+    {
+      "path": "backend/src/test/java/com/championsclub/integration/SecurityIntegrationTest.java",
+      "status": "modified",
+      "sha256": "28fbad612e77209b15dea4c1d7fac5eaae7b20e8f126a146e733306081e8dbf9"
+    },
+    {
+      "path": "backend/src/test/java/com/championsclub/integrations/ExternalClientTest.java",
+      "status": "modified",
+      "sha256": "0359467bd1aa8fbaff99a6d3ac933cfcc58431ef50116e0963fb9d149aa09aa7"
+    },
+    {
+      "path": "backend/src/test/java/com/championsclub/points/domain/PointRuleTest.java",
+      "status": "modified",
+      "sha256": "dddeeb3c57eb08ef0674305d950531d821a8dd0079a7ecbf883746feb274d277"
+    },
+    {
+      "path": "backend/src/test/java/com/championsclub/recommendations/application/RecommendationEngineTest.java",
+      "status": "added",
+      "sha256": "6593f5dc1ec2aa72c8578ce474c83bc1e945a166818b06dc770b72493b42db6b"
+    },
+    {
+      "path": "backend/src/test/java/com/championsclub/rewards/application/RedeemRewardCommandHandlerTest.java",
+      "status": "modified",
+      "sha256": "5d3c2cc6f434ed7db6a20deb024bce4eefa94e104a9895171c3c25bbbd15b57b"
+    },
+    {
+      "path": "backend/src/test/java/com/championsclub/rewards/domain/RewardTest.java",
+      "status": "modified",
+      "sha256": "c890a5b07271b7d76de64607732989b07a9f909d089c4fe16b8ba3c7098bae60"
+    },
+    {
+      "path": "backend/src/test/java/com/championsclub/sales/domain/FinancialProductTest.java",
+      "status": "modified",
+      "sha256": "cc58b4f33461c25e2e12ad6c0815ed680a979fd16ab7a7226494c693d3dfeecd"
+    },
+    {
+      "path": "backend/src/test/java/com/championsclub/targets/domain/TargetProgressTest.java",
+      "status": "modified",
+      "sha256": "bd7be9ec4968ddf671db8707cea69df3bde62017eb3d7cf15f6129bfc0ddbf49"
+    },
+    {
+      "path": "backend/src/test/java/com/championsclub/targets/domain/TargetTest.java",
+      "status": "unchanged",
+      "sha256": "bcf62385abe8dd10b6aec97cfcba18b6bf93386a6607963ff12b3e6cb26fb7d1"
+    },
+    {
+      "path": "ml-service/.dockerignore",
+      "status": "modified",
+      "sha256": "79192f1a8b7489557866db91138bdfd7ae8ab1db3e7c4ea65115f8d3216465ed"
+    },
+    {
+      "path": "ml-service/app/fallback.py",
+      "status": "added",
+      "sha256": "31bdb28b0b28179c3b13b5e2da25aa008eb9097001164f731b5ae4a42cef2f84"
+    },
+    {
+      "path": "ml-service/app/features.py",
+      "status": "added",
+      "sha256": "1e86f8f2390e798fdf2a824cc466c43f7ddccaf0620e88de34bddc63ff15d924"
+    },
+    {
+      "path": "ml-service/app/main.py",
+      "status": "modified",
+      "sha256": "5a24227edd031e0a77764f523ad0bc83ac9816cbae6449f29ca77102a10f2efc"
+    },
+    {
+      "path": "ml-service/app/model_store.py",
+      "status": "added",
+      "sha256": "1d7538c430eddf63e2d49f75af355f94fb3b579cfbe2276e7f4f1882060b0c9f"
+    },
+    {
+      "path": "ml-service/app/training.py",
+      "status": "added",
+      "sha256": "8b452a1c02234daa496c991b9e27ac90854ff5489c4e22e608bc0d5a288d2b33"
+    },
+    {
+      "path": "ml-service/app/__init__.py",
+      "status": "unchanged",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "ml-service/artifacts/.gitkeep",
+      "status": "added",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ml-service/artifacts/advisor.joblib",
+      "status": "added",
+      "sha256": "cf71bd46d5a7f25ed27507036cfbb57116f461fd65da435a6316cd50edfb66f7"
+    },
+    {
+      "path": "ml-service/artifacts/dealership.joblib",
+      "status": "added",
+      "sha256": "28e80b84122632385938dd81e0962b1b9731027daf70a73dd99880e6fbd49ab4"
+    },
+    {
+      "path": "ml-service/artifacts/metadata.json",
+      "status": "added",
+      "sha256": "89bad3727e7a8f42f7955891964cdd0029319714748b95dc4661c409f9a8b3b4"
+    },
+    {
+      "path": "ml-service/artifacts/metrics.json",
+      "status": "added",
+      "sha256": "a20841f73e1183aef1d4664320e320b859852476aef3f192c09d641cda35088c"
+    },
+    {
+      "path": "ml-service/artifacts-backup-pre-v2-20260918-112149/.gitkeep",
+      "status": "added",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ml-service/artifacts-backup-pre-v2-20260918-112149/advisor.joblib",
+      "status": "added",
+      "sha256": "b2aa0309a3515675d10cf543d6df9ca3c9f5e61b6fcc1ef4415493cb00628853"
+    },
+    {
+      "path": "ml-service/artifacts-backup-pre-v2-20260918-112149/dealership.joblib",
+      "status": "added",
+      "sha256": "e84e007c19d9ba037ddfbc02f0f330c022fee2611411aaa11d3428c0026b7542"
+    },
+    {
+      "path": "ml-service/artifacts-backup-pre-v2-20260918-112149/metadata.json",
+      "status": "added",
+      "sha256": "8a386136df5cdc9c7ff2e1a383413d7dd88516f48e57c1fb14c8d1773265b2f5"
+    },
+    {
+      "path": "ml-service/artifacts-backup-pre-v2-20260918-112149/metrics.json",
+      "status": "added",
+      "sha256": "6ea4c89c2c4cc8514e089cfe0b111dbf3dfe86f55c1a330d3a0db29994da6f07"
+    },
+    {
+      "path": "ml-service/candidate-artifacts/advisor.joblib",
+      "status": "added",
+      "sha256": "cf71bd46d5a7f25ed27507036cfbb57116f461fd65da435a6316cd50edfb66f7"
+    },
+    {
+      "path": "ml-service/candidate-artifacts/dealership.joblib",
+      "status": "added",
+      "sha256": "28e80b84122632385938dd81e0962b1b9731027daf70a73dd99880e6fbd49ab4"
+    },
+    {
+      "path": "ml-service/candidate-artifacts/metadata.json",
+      "status": "added",
+      "sha256": "89bad3727e7a8f42f7955891964cdd0029319714748b95dc4661c409f9a8b3b4"
+    },
+    {
+      "path": "ml-service/candidate-artifacts/metrics.json",
+      "status": "added",
+      "sha256": "a20841f73e1183aef1d4664320e320b859852476aef3f192c09d641cda35088c"
+    },
+    {
+      "path": "ml-service/Dockerfile",
+      "status": "modified",
+      "sha256": "98b94d11f3e2bab5a449c087e8519b3c6113252fc3e7eca522530e427d5b8a02"
+    },
+    {
+      "path": "ml-service/requirements.txt",
+      "status": "modified",
+      "sha256": "46cc8a602902c4ac7536137f2868c30b9bbd95a7918096c71e2adcbabfdba969"
+    },
+    {
+      "path": "ml-service/tests/test_features.py",
+      "status": "added",
+      "sha256": "a36230ca85fb7f8d34eb391cff00b4ab1a0457517a2863dcefe8c469b4c0724c"
+    },
+    {
+      "path": "ml-service/tests/test_forecast.py",
+      "status": "modified",
+      "sha256": "8a07cb9ead3a23258cd1188431b07f008c63a37dc70671650241666e8a29c6c1"
+    },
+    {
+      "path": "ml-service/tests/test_training.py",
+      "status": "added",
+      "sha256": "0deb1b5d13174341faaeff6a24bd42b3016da06d4b69ce3ae9a40cd256b6d427"
+    },
+    {
+      "path": "data-pipeline/.dockerignore",
+      "status": "added",
+      "sha256": "bf8fc752bd834df01acef8d62f272cb9a29c791c3ae96b398926952aa770ff30"
+    },
+    {
+      "path": "data-pipeline/championsclub_data/calibration.py",
+      "status": "added",
+      "sha256": "da0940048e695c5f1be849fde0556ad47b4c0aa4f8ed5744e8f9ba3e82bcb132"
+    },
+    {
+      "path": "data-pipeline/championsclub_data/catalog.py",
+      "status": "added",
+      "sha256": "2b035fd18674dca13e83c21730a485a84a896bcce01fc8f5b0ad2082e4f2f2c2"
+    },
+    {
+      "path": "data-pipeline/championsclub_data/cli.py",
+      "status": "added",
+      "sha256": "d2cb0caa5a3f2dcb15dc5806a539127549a857d48e654d29e2baefca0b00a0c3"
+    },
+    {
+      "path": "data-pipeline/championsclub_data/contracts.py",
+      "status": "added",
+      "sha256": "7bd448793578722a9fd9aac15348cd938f299957cd8b51ad78a24d520ac4f418"
+    },
+    {
+      "path": "data-pipeline/championsclub_data/contract_distribution.py",
+      "status": "added",
+      "sha256": "8a9e87466e44703397b33f11dca4e9ccf6d08f7c30a2c9595a36ef27dbc36e79"
+    },
+    {
+      "path": "data-pipeline/championsclub_data/engagement.py",
+      "status": "added",
+      "sha256": "d1f77815733857cc1758932947c688f77e8dd9beaf1248c55d7acd11914b73e7"
+    },
+    {
+      "path": "data-pipeline/championsclub_data/generator.py",
+      "status": "added",
+      "sha256": "7f87ece1d6b225bf15ab6ca3be823bdff0c86eeaa1a869ac3136f2348474104b"
+    },
+    {
+      "path": "data-pipeline/championsclub_data/io.py",
+      "status": "added",
+      "sha256": "e8d4c7608567f5f2510e08a4b7dbc2f89b615ec1e3609306630ef51d926c0a30"
+    },
+    {
+      "path": "data-pipeline/championsclub_data/profiles.py",
+      "status": "added",
+      "sha256": "0736b79467a83a9c357866161a5310be0aada5c28b2a68dbfff3fc0271f53c48"
+    },
+    {
+      "path": "data-pipeline/championsclub_data/reference_data.py",
+      "status": "added",
+      "sha256": "63d7e32206fbf60e23e066bdc771ded0692d587057c583c4fd5426ab7a906e0e"
+    },
+    {
+      "path": "data-pipeline/championsclub_data/temporal.py",
+      "status": "added",
+      "sha256": "587156e6b041735db7dc2f704319e346a82f7ad4cf64f6af3092bd8ab47cdf2c"
+    },
+    {
+      "path": "data-pipeline/championsclub_data/validation.py",
+      "status": "added",
+      "sha256": "12fad91f15f23f27493bf72263cb91ed44b3fd8e978d2f94051095cc1e8282b3"
+    },
+    {
+      "path": "data-pipeline/championsclub_data/__init__.py",
+      "status": "added",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data-pipeline/config/calibration.json",
+      "status": "added",
+      "sha256": "9c9b6c9de45d6469fcf8c28e6136365064ceb3500c9cfa7926c685419df83585"
+    },
+    {
+      "path": "data-pipeline/Dockerfile",
+      "status": "added",
+      "sha256": "049dbfdae0d7e14b4e9e5ee95e60f05dc51d66e1bafc57e4a16683c8846c524e"
+    },
+    {
+      "path": "data-pipeline/tests/test_generator.py",
+      "status": "added",
+      "sha256": "2570d89169b60ef735dbd286ff446367ece4635f268b18b979cc7dd4f65f3507"
+    },
+    {
+      "path": "scripts/check_ai_provenance.py",
+      "status": "added",
+      "sha256": "0dcaf5c8114323ca20532b964f3773a102dd901dfc76e9b016b5a79559b0ca5d"
+    },
+    {
+      "path": "scripts/smoke_backend.py",
+      "status": "modified",
+      "sha256": "b98aebbbec8d5dc2ed4eadcb4a526edd3cb5a6c3b2edc5ebff12936a6ff908d7"
+    },
+    {
+      "path": "docs/ai-integration.md",
+      "status": "unchanged",
+      "sha256": "f7b293349937d591cf562f4845e58d9791d3ca036784900abed6c93d8ce52f2b"
+    },
+    {
+      "path": "docs/architecture.md",
+      "status": "modified",
+      "sha256": "404576871a8388f3dc839bd78ecfb0e93a6fe5101c07a8cd25306e237bfea12f"
+    },
+    {
+      "path": "docs/backend-analytics.md",
+      "status": "added",
+      "sha256": "12b7131e724449ff1f412fde04472d12407446ee7af37ca7303355da8c1a85b5"
+    },
+    {
+      "path": "docs/cqrs.md",
+      "status": "modified",
+      "sha256": "43b9c43fd6fe5e02792ae34cd2bf6b845949f31de2cb9aeb84af1448b1fd2e4b"
+    },
+    {
+      "path": "docs/data-domain-foundation.md",
+      "status": "added",
+      "sha256": "e7f90ed5303aca4b7be475e837a84f3f6603a7b13e97b2f44b99c11b36e4c286"
+    },
+    {
+      "path": "docs/database.md",
+      "status": "modified",
+      "sha256": "cf37c957db03a7e73f3a40548486117b5a2626648e5f2e77d8feb91510acc0aa"
+    },
+    {
+      "path": "docs/demo-scenario.md",
+      "status": "added",
+      "sha256": "f4633a267f1ac7e8488ffa6e576977c8b0d4dfd2a4e27e6e042b640e1271d7c1"
+    },
+    {
+      "path": "docs/domain-model.md",
+      "status": "modified",
+      "sha256": "f66d8b65bdb8b0153f28f7d8db40010fe44325ead7954723a92679a3431085c8"
+    },
+    {
+      "path": "docs/incentive-calibration.md",
+      "status": "added",
+      "sha256": "b1c6b281f989a88e9adf7d58effa4bf45bdb814992f83c1b5b58d38ee695a9d0"
+    },
+    {
+      "path": "docs/ml-model-card.md",
+      "status": "added",
+      "sha256": "16ce5e8b15fb5d8ea3cb97f23723148cbe172744c1d63e7eadc10503562cbd11"
+    },
+    {
+      "path": "docs/ml-service.md",
+      "status": "modified",
+      "sha256": "937063f641b1f24d7d7ba0044102916263237f8b3863cf3cfed695c2488003d9"
+    },
+    {
+      "path": "docs/recommendations-and-grounded-ai.md",
+      "status": "added",
+      "sha256": "714400d716ad58aedc7faec2c66734b5d318baabf8d77531eae2e87b77260ba5"
+    },
+    {
+      "path": "docs/synthetic-data.md",
+      "status": "added",
+      "sha256": "0761263ed67200e734f111c020b4ba3bf773b2950ee4f5c940212cc2fb323719"
+    },
+    {
+      "path": ".env.example",
+      "status": "modified",
+      "sha256": "16c60b2a511cddc0b04a56b669ec92413ccf6f73e0a3c9e1d3640dac6545bba8"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/admin/application/ConfigurationCommands.java",
+      "status": "removed",
+      "sha256": "e8565961276a3455c5aac104debbba46cbfd187280a1895fea8269d880d8ee2a"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/admin/application/ConfigurationStore.java",
+      "status": "removed",
+      "sha256": "ff6598b464e4bf46222dcd58486894e30d919c2c94d95d00e0162130432cbc3c"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/admin/application/SystemHealth.java",
+      "status": "removed",
+      "sha256": "15acd321e3c108ded8e029c016bf0458ef7f2f2be44548d34d8f8ba46c6ce746"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/admin/application/SystemQueries.java",
+      "status": "removed",
+      "sha256": "334bba975c4f260f5c3a86339b1f57bae7145b80c08a8e12504ebca53c7f64e1"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/admin/infrastructure/ConfigurationController.java",
+      "status": "removed",
+      "sha256": "3b12b7a3796e344e188aa0dd43813054568bc8ea9446d0d2e7ed4f1366f6a986"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/admin/infrastructure/IntegrationHealth.java",
+      "status": "removed",
+      "sha256": "d504d8cc03caff968739eb137d9a1c318cfee15b8f283109290e806b0e6f345d"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/admin/infrastructure/JdbcConfigurationStore.java",
+      "status": "removed",
+      "sha256": "8855560bf0cddcd92d5ecfa256c815d7accfb15c926cf9a7e941aced7c6c22b2"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/admin/infrastructure/JdbcSystemQueries.java",
+      "status": "removed",
+      "sha256": "fdcf1930a2385d1b4978984995204cf3adb2263fdfae6b4c91c6f9eff6bff080"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/admin/infrastructure/ProductCatalogController.java",
+      "status": "removed",
+      "sha256": "3bdbad91aba8131a10705cbe245f4c26a46752bf2989317d8e8bbb98f6fb4569"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/admin/infrastructure/SystemController.java",
+      "status": "removed",
+      "sha256": "10611dd7686658b3a260313380c2e242c0ba56f09dcd70f3c74387badce72506"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/security/infrastructure/AdminBootstrap.java",
+      "status": "removed",
+      "sha256": "5e501abe1ebd5420f397df531e20c3a5e505f08303cc0383bc658abb9e311f74"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/users/application/UserCommands.java",
+      "status": "removed",
+      "sha256": "acf831a5258e129b9869729a4f6850229186e4d2d81cc0345ae567873ea38c3d"
+    },
+    {
+      "path": "backend/src/main/java/com/championsclub/users/domain/Dealership.java",
+      "status": "removed",
+      "sha256": "ed06d6e231cf3302c47801da8c848ae12cd92363a2d294d53858d5d869ec6e1b"
+    }
+  ]
+}

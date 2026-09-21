@@ -7,7 +7,7 @@ public record CreateSaleCommand(
         Long advisorId,
         Long dealershipId,
         Long productId,
-        BigDecimal financedAmount,
+        BigDecimal contractAmount,
         LocalDate saleDate,
         String externalReference,
         String currency

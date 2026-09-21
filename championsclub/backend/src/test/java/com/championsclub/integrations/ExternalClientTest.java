@@ -21,6 +21,7 @@ class ExternalClientTest {
     private String body;
     private int status;
     private boolean slow;
+    private String requestBody;
     private final ObjectMapper json=new ObjectMapper().registerModule(new JavaTimeModule())
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     @BeforeEach void start() throws Exception {
@@ -29,7 +30,7 @@ class ExternalClientTest {
         server.setExecutor(executor);
         status=200;
         server.createContext("/",exchange -> {
-            exchange.getRequestBody().readAllBytes();
+            requestBody=new String(exchange.getRequestBody().readAllBytes(),StandardCharsets.UTF_8);
             if (slow) {
                 try { new CountDownLatch(1).await(2,TimeUnit.SECONDS); }
                 catch (InterruptedException exception) { Thread.currentThread().interrupt(); }
@@ -58,27 +59,41 @@ class ExternalClientTest {
     }
     @Test void mlSuccess() throws Exception {
         forecastBody();
-        assertThat(new FastApiMlForecastClient(url(),1).forecast(request())).isPresent();
+        assertThat(new FastApiMlForecastClient(url(),1,json).forecast(request())).isPresent();
+        assertThat(requestBody).contains("\"asOf\":\"2026-09-15\"");
     }
     @Test void mlRejectsBadResponse() {
         body="{\"predictedEndValue\":-1}";
-        assertThat(new FastApiMlForecastClient(url(),1).forecast(request())).isEmpty();
+        assertThat(new FastApiMlForecastClient(url(),1,json).forecast(request())).isEmpty();
     }
     @Test void mlUnavailable() {
         status=503; body="{}";
-        assertThat(new FastApiMlForecastClient(url(),1).forecast(request())).isEmpty();
+        assertThat(new FastApiMlForecastClient(url(),1,json).forecast(request())).isEmpty();
     }
     @Test void mlTimeout() throws Exception {
         forecastBody(); slow=true;
-        assertThat(new FastApiMlForecastClient(url(),1).forecast(request())).isEmpty();
+        assertThat(new FastApiMlForecastClient(url(),1,json).forecast(request())).isEmpty();
     }
     private OpenAiClient ai() { return new OpenAiClient(json,url(),"test-key","test-model","OPENAI",1); }
-    private AiClient.InsightRequest facts() { return new AiClient.InsightRequest("SALES_ADVISOR",Map.of("sales",10000)); }
+    private AiClient.InsightRequest facts() { return new AiClient.InsightRequest("ADVISOR",Map.of("sales",10000)); }
     @Test void aiSuccessValidatesKnownContract() throws Exception {
-        String insight=json.writeValueAsString(new PerformanceInsight("Sales are recorded.","Sales increased.","Target progress improved.",
-                "Forecast is unavailable.","Review eligible products.","Review the current target."));
+        String insight=json.writeValueAsString(Map.of(
+                "summary","Sales are recorded.",
+                "whatChanged","Sales increased.",
+                "whyItMatters","Target progress improved.",
+                "risk","Forecast is unavailable.",
+                "opportunity","Review eligible products.",
+                "recommendedAction","Review the current target."
+        ));
         body=json.writeValueAsString(Map.of("choices",List.of(Map.of("finish_reason","stop","message",Map.of("content",insight)))));
         assertThat(ai().generate(facts())).isPresent();
+        assertThat(requestBody).contains("\"response_format\"", "\"json_schema\"", "\"store\":false");
+    }
+
+    @Test void aiRejectsUnsupportedProviderWithoutCallingRemoteService() {
+        var client = new OpenAiClient(json,url(),"test-key","test-model","NOT_A_PROVIDER",1);
+        assertThat(client.generate(facts())).isEmpty();
+        assertThat(requestBody).isNull();
     }
     @Test void aiRejectsBadJson() {
         body="{\"choices\":[{\"finish_reason\":\"stop\",\"message\":{\"content\":\"not json\"}}]}";

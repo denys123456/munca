@@ -1,16 +1,18 @@
 # CQRS
 
-ChampionsClub uses in-process CQRS to keep write behaviour and read behaviour clear.
+ChampionsClub uses lightweight in-process CQRS where separating writes from read-oriented models improves readability.
 
-Commands:
+Commands include:
 
-- `CreateSaleCommand` records eligible sales and awards deterministic points.
-- `RedeemRewardCommand` validates available points and records reward redemptions.
+- `CreateSaleCommand`
+- `RedeemRewardCommand`
 
-Queries:
+Query-oriented services include:
 
-- `GetAdvisorDashboardQuery` returns personal sales, points, target progress, forecast, insights, alerts and rewards context.
-- `GetManagerDashboardQuery` returns dealership performance, ranking, employees needing attention, forecast and recommended actions.
+- `GetAdvisorDashboardQuery`
+- `GetManagerDashboardQuery`
+- analytics read models
+- sales history queries
+- reward catalogue queries
 
-There is no command bus, event sourcing or messaging infrastructure. The current problem is clarity, not distributed processing.
-
+There is no command bus, event sourcing or messaging infrastructure. The goal is clear ownership and maintainable code rather than distributed processing.

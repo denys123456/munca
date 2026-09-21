@@ -1,47 +1,176 @@
 package com.championsclub.integration;
+
 import java.time.LocalDate;
-import java.util.*;
+import java.util.Map;
+import java.util.UUID;
 import org.junit.jupiter.api.Test;
-import static org.assertj.core.api.Assertions.*;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 class SalesIntegrationTest extends PostgresIntegrationSupport {
-    @Test void saleAwardsPointsAndCancellationPreservesLedger() throws Exception {
-        var advisor=newAdvisor();
-        long id=advisor.path("id").asLong();
-        String token=login(advisor.path("email").asText());
-        var request=Map.of("advisorId",id,"dealershipId",north(),"productId",product(),"financedAmount",10000,
-                "saleDate",LocalDate.now().toString(),"externalReference",UUID.randomUUID().toString(),"currency","EUR");
-        var sale=call("POST","/api/sales",token,request,201);
-        int awarded=sale.path("awardedPoints").asInt();
-        assertThat(awarded).isPositive();
-        assertThat(call("GET","/api/points/"+id,token,null,200).path("availablePoints").asInt()).isEqualTo(awarded);
-        assertThat(call("GET","/api/targets/progress?ownerType=ADVISOR&ownerId="+id,token,null,200)
-                .path("progress").path("achievedAmount").decimalValue()).isEqualByComparingTo("10000");
-        call("POST","/api/sales",token,request,409);
-        call("POST","/api/sales/"+sale.path("id").asLong()+"/cancel",token,null,200);
-        assertThat(call("GET","/api/points/"+id,token,null,200).path("availablePoints").asInt()).isZero();
-        var ledger=call("GET","/api/points/"+id+"/transactions",token,null,200);
+    @Test
+    void saleAwardsPointsAndCancellationPreservesLedger() throws Exception {
+        var advisor = newAdvisor();
+        String token = login(advisor.email());
+        var request = saleRequest(advisor.id(), product("FINANCE"), 10000);
+
+        var sale = call("POST", "/api/sales", token, request, 201);
+        int awardedPoints = sale.path("awardedPoints").asInt();
+
+        assertThat(awardedPoints).isPositive();
+        var pointsAfterSale = call("GET", "/api/points/" + advisor.id(), token, null, 200);
+        assertThat(pointsAfterSale.path("availablePoints").asInt()).isEqualTo(awardedPoints);
+        assertThat(pointsAfterSale.path("lifetimeEarnedPoints").asInt()).isEqualTo(awardedPoints);
+        assertThat(call(
+                "GET",
+                "/api/targets/progress?ownerType=ADVISOR&ownerId=" + advisor.id(),
+                token,
+                null,
+                200
+        ).path("progress").path("achievedAmount").decimalValue()).isEqualByComparingTo("10000");
+
+        call("POST", "/api/sales", token, request, 409);
+        call("POST", "/api/sales/" + sale.path("id").asLong() + "/cancel", token, null, 200);
+
+        var pointsAfterCancellation = call("GET", "/api/points/" + advisor.id(), token, null, 200);
+        assertThat(pointsAfterCancellation.path("availablePoints").asInt()).isZero();
+        assertThat(pointsAfterCancellation.path("lifetimeEarnedPoints").asInt()).isZero();
+
+        var ledger = call("GET", "/api/points/" + advisor.id() + "/transactions", token, null, 200);
         assertThat(ledger.path("totalElements").asInt()).isEqualTo(2);
         assertThat(ledger.path("content").get(0).path("type").asText()).isEqualTo("SALE_REVERSAL");
-        call("POST","/api/sales/"+sale.path("id").asLong()+"/cancel",token,null,409);
-        var history=call("GET","/api/sales?advisorId="+id+"&status=CANCELLED&size=1",token,null,200);
-        assertThat(history.path("totalElements").asInt()).isEqualTo(1);
+
+        call("POST", "/api/sales/" + sale.path("id").asLong() + "/cancel", token, null, 409);
     }
-    @Test void rejectsIneligibleProductAndOtherAdvisorSale() throws Exception {
-        String jane=login("jane.doe@championsclub.example");
-        long other=userId("emma.taylor@championsclub.example");
-        call("POST","/api/sales",jane,Map.of("advisorId",other,"dealershipId",north(),"productId",product(),
-                "financedAmount",10000,"saleDate",LocalDate.now().toString(),"externalReference",UUID.randomUUID().toString(),"currency","EUR"),403);
-        var product=call("POST","/api/admin/products",admin,Map.of("name","Ineligible","code","P-"+UUID.randomUUID(),
-                "description","Not eligible","eligible",false,"active",true),201);
-        call("POST","/api/sales",jane,Map.of("advisorId",userId("jane.doe@championsclub.example"),"dealershipId",north(),
-                "productId",product.path("id").asLong(),"financedAmount",10000,"saleDate",LocalDate.now().toString(),
-                "externalReference",UUID.randomUUID().toString(),"currency","EUR"),409);
+
+    @Test
+    void saleWithoutPointRuleCreatesNoZeroValueLedgerEntry() throws Exception {
+        var advisor = newAdvisor();
+        String token = login(advisor.email());
+        long productId = newProduct(true, "SALES");
+
+        var sale = call(
+                "POST",
+                "/api/sales",
+                token,
+                saleRequest(advisor.id(), productId, 10000),
+                201
+        );
+
+        assertThat(sale.path("awardedPoints").asInt()).isZero();
+        var ledger = call("GET", "/api/points/" + advisor.id() + "/transactions", token, null, 200);
+        assertThat(ledger.path("totalElements").asInt()).isZero();
+
+        call("POST", "/api/sales/" + sale.path("id").asLong() + "/cancel", token, null, 200);
+        var ledgerAfterCancellation = call(
+                "GET",
+                "/api/points/" + advisor.id() + "/transactions",
+                token,
+                null,
+                200
+        );
+        assertThat(ledgerAfterCancellation.path("totalElements").asInt()).isZero();
     }
-    @Test void databaseEnforcesUniqueSaleReference() {
-        String reference=database.queryForObject("select external_reference from sales order by id limit 1",String.class);
-        assertThatThrownBy(() -> database.update("""
-                insert into sales(advisor_id,dealership_id,product_id,financed_amount,sale_date,awarded_points,status,external_reference)
-                select advisor_id,dealership_id,product_id,financed_amount,sale_date,awarded_points,status,? from sales order by id limit 1
-                """,reference)).isInstanceOf(org.springframework.dao.DataIntegrityViolationException.class);
+
+    @Test
+    void rejectsIneligibleProductAndOtherAdvisorSale() throws Exception {
+        String jane = login("jane.doe@championsclub.example");
+        long otherAdvisor = userId("emma.taylor@championsclub.example");
+
+        call(
+                "POST",
+                "/api/sales",
+                jane,
+                saleRequest(otherAdvisor, product("FINANCE"), 10000),
+                403
+        );
+
+        long ineligibleProduct = newProduct(false, "SALES");
+        call(
+                "POST",
+                "/api/sales",
+                jane,
+                saleRequest(userId("jane.doe@championsclub.example"), ineligibleProduct, 10000),
+                409
+        );
+    }
+
+    @Test
+    void rejectsProductOutsideAdvisorScope() throws Exception {
+        String jane = login("jane.doe@championsclub.example");
+        String john = login("john.doe@championsclub.example");
+
+        call(
+                "POST",
+                "/api/sales",
+                jane,
+                saleRequest(userId("jane.doe@championsclub.example"), product("PROTECT"), 3000),
+                409
+        );
+        call(
+                "POST",
+                "/api/sales",
+                john,
+                saleRequest(userId("john.doe@championsclub.example"), product("FINANCE"), 10000),
+                409
+        );
+    }
+
+    @Test
+    void cancellationAfterRedemptionCanMakeAvailablePointsNegativeWithoutCorruptingLifetimeProgress() throws Exception {
+        var advisor = newAdvisor();
+        String token = login(advisor.email());
+        long rewardId = newReward(200, 1);
+
+        var sale = call(
+                "POST",
+                "/api/sales",
+                token,
+                saleRequest(advisor.id(), product("FINANCE"), 10000),
+                201
+        );
+        call("POST", "/api/rewards/redemptions", token, Map.of("rewardId", rewardId), 201);
+
+        var afterRedemption = call("GET", "/api/points/" + advisor.id(), token, null, 200);
+        assertThat(afterRedemption.path("availablePoints").asInt()).isZero();
+        assertThat(afterRedemption.path("lifetimeEarnedPoints").asInt()).isEqualTo(200);
+
+        call("POST", "/api/sales/" + sale.path("id").asLong() + "/cancel", token, null, 200);
+
+        var afterCancellation = call("GET", "/api/points/" + advisor.id(), token, null, 200);
+        assertThat(afterCancellation.path("availablePoints").asInt()).isEqualTo(-200);
+        assertThat(afterCancellation.path("lifetimeEarnedPoints").asInt()).isZero();
+    }
+
+    @Test
+    void databaseEnforcesUniqueSaleReference() {
+        String reference = database.queryForObject(
+                "select external_reference from sales order by id limit 1",
+                String.class
+        );
+
+        assertThatThrownBy(() -> database.update(
+                """
+                insert into sales(advisor_id, dealership_id, product_id, contract_amount, sale_date, awarded_points, status, external_reference)
+                select advisor_id, dealership_id, product_id, contract_amount, sale_date, awarded_points, status, ?
+                from sales
+                order by id
+                limit 1
+                """,
+                reference
+        )).isInstanceOf(org.springframework.dao.DataIntegrityViolationException.class);
+    }
+
+    private Map<String, Object> saleRequest(long advisorId, long productId, int contractAmount) {
+        return Map.of(
+                "advisorId", advisorId,
+                "dealershipId", north(),
+                "productId", productId,
+                "contractAmount", contractAmount,
+                "saleDate", LocalDate.now().toString(),
+                "externalReference", UUID.randomUUID().toString(),
+                "currency", "EUR"
+        );
     }
 }

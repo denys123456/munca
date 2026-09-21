@@ -1,0 +1,5 @@
+championsclub:
+  demo:
+    enabled: false
+  synthetic-data:
+    enabled: true

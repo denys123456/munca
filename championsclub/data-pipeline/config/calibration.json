@@ -1,0 +1,98 @@
+{
+  "version": "vwfs-2025-acea-2024-2026-v2",
+  "sources": {
+    "vwfs_2025": {
+      "url": "https://www.vwfs.com/en/media/press-releases/2026/JPG-2025.html",
+      "description": "Volkswagen Group Mobility new-contract counts for financing, leasing, services and insurance in 2024 and 2025."
+    },
+    "acea_2024": {
+      "url": "https://www.acea.auto/pc-registrations/new-car-registrations-0-8-in-2024-battery-electric-13-6-market-share/",
+      "description": "EU passenger-car powertrain market shares for 2024."
+    },
+    "acea_2025": {
+      "url": "https://www.acea.auto/pc-registrations/new-car-registrations-1-8-in-2025-battery-electric-17-4-market-share/",
+      "description": "EU passenger-car powertrain market shares for 2025."
+    },
+    "acea_2026_h1": {
+      "url": "https://www.acea.auto/pc-registrations/new-car-registrations-5-7-in-h1-2026-battery-electric-20-7-market-share/",
+      "description": "EU passenger-car powertrain market shares for the first half of 2026."
+    }
+  },
+  "contract_category_shares": {
+    "2024": {
+      "FINANCING": 0.17044,
+      "LEASING": 0.21252,
+      "SERVICE": 0.22583,
+      "INSURANCE": 0.39121
+    },
+    "2025": {
+      "FINANCING": 0.16854,
+      "LEASING": 0.21937,
+      "SERVICE": 0.23116,
+      "INSURANCE": 0.38093
+    },
+    "2026": {
+      "FINANCING": 0.165,
+      "LEASING": 0.224,
+      "SERVICE": 0.236,
+      "INSURANCE": 0.375
+    }
+  },
+  "powertrain_shares": {
+    "2024": {
+      "PETROL": 0.333,
+      "DIESEL": 0.119,
+      "BATTERY_ELECTRIC": 0.136,
+      "PLUG_IN_HYBRID": 0.071,
+      "HYBRID": 0.309,
+      "OTHER": 0.032
+    },
+    "2025": {
+      "PETROL": 0.267,
+      "DIESEL": 0.088,
+      "BATTERY_ELECTRIC": 0.174,
+      "PLUG_IN_HYBRID": 0.094,
+      "HYBRID": 0.345,
+      "OTHER": 0.032
+    },
+    "2026": {
+      "PETROL": 0.222,
+      "DIESEL": 0.075,
+      "BATTERY_ELECTRIC": 0.207,
+      "PLUG_IN_HYBRID": 0.098,
+      "HYBRID": 0.373,
+      "OTHER": 0.025
+    }
+  },
+  "monthly_seasonality": {
+    "1": 0.91,
+    "2": 0.94,
+    "3": 1.08,
+    "4": 1.01,
+    "5": 1.05,
+    "6": 1.09,
+    "7": 1.02,
+    "8": 0.84,
+    "9": 1.06,
+    "10": 1.05,
+    "11": 1.03,
+    "12": 0.92
+  },
+  "year_volume_multiplier": {
+    "2024": 1.0,
+    "2025": 1.03,
+    "2026": 1.05
+  },
+  "assumptions": {
+    "sales_advisor_share": 0.7,
+    "insurance_sales_advisor_share": 0.75,
+    "cancellation_rates": {
+      "FINANCING": 0.04,
+      "LEASING": 0.035,
+      "SERVICE": 0.025,
+      "INSURANCE": 0.055
+    },
+    "target_stretch_min": 1.02,
+    "target_stretch_max": 1.12
+  }
+}

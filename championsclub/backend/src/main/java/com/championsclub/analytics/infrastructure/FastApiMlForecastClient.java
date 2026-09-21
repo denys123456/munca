@@ -1,6 +1,7 @@
 package com.championsclub.analytics.infrastructure;
 import com.championsclub.analytics.application.*;
 import com.championsclub.common.infrastructure.HttpClients;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.math.BigDecimal;
 import java.time.temporal.ChronoUnit;
 import java.util.Optional;
@@ -11,8 +12,9 @@ import org.springframework.web.client.*;
 public class FastApiMlForecastClient implements MlForecastClient {
     private final RestClient http;
     public FastApiMlForecastClient(@Value("${championsclub.ml.base-url}") String url,
-                                   @Value("${championsclub.ml.timeout-seconds:5}") int timeout) {
-        this.http=HttpClients.create(url, timeout);
+                                   @Value("${championsclub.ml.timeout-seconds:5}") int timeout,
+                                   ObjectMapper objectMapper) {
+        this.http=HttpClients.create(url, timeout, objectMapper);
     }
     public Optional<SalesForecast> forecast(ForecastRequest request) {
         try {

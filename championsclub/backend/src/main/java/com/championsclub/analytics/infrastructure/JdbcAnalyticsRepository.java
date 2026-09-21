@@ -1,51 +1,153 @@
 package com.championsclub.analytics.infrastructure;
-import com.championsclub.analytics.application.*;
+
+import com.championsclub.analytics.application.AnalyticsRepository;
+import com.championsclub.analytics.application.MlForecastClient;
+import com.championsclub.sales.domain.ProductCategory;
 import com.championsclub.targets.application.TargetStore.OwnerType;
 import java.time.LocalDate;
 import java.util.List;
-import org.springframework.data.domain.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
 @Repository
 class JdbcAnalyticsRepository implements AnalyticsRepository {
+    private static final String RECORDED = "RECORDED";
+    private static final String CANCELLED = "CANCELLED";
     private final JdbcTemplate database;
-    JdbcAnalyticsRepository(JdbcTemplate database) { this.database=database; }
+
+    JdbcAnalyticsRepository(JdbcTemplate database) {
+        this.database = database;
+    }
+
+    @Override
     public List<MlForecastClient.DailySale> daily(long id, OwnerType type, LocalDate start, LocalDate end) {
-        String ownerColumn=type == OwnerType.ADVISOR ? "advisor_id" : "dealership_id";
-        return database.query("""
-                select day::date, coalesce(sum(s.financed_amount), 0) amount
-                from generate_series(?::date, ?::date, interval '1 day') day
-                left join sales s on s.sale_date=day::date and s.status='RECORDED' and s.
-                """ + ownerColumn + "=? group by day order by day",
-                (r, n) -> new MlForecastClient.DailySale(r.getDate(1).toLocalDate(), r.getBigDecimal(2)), start, end, id);
+        String ownerColumn = ownerColumn(type);
+        return database.query(
+                "select day::date, coalesce(sum(s.contract_amount), 0) amount "
+                        + "from generate_series(?::date, ?::date, interval '1 day') day "
+                        + "left join sales s on s.sale_date=day::date and s.status=? and s." + ownerColumn + "=? "
+                        + "group by day order by day",
+                (result, row) -> new MlForecastClient.DailySale(
+                        result.getDate(1).toLocalDate(),
+                        result.getBigDecimal(2)
+                ),
+                start,
+                end,
+                RECORDED,
+                id
+        );
     }
+
+    @Override
+    public PeriodSummary periodSummary(long id, OwnerType type, LocalDate start, LocalDate end) {
+        String ownerColumn = ownerColumn(type);
+        return database.queryForObject(
+                "select "
+                        + "coalesce(sum(contract_amount) filter(where status=?),0) sales, "
+                        + "count(*) filter(where status=?) recorded_contracts, "
+                        + "count(*) filter(where status=?) cancelled_contracts, "
+                        + "coalesce(avg(contract_amount) filter(where status=?),0) average_contract_amount "
+                        + "from sales where " + ownerColumn + "=? and sale_date between ? and ?",
+                (result, row) -> new PeriodSummary(
+                        result.getBigDecimal("sales"),
+                        result.getLong("recorded_contracts"),
+                        result.getLong("cancelled_contracts"),
+                        result.getBigDecimal("average_contract_amount")
+                ),
+                RECORDED,
+                RECORDED,
+                CANCELLED,
+                RECORDED,
+                id,
+                start,
+                end
+        );
+    }
+
+    @Override
     public List<ProductMix> productMix(long id, OwnerType type, LocalDate start, LocalDate end) {
-        String ownerColumn=type == OwnerType.ADVISOR ? "advisor_id" : "dealership_id";
-        return database.query("""
-                select p.id, p.name, sum(s.financed_amount) amount, count(*) transactions
-                from sales s join financial_products p on p.id=s.product_id
-                where s.status='RECORDED' and s.sale_date between ? and ? and s.
-                """ + ownerColumn + "=? group by p.id, p.name order by amount desc, p.id limit 20",
-                (r, n) -> new ProductMix(r.getLong(1), r.getString(2), r.getBigDecimal(3), r.getLong(4)), start, end, id);
+        String ownerColumn = ownerColumn(type);
+        return database.query(
+                "select p.id, p.code, p.name, p.category, sum(s.contract_amount) amount, count(*) transactions "
+                        + "from sales s join financial_products p on p.id=s.product_id "
+                        + "where s.status=? and s.sale_date between ? and ? and s." + ownerColumn + "=? "
+                        + "group by p.id, p.code, p.name, p.category order by amount desc, p.id",
+                (result, row) -> new ProductMix(
+                        result.getLong("id"),
+                        result.getString("code"),
+                        result.getString("name"),
+                        ProductCategory.valueOf(result.getString("category")),
+                        result.getBigDecimal("amount"),
+                        result.getLong("transactions")
+                ),
+                RECORDED,
+                start,
+                end,
+                id
+        );
     }
-    public Page<AdvisorPerformance> team(long dealershipId, LocalDate start, LocalDate end, Pageable page, boolean lowestFirst) {
-        String order=lowestFirst ? "coalesce(s.amount/nullif(t.target_amount,0),0) asc, u.id" : "coalesce(s.amount,0) desc, u.id";
-        var rows=database.query("""
-                select u.id, u.first_name || ' ' || u.last_name name, coalesce(s.amount,0) sales,
-                coalesce(t.target_amount,0) target, coalesce(p.points,0) points
-                from users u
-                left join lateral (select sum(financed_amount) amount from sales
-                    where advisor_id=u.id and status='RECORDED' and sale_date between ? and ?) s on true
-                left join lateral (select target_amount from targets
-                    where owner_id=u.id and owner_type='ADVISOR' and status='ACTIVE' and start_date=? and end_date=?) t on true
-                left join lateral (select sum(amount) points from point_transactions where advisor_id=u.id) p on true
-                where u.dealership_id=? and u.role='SALES_ADVISOR' and u.status='ACTIVE'
-                order by
-                """ + order + " limit ? offset ?",
-                (r, n) -> new AdvisorPerformance(r.getLong(1), r.getString(2), r.getBigDecimal(3), r.getBigDecimal(4), r.getInt(5)),
-                start, end, start, end, dealershipId, page.getPageSize(), page.getOffset());
-        long total=database.queryForObject("select count(*) from users where dealership_id=? and role='SALES_ADVISOR' and status='ACTIVE'",
-                Long.class, dealershipId);
-        return new PageImpl<>(rows, page, total);
+
+    @Override
+    public List<DimensionMix> productCategoryMix(long id, OwnerType type, LocalDate start, LocalDate end) {
+        String ownerColumn = ownerColumn(type);
+        return database.query(
+                "select p.category value, sum(s.contract_amount) sales, count(*) transactions "
+                        + "from sales s join financial_products p on p.id=s.product_id "
+                        + "where s.status=? and s.sale_date between ? and ? and s." + ownerColumn + "=? "
+                        + "group by p.category order by transactions desc, value",
+                this::mapDimension,
+                RECORDED,
+                start,
+                end,
+                id
+        );
+    }
+
+    @Override
+    public List<DimensionMix> powertrainMix(long id, OwnerType type, LocalDate start, LocalDate end) {
+        return dimensionMix(id, type, start, end, "vehicle_powertrain");
+    }
+
+    @Override
+    public List<DimensionMix> vehicleConditionMix(long id, OwnerType type, LocalDate start, LocalDate end) {
+        return dimensionMix(id, type, start, end, "vehicle_condition");
+    }
+
+    @Override
+    public List<DimensionMix> customerSegmentMix(long id, OwnerType type, LocalDate start, LocalDate end) {
+        return dimensionMix(id, type, start, end, "customer_segment");
+    }
+
+    private List<DimensionMix> dimensionMix(
+            long id,
+            OwnerType type,
+            LocalDate start,
+            LocalDate end,
+            String column
+    ) {
+        String ownerColumn = ownerColumn(type);
+        String value = "coalesce(" + column + ", 'UNKNOWN')";
+        return database.query(
+                "select " + value + " value, sum(contract_amount) sales, count(*) transactions "
+                        + "from sales where status=? and sale_date between ? and ? and " + ownerColumn + "=? "
+                        + "group by " + value + " order by transactions desc, value",
+                this::mapDimension,
+                RECORDED,
+                start,
+                end,
+                id
+        );
+    }
+
+    private DimensionMix mapDimension(java.sql.ResultSet result, int row) throws java.sql.SQLException {
+        return new DimensionMix(
+                result.getString("value"),
+                result.getBigDecimal("sales"),
+                result.getLong("transactions")
+        );
+    }
+
+    private String ownerColumn(OwnerType type) {
+        return type == OwnerType.ADVISOR ? "advisor_id" : "dealership_id";
     }
 }

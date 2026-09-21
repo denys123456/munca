@@ -1,8 +1,9 @@
 package com.championsclub.rewards.application;
 
+import com.championsclub.points.domain.PointTransactionType;
+
 public interface PointsLedger {
-
     int calculateAvailablePoints(Long advisorId);
-
-    void append(Long advisorId, com.championsclub.points.domain.PointTransactionType type, int amount, long sourceId, String description);
+    int calculateLifetimeEarnedPoints(Long advisorId);
+    void append(Long advisorId, PointTransactionType type, int amount, long sourceId, String description);
 }
