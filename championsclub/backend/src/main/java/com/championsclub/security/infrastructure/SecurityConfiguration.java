@@ -50,7 +50,9 @@ class SecurityConfiguration {
     SecurityFilterChain securityFilterChain(HttpSecurity http, UserStore users,com.fasterxml.jackson.databind.ObjectMapper json) throws Exception {
         return http.cors(Customizer.withDefaults()).csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(request -> request.requestMatchers("/api/auth/login").permitAll().anyRequest().authenticated())
+                .authorizeHttpRequests(request -> request
+                        .requestMatchers(org.springframework.http.HttpMethod.GET, "/actuator/health").permitAll()
+                        .requestMatchers("/api/auth/login").permitAll().anyRequest().authenticated())
                 .exceptionHandling(errors -> errors
                         .authenticationEntryPoint((request, response, exception) -> error(response,request,json,401,"AUTHENTICATION_REQUIRED"))
                         .accessDeniedHandler((request, response, exception) -> error(response,request,json,403,"ACCESS_DENIED")))

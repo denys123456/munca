@@ -37,6 +37,16 @@ championsclub:
     allowed-origin: ${CHAMPIONSCLUB_CORS_ALLOWED_ORIGIN:http://localhost:5173}
 
 server:
+  port: ${PORT:8080}
   error:
     include-message: never
     include-stacktrace: never
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never

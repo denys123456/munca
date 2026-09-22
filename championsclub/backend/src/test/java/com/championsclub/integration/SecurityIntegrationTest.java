@@ -7,6 +7,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class SecurityIntegrationTest extends PostgresIntegrationSupport {
     @Test
+    void exposesOnlyHealthStatusWithoutAuthentication() throws Exception {
+        var health = call("GET", "/actuator/health", null, null, 200);
+        assertThat(health.path("status").asText()).isEqualTo("UP");
+        assertThat(health.size()).isEqualTo(1);
+        call("GET", "/actuator/env", null, null, 401);
+        call("GET", "/api/me", null, null, 401);
+    }
+
+    @Test
     void authenticatesPersistedAdvisorAndRevokesTokens() throws Exception {
         var advisor = newAdvisor();
         String token = login(advisor.email());
