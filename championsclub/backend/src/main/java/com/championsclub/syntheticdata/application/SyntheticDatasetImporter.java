@@ -78,8 +78,8 @@ public class SyntheticDatasetImporter {
 
     private void requirePassword(String password) {
         int passwordBytes = password == null ? 0 : password.getBytes(StandardCharsets.UTF_8).length;
-        if (passwordBytes < 12 || passwordBytes > 72) {
-            throw new IllegalStateException("Synthetic data password must contain between 12 and 72 UTF-8 bytes.");
+        if (passwordBytes < 8 || passwordBytes > 72) {
+            throw new IllegalStateException("Synthetic data password must contain between 8 and 72 UTF-8 bytes.");
         }
     }
 

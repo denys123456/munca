@@ -25,11 +25,11 @@ championsclub:
     jwt-secret: ${CHAMPIONSCLUB_JWT_SECRET}
   demo:
     enabled: false
-    password: ${CHAMPIONSCLUB_DEMO_PASSWORD:}
+    password: ${CHAMPIONSCLUB_DEMO_PASSWORD:manger123}
   synthetic-data:
     enabled: false
     directory: ${CHAMPIONSCLUB_SYNTHETIC_DATA_DIRECTORY:/app/data/generated}
-    password: ${CHAMPIONSCLUB_DEMO_PASSWORD:}
+    password: ${CHAMPIONSCLUB_DEMO_PASSWORD:manger123}
   scheduling:
     enabled: ${CHAMPIONSCLUB_SCHEDULING_ENABLED:true}
     cron: ${CHAMPIONSCLUB_SCHEDULING_CRON:0 0 6 * * *}

@@ -141,11 +141,29 @@ Keep credentials in the ignored local `.env` file or server environment. `VITE_*
 
 ## Demo Accounts
 
-All demo accounts use the value from `CHAMPIONSCLUB_DEMO_PASSWORD`.
+Demo and synthetic-data accounts use `CHAMPIONSCLUB_DEMO_PASSWORD`, defaulting to `manger123` when unset. These seeders only run when their respective profile is enabled. Existing account passwords are not changed on startup.
 
-- `advisor@championsclub.example`
-- `manager@championsclub.example`
-- `admin@championsclub.example`
+The local presentation database has these accounts, all reset to `manger123`:
+
+| Role | Email |
+| --- | --- |
+| Manager | `alex.smith@championsclub.example` |
+| Manager | `jordan.brown@championsclub.example` |
+| Manager | `taylor.wilson@championsclub.example` |
+| Advisor | `jane.doe@championsclub.example` |
+| Advisor | `emma.taylor@championsclub.example` |
+| Advisor | `morgan.lee@championsclub.example` |
+| Advisor | `casey.miller@championsclub.example` |
+| Advisor | `daniel.brown@championsclub.example` |
+| Admin | `john.doe@championsclub.example` |
+
+This is the existing local database inventory. A fresh demo seed creates eight accounts: the three managers above and advisors Jane, John, Emma, Morgan and Casey; it does not create an administrator or Daniel.
+
+To explicitly reset all accounts in the local presentation database (also revoking existing sessions), run from `championsclub`:
+
+```bash
+docker compose exec -T postgres psql -U championsclub -d championsclub -v demo_password=manger123 < scripts/reset_demo_passwords.sql
+```
 
 ## Tests
 

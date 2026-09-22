@@ -82,8 +82,8 @@ class DemoDataSeeder implements ApplicationRunner {
             return;
         }
         int bytes = password.getBytes(java.nio.charset.StandardCharsets.UTF_8).length;
-        if (bytes < 12 || bytes > 72) {
-            throw new IllegalStateException("Demo password must contain between 12 and 72 UTF-8 bytes.");
+        if (bytes < 8 || bytes > 72) {
+            throw new IllegalStateException("Demo password must contain between 8 and 72 UTF-8 bytes.");
         }
         String passwordHash = encoder.encode(password);
         var north = dealership("Apex North Motors", "NORTH", "Cluj-Napoca", "North West");
