@@ -19,6 +19,7 @@ const Intelligence = lazy(() => import("./features/Intelligence.jsx"));
 const Alerts = lazy(() => import("./features/Alerts.jsx"));
 const Profile = lazy(() => import("./features/Profile.jsx"));
 const Products = lazy(() => import("./features/Products.jsx"));
+const Showcase = lazy(() => import("./showcase/Showcase.jsx"));
 
 function Application() {
   const { user, status } = useAuth();
@@ -86,7 +87,17 @@ export default function App() {
     <ErrorBoundary>
       <HashRouter>
         <AuthProvider>
-          <Application />
+          <Routes>
+            <Route
+              path="/showcase"
+              element={
+                <Suspense fallback={<Loading />}>
+                  <Showcase />
+                </Suspense>
+              }
+            />
+            <Route path="*" element={<Application />} />
+          </Routes>
         </AuthProvider>
       </HashRouter>
     </ErrorBoundary>

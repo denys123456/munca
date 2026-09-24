@@ -1,0 +1,439 @@
+.car-showcase {
+  --car-ink: #202225;
+  position: relative;
+  height: 650svh;
+  color: var(--car-ink);
+  background: #e6e7e8;
+}
+.car-stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 540px;
+  overflow: hidden;
+  isolation: isolate;
+  background: radial-gradient(
+    ellipse at 50% 35%,
+    #fff 0%,
+    #f1f2f3 36%,
+    #d7d9dc 85%,
+    #b9bdc3 130%
+  );
+}
+.car-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(140deg, #fff0, #535c691c);
+  pointer-events: none;
+}
+.car-atmosphere {
+  position: absolute;
+  inset: 0;
+  background: #77808b;
+  opacity: 0;
+  pointer-events: none;
+}
+.car-header {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  width: 100%;
+  padding: 28px 4%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.car-brand {
+  font-size: 23px;
+  font-weight: 600;
+  letter-spacing: -1.2px;
+  line-height: 1.15;
+}
+.car-brand > span {
+  font-weight: 400;
+}
+.car-brand small {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 2.6px;
+  margin-top: 9px;
+  font-weight: 500;
+}
+.car-edition {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #686d73;
+}
+.car-edition > span {
+  padding: 0 16px;
+  color: #a2a5a9;
+}
+.car-workspace {
+  display: inline-flex;
+  gap: 24px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #9a9da3;
+  font-size: 11px;
+}
+.car-workspace:hover {
+  color: #000;
+  border-color: #000;
+}
+.car-heading {
+  position: absolute;
+  z-index: 2;
+  top: 15%;
+  left: 5%;
+  right: 5%;
+  text-align: center;
+  pointer-events: none;
+}
+.car-eyebrow {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 2.8px;
+}
+.car-heading h1 {
+  font-size: clamp(36px, 4.6vw, 76px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -3.8px;
+  margin: 18px 0 12px;
+}
+.car-heading p {
+  font-size: 12px;
+  color: #777d84;
+  font-weight: 400;
+  letter-spacing: 0.25px;
+}
+.car-watermark {
+  position: absolute;
+  width: 100%;
+  top: 37%;
+  text-align: center;
+  font-size: clamp(80px, 20vw, 350px);
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: #58606b08;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.car-viewport {
+  position: absolute;
+  inset: 24% 0 12%;
+  mask-image: linear-gradient(transparent, #000 7%, #000 93%, transparent);
+}
+.car-viewport canvas {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+.car-showcase[data-status="ready"] .car-viewport canvas {
+  opacity: 1;
+}
+.car-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 0.8s;
+}
+.car-showcase[data-status="ready"] .car-poster {
+  opacity: 0;
+}
+.car-loading {
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  right: 0;
+  bottom: 19%;
+  text-align: center;
+  font-size: 10px;
+  color: #60656b;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+}
+.car-loading:empty {
+  display: none;
+}
+.car-loading button {
+  border: 0;
+  border-bottom: 1px solid #777;
+  padding: 4px;
+  background: transparent;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.car-loading-line {
+  width: 44px;
+  height: 1px;
+  background: #90969d;
+  animation: car-loading-pulse 1.5s ease infinite;
+}
+.car-detail,
+.car-finale {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  top: 15%;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+}
+.car-detail h2,
+.car-finale h2 {
+  font-size: clamp(34px, 3.8vw, 64px);
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: -2.6px;
+  margin: 20px 0;
+}
+.car-detail p {
+  color: #70767d;
+  font-size: 12px;
+  line-height: 1.9;
+}
+.car-detail h2 {
+  font-size: clamp(32px, 3.8vw, 60px);
+  margin: 14px 0 10px;
+}
+.car-detail br {
+  display: none;
+}
+.car-finale {
+  top: 16%;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+.car-finale h2 br {
+  display: none;
+}
+.car-footer {
+  position: absolute;
+  z-index: 4;
+  bottom: 7.5%;
+  left: 4%;
+  right: 4%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.car-model {
+  display: grid;
+  gap: 5px;
+}
+.car-model strong {
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: -0.6px;
+}
+.car-model > span {
+  font-size: 7px;
+  letter-spacing: 1.6px;
+  color: #737a82;
+}
+.car-chapters {
+  display: flex;
+  gap: 22px;
+}
+.car-chapters button {
+  background: transparent;
+  border: 0;
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 9px;
+  color: #777e86;
+}
+.car-chapters button > span:first-child {
+  font-size: 8px;
+}
+.car-chapters button[aria-current="step"],
+.car-chapters button:hover {
+  color: #151719;
+}
+.car-chapters button[aria-current="step"]::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  background: currentColor;
+  border-radius: 50%;
+}
+.car-scroll {
+  border: 0;
+  background: none;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 8px;
+  letter-spacing: 1.6px;
+  padding: 12px 0;
+}
+.car-progress {
+  position: absolute;
+  bottom: 4.8%;
+  left: 4%;
+  right: 4%;
+  height: 1px;
+  background: #555d691f;
+}
+.car-progress > span {
+  display: block;
+  height: 1px;
+  width: 100%;
+  background: #525962;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.car-skip {
+  position: absolute;
+  bottom: 1.3%;
+  right: 4%;
+  font-size: 9px;
+  color: #6f757d;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.car-showcase[data-status="error"] {
+  height: 100svh;
+}
+.car-showcase[data-status="error"] .car-chapters,
+.car-showcase[data-status="error"] .car-scroll {
+  display: none;
+}
+.car-showcase a:focus-visible,
+.car-showcase button:focus-visible {
+  outline: 2px solid #313a47;
+  outline-offset: 6px;
+}
+@keyframes car-loading-pulse {
+  50% {
+    opacity: 0.25;
+    transform: scaleX(0.5);
+  }
+}
+@media (max-width: 1000px) {
+  .car-chapter-label {
+    display: none;
+  }
+  .car-chapters {
+    gap: 25px;
+  }
+}
+@media (max-width: 600px) {
+  .car-showcase {
+    height: 550svh;
+  }
+  .car-header {
+    padding: 24px 6%;
+  }
+  .car-brand {
+    font-size: 20px;
+  }
+  .car-edition {
+    display: none;
+  }
+  .car-workspace {
+    font-size: 10px;
+    gap: 9px;
+  }
+  .car-heading {
+    top: 19%;
+  }
+  .car-heading h1 {
+    font-size: 40px;
+    letter-spacing: -2px;
+    max-width: 320px;
+    margin: 20px auto 12px;
+  }
+  .car-heading p {
+    font-size: 11px;
+  }
+  .car-eyebrow {
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+  .car-viewport {
+    inset: 33% 0 18%;
+  }
+  .car-watermark {
+    top: 46%;
+  }
+  .car-footer {
+    bottom: 9%;
+    left: 6%;
+    right: 6%;
+    gap: 12px;
+  }
+  .car-model strong {
+    font-size: 16px;
+  }
+  .car-model > span {
+    font-size: 6px;
+    letter-spacing: 0.8px;
+  }
+  .car-scroll {
+    display: none;
+  }
+  .car-chapters {
+    gap: 20px;
+  }
+  .car-detail {
+    top: 18%;
+    left: 7%;
+    right: 7%;
+  }
+  .car-detail h2,
+  .car-finale h2 {
+    font-size: 36px;
+    letter-spacing: -1.6px;
+    margin: 14px 0;
+  }
+  .car-detail h2 br {
+    display: none;
+  }
+  .car-detail p {
+    font-size: 10px;
+  }
+  .car-finale {
+    top: 21%;
+  }
+  .car-finale h2 br {
+    display: block;
+  }
+  .car-loading {
+    bottom: 23%;
+    font-size: 9px;
+    padding: 0 24px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .car-showcase {
+    height: 100svh;
+  }
+  .car-chapters,
+  .car-scroll {
+    display: none;
+  }
+  .car-loading-line {
+    animation: none;
+  }
+  .car-viewport canvas,
+  .car-poster {
+    transition: none;
+  }
+}

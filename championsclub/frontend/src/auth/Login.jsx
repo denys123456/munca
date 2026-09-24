@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   ArrowRight,
   ChartNoAxesCombined,
@@ -56,6 +57,13 @@ export function Login() {
               Progress worth celebrating
             </span>
           </div>
+          <Link
+            to="/showcase"
+            className="button secondary"
+            style={{ marginTop: 28 }}
+          >
+            Explore the design series <ArrowRight size={16} />
+          </Link>
         </div>
         <div className="login-story-footer">
           CHAMPIONSCLUB<span>Sales performance & incentives</span>
