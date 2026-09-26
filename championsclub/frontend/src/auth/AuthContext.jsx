@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { request, setAccessToken } from "../api/client.js";
 
 const Context = createContext(null);
@@ -23,12 +23,14 @@ export function AuthProvider({ children }) {
   const [status, setStatus] = useState(readToken() ? "checking" : "ready");
   const [error, setError] = useState("");
   const [attempt, setAttempt] = useState(0);
+  const restore = useRef(null);
   useEffect(() => {
     const token = readToken();
     if (!token) return;
     setAccessToken(token);
     setStatus("checking");
     const controller = new AbortController();
+    restore.current = controller;
     request("/api/me", { signal: controller.signal })
       .then((account) => {
         if (!controller.signal.aborted) {
@@ -51,6 +53,7 @@ export function AuthProvider({ children }) {
   }, [attempt]);
   useEffect(() => {
     const expire = () => {
+      restore.current?.abort();
       storeToken(null);
       setAccessToken(null);
       setUser(null);
@@ -61,14 +64,19 @@ export function AuthProvider({ children }) {
     return () => window.removeEventListener("championsclub:expired", expire);
   }, []);
   async function login(email, password) {
+    restore.current?.abort();
     const result = await request("/api/auth/login", {
       method: "POST",
       body: { email: email.trim(), password },
       anonymous: true,
     });
+    if (!result?.accessToken || !result?.user?.id)
+      throw new Error(
+        "The sign-in service returned an invalid session. Please try again.",
+      );
     if (!["ADVISOR", "MANAGER"].includes(result.user.role))
       throw new Error(
-        "This account role is not supported by the corrected service.",
+        "This account does not have access to this workspace. Please contact your program coordinator.",
       );
     setAccessToken(result.accessToken);
     storeToken(result.accessToken);
@@ -77,12 +85,30 @@ export function AuthProvider({ children }) {
     setStatus("ready");
   }
   async function logout() {
-    await request("/api/auth/logout", { method: "POST" });
+    restore.current?.abort();
+    let message = "";
+    try {
+      await request("/api/auth/logout", { method: "POST" });
+    } catch (failure) {
+      if (failure.status !== 401)
+        message =
+          "You are signed out on this device. The service could not confirm sign-out for other sessions.";
+    } finally {
+      storeToken(null);
+      setAccessToken(null);
+      setUser(null);
+      setStatus("ready");
+      setError(message);
+      window.location.hash = "/";
+    }
+  }
+  function resetSession() {
+    restore.current?.abort();
     storeToken(null);
     setAccessToken(null);
     setUser(null);
+    setStatus("ready");
     setError("");
-    window.location.hash = "/";
   }
   return (
     <Context.Provider
@@ -92,6 +118,7 @@ export function AuthProvider({ children }) {
         error,
         login,
         logout,
+        resetSession,
         retry: () => setAttempt((value) => value + 1),
       }}
     >

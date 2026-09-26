@@ -60,3 +60,45 @@ test('cancelled navigation does not turn into a service failure', async () => {
   global.fetch = async () => { throw cancellation }
   try { await assert.rejects(request('/api/me', { signal: controller.signal }), error => error === cancellation) } finally { global.fetch = original }
 })
+
+test('missing login API and HTML fallback report the unavailable service', async () => {
+  const original = global.fetch
+  try {
+    for (const status of [200, 404, 405]) {
+      global.fetch = async () => new Response('<html>Static site</html>', { status })
+      await assert.rejects(request('/api/auth/login', { method: 'POST', anonymous: true }), error => error.code === 'AUTH_SERVICE_UNAVAILABLE')
+    }
+  } finally { global.fetch = original }
+})
+
+test('a stale unauthorized request cannot expire the replacement session', async () => {
+  const originalFetch = global.fetch
+  const originalWindow = global.window
+  const events = []
+  global.window = { dispatchEvent: event => events.push(event.type) }
+  let respond
+  global.fetch = () => new Promise(resolve => { respond = resolve })
+  try {
+    setAccessToken('old-token')
+    const pending = request('/api/me')
+    setAccessToken('replacement-token')
+    respond(new Response('Unauthorized', { status: 401 }))
+    await assert.rejects(pending, error => error.status === 401)
+    assert.deepEqual(events, [])
+    global.fetch = async () => new Response('Unauthorized', { status: 401 })
+    await assert.rejects(request('/api/me'), error => error.status === 401)
+    assert.deepEqual(events, ['championsclub:expired'])
+  } finally {
+    global.fetch = originalFetch
+    global.window = originalWindow
+    setAccessToken(null)
+  }
+})
+
+test('response body network failures receive the connection error', async () => {
+  const original = global.fetch
+  global.fetch = async () => ({ text: async () => { throw new TypeError('Internal connection details') } })
+  try {
+    await assert.rejects(request('/api/me'), { message: 'Unable to reach ChampionsClub. Check your connection and try again.' })
+  } finally { global.fetch = original }
+})
