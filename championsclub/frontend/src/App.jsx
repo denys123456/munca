@@ -20,6 +20,9 @@ const Alerts = lazy(() => import("./features/Alerts.jsx"));
 const Profile = lazy(() => import("./features/Profile.jsx"));
 const Products = lazy(() => import("./features/Products.jsx"));
 const Showcase = lazy(() => import("./showcase/Showcase.jsx"));
+const EngineLab = import.meta.env.DEV || import.meta.env.MODE === "engine-lab"
+  ? lazy(() => import("./engine-lab/EngineLab.jsx"))
+  : null;
 
 function Application() {
   const { user, status } = useAuth();
@@ -92,6 +95,12 @@ export default function App() {
       <HashRouter>
         <AuthProvider>
           <Routes>
+            {EngineLab && (
+              <Route
+                path="/engine-lab"
+                element={<Suspense fallback={<Loading />}><EngineLab /></Suspense>}
+              />
+            )}
             <Route
               path="/showcase"
               element={

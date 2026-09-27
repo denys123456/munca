@@ -1,0 +1,388 @@
+{
+  "sourceSha256": "e5f57852816fcfbccf734599400b8d3adc53122a112f7078466d29f879e995e2",
+  "maximumLinkageError": 2.7353327477566552e-15,
+  "deadCenters": [
+    {
+      "tdcAngle": 0.1959954774491992,
+      "bdcAngle": 3.5597655028325885,
+      "tdcWrist": [
+        0.8363776390013666,
+        -1.1244229126058354,
+        -0.11928578635029033
+      ],
+      "bdcWrist": [
+        0.8363776390013666,
+        -3.9567665579417985,
+        -0.11928578635029033
+      ]
+    },
+    {
+      "tdcAngle": 3.3388411223463055,
+      "bdcAngle": 0.414153208713012,
+      "tdcWrist": [
+        0.8369458091843578,
+        -1.1549534809961264,
+        -2.6393338908878317
+      ],
+      "bdcWrist": [
+        0.8369458091843578,
+        -3.93047062590882,
+        -2.6393338908878317
+      ]
+    },
+    {
+      "tdcAngle": 3.3376359583621036,
+      "bdcAngle": 0.41827989861168025,
+      "tdcWrist": [
+        0.8366225043547985,
+        -1.124471535317645,
+        -5.159488996895579
+      ],
+      "bdcWrist": [
+        0.8366225043547985,
+        -3.9568753875872416,
+        -5.159488996895579
+      ]
+    },
+    {
+      "tdcAngle": 0.19715201641426638,
+      "bdcAngle": 3.555533716277722,
+      "tdcWrist": [
+        0.8364549321195012,
+        -1.154855405291097,
+        -7.679042397902719
+      ],
+      "bdcWrist": [
+        0.8364549321195012,
+        -3.9302549093118313,
+        -7.679042397902719
+      ]
+    }
+  ],
+  "sampledDegrees": 360,
+  "componentMeshPairs": 191,
+  "contactMethod": "Bidirectional mesh edges against triangles, BVH accelerated, one-degree samples, 0.0001-unit endpoint tolerance. Transverse surface intersections only; not a complete solid collision or continuous sweep certificate.",
+  "contactScope": "Pistons, rods and crankshaft against block/lower structure; every rod against every crank mesh; pistons against their rods and all valves. Derived pins, containment, coplanar contacts and all-pairs accessory contacts are not certified.",
+  "contacts": [
+    {
+      "component": "CrankshaftGroup",
+      "target": "Object_178",
+      "targetParent": "Frame.001_89",
+      "sampledAngleRanges": [
+        [
+          0,
+          359
+        ]
+      ],
+      "firstContact": {
+        "degree": 0,
+        "point": [
+          -0.2842045536141795,
+          -5.713330664646946,
+          0.7571721513963463
+        ],
+        "moving": "Object_65"
+      }
+    },
+    {
+      "component": "CrankshaftGroup",
+      "target": "Object_174",
+      "targetParent": "Frame.000_85",
+      "sampledAngleRanges": [
+        [
+          0,
+          359
+        ]
+      ],
+      "firstContact": {
+        "degree": 0,
+        "point": [
+          0.07254822832281171,
+          -6.415086656827786,
+          0.8520376906868039
+        ],
+        "moving": "Object_65"
+      }
+    },
+    {
+      "component": "PistonGroup01",
+      "target": "Object_178",
+      "targetParent": "Frame.001_89",
+      "sampledAngleRanges": [
+        [
+          0,
+          29
+        ],
+        [
+          105,
+          134
+        ],
+        [
+          157,
+          246
+        ],
+        [
+          264,
+          288
+        ],
+        [
+          354,
+          359
+        ]
+      ],
+      "firstContact": {
+        "degree": 0,
+        "point": [
+          0.7174975641865545,
+          -0.20917025650695842,
+          0.8728121523468544
+        ],
+        "moving": "Object_141"
+      }
+    },
+    {
+      "component": "ConnectingRod01",
+      "target": "Object_174",
+      "targetParent": "Frame.000_85",
+      "sampledAngleRanges": [
+        [
+          249,
+          290
+        ]
+      ],
+      "firstContact": {
+        "degree": 249,
+        "point": [
+          -2.52296436268678,
+          -6.559293579919193,
+          0.08216347347833519
+        ],
+        "moving": "Object_166"
+      }
+    },
+    {
+      "component": "ConnectingRod01",
+      "target": "Object_65",
+      "targetParent": "Circle.003_32",
+      "sampledAngleRanges": [
+        [
+          41,
+          128
+        ],
+        [
+          135,
+          265
+        ],
+        [
+          268,
+          343
+        ]
+      ],
+      "firstContact": {
+        "degree": 41,
+        "point": [
+          -0.2263441951656808,
+          -5.70493292666025,
+          -0.34111473411928683
+        ],
+        "moving": "Object_166"
+      }
+    },
+    {
+      "component": "PistonGroup01",
+      "target": "Object_166",
+      "targetParent": "Drijfstang_79",
+      "sampledAngleRanges": [
+        [
+          34,
+          45
+        ],
+        [
+          135,
+          146
+        ],
+        [
+          217,
+          323
+        ]
+      ],
+      "firstContact": {
+        "degree": 34,
+        "point": [
+          0.672177027248831,
+          -0.4133548975478316,
+          -0.16813750948658387
+        ],
+        "moving": "Object_141"
+      }
+    },
+    {
+      "component": "ConnectingRod02",
+      "target": "Object_65",
+      "targetParent": "Circle.003_32",
+      "sampledAngleRanges": [
+        [
+          0,
+          164
+        ],
+        [
+          221,
+          310
+        ],
+        [
+          313,
+          359
+        ]
+      ],
+      "firstContact": {
+        "degree": 0,
+        "point": [
+          -0.4084355758952058,
+          -6.734945008303744,
+          -2.463299303739153
+        ],
+        "moving": "Object_170"
+      }
+    },
+    {
+      "component": "PistonGroup02",
+      "target": "Object_170",
+      "targetParent": "Drijstang1_81",
+      "sampledAngleRanges": [
+        [
+          38,
+          142
+        ],
+        [
+          215,
+          226
+        ],
+        [
+          314,
+          325
+        ]
+      ],
+      "firstContact": {
+        "degree": 38,
+        "point": [
+          -0.10178487340779196,
+          -4.9017335136926725,
+          -2.750404625160885
+        ],
+        "moving": "Object_144"
+      }
+    },
+    {
+      "component": "ConnectingRod03",
+      "target": "Object_65",
+      "targetParent": "Circle.003_32",
+      "sampledAngleRanges": [
+        [
+          0,
+          85
+        ],
+        [
+          88,
+          163
+        ],
+        [
+          222,
+          308
+        ],
+        [
+          315,
+          359
+        ]
+      ],
+      "firstContact": {
+        "degree": 0,
+        "point": [
+          -0.39878468167218173,
+          -6.7395724910924875,
+          -4.984152917905451
+        ],
+        "moving": "Object_168"
+      }
+    },
+    {
+      "component": "PistonGroup03",
+      "target": "Object_168",
+      "targetParent": "Drijfstang.001_80",
+      "sampledAngleRanges": [
+        [
+          37,
+          143
+        ],
+        [
+          214,
+          225
+        ],
+        [
+          315,
+          326
+        ]
+      ],
+      "firstContact": {
+        "degree": 37,
+        "point": [
+          -0.0990896150994316,
+          -4.932994358735664,
+          -5.290909302846981
+        ],
+        "moving": "Object_150"
+      }
+    },
+    {
+      "component": "ConnectingRod04",
+      "target": "Object_65",
+      "targetParent": "Circle.003_32",
+      "sampledAngleRanges": [
+        [
+          40,
+          130
+        ],
+        [
+          133,
+          345
+        ]
+      ],
+      "firstContact": {
+        "degree": 40,
+        "point": [
+          -0.24120411275665365,
+          -5.706540533683546,
+          -7.900893397681875
+        ],
+        "moving": "Object_172"
+      }
+    },
+    {
+      "component": "PistonGroup04",
+      "target": "Object_172",
+      "targetParent": "Drijstang1.001_82",
+      "sampledAngleRanges": [
+        [
+          35,
+          46
+        ],
+        [
+          134,
+          145
+        ],
+        [
+          218,
+          322
+        ]
+      ],
+      "firstContact": {
+        "degree": 35,
+        "point": [
+          0.672104626866911,
+          -0.4515038410650014,
+          -7.72780439814805
+        ],
+        "moving": "Object_153"
+      }
+    }
+  ]
+}

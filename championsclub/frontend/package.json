@@ -9,7 +9,12 @@
     "preview": "vite preview --host 0.0.0.0",
     "test": "playwright test",
     "test:unit": "node --test tests/unit.test.mjs",
-    "test:browser-live": "playwright test tests/live.spec.js"
+    "test:browser-live": "playwright test tests/live.spec.js",
+    "engine:prepare": "node scripts/engine/prepare.mjs",
+    "engine:validate": "node scripts/engine/validate.mjs",
+    "test:engine": "node --test tests/engine-lab.test.mjs",
+    "test:engine:browser": "playwright test --config playwright.engine.config.js",
+    "build:engine": "vite build --mode engine-lab --outDir dist-engine-lab"
   },
   "dependencies": {
     "@fontsource/inter": "^5.3.0",

@@ -1,0 +1,25 @@
+{
+  "radius": 0.575,
+  "center": [
+    -0.1801303528825897,
+    -6.244226828109037
+  ],
+  "method": "48-plane cylindrical clearance removed from two derived cutaway casting surfaces; no hero meshes changed. Open cutaway edges, not watertight manufacturing geometry.",
+  "mechanismDegrees": [
+    30,
+    100
+  ],
+  "changes": [
+    {
+      "node": "Object_174",
+      "before": 55254,
+      "after": 58944
+    },
+    {
+      "node": "Object_178",
+      "before": 39880,
+      "after": 39976
+    }
+  ],
+  "bytes": 6039396
+}
