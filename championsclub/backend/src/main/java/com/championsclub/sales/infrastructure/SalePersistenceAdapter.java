@@ -16,6 +16,17 @@ class SalePersistenceAdapter implements SaleRepository {
     public boolean existsExternalReference(String reference) { return jpaSaleRepository.existsByExternalReference(reference); }
     public org.springframework.data.domain.Page<com.championsclub.sales.application.SaleResponse> history(
             SaleRepository.SalesFilter filter, org.springframework.data.domain.Pageable page) {
+        var requestedSort = page.getSort().isSorted()
+                ? page.getSort()
+                : org.springframework.data.domain.Sort.by(
+                        org.springframework.data.domain.Sort.Order.desc("saleDate"),
+                        org.springframework.data.domain.Sort.Order.desc("id")
+                );
+        var chronologicalPage = org.springframework.data.domain.PageRequest.of(
+                page.getPageNumber(),
+                page.getPageSize(),
+                requestedSort
+        );
         return jpaSaleRepository.findAll((root, query, builder) -> {
             var predicates = new java.util.ArrayList<jakarta.persistence.criteria.Predicate>();
             if (filter.advisorId() != null) predicates.add(builder.equal(root.get("advisorId"), filter.advisorId()));
@@ -25,7 +36,7 @@ class SalePersistenceAdapter implements SaleRepository {
             if (filter.from() != null) predicates.add(builder.greaterThanOrEqualTo(root.get("saleDate"), filter.from()));
             if (filter.to() != null) predicates.add(builder.lessThanOrEqualTo(root.get("saleDate"), filter.to()));
             return builder.and(predicates.toArray(jakarta.persistence.criteria.Predicate[]::new));
-        }, page).map(entity -> com.championsclub.sales.application.SaleResponse.from(entity.toDomain()));
+        }, chronologicalPage).map(entity -> com.championsclub.sales.application.SaleResponse.from(entity.toDomain()));
     }
 
     private final JpaSaleRepository jpaSaleRepository;

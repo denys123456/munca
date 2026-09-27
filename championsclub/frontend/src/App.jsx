@@ -63,10 +63,6 @@ function Application() {
               )}
               <Route path="/" element={<Navigate to="/overview" replace />} />
               <Route
-                path="/login"
-                element={<Navigate to="/overview" replace />}
-              />
-              <Route
                 path="*"
                 element={
                   <div className="empty-state">

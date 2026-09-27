@@ -21,7 +21,6 @@ import {
   Pagination,
   Panel,
   Resource,
-  Table,
 } from "../components/ui.jsx";
 import { Lookup } from "../components/Lookup.jsx";
 
@@ -141,19 +140,35 @@ function SaleEditor({ advisor, onClose }) {
 export default function Sales({ advisor, embedded = false }) {
   const { user } = useAuth();
   const { mutate } = useApi();
-  const [filters, update] = useFilters({ status: "", from: "", to: "" });
+  const [filters, update] = useFilters({ status: "", advisorId: "", productId: "", from: "", to: "", sort: "date_desc" });
   const [create, setCreate] = useState(filters.create === "true");
   const [cancel, setCancel] = useState(null);
   const resource = useResource(
     query("/api/sales", {
-      advisorId: advisor?.id || (user.role === "ADVISOR" ? user.id : undefined),
+      advisorId:
+        advisor?.id ||
+        (user.role === "ADVISOR" ? user.id : filters.advisorId || undefined),
       dealershipId: user.dealershipId,
+      productId: filters.productId || undefined,
       status: filters.status,
       from: filters.from,
       to: filters.to,
+      sort: filters.sort || "date_desc",
       page: filters.page,
       size: 12,
     }),
+  );
+  const advisors = useResource(
+    user.role === "MANAGER" && !advisor
+      ? query("/api/advisors", { dealershipId: user.dealershipId, page: 0, size: 100 })
+      : null,
+  );
+  const products = useResource(query("/api/products", { page: 0, size: 100 }));
+  const advisorNameById = new Map(
+    (advisors.data?.content || []).map((item) => [String(item.id), fullName(item)]),
+  );
+  const productNameById = new Map(
+    (products.data?.content || []).map((item) => [String(item.id), item.name]),
   );
   const openCreate = () => setCreate(true);
   return (
@@ -172,7 +187,7 @@ export default function Sales({ advisor, embedded = false }) {
       )}
       <Panel
         title={embedded ? "Advisor sales history" : "Sales history"}
-        subtitle="Newest records first · Values in EUR"
+        subtitle={filters.sort === "value_desc" ? "Highest contract value first · Values in EUR" : filters.sort === "value_asc" ? "Lowest contract value first · Values in EUR" : filters.sort === "date_asc" ? "Oldest records first · Values in EUR" : "Newest records first · Values in EUR"}
         action={
           embedded && (
             <button className="button small" onClick={openCreate}>
@@ -189,16 +204,39 @@ export default function Sales({ advisor, embedded = false }) {
             const values = new FormData(event.currentTarget);
             update({
               status: values.get("status"),
+              advisorId: values.get("advisorId") || "",
+              productId: values.get("productId") || "",
               from: values.get("from"),
               to: values.get("to"),
+              sort: values.get("sort") || "date_desc",
             });
           }}
-          key={`${filters.status}-${filters.from}-${filters.to}`}
+          key={`${filters.status}-${filters.advisorId}-${filters.productId}-${filters.from}-${filters.to}-${filters.sort}`}
         >
           <Field label="Status" name="status" defaultValue={filters.status}>
             <option value="">All statuses</option>
             <option value="RECORDED">Recorded</option>
             <option value="CANCELLED">Cancelled</option>
+          </Field>
+          {user.role === "MANAGER" && !advisor && (
+            <Field label="Advisor" name="advisorId" defaultValue={filters.advisorId}>
+              <option value="">All advisors</option>
+              {(advisors.data?.content || []).map((item) => (
+                <option key={item.id} value={item.id}>{fullName(item)}</option>
+              ))}
+            </Field>
+          )}
+          <Field label="Sale type / product" name="productId" defaultValue={filters.productId}>
+            <option value="">All products</option>
+            {(products.data?.content || []).map((item) => (
+              <option key={item.id} value={item.id}>{item.name}</option>
+            ))}
+          </Field>
+          <Field label="Sort by" name="sort" defaultValue={filters.sort || "date_desc"}>
+            <option value="date_desc">Date · newest first</option>
+            <option value="date_asc">Date · oldest first</option>
+            <option value="value_desc">Contract value · highest first</option>
+            <option value="value_asc">Contract value · lowest first</option>
           </Field>
           <Field
             label="From"
@@ -210,11 +248,11 @@ export default function Sales({ advisor, embedded = false }) {
           <button className="button" type="submit">
             Apply filters
           </button>
-          {(filters.status || filters.from || filters.to) && (
+          {(filters.status || filters.advisorId || filters.productId || filters.from || filters.to || (filters.sort && filters.sort !== "date_desc")) && (
             <button
               type="button"
               className="text-button"
-              onClick={() => update({ status: "", from: "", to: "" })}
+              onClick={() => update({ status: "", advisorId: "", productId: "", from: "", to: "", sort: "date_desc" })}
             >
               Clear filters
             </button>
@@ -223,72 +261,45 @@ export default function Sales({ advisor, embedded = false }) {
         <Resource resource={resource}>
           {(data) => (
             <>
-              <Table
-                caption="Sales history"
-                rows={data.content}
-                emptyTitle={
-                  filters.status || filters.from || filters.to
-                    ? "No sales match these filters"
-                    : "Your sales story starts here"
-                }
-                emptyDescription="Record a completed sale or adjust the filters to see more activity."
-                columns={[
-                  {
-                    key: "externalReference",
-                    title: "Reference",
-                    render: (row) => (
-                      <div className="table-identity">
-                        <strong>{row.externalReference}</strong>
-                        <small>Contract #{row.id}</small>
+              {data.content.length ? (
+                <div className="sales-activity-grid">
+                  {data.content.map((row) => (
+                    <article className={`sales-activity-card ${row.status === "CANCELLED" ? "cancelled" : ""}`} key={row.id}>
+                      <div className="sales-activity-top">
+                        <div>
+                          <span className="activity-date-label">{date(row.saleDate)}</span>
+                          <strong>{row.externalReference}</strong>
+                        </div>
+                        <Badge value={row.status} />
                       </div>
-                    ),
-                  },
-                  {
-                    key: "productId",
-                    title: "Product",
-                    render: (row) => <ProductName id={row.productId} />,
-                  },
-                  {
-                    key: "saleDate",
-                    title: "Sale date",
-                    render: (row) => date(row.saleDate),
-                  },
-                  {
-                    key: "status",
-                    title: "Status",
-                    render: (row) => <Badge value={row.status} />,
-                  },
-                  {
-                    key: "awardedPoints",
-                    title: "Original award",
-                    numeric: true,
-                    render: (row) => `${number(row.awardedPoints)} pts`,
-                  },
-                  {
-                    key: "contractAmount",
-                    title: "Value",
-                    numeric: true,
-                    render: (row) => money(row.contractAmount, row.currency),
-                  },
-                  {
-                    key: "actions",
-                    title: "Action",
-                    render: (row) =>
-                      row.status === "RECORDED" ? (
-                        <button
-                          className="text-button danger-text"
-                          onClick={() => setCancel(row)}
-                        >
-                          Cancel sale
-                        </button>
-                      ) : (
-                        <span className="small muted">
-                          {date(row.cancelledAt)}
-                        </span>
-                      ),
-                  },
-                ]}
-              />
+                      <div className="sales-activity-value">
+                        <span>Contract value</span>
+                        <strong>{money(row.contractAmount, row.currency)}</strong>
+                      </div>
+                      <dl className={`sales-activity-facts ${user.role === "MANAGER" && !advisor ? "four" : ""}`}>
+                        {user.role === "MANAGER" && !advisor && (
+                          <div><dt>Advisor</dt><dd>{advisorNameById.get(String(row.advisorId)) || `Advisor #${row.advisorId}`}</dd></div>
+                        )}
+                        <div><dt>Product</dt><dd>{productNameById.get(String(row.productId)) || <ProductName id={row.productId} />}</dd></div>
+                        <div><dt>Original award</dt><dd>{number(row.awardedPoints)} pts</dd></div>
+                        <div><dt>Contract</dt><dd>#{row.id}</dd></div>
+                      </dl>
+                      <div className="sales-activity-actions">
+                        {row.status === "RECORDED" ? (
+                          <button className="text-button danger-text" onClick={() => setCancel(row)}>Cancel sale</button>
+                        ) : (
+                          <span className="small muted">Cancelled {date(row.cancelledAt)}</span>
+                        )}
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              ) : (
+                <div className="empty-state">
+                  <h3>{filters.status || filters.advisorId || filters.productId || filters.from || filters.to ? "No sales match these filters" : "Your sales story starts here"}</h3>
+                  <p>Record a completed sale or adjust the filters to see more activity.</p>
+                </div>
+              )}
               <Pagination data={data} onPage={(page) => update({ page })} />
             </>
           )}

@@ -1,68 +1,67 @@
 import { useState } from "react";
-import { Plus } from "lucide-react";
+import { CalendarRange } from "lucide-react";
 import { useAuth } from "../auth/AuthContext.jsx";
 import { useApi, useResource } from "../api/ApiContext.jsx";
 import { query } from "../api/client.js";
 import { owner } from "../api/paths.js";
 import { useDashboard } from "../components/Shell.jsx";
 import {
-  Badge,
   Field,
   Modal,
   MutationForm,
   PageHeader,
-  Pagination,
   Panel,
   Resource,
-  Table,
 } from "../components/ui.jsx";
 import { TargetSummary } from "../components/TargetSummary.jsx";
-import { date, localDate, money } from "../lib/format.js";
-import { useFilters } from "../lib/useFilters.js";
+import {
+  ForecastActualHistory,
+  TargetTrajectory,
+} from "../components/DashboardViz.jsx";
+import { date, localDate } from "../lib/format.js";
 
-function TargetEditor({ target, scope, onClose }) {
+function TargetCreator({ scope, onClose }) {
   const { mutate } = useApi();
   return (
     <Modal
-      title={target ? "Edit target" : "Set a target"}
-      description="Define a clear goal for this advisor or dealership. Active target periods cannot overlap."
+      title="Create target period"
+      description="Choose the exact period and target value. Existing target periods are immutable; create a new period instead of editing history."
       onClose={onClose}
     >
       <MutationForm
-        submitLabel={target ? "Save target" : "Create target"}
+        submitLabel="Create target"
         onSuccess={onClose}
         onSubmit={(values) =>
           mutate(
-            target ? `/api/targets/${target.id}` : "/api/targets",
+            "/api/targets",
             {
-              method: target ? "PUT" : "POST",
+              method: "POST",
               body: {
                 ...scope,
                 periodStart: values.get("periodStart"),
                 periodEnd: values.get("periodEnd"),
                 targetAmount: Number(values.get("targetAmount")),
                 currency: "EUR",
-                active: values.get("active") === "true",
+                active: true,
               },
             },
-            target ? "Target updated." : "Target created.",
+            "Target period created.",
           )
         }
       >
         <div className="form-grid">
           <Field
-            label="Start date"
+            label="Target starts"
             name="periodStart"
             type="date"
             required
-            defaultValue={target?.periodStart || localDate()}
+            defaultValue={localDate()}
           />
           <Field
-            label="End date"
+            label="Target ends"
             name="periodEnd"
             type="date"
             required
-            defaultValue={target?.periodEnd || ""}
           />
         </div>
         <Field
@@ -73,16 +72,7 @@ function TargetEditor({ target, scope, onClose }) {
           max="999999999999.99"
           step="0.01"
           required
-          defaultValue={target?.targetAmount}
         />
-        <Field
-          label="Status"
-          name="active"
-          defaultValue={String(target?.active ?? true)}
-        >
-          <option value="true">Active</option>
-          <option value="false">Inactive</option>
-        </Field>
       </MutationForm>
     </Modal>
   );
@@ -91,19 +81,32 @@ function TargetEditor({ target, scope, onClose }) {
 export default function Targets({ advisorId, embedded = false }) {
   const { user } = useAuth();
   const dashboard = useDashboard();
-  const [filters, update] = useFilters();
-  const [editor, setEditor] = useState(null);
+  const [creating, setCreating] = useState(false);
   const scope = owner(user, advisorId);
-  const resource = useResource(
-    query("/api/targets", { ...scope, page: filters.page, size: 10 }),
-  );
   const progress = useResource(
     query("/api/targets/progress", {
       ...scope,
       date: dashboard.data?.performance.reportingDate || localDate(),
     }),
   );
+  const advisorProfile = useResource(
+    advisorId ? `/api/advisors/${encodeURIComponent(advisorId)}/profile` : null,
+  );
   const manager = user.role === "MANAGER";
+  const historyComparison = useResource(
+    query("/api/forecasts/history", {
+      subjectId: scope.ownerId,
+      subjectType: scope.ownerType,
+    }),
+  );
+
+  const trajectoryTarget = advisorId
+    ? advisorProfile.data?.currentTarget
+    : dashboard.data?.performance?.target;
+  const trajectoryPoints = advisorId
+    ? advisorProfile.data?.currentPeriod?.dailySales
+    : dashboard.data?.performance?.analytics?.dailySales;
+
   return (
     <>
       {!embedded && (
@@ -112,18 +115,32 @@ export default function Targets({ advisorId, embedded = false }) {
           title={manager ? "Dealership targets" : "My targets"}
           description={
             manager
-              ? "Manage your dealership goals. Set individual goals from an advisor’s profile."
+              ? "Create new target periods, compare actual progress with required pace, and review historical forecast accuracy."
               : "Know your goal, track your pace and see what remains."
           }
         >
           {manager && (
-            <button className="button primary" onClick={() => setEditor({})}>
-              <Plus size={16} />
-              Set target
+            <button className="button primary" onClick={() => setCreating(true)}>
+              <CalendarRange size={16} />
+              New target period
             </button>
           )}
         </PageHeader>
       )}
+
+      {trajectoryTarget?.targetId && trajectoryPoints?.length > 0 && (
+        <Panel
+          title={advisorId ? "Advisor target achievement over time" : "Target achievement over time"}
+          subtitle="Cumulative recorded sales versus the pace required to reach this target"
+          className="target-trajectory-panel"
+        >
+          <TargetTrajectory
+            points={trajectoryPoints}
+            target={trajectoryTarget}
+          />
+        </Panel>
+      )}
+
       <div className="target-layout">
         <Panel
           title="Current progress"
@@ -133,84 +150,25 @@ export default function Targets({ advisorId, embedded = false }) {
             {(data) => <TargetSummary target={data} link={false} />}
           </Resource>
         </Panel>
+
         <Panel
-          title="Target history"
-          subtitle="Configured periods · Newest first"
-          action={
-            embedded &&
-            manager && (
-              <button className="button small" onClick={() => setEditor({})}>
-                <Plus size={15} />
-                Set target
-              </button>
-            )
+          title="Forecast vs actual by target period"
+          subtitle={
+            scope.ownerType === "ADVISOR"
+              ? "Advisor prediction at day 14 versus final recorded sales · compare forecast accuracy across completed target periods"
+              : "Prediction at day 14 versus final recorded sales · ML backtest where available, pace fallback otherwise"
           }
         >
-          <Resource resource={resource}>
-            {(data) => (
-              <>
-                <Table
-                  rows={data.content}
-                  caption="Target history"
-                  emptyTitle="No targets configured"
-                  emptyDescription={
-                    manager
-                      ? "Set a target to give this reporting scope a clear goal."
-                      : "Your manager can assign your first target."
-                  }
-                  columns={[
-                    {
-                      key: "periodStart",
-                      title: "Period",
-                      render: (row) => (
-                        <div className="table-identity">
-                          <strong>{date(row.periodStart)}</strong>
-                          <small>to {date(row.periodEnd)}</small>
-                        </div>
-                      ),
-                    },
-                    {
-                      key: "targetAmount",
-                      title: "Target",
-                      numeric: true,
-                      render: (row) => money(row.targetAmount, row.currency),
-                    },
-                    {
-                      key: "active",
-                      title: "Status",
-                      render: (row) => (
-                        <Badge value={row.active ? "ACTIVE" : "INACTIVE"} />
-                      ),
-                    },
-                    ...(manager
-                      ? [
-                          {
-                            key: "actions",
-                            title: "Action",
-                            render: (row) => (
-                              <button
-                                className="text-button"
-                                onClick={() => setEditor(row)}
-                              >
-                                Edit target
-                              </button>
-                            ),
-                          },
-                        ]
-                      : []),
-                  ]}
-                />
-                <Pagination data={data} onPage={(page) => update({ page })} />
-              </>
-            )}
+          <Resource resource={historyComparison}>
+            {(data) => <ForecastActualHistory rows={data} />}
           </Resource>
         </Panel>
       </div>
-      {editor && (
-        <TargetEditor
-          target={editor.id ? editor : null}
+
+      {creating && manager && !embedded && (
+        <TargetCreator
           scope={scope}
-          onClose={() => setEditor(null)}
+          onClose={() => setCreating(false)}
         />
       )}
     </>

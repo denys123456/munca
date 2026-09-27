@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Download } from "lucide-react";
 import { useAuth } from "../auth/AuthContext.jsx";
 import { useResource } from "../api/ApiContext.jsx";
@@ -15,6 +15,7 @@ import {
 import {
   DateRange,
   Empty,
+  Field,
   Kpi,
   PageHeader,
   Panel,
@@ -23,6 +24,107 @@ import {
   Table,
 } from "../components/ui.jsx";
 import { TrendChart } from "../components/TrendChart.jsx";
+
+
+function ProductPerformanceTable({ rows = [] }) {
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
+  const [sort, setSort] = useState("sales");
+  const categories = useMemo(
+    () => [...new Set(rows.map((row) => row.category).filter(Boolean))].sort(),
+    [rows],
+  );
+  const visibleRows = useMemo(() => {
+    const needle = search.trim().toLowerCase();
+    const filtered = rows.filter((row) => {
+      const matchesSearch =
+        !needle || String(row.productName || "").toLowerCase().includes(needle);
+      const matchesCategory = !category || row.category === category;
+      return matchesSearch && matchesCategory;
+    });
+    return [...filtered].sort((a, b) => {
+      if (sort === "contracts") return Number(b.transactions || 0) - Number(a.transactions || 0);
+      if (sort === "share") return Number(b.salesSharePercentage || 0) - Number(a.salesSharePercentage || 0);
+      if (sort === "name") return String(a.productName || "").localeCompare(String(b.productName || ""));
+      return Number(b.sales || 0) - Number(a.sales || 0);
+    });
+  }, [rows, search, category, sort]);
+
+  return (
+    <>
+      <div className="filter-bar product-performance-filters">
+        <Field
+          label="Product"
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+          placeholder="Filter by product…"
+        />
+        <Field
+          label="Category"
+          value={category}
+          onChange={(event) => setCategory(event.target.value)}
+        >
+          <option value="">All categories</option>
+          {categories.map((item) => (
+            <option key={item} value={item}>{label(item)}</option>
+          ))}
+        </Field>
+        <Field label="Sort by" value={sort} onChange={(event) => setSort(event.target.value)}>
+          <option value="sales">Sales value</option>
+          <option value="share">Sales share</option>
+          <option value="contracts">Contracts</option>
+          <option value="name">Product name</option>
+        </Field>
+        {(search || category || sort !== "sales") && (
+          <button
+            type="button"
+            className="text-button filter-reset"
+            onClick={() => { setSearch(""); setCategory(""); setSort("sales"); }}
+          >
+            Clear filters
+          </button>
+        )}
+      </div>
+      <Table
+        caption="Product performance"
+        rows={visibleRows}
+        rowKey="productId"
+        emptyTitle="No products match these filters"
+        emptyDescription="Try another product name, category or sort option."
+        columns={[
+          {
+            key: "productName",
+            title: "Product",
+            render: (row) => (
+              <div className="table-identity">
+                <strong>{row.productName}</strong>
+                <small>{label(row.category)}</small>
+              </div>
+            ),
+          },
+          {
+            key: "transactions",
+            title: "Contracts",
+            numeric: true,
+            render: (row) => number(row.transactions),
+          },
+          {
+            key: "sales",
+            title: "Sales",
+            numeric: true,
+            render: (row) => money(row.sales),
+          },
+          {
+            key: "salesSharePercentage",
+            title: "Share",
+            numeric: true,
+            render: (row) => percent(row.salesSharePercentage),
+          },
+        ]}
+      />
+    </>
+  );
+}
 
 export default function Performance({ advisorId, embedded = false }) {
   const { user } = useAuth();
@@ -157,41 +259,7 @@ export default function Performance({ advisorId, embedded = false }) {
                 title="Product performance"
                 subtitle="Share of recorded sales value"
               >
-                <Table
-                  caption="Product performance"
-                  rows={data.productMix}
-                  rowKey="productId"
-                  columns={[
-                    {
-                      key: "productName",
-                      title: "Product",
-                      render: (row) => (
-                        <div className="table-identity">
-                          <strong>{row.productName}</strong>
-                          <small>{label(row.category)}</small>
-                        </div>
-                      ),
-                    },
-                    {
-                      key: "transactions",
-                      title: "Contracts",
-                      numeric: true,
-                      render: (row) => number(row.transactions),
-                    },
-                    {
-                      key: "sales",
-                      title: "Sales",
-                      numeric: true,
-                      render: (row) => money(row.sales),
-                    },
-                    {
-                      key: "salesSharePercentage",
-                      title: "Share",
-                      numeric: true,
-                      render: (row) => percent(row.salesSharePercentage),
-                    },
-                  ]}
-                />
+                <ProductPerformanceTable rows={data.productMix} />
               </Panel>
               <Panel
                 title="Contract composition"

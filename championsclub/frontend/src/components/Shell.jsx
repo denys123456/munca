@@ -3,7 +3,6 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import {
   Activity,
   ArrowUpRight,
-  Bell,
   ChartNoAxesCombined,
   ChevronRight,
   CircleHelp,
@@ -27,6 +26,8 @@ import { useApi, useResource } from "../api/ApiContext.jsx";
 import { dashboardPath } from "../api/paths.js";
 import { fullName, initials, label } from "../lib/format.js";
 import { ErrorMessage } from "./ui.jsx";
+import { ManagerStatsAssistant } from "./ManagerStatsAssistant.jsx";
+import { AutomotiveBackground } from "../showcase/AutomotiveBackground.jsx";
 
 const DashboardContext = createContext(null);
 export const useDashboard = () => useContext(DashboardContext);
@@ -56,7 +57,6 @@ const navigation = [
       ["points", "Points ledger", Coins, "ADVISOR"],
       ["products", "Product catalog", Package],
       ["showcase", "The design series", CarFront],
-      ["alerts", "Notifications", Bell],
     ],
   },
 ];
@@ -110,11 +110,12 @@ export function Shell({ children }) {
   const drawer = useRef(null);
   const menu = useRef(null);
   const main = useRef(null);
-  const current =
-    navigation
-      .flatMap((group) => group.items)
-      .find((item) => location.pathname.startsWith(`/${item[0]}`))?.[1] ||
-    "Your account";
+  const current = location.pathname.match(/^\/advisors\/[^/]+/)
+    ? "Advisor profile"
+    : navigation
+        .flatMap((group) => group.items)
+        .find((item) => location.pathname.startsWith(`/${item[0]}`))?.[1] ||
+      "Your account";
   useEffect(() => {
     document.title = `${current} · ChampionsClub`;
     main.current?.focus();
@@ -157,6 +158,7 @@ export function Shell({ children }) {
   );
   return (
     <DashboardContext.Provider value={dashboard}>
+      <AutomotiveBackground />
       <a
         className="skip-link"
         href="#main-content"
@@ -242,13 +244,6 @@ export function Shell({ children }) {
                 <RefreshCw size={16} />
               </button>
               <Link
-                to="/alerts"
-                className="icon-button"
-                aria-label="Notifications"
-              >
-                <Bell size={18} />
-              </Link>
-              <Link
                 to="/profile"
                 className="avatar small-avatar"
                 aria-label="Your profile"
@@ -275,6 +270,7 @@ export function Shell({ children }) {
           </main>
         </div>
       </div>
+      {user.role === "MANAGER" && <ManagerStatsAssistant dashboard={dashboard} />}
       {notice && (
         <div className="toast" role="status">
           <span>{notice}</span>

@@ -23,12 +23,14 @@ import {
 } from "../components/ui.jsx";
 import { TargetSummary } from "../components/TargetSummary.jsx";
 import { TrendChart } from "../components/TrendChart.jsx";
+import { LeaderboardPodium } from "../components/DashboardViz.jsx";
 import { date, money, number, percent } from "../lib/format.js";
 
 export default function Overview() {
   const { user } = useAuth();
   const dashboard = useDashboard();
   const [interval, setInterval] = useState("dailySales");
+  const [activityFilter, setActivityFilter] = useState("ALL");
   const manager = user.role === "MANAGER";
   return (
     <>
@@ -83,7 +85,7 @@ export default function Overview() {
                   subtitle="in the reporting period"
                 />
                 <Kpi
-                  title="Target achievement"
+                  title="Dealership target progress"
                   icon={Target}
                   value={
                     facts.target.targetId
@@ -98,10 +100,10 @@ export default function Overview() {
                 />
                 {manager ? (
                   <Kpi
-                    title="Active advisors"
+                    title="Advisors with sales"
                     icon={Users}
-                    value={number(data.teamStatistics.activeAdvisors)}
-                    subtitle={`${number(data.teamStatistics.advisorsWithSales)} with recorded contracts this period`}
+                    value={number(data.teamStatistics.advisorsWithSales)}
+                    subtitle={`${number(data.teamStatistics.totalAdvisors)} advisors in this dealership`}
                   />
                 ) : (
                   <Kpi
@@ -112,6 +114,19 @@ export default function Overview() {
                   />
                 )}
               </div>
+              {manager && data.leaderboard?.length > 0 && (
+                <Panel
+                  title="Team podium"
+                  subtitle="Top 3 by expected target-to-date pace · through the reporting date"
+                  action={<Link className="text-link" to="/leaderboard">Full ranking <ArrowUpRight size={14} /></Link>}
+                  className="podium-panel overview-podium"
+                >
+                  <LeaderboardPodium
+                    rows={data.leaderboard}
+                    linkBuilder={(row) => `#/advisors/${row.advisor.advisorId}`}
+                  />
+                </Panel>
+              )}
               <div className="dashboard-primary">
                 <Panel
                   title={
@@ -247,39 +262,34 @@ export default function Overview() {
                   </Link>
                 }
               >
-                <Table
-                  caption="Recent sales"
-                  rows={manager ? data.recentActivity : data.recentSales}
-                  columns={[
-                    {
-                      key: "externalReference",
-                      title: "Reference",
-                      render: (row) => <strong>{row.externalReference}</strong>,
-                    },
-                    {
-                      key: "saleDate",
-                      title: "Sale date",
-                      render: (row) => date(row.saleDate),
-                    },
-                    {
-                      key: "status",
-                      title: "Status",
-                      render: (row) => <Badge value={row.status} />,
-                    },
-                    {
-                      key: "awardedPoints",
-                      title: "Original point award",
-                      numeric: true,
-                      render: (row) => number(row.awardedPoints),
-                    },
-                    {
-                      key: "contractAmount",
-                      title: "Contract value",
-                      numeric: true,
-                      render: (row) => money(row.contractAmount, row.currency),
-                    },
-                  ]}
-                />
+                <div className="activity-filter-chips" role="group" aria-label="Filter recent activity">
+                  {["ALL", "RECORDED", "CANCELLED"].map((status) => (
+                    <button
+                      key={status}
+                      className={`filter-chip ${activityFilter === status ? "active" : ""}`}
+                      onClick={() => setActivityFilter(status)}
+                    >
+                      {status === "ALL" ? "All activity" : status.toLowerCase()}
+                    </button>
+                  ))}
+                </div>
+                <div className="activity-feed">
+                  {(manager ? data.recentActivity : data.recentSales)
+                    .filter((row) => activityFilter === "ALL" || row.status === activityFilter)
+                    .slice()
+                    .sort((a, b) => {
+                      const dateOrder = String(b.saleDate || "").localeCompare(String(a.saleDate || ""));
+                      if (dateOrder !== 0) return dateOrder;
+                      return Number(b.id || 0) - Number(a.id || 0);
+                    })
+                    .map((row) => (
+                      <article className="activity-card" key={row.id || row.externalReference}>
+                        <div className="activity-date"><strong>{date(row.saleDate)}</strong><span>{row.externalReference}</span></div>
+                        <div className="activity-main"><Badge value={row.status} /><strong>{money(row.contractAmount, row.currency)}</strong></div>
+                        <div className="activity-points"><span>Points</span><strong>+{number(row.awardedPoints)}</strong></div>
+                      </article>
+                    ))}
+                </div>
               </Panel>
             </>
           );

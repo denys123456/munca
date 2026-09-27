@@ -1,7 +1,7 @@
 import { useAuth } from "../auth/AuthContext.jsx";
 import { useDashboard } from "../components/Shell.jsx";
 import { date, fullName, initials, label } from "../lib/format.js";
-import { Badge, PageHeader, Panel } from "../components/ui.jsx";
+import { PageHeader, Panel } from "../components/ui.jsx";
 
 export default function Profile() {
   const { user } = useAuth();
@@ -20,7 +20,6 @@ export default function Profile() {
             <h2>{fullName(user)}</h2>
             <p>{user.email}</p>
           </div>
-          <Badge value={user.active ? "ACTIVE" : "INACTIVE"} />
         </div>
         <dl className="detail-grid">
           <div>

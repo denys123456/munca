@@ -10,7 +10,14 @@ export function createScrollTimeline(root, update) {
     trigger?.kill();
     if (media.matches) update(0, true);
     else {
-      trigger = ScrollTrigger.create({ trigger: root, start: "top top", end: "bottom bottom", onUpdate: self => update(self.progress, false), onRefresh: self => update(self.progress, false) });
+      const background = root.dataset.background === "true";
+      trigger = ScrollTrigger.create({
+        trigger: background ? document.documentElement : root,
+        start: background ? "top top" : "top top",
+        end: background ? "max" : "bottom bottom",
+        onUpdate: self => update(self.progress, false),
+        onRefresh: self => update(self.progress, false),
+      });
       trigger.refresh();
     }
   }

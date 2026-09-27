@@ -58,11 +58,10 @@ export function TrendChart({
           {title} · EUR
         </span>
         <span className="chart-inspection" aria-live="polite">
-          {shown
-            ? `${shortDate(shown.date)} · ${money(shown.amount)}`
-            : "Hover or focus to inspect"}
+          {shown ? "Point selected" : "Hover or focus a point to inspect"}
         </span>
       </div>
+      <div className="chart-stage">
       <svg
         viewBox={`0 0 ${width} ${height}`}
         role="img"
@@ -141,7 +140,22 @@ export function TrendChart({
             </title>
           </circle>
         ))}
-      </svg>
+        </svg>
+        {shown && selected !== null && (
+          <div
+            className={`chart-tooltip ${forecast ? "forecast" : ""}`}
+            style={{
+              left: `${(x(selected) / width) * 100}%`,
+              top: `${(y(shown.amount) / height) * 100}%`,
+            }}
+            role="status"
+          >
+            <span>{shortDate(shown.date)}</span>
+            <strong>{money(shown.amount)}</strong>
+            <small>{forecast ? "Predicted contract value" : "Recorded contract value"}</small>
+          </div>
+        )}
+      </div>
       <button
         className="text-button chart-data-toggle"
         onClick={() => setDetails((value) => !value)}

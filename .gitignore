@@ -63,3 +63,7 @@ pgpass.conf
 /.pytest_cache/
 /.idea/
 /.vscode/
+
+# Temporary local application import; never stage source packages.
+/championsclub 3/
+/.archive-integration-temp/

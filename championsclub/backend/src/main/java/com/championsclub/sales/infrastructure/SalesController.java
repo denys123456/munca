@@ -18,6 +18,7 @@ import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -75,12 +76,33 @@ class SalesController {
             @RequestParam(required = false) SaleStatus status,
             @RequestParam(required = false) LocalDate from,
             @RequestParam(required = false) LocalDate to,
+            @RequestParam(defaultValue = "date_desc") String sort,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size
     ) {
+        Sort ordering = switch (sort) {
+            case "date_asc" -> Sort.by(
+                    Sort.Order.asc("saleDate"),
+                    Sort.Order.asc("id")
+            );
+            case "value_desc" -> Sort.by(
+                    Sort.Order.desc("contractAmount"),
+                    Sort.Order.desc("saleDate"),
+                    Sort.Order.desc("id")
+            );
+            case "value_asc" -> Sort.by(
+                    Sort.Order.asc("contractAmount"),
+                    Sort.Order.desc("saleDate"),
+                    Sort.Order.desc("id")
+            );
+            default -> Sort.by(
+                    Sort.Order.desc("saleDate"),
+                    Sort.Order.desc("id")
+            );
+        };
         return queries.history(
                 new SaleRepository.SalesFilter(advisorId, dealershipId, productId, status, from, to),
-                Pages.of(page, size)
+                Pages.of(page, size, ordering)
         );
     }
 

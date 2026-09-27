@@ -438,7 +438,7 @@ export function MutationForm({
   );
 }
 
-export function DateRange({ dates, onChange }) {
+export function DateRange({ dates, onChange, max }) {
   return (
     <form
       className="date-range"
@@ -454,6 +454,7 @@ export function DateRange({ dates, onChange }) {
         name="start"
         type="date"
         required
+        max={max}
         defaultValue={dates.start}
       />
       <Field
@@ -461,6 +462,7 @@ export function DateRange({ dates, onChange }) {
         name="end"
         type="date"
         required
+        max={max}
         defaultValue={dates.end}
       />
       <button className="button" type="submit">

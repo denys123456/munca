@@ -13,11 +13,11 @@ public class AnalyticsPeriodValidator {
     }
 
     public void validate(LocalDate start, LocalDate end) {
-        LocalDate maximumDate = reportingDates.reportingDate().withDayOfMonth(1).plusMonths(1).minusDays(1);
+        LocalDate maximumDate = reportingDates.reportingDate();
         if (end.isBefore(start)
                 || ChronoUnit.DAYS.between(start, end) > 365
                 || end.isAfter(maximumDate)) {
-            throw new IllegalArgumentException("Analytics requires a valid period of at most one year.");
+            throw new IllegalArgumentException("Analytics requires a valid period of at most one year and cannot extend beyond the reporting date.");
         }
     }
 }

@@ -4,6 +4,7 @@ import com.championsclub.analytics.application.AdvisorRanking;
 import com.championsclub.analytics.application.AnalyticsResult;
 import com.championsclub.analytics.application.AnalyticsService;
 import com.championsclub.analytics.application.ForecastService;
+import com.championsclub.analytics.application.ForecastHistoryService;
 import com.championsclub.analytics.application.LeaderboardService;
 import com.championsclub.analytics.application.SalesForecast;
 import com.championsclub.analytics.application.TeamAnalyticsRepository;
@@ -23,15 +24,18 @@ class AnalyticsController {
     private final AnalyticsService analytics;
     private final LeaderboardService leaderboards;
     private final ForecastService forecasts;
+    private final ForecastHistoryService forecastHistory;
 
     AnalyticsController(
             AnalyticsService analytics,
             LeaderboardService leaderboards,
-            ForecastService forecasts
+            ForecastService forecasts,
+            ForecastHistoryService forecastHistory
     ) {
         this.analytics = analytics;
         this.leaderboards = leaderboards;
         this.forecasts = forecasts;
+        this.forecastHistory = forecastHistory;
     }
 
     @GetMapping("/api/analytics")
@@ -63,6 +67,14 @@ class AnalyticsController {
             @RequestParam(defaultValue = "20") int size
     ) {
         return leaderboards.leaderboard(dealershipId, start, end, advisorType, Pages.of(page, size));
+    }
+
+    @GetMapping("/api/forecasts/history")
+    java.util.List<ForecastHistoryService.ForecastComparison> forecastHistory(
+            @RequestParam long subjectId,
+            @RequestParam OwnerType subjectType
+    ) {
+        return forecastHistory.compare(subjectId, subjectType);
     }
 
     @GetMapping("/api/forecasts")

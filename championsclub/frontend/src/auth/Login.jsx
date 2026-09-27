@@ -17,7 +17,6 @@ export function Login() {
   const [pending, setPending] = useState(false);
   async function submit(event) {
     event.preventDefault();
-    if (pending) return;
     const form = new FormData(event.currentTarget);
     setPending(true);
     setError(null);
@@ -76,22 +75,9 @@ export function Login() {
           <h2>Welcome back.</h2>
           <p>Sign in to your ChampionsClub workspace.</p>
           {auth.status === "checking" ? (
-            <div>
-              <p role="status">Verifying your session…</p>
-              <button className="text-button" onClick={auth.resetSession}>
-                Sign in with another account
-              </button>
-            </div>
+            <p role="status">Verifying your session…</p>
           ) : auth.status === "error" ? (
-            <div>
-              <ErrorMessage
-                error={{ message: auth.error }}
-                retry={auth.retry}
-              />
-              <button className="button secondary" onClick={auth.resetSession}>
-                Back to sign in
-              </button>
-            </div>
+            <ErrorMessage error={{ message: auth.error }} retry={auth.retry} />
           ) : (
             <form onSubmit={submit}>
               <Field

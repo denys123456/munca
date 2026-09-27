@@ -1,11 +1,10 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { useResource } from "../api/ApiContext.jsx";
 import { useFilters } from "../lib/useFilters.js";
 import { date, fullName, label, money, number } from "../lib/format.js";
 import {
-  Badge,
   Kpi,
   Loading,
   PageHeader,
@@ -39,6 +38,11 @@ export default function AdvisorDetail() {
     "insights",
   ];
   const selected = tabs.includes(filters.tab) ? filters.tab : "overview";
+  useEffect(() => {
+    if (profile.data?.identity) {
+      document.title = `${fullName(profile.data.identity)} · ChampionsClub`;
+    }
+  }, [profile.data]);
   return (
     <>
       <Link className="back-link" to="/advisors">
@@ -52,9 +56,7 @@ export default function AdvisorDetail() {
               eyebrow={`${label(data.identity.advisorType)} ADVISOR`}
               title={fullName(data.identity)}
               description={`${data.identity.email} · ${data.dealership.name}`}
-            >
-              <Badge value={data.identity.active ? "ACTIVE" : "INACTIVE"} />
-            </PageHeader>
+            />
             <div className="tabs" aria-label="Advisor views">
               {tabs.map((tab) => (
                 <button

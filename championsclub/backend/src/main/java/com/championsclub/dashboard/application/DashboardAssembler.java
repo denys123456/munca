@@ -71,7 +71,7 @@ public class DashboardAssembler {
                 user.dealershipId(),
                 user.advisorType(),
                 target.periodStart(),
-                target.periodEnd()
+                facts.reportingDate()
         );
         return new AdvisorDashboard(
                 user,
@@ -86,7 +86,7 @@ public class DashboardAssembler {
                 leaderboards.ranking(
                         user.dealershipId(),
                         target.periodStart(),
-                        target.periodEnd(),
+                        facts.reportingDate(),
                         user.advisorType(),
                         Pages.of(0, 5)
                 ).getContent()
@@ -99,14 +99,14 @@ public class DashboardAssembler {
         var ranking = leaderboards.ranking(
                 user.dealershipId(),
                 target.periodStart(),
-                target.periodEnd(),
+                facts.reportingDate(),
                 null,
                 Pages.of(0, 5)
         ).getContent();
         var atRisk = teamAnalytics.team(
                         user.dealershipId(),
                         target.periodStart(),
-                        target.periodEnd(),
+                        facts.reportingDate(),
                         null,
                         Pages.of(0, 100),
                         true
@@ -115,7 +115,7 @@ public class DashboardAssembler {
                                 advisor.target(),
                                 advisor.sales(),
                                 target.periodStart(),
-                                target.periodEnd(),
+                                facts.reportingDate(),
                                 facts.reportingDate()
                         ).status() == TargetProgress.Status.AT_RISK)
                 .limit(10)

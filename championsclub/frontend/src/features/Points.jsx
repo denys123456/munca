@@ -1,16 +1,11 @@
-import { useState } from "react";
-import { Plus } from "lucide-react";
 import { useAuth } from "../auth/AuthContext.jsx";
-import { useApi, useResource } from "../api/ApiContext.jsx";
+import { useResource } from "../api/ApiContext.jsx";
 import { query } from "../api/client.js";
 import { useFilters } from "../lib/useFilters.js";
 import { date, label, number } from "../lib/format.js";
 import {
   Badge,
-  Field,
   Kpi,
-  Modal,
-  MutationForm,
   PageHeader,
   Pagination,
   Panel,
@@ -21,8 +16,6 @@ import {
 export default function Points({ advisorId, embedded = false }) {
   const { user } = useAuth();
   const id = advisorId || user.id;
-  const { mutate } = useApi();
-  const [adjusting, setAdjusting] = useState(false);
   const [filters, update] = useFilters();
   const summary = useResource(`/api/points/${id}`);
   const history = useResource(
@@ -34,7 +27,7 @@ export default function Points({ advisorId, embedded = false }) {
         <PageHeader
           eyebrow="EVERY POINT HAS A STORY"
           title="Points ledger"
-          description="Your complete record of earnings, redemptions and adjustments."
+          description="Your complete record of earnings and redemptions."
         />
       )}
       <Resource resource={summary}>
@@ -65,14 +58,6 @@ export default function Points({ advisorId, embedded = false }) {
       <Panel
         title="Point transactions"
         subtitle="Newest first · Complete paginated ledger"
-        action={
-          user.role === "MANAGER" && (
-            <button className="button" onClick={() => setAdjusting(true)}>
-              <Plus size={16} />
-              Adjust points
-            </button>
-          )
-        }
       >
         <Resource resource={history}>
           {(data) => (
@@ -93,11 +78,6 @@ export default function Points({ advisorId, embedded = false }) {
                   },
                   { key: "description", title: "Description" },
                   {
-                    key: "sourceId",
-                    title: "Source",
-                    render: (row) => `#${row.sourceId}`,
-                  },
-                  {
                     key: "amount",
                     title: "Points",
                     numeric: true,
@@ -115,49 +95,6 @@ export default function Points({ advisorId, embedded = false }) {
           )}
         </Resource>
       </Panel>
-      {adjusting && (
-        <Modal
-          title="Adjust advisor points"
-          description="Every adjustment is recorded in the audit log and point ledger."
-          onClose={() => setAdjusting(false)}
-        >
-          <MutationForm
-            submitLabel="Confirm adjustment"
-            onSuccess={() => setAdjusting(false)}
-            onSubmit={(values) => {
-              const amount = Number(values.get("amount"));
-              if (!Number.isInteger(amount) || amount === 0)
-                throw new Error("Enter a nonzero whole number of points.");
-              return mutate(
-                `/api/points/${id}/adjustments`,
-                {
-                  method: "POST",
-                  body: { amount, reason: values.get("reason").trim() },
-                },
-                "Point adjustment recorded.",
-              );
-            }}
-          >
-            <Field
-              label="Point adjustment"
-              name="amount"
-              type="number"
-              step="1"
-              min="-2147483648"
-              max="2147483647"
-              required
-              hint="Use a positive number to add points or a negative number to deduct them."
-            />
-            <Field
-              label="Reason"
-              name="reason"
-              required
-              maxLength={280}
-              placeholder="Explain this adjustment"
-            />
-          </MutationForm>
-        </Modal>
-      )}
     </>
   );
 }

@@ -15,8 +15,6 @@ class TargetController {
     TargetStore.TargetData create(@Valid @RequestBody TargetStore.TargetData request) { return service.save(null, request); }
     @GetMapping("/{id}")
     TargetStore.TargetData get(@PathVariable long id) { return service.get(id); }
-    @PutMapping("/{id}")
-    TargetStore.TargetData update(@PathVariable long id, @Valid @RequestBody TargetStore.TargetData request) { return service.save(id, request); }
     @GetMapping
     Page<TargetStore.TargetData> list(@RequestParam long ownerId, @RequestParam TargetStore.OwnerType ownerType,
                                     @RequestParam(defaultValue="0") int page, @RequestParam(defaultValue="20") int size) {

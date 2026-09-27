@@ -47,7 +47,7 @@ public class AdvisorProfileService {
                 advisor.dealershipId(),
                 advisor.advisorType(),
                 target.periodStart(),
-                target.periodEnd()
+                snapshot.reportingDate()
         );
         return new AdvisorProfile(
                 advisor,
