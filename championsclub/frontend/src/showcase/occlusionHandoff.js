@@ -17,7 +17,8 @@ export function createOcclusionHandoff(car, studio) {
   const endpoint = target.clone().add(new Vector3(0, 0, -0.004));
   const scene = new Scene();
   scene.environment = studio.scene.environment;
-  for (const node of studio.scene.children) if (node.isLight) scene.add(node.clone());
+  scene.environmentIntensity = studio.scene.environmentIntensity;
+  for (const node of studio.scene.children) if (node.isLight) { const light = node.clone(); light.castShadow = false; scene.add(light); }
   const patch = surface.clone();
   patch.matrixAutoUpdate = false;
   patch.matrix.copy(surface.matrixWorld);
@@ -34,8 +35,7 @@ export function createOcclusionHandoff(car, studio) {
     endpoint, target, scene, camera, surfaceName: surface.name,
     render(renderer, aspect, progress) {
       if (progress >= 0.608) return;
-      camera.aspect = aspect;
-      camera.updateProjectionMatrix();
+      if (camera.aspect !== aspect) { camera.aspect = aspect; camera.updateProjectionMatrix(); }
       const t = segment(progress, 0.563, 0.608);
       const travel = t * t * 2.8;
       motion.makeTranslation(axis.x * travel, axis.y * travel, axis.z * travel);

@@ -10,6 +10,7 @@ import {
   PMREMGenerator,
   Scene,
   ShadowMaterial,
+  SRGBColorSpace,
   PCFShadowMap,
   WebGLRenderer,
 } from "three";
@@ -23,7 +24,9 @@ export function createStudio(viewport) {
   });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
   renderer.toneMapping = ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.05;
+  renderer.outputColorSpace = SRGBColorSpace;
+  renderer.toneMappingExposure = 1;
+  renderer.setClearColor(0x000000, 0);
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = PCFShadowMap;
   renderer.shadowMap.autoUpdate = false;
@@ -34,11 +37,12 @@ export function createStudio(viewport) {
   const pmrem = new PMREMGenerator(renderer);
   const environment = pmrem.fromScene(room, 0.04);
   scene.environment = environment.texture;
+  scene.environmentIntensity = 0.75;
   room.dispose();
   pmrem.dispose();
-  scene.add(new HemisphereLight(0xf2f5ff, 0x747a83, 2));
-  const key = new DirectionalLight(0xfffaf2, 3);
-  key.position.set(-1, 8, 1);
+  scene.add(new HemisphereLight(0xf2f5ff, 0x747a83, 0.35));
+  const key = new DirectionalLight(0xfffaf2, 2.4);
+  key.position.set(-3, 7, 4);
   key.castShadow = true;
   key.shadow.mapSize.set(1024, 1024);
   Object.assign(key.shadow.camera, {
@@ -53,7 +57,7 @@ export function createStudio(viewport) {
   key.shadow.normalBias = 0.025;
   key.shadow.radius = 4;
   scene.add(key);
-  const fill = new DirectionalLight(0xdde8ff, 1.5);
+  const fill = new DirectionalLight(0xdde8ff, 0.65);
   fill.position.set(4, 3, -5);
   scene.add(fill);
   const floor = new Mesh(
@@ -76,7 +80,7 @@ export function createStudio(viewport) {
   const contact = new Mesh(
     new PlaneGeometry(3.4, 6),
     new MeshBasicMaterial({
-      map: new CanvasTexture(canvas),
+      map: Object.assign(new CanvasTexture(canvas), { colorSpace: SRGBColorSpace }),
       transparent: true,
       depthWrite: false,
     }),

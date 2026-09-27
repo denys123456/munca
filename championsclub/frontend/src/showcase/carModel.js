@@ -27,7 +27,7 @@ export async function loadCar(signal) {
       ? node.material
       : [node.material];
     for (const material of materials) {
-      material.envMapIntensity = 1.1;
+      material.envMapIntensity = 1;
       if (material.name.startsWith("Rojo Kings")) {
         material.color.set("#b7bec7");
         material.metalness = 0.82;

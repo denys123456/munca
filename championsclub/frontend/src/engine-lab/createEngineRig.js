@@ -24,6 +24,7 @@ export function createEngineRig(scene, manifest) {
       return node;
     }),
     visible: true,
+    offsetVector: new Vector3(),
   }));
   const byId = new Map(components.map(c => [c.id, c]));
   const rest = new Map();
@@ -33,6 +34,7 @@ export function createEngineRig(scene, manifest) {
       rest.set(node, {
         world: new Matrix4().fromArray(saved.worldMatrix),
         parentInverse: new Matrix4().fromArray(saved.parentWorldMatrix).invert(),
+        scaleZ: new Vector3().setFromMatrixScale(new Matrix4().fromArray(saved.worldMatrix)).z,
       });
     }
   }
@@ -80,15 +82,20 @@ export function createEngineRig(scene, manifest) {
     wristPins.push(wrist);
   });
   let state = resolveTimeline();
-  let joints = [];
+  const joints = measurements.rods.map(() => ({ journal: [0, 0, 0], wrist: [0, 0, 0] }));
+  const world = new Matrix4(), local = new Matrix4(), crankRotation = new Matrix4();
+  const rotate = new Matrix4(), scale = new Matrix4(), shift = new Matrix4();
   function explosionOffset(component, progress) {
     const amount = smooth((progress - component.stage[0]) / (component.stage[1] - component.stage[0]));
-    return new Vector3(...component.offset).multiplyScalar(amount);
+    return component.offsetVector.fromArray(component.offset).multiplyScalar(amount);
   }
   function evaluate(input) {
-    state = resolveTimeline(input);
-    joints = measurements.rods.map((_, i) => solveCylinder(measurements, i, state.angle));
-    const crankRotation = pivotRotation(measurements.crankCenter, -state.angle);
+    state = resolveTimeline(input, state);
+    for (let i = 0; i < joints.length; i++) solveCylinder(measurements, i, state.angle, joints[i]);
+    const [cx, cy, cz] = measurements.crankCenter;
+    crankRotation.makeTranslation(cx, cy, cz)
+      .multiply(rotate.makeRotationZ(-state.angle))
+      .multiply(shift.makeTranslation(-cx, -cy, -cz));
     for (const component of components) {
       const offset = explosionOffset(component, state.explosionProgress);
       for (const node of component.nodes) {
@@ -97,41 +104,41 @@ export function createEngineRig(scene, manifest) {
           restoreNode(node, reference.get(node));
           continue;
         }
-        let world = rest.get(node).world.clone();
+        world.copy(rest.get(node).world);
         if (!state.sourcePose) {
           const index = Number(component.id.slice(-2)) - 1;
           if (component.kind === "piston") {
             const wrist = joints[index].wrist;
-            world = translation(wrist[0], wrist[1] - measurements.pistonWrist[1], wrist[2]);
+            world.makeTranslation(wrist[0], wrist[1] - measurements.pistonWrist[1], wrist[2]);
           } else if (component.kind === "rod") {
             const rod = measurements.rods[index];
             const localAngle = Math.atan2(rod.smallEnd[1] - rod.bigEnd[1], rod.smallEnd[0] - rod.bigEnd[0]);
-            const originalScale = new Vector3().setFromMatrixScale(rest.get(node).world);
-            world = translation(...joints[index].journal)
-              .multiply(rotation(joints[index].rodAngle - localAngle))
-              .multiply(new Matrix4().makeScale(1, 1, originalScale.z))
-              .multiply(translation(...rod.bigEnd.map(n => -n)));
+            world.makeTranslation(...joints[index].journal)
+              .multiply(rotate.makeRotationZ(joints[index].rodAngle - localAngle))
+              .multiply(scale.makeScale(1, 1, rest.get(node).scaleZ))
+              .multiply(shift.makeTranslation(-rod.bigEnd[0], -rod.bigEnd[1], -rod.bigEnd[2]));
           } else if (component.kind === "crank") {
-            world = crankRotation.clone().multiply(preparedCrank.get(node));
+            world.copy(crankRotation).multiply(preparedCrank.get(node));
           } else if (component.kind === "flywheel") {
-            world = crankRotation.clone()
-              .multiply(translation(measurements.crankCenter[0] - measurements.flywheelCenter[0], measurements.crankCenter[1] - measurements.flywheelCenter[1], 0))
-              .multiply(world);
+            world.copy(crankRotation)
+              .multiply(shift.makeTranslation(measurements.crankCenter[0] - measurements.flywheelCenter[0], measurements.crankCenter[1] - measurements.flywheelCenter[1], 0))
+              .multiply(rest.get(node).world);
           }
         }
         world.elements[12] += offset.x;
         world.elements[13] += offset.y;
         world.elements[14] += offset.z;
-        applyLocalMatrix(node, rest.get(node).parentInverse.clone().multiply(world));
+        applyLocalMatrix(node, local.multiplyMatrices(rest.get(node).parentInverse, world));
       }
     }
-    journals.forEach((journal, i) => {
+    for (let i = 0; i < journals.length; i++) {
+      const journal = journals[i];
       journal.visible = !state.sourcePose && byId.get("CrankshaftGroup").visible;
       journal.position.fromArray(joints[i].journal).add(explosionOffset(byId.get("CrankshaftGroup"), state.explosionProgress));
       const wrist = wristPins[i];
       wrist.visible = !state.sourcePose && byId.get(`PistonGroup0${i + 1}`).visible;
       wrist.position.fromArray(joints[i].wrist).add(explosionOffset(byId.get(`PistonGroup0${i + 1}`), state.explosionProgress));
-    });
+    }
     engineRoot.updateMatrixWorld(true);
     return state;
   }

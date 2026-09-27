@@ -18,27 +18,33 @@ export async function loadEngineStage(environment, signal) {
   const hardware = instanceHardware(rig);
   const scene = new Scene();
   scene.environment = environment;
-  scene.environmentIntensity = 0.85;
-  scene.add(rig.root, new HemisphereLight(0xf6f8ff, 0x383d45, 1.5));
-  for (const [intensity, position] of [[3.6, [8, 18, 14]], [3, [-12, 4, -14]], [1.4, [14, -3, -2]]]) {
+  scene.environmentIntensity = 0.7;
+  scene.add(rig.root, new HemisphereLight(0xf6f8ff, 0x383d45, 0.3));
+  for (const [intensity, position] of [[2.4, [8, 18, 14]], [1.1, [-12, 4, -14]], [0.35, [14, -3, -2]]]) {
     const light = new DirectionalLight(0xf1f3f5, intensity);
     light.position.set(...position);
     scene.add(light);
   }
   const position = new Vector3(), target = new Vector3(), direction = new Vector3();
   const views = cameraViews.map(view => ({ position: new Vector3(...view.position), target: new Vector3(...view.target) }));
+  let lastMechanism = NaN, lastExplosion = NaN;
   return {
     scene, rig, hardware,
     evaluate(state, camera) {
-      rig.evaluate(state);
-      hardware.update();
+      if (state.engineMechanismProgress !== lastMechanism || state.explosionProgress !== lastExplosion) {
+        rig.evaluate(state);
+        // These batches contain only static/cam hardware: crank motion cannot move them.
+        if (state.explosionProgress !== lastExplosion) hardware.update();
+        lastMechanism = state.engineMechanismProgress;
+        lastExplosion = state.explosionProgress;
+      }
       const t = state.cameraProgress;
       const a = t < 0.45 ? views[0] : views[2];
       const b = t < 0.45 ? views[2] : views[4];
       const amount = t < 0.45 ? t / 0.45 : (t - 0.45) / 0.55;
       position.copy(a.position).lerp(b.position, amount);
       target.copy(a.target).lerp(b.target, amount);
-      direction.copy(position).sub(target).multiplyScalar(Math.max(1, 1 / camera.aspect));
+      direction.copy(position).sub(target).multiplyScalar(Math.max(1, 1.65 / camera.aspect));
       direction.multiplyScalar(1 + 0.07 * (1 - state.reveal));
       camera.position.copy(target).add(direction);
       camera.lookAt(target);

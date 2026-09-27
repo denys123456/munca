@@ -125,7 +125,6 @@
 .car-viewport {
   position: absolute;
   inset: 24% 0 12%;
-  mask-image: linear-gradient(transparent, #000 7%, #000 93%, transparent);
 }
 .car-viewport canvas {
   display: block;

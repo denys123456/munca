@@ -1,4 +1,4 @@
-import { Color, Vector3 } from "three";
+import { Color, Vector3, WebGLRenderTarget } from "three";
 import { loadCar, disposeObject } from "./carModel.js";
 import { createStudio } from "./studio.js";
 import { createScrollTimeline } from "./scrollTimeline.js";
@@ -13,7 +13,7 @@ export function createShowcase(root, viewport, onStatus) {
   const controller = new AbortController();
   const damping = createProgressDamping();
   const target = new Vector3(), position = new Vector3();
-  const bright = new Color("#f0f1f2"), dark = new Color("#242a30"), background = new Color();
+  const bright = new Color("#f0f1f2"), dark = new Color("#242a30"), background = new Color(), edge = new Color();
   const ink = new Color(), darkInk = new Color("#202225"), lightInk = new Color("#dce1e5");
   const stage = root.querySelector(".car-stage");
   const heading = root.querySelector(".car-heading"), detail = root.querySelector(".car-detail"), finale = root.querySelector(".car-finale");
@@ -24,9 +24,13 @@ export function createShowcase(root, viewport, onStatus) {
   let engine, car, handoff, stopTimeline, frame = 0, lastTime = 0, lastInput = 0, lastChapter = -1;
   let engineLoading = false, engineStarted = 0, engineLoadMilliseconds = 0;
   let current = cinematicState(0);
-  const samples = [];
+  const samples = import.meta.env.DEV
+    ? Array.from({ length: 360 }, () => ({ interval: 0, cpu: 0, draws: 0, triangles: 0, scene: "car" }))
+    : [];
+  let sampleCount = 0, sampleCursor = 0;
+  let lastTone = -1;
   renderer.info.autoReset = false;
-  camera.near = 0.0001;
+  camera.near = 0.1;
   camera.far = 250;
   camera.updateProjectionMatrix();
   const timeout = setTimeout(() => { controller.abort(); fail(); }, 60000);
@@ -54,14 +58,21 @@ export function createShowcase(root, viewport, onStatus) {
     const frameInterval = lastTime ? now - lastTime : 0;
     lastTime = now;
     const start = performance.now();
-    current = cinematicState(damping.step(delta, engine ? 1 : 0.46, reduced));
+    current = cinematicState(damping.step(delta, engine ? 1 : 0.46, reduced), current);
     const p = current.progress;
+    // Only the grille macro needs a sub-millimetre near plane. A 0.0001 / 250
+    // frustum in wide shots destroys depth precision and causes z-fighting.
+    const near = current.scene === "engine" ? 0.1 : Math.max(0.0001, 0.1 * (1 - current.approach));
+    if (camera.near !== near) { camera.near = near; camera.updateProjectionMatrix(); }
     root.dataset.scene = current.scene;
     root.dataset.progress = p.toFixed(5);
-    background.copy(bright).lerp(dark, current.tone);
-    ink.copy(darkInk).lerp(lightInk, current.tone);
-    stage.style.background = `radial-gradient(ellipse at 50% 35%, ${background.getStyle()} 0%, ${background.clone().multiplyScalar(0.72).getStyle()} 130%)`;
-    root.style.setProperty("--car-ink", ink.getStyle());
+    if (current.tone !== lastTone) {
+      background.copy(bright).lerp(dark, current.tone);
+      ink.copy(darkInk).lerp(lightInk, current.tone);
+      stage.style.background = `radial-gradient(ellipse at 50% 35%, ${background.getStyle()} 0%, ${edge.copy(background).multiplyScalar(0.72).getStyle()} 130%)`;
+      root.style.setProperty("--car-ink", ink.getStyle());
+      lastTone = current.tone;
+    }
     heading.style.opacity = 1 - segment(p, 0.43, 0.49);
     detail.style.opacity = segment(p, 0.612, 0.638) * (1 - segment(p, 0.75, 0.8));
     finale.style.opacity = segment(p, 0.93, 0.98);
@@ -74,7 +85,6 @@ export function createShowcase(root, viewport, onStatus) {
     }
     renderer.info.reset();
     if (current.scene === "car") {
-      renderer.toneMappingExposure = 1.05;
       const fit = Math.max(1.18, 1.65 / camera.aspect);
       position.set(Math.sin(current.theta) * current.radius * fit, 1.85, Math.cos(current.theta) * current.radius * fit);
       target.set(0, 0.65, 0);
@@ -84,20 +94,29 @@ export function createShowcase(root, viewport, onStatus) {
       camera.lookAt(target);
       renderer.render(scene, camera);
     } else {
-      renderer.toneMappingExposure = 1.05 + 0.12 * current.reveal;
       engine.evaluate(current, camera);
       renderer.render(engine.scene, camera);
       handoff.render(renderer, camera.aspect, p);
     }
-    if (frameInterval > 0 && frameInterval < 100) {
-      samples.push({ interval: frameInterval, cpu: performance.now() - start, draws: renderer.info.render.calls, triangles: renderer.info.render.triangles, scene: current.scene });
-      if (samples.length > 360) samples.shift();
+    if (import.meta.env.DEV && frameInterval > 0) {
+      const sample = samples[sampleCursor];
+      sample.interval = frameInterval;
+      sample.cpu = performance.now() - start;
+      sample.draws = renderer.info.render.calls;
+      sample.triangles = renderer.info.render.triangles;
+      sample.scene = current.scene;
+      sampleCursor = (sampleCursor + 1) % samples.length;
+      sampleCount = Math.min(sampleCount + 1, samples.length);
     }
     if (!damping.settled && (engine || damping.rendered < 0.45999)) invalidate();
+    else lastTime = 0; // Idle time is not a dropped animation frame.
   }
+
   function resize() {
-    const width = viewport.clientWidth, height = viewport.clientHeight;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, width < 700 ? 1.25 : 1.5));
+    const width = Math.max(1, viewport.clientWidth), height = Math.max(1, viewport.clientHeight);
+    const ratio = Math.min(window.devicePixelRatio, width < 700 ? 1.25 : 1.5);
+    if (renderer.domElement.width === Math.floor(width * ratio) && renderer.domElement.height === Math.floor(height * ratio) && renderer.getPixelRatio() === ratio) return;
+    renderer.setPixelRatio(ratio);
     renderer.setSize(width, height);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
@@ -114,6 +133,16 @@ export function createShowcase(root, viewport, onStatus) {
       const compileCamera = camera.clone();
       loaded.evaluate(cinematicState(0.64), compileCamera);
       await renderer.compileAsync(loaded.scene, compileCamera);
+      await renderer.compileAsync(handoff.scene, handoff.camera);
+      // Shader compilation alone does not upload vertex/instance buffers. Warm
+      // both incoming draws offscreen before advertising the engine as ready.
+      const warmup = new WebGLRenderTarget(64, 64);
+      const previousTarget = renderer.getRenderTarget();
+      try {
+        renderer.setRenderTarget(warmup);
+        renderer.render(loaded.scene, compileCamera);
+        handoff.render(renderer, camera.aspect, 0.56);
+      } finally { renderer.setRenderTarget(previousTarget); warmup.dispose(); }
       if (disposed) { loaded.dispose(); return; }
       engine = loaded;
       engineLoadMilliseconds = performance.now() - engineStarted;
@@ -156,10 +185,11 @@ export function createShowcase(root, viewport, onStatus) {
     get car() { return car; },
     get handoff() { return handoff; },
     camera, renderer,
-    resetMetrics() { samples.length = 0; lastTime = 0; },
+    resetMetrics() { sampleCount = sampleCursor = 0; lastTime = 0; },
     stats() {
-      const percentile = (key, p) => [...samples].sort((a, b) => a[key] - b[key])[Math.min(samples.length - 1, Math.floor(samples.length * p))]?.[key] ?? 0;
-      return { samples: samples.length, medianFrameMilliseconds: percentile("interval", 0.5), p95FrameMilliseconds: percentile("interval", 0.95), medianCpuMilliseconds: percentile("cpu", 0.5), draws: renderer.info.render.calls, triangles: renderer.info.render.triangles, engineLoadMilliseconds, geometries: renderer.info.memory.geometries, textures: renderer.info.memory.textures };
+      const activeSamples = samples.slice(0, sampleCount);
+      const percentile = (key, p) => [...activeSamples].sort((a, b) => a[key] - b[key])[Math.min(sampleCount - 1, Math.floor(sampleCount * p))]?.[key] ?? 0;
+      return { samples: sampleCount, medianFrameMilliseconds: percentile("interval", 0.5), p95FrameMilliseconds: percentile("interval", 0.95), medianCpuMilliseconds: percentile("cpu", 0.5), draws: renderer.info.render.calls, triangles: renderer.info.render.triangles, engineLoadMilliseconds, geometries: renderer.info.memory.geometries, textures: renderer.info.memory.textures };
     },
   };
   if (import.meta.env.DEV) window.cinematic = debug;

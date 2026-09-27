@@ -1,4 +1,4 @@
-import { Euler, Matrix4 } from "three";
+import { Matrix4 } from "three";
 
 export function captureReference(root) {
   root.updateMatrixWorld(true);
@@ -23,7 +23,7 @@ export function captureReference(root) {
 
 export function restoreNode(node, reference) {
   node.position.fromArray(reference.position);
-  node.rotation.copy(new Euler(...reference.rotation));
+  node.rotation.fromArray(reference.rotation);
   node.quaternion.fromArray(reference.quaternion);
   node.scale.fromArray(reference.scale);
   node.matrix.fromArray(reference.localMatrix);

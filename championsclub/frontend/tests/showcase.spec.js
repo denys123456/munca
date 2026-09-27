@@ -184,3 +184,35 @@ test("a failed model download keeps the poster and supports retry", async ({
     page.getByRole("link", { name: "Your workspace", exact: true }),
   ).toBeVisible();
 });
+
+test("cinematic keeps its canvas, depth precision and React idle across the first handoff", async ({ page }) => {
+  await page.addInitScript(() => {
+    window.reactCommits = 0;
+    window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = {
+      supportsFiber: true, renderers: new Map(),
+      inject(renderer) { this.renderers.set(1, renderer); return 1; },
+      onCommitFiberRoot: () => window.reactCommits++,
+      onCommitFiberUnmount() {}, onPostCommitFiberRoot() {},
+    };
+  });
+  await ready(page);
+  await page.waitForFunction(() => window.cinematic?.state.engineReady);
+  const initial = await page.evaluate(() => {
+    const c = window.cinematic;
+    window.originalCinematicCanvas = c.renderer.domElement;
+    return { commits: window.reactCommits, width: c.renderer.domElement.width, height: c.renderer.domElement.height, models: performance.getEntriesByType('resource').filter(r => r.name.endsWith('.glb')).length };
+  });
+  for (const p of [.54, .557, .6, .64, .71, .94, .78, .64, .3, 0]) {
+    await chapter(page, p);
+    const result = await page.evaluate(() => {
+      const c = window.cinematic;
+      return { same: c.renderer.domElement === window.originalCinematicCanvas, near: c.camera.near, progress: c.state.progress, exposure: c.renderer.toneMappingExposure, colorSpace: c.renderer.outputColorSpace, commits: window.reactCommits, width: c.renderer.domElement.width, height: c.renderer.domElement.height, models: performance.getEntriesByType('resource').filter(r => r.name.endsWith('.glb')).length };
+    });
+    expect(result.same).toBe(true);
+    expect(result.progress).toBeCloseTo(p, 2);
+    expect(result.exposure).toBe(1);
+    expect(result.colorSpace).toBe('srgb');
+    if (p >= .555 || p < .47) expect(result.near).toBe(.1);
+    for (const key of ['commits', 'width', 'height', 'models']) expect(result[key]).toBe(initial[key]);
+  }
+});
